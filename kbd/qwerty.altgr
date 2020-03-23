@@ -1,0 +1,52 @@
+!xmodmap
+keycode 108 = Mode_switch
+
+clear control
+keycode 37 = Control_L
+keycode 105 = slash question 
+keycode 107 = Control_R
+add control = Control_R
+add control = Control_L
+
+!clear lock
+!keycode 9 = Caps_Lock
+!keycode 66 = Escape
+!add lock = Caps_Lock
+
+keycode  24 = q Q period
+keycode  25 = w W backslash
+keycode  26 = e E bar
+keycode  27 = r R colon
+
+!keycode  28 = t T
+!keycode  29 = y Y
+!keycode  30 = u U
+
+keycode  31 = i I minus
+keycode  32 = o O equal
+keycode  33 = p P plus
+
+keycode  18 = 9 parenleft braceleft
+keycode  19 = 0 parenright braceright
+
+keycode  38 = a A asciitilde
+keycode  39 = s S slash
+keycode  40 = d D quotedbl
+keycode  41 = f F asterisk
+
+!keycode  42 = g G
+
+keycode  43 = h H asciicircum
+keycode  44 = j J ampersand
+keycode  45 = k K percent
+keycode  46 = l L dollar
+                
+keycode  52 = z Z underscore
+keycode  53 = x X numbersign
+keycode  54 = c C exclam
+keycode  55 = v V semicolon
+
+keycode  56 = b B question
+
+keycode  57 = n N bracketleft
+keycode  58 = m M bracketright

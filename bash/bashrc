@@ -1,0 +1,40 @@
+#!/bin/bash
+force_color_prompt=yes
+set -o vi
+
+alias \
+	mv="mv -iv" \
+	rm="rm -iv" \
+	ln="ln -v"\
+	ls="ls -1 --color=auto"\
+	sl="sl -al"\
+	grep="grep -i --color=auto"\
+	mkdir="mkdir -pv" \
+	cp="cp -iv" \
+	\
+	upp="sudo pacman -Syu"\
+	shut="shutdown now"\
+	susp="systemctl suspend"\
+	\
+	la="ls -lhANX --group-directories-first"\
+	l="ls -lhNX --group-directories-first"\
+	\
+	q="exit"\
+	cl="clear"\
+	glances="glances -2 -5"
+
+function ok() { /usr/bin/okular "$1" &>/dev/null & }
+function btman() { /usr/bin/blueman-applet &>/dev/null & }
+
+PS1='\
+\[\033[1;36m\]\
+\u\
+\[\033[37m\]\
+@\
+\[\033[3;31m\]\
+\h:\
+\[\033[0;1;32m\]\
+\w\
+\[\033[37m\]\
+\$\
+\[\033[0m\]'

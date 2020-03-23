@@ -1,0 +1,36 @@
+!------ Xterm ------!
+
+xterm.vt100.saveLines: 4096
+xterm*VT100.Translations: !override \n\
+	Ctrl Shift <Key>V:	insert-selection(CLIPBOARD) \n\
+	Ctrl Shift <Key>C:	copy-selection(CLIPBOARD) \n\
+	Ctrl Alt <Key>K:	scroll-back(10) \n\
+	Ctrl Alt <Key>J:	scroll-forw(10)
+xterm*background: black
+xterm*foreground: green
+xterm*faceName: Monospace
+xterm*faceSize: 10
+
+!------ URxvt ------!
+
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+
+URxvt*background: black
+URxvt*foreground: white
+URxvt*shading: 25
+URxvt*blurRadius: 10x10
+
+URxvt.font: xft:pango:size=9.5
+URxvt.letterSpace: -2
+!URxvt*colorBD:
+!URxvt*colorIT:
+!URxvt*colorUL:
+
+URxvt*scrollBar: False
+URxvt*saveLines: 2000
+URxvt*cursorBlink: True
+URxvt*transparent: True

@@ -1,0 +1,47 @@
+#console
+#
+keycode 1 = Caps_Lock
+keycode 58 = Escape
+#
+#9 0
+altgr keycode  10 = braceleft
+altgr keycode  11 = braceright
+#
+#q w e r
+altgr keycode  16 = period
+altgr keycode  17 = backslash
+altgr keycode  18 = bar
+altgr keycode  19 = underscore
+#
+#t y u
+#altgr keycode  20 = 
+#altgr keycode  21 = 
+#altgr keycode  22 = 
+#
+#i o p
+altgr keycode  23 = minus
+altgr keycode  24 = equal
+altgr keycode  25 = plus
+#
+#a s d f
+altgr keycode  30 = asciitilde
+altgr keycode  31 = slash
+altgr keycode  32 = quotedbl
+altgr keycode  33 = asterisk
+#
+#h j k l
+altgr keycode  35 = asciicircum
+altgr keycode  36 = ampersand
+altgr keycode  37 = percent
+altgr keycode  38 = dollar
+#
+#z x c v
+altgr keycode  44 = colon
+altgr keycode  45 = numbersign
+altgr keycode  46 = exclam
+altgr keycode  47 = semicolon
+#
+#b n m
+altgr keycode  48 = question
+altgr keycode  49 = bracketleft
+altgr keycode  50 = bracketright

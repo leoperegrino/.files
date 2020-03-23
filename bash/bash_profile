@@ -1,0 +1,27 @@
+# ~/.bash_profile
+#
+neofetch
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+
+## Avoid duplicates
+#HISTCONTROL=ignoredups:erasedups
+#
+## When the shell exits, append to the history file instead of overwriting it
+#shopt -s histappend
+#
+## After each command, append to the history file and reread it
+#PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+
+export PATH=$PATH:/home/leop/bin:/home/leop/.cargo/bin:/home/leop/.local/bin/
+export EDITOR=vim
+export BROWSER=brave
+
+export LESS=-Ri
+
+export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
+export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
+export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
+export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
+export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
+
+[ "$(tty)" = "/dev/tty1" ] && startx

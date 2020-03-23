@@ -1,0 +1,196 @@
+font pango:Mono 9.5
+
+bar {	
+status_command istatus
+separator_symbol "|"
+	position top}
+
+exec --no-startup-id nm-applet
+exec --no-startup-id xcompmgr 
+exec --no-startup-id volumeicon
+exec --no-startup-id blueman-applet
+exec --no-startup-id feh --bg-fill ~/pictures/wallpapers/wp4.jpg
+#exec_always --no-startup-id sleep 2 && $HOME/.config/polybar/launch.sh
+
+client.focused #ffff46 #99ccff #ffff66
+
+for_window [class="[.]*"] floating disable
+new_window pixel 1
+gaps inner 15
+
+set $super Mod4
+set $alt Mod1
+set $shft Shift
+set $ctrl Control
+set $TERM termite
+
+bindsym $super+Return exec $TERM
+bindsym $super+e exec $TERM -e ranger
+bindsym $super+q kill
+bindsym $alt+r exec --no-startup-id redshift -O 4000
+bindsym $alt+Shift+r exec --no-startup-id redshift -x
+bindsym $super+d exec dmenu_run 
+bindsym $super+Shift+d exec sudo dmenu_run 
+bindsym $super+b exec brave
+bindsym $super+Shift+b exec firefox
+
+bindsym $alt+i exec --no-startup-id termvim $TERM i3
+bindsym $alt+Shift+i exec --no-startup-id termvim $TERM i3s
+
+bindsym $alt+p exec --no-startup-id termvim $TERM polyb
+
+bindsym $alt+v exec --no-startup-id termvim $TERM vim
+
+bindsym $alt+b exec --no-startup-id termvim $TERM bashrc
+bindsym $alt+Shift+b exec --no-startup-id termvim $TERM bashp
+
+bindsym $alt+x exec --no-startup-id termvim $TERM xres
+bindsym $alt+Shift+x exec --no-startup-id termvim $TERM xinit
+
+bindsym $alt+c exec --no-startup-id termvim $TERM conf
+
+bindsym $super+i gaps inner current plus 5
+bindsym $super+o gaps inner current minus 5
+bindsym $super+Shift+o  gaps inner current set 0; gaps outer current set 0
+
+# reload the configuration file
+bindsym $super+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $super+Shift+r restart
+# exit i3
+bindsym $super+Shift+q exec i3-msg exit
+
+focus_follows_mouse no
+
+# change focus
+bindsym $super+h focus left
+bindsym $super+j focus down
+bindsym $super+k focus up
+bindsym $super+l focus right
+
+# move focused window
+bindsym $super+Shift+h move left
+bindsym $super+Shift+j move down
+bindsym $super+Shift+k move up
+bindsym $super+Shift+l move right
+
+# move to other monitor
+bindsym $super+p move workspace to output right
+
+# quick resize
+bindsym $super+Control+h resize shrink width 10 px or 10 ppt
+bindsym $super+Control+j resize grow height 10 px or 10 ppt
+bindsym $super+Control+k resize shrink height 10 px or 10 ppt
+bindsym $super+Control+l resize grow width 10 px or 10 ppt
+
+# split in horizontal/vertical orientation
+bindsym $super+v split v
+bindsym $super+Shift+V split h
+
+# enter fullscreen mode for the focused container
+bindsym $super+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $super+s layout stacking
+bindsym $super+w layout tabbed
+bindsym $super+x layout toggle split
+
+# toggle tiling/floating and change focus
+bindsym $super+Shift+space floating toggle
+bindsym $super+space focus mode_toggle
+
+# Use Mouse+$super to drag floating windows to their wanted position
+floating_modifier $super
+
+# focus the parent and child container
+bindsym $super+a focus parent
+bindsym $super+Shift+a focus child
+
+bindsym $alt+Tab workspace next
+bindsym $alt+apostrophe workspace prev
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $super+1 workspace number $ws1
+bindsym $super+2 workspace number $ws2
+bindsym $super+3 workspace number $ws3
+bindsym $super+4 workspace number $ws4
+bindsym $super+5 workspace number $ws5
+bindsym $super+6 workspace number $ws6
+bindsym $super+7 workspace number $ws7
+bindsym $super+8 workspace number $ws8
+bindsym $super+9 workspace number $ws9
+bindsym $super+0 workspace number $ws10
+
+# move focused container to workspace
+bindsym $super+Shift+1 move container to workspace number $ws1
+bindsym $super+Shift+2 move container to workspace number $ws2
+bindsym $super+Shift+3 move container to workspace number $ws3
+bindsym $super+Shift+4 move container to workspace number $ws4
+bindsym $super+Shift+5 move container to workspace number $ws5
+bindsym $super+Shift+6 move container to workspace number $ws6
+bindsym $super+Shift+7 move container to workspace number $ws7
+bindsym $super+Shift+8 move container to workspace number $ws8
+bindsym $super+Shift+9 move container to workspace number $ws9
+bindsym $super+Shift+0 move container to workspace number $ws10
+
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# increase screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 9
+# decrease screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id [ $(echo "$(xbacklight -get) > 9" | bc) -eq 1 ] && xbacklight -dec 9 
+
+# increase HMDI1 brightness
+bindsym $ctrl+F6 exec --no-startup-id[ $(echo "$(valorbri)<2"|bc) -eq 1 ] && monbri 1
+# decrease HMDI1 brightness
+bindsym $ctrl+F5 exec --no-startup-id [ $(echo "$(valorbri)>0.1"|bc) -eq 1 ] && monbri -.1
+
+# take screenshot
+bindsym --release $ctrl+F12 exec --no-startup-id scrot '%d-%m-%Y_$wx$h.png' -e 'mv $f ~/pictures/'
+
+# screenshot to clipboard
+bindsym --release $shft+F12 exec --no-startup-id scrot '/tmp/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'
+
+# screenshot to clipboard
+bindsym --release $ctrl+Shift+F12 exec --no-startup-id scrot '/tmp/%F_%T_$wx$h.png' -fse 'xclip -selection clipboard -target image/png -i $f'
+
+# alternatively, you can use the cursor keys:
+bindsym $super+Left focus left
+bindsym $super+Down focus down
+bindsym $super+Up focus up
+bindsym $super+Right focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $super+Shift+Left move left
+bindsym $super+Shift+Down move down
+bindsym $super+Shift+Up move up
+bindsym $super+Shift+Right move right
+
+# cursor resize
+bindsym $super+Control+Left resize shrink width 10 px or 10 ppt
+bindsym $super+Control+Down resize grow height 10 px or 10 ppt
+bindsym $super+Control+Up resize shrink height 10 px or 10 ppt
+bindsym $super+Control+Right resize grow width 10 px or 10 ppt
