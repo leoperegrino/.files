@@ -24,7 +24,6 @@ alias \
 	glances="glances -2 -5"
 
 function ok() { /usr/bin/okular "$1" &>/dev/null & }
-function btman() { /usr/bin/blueman-applet &>/dev/null & }
 
 PS1='\
 \[\033[1;36m\]\
