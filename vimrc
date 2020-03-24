@@ -29,6 +29,7 @@ set autoindent
 set ignorecase
 set showcmd
 set incsearch
+set hlsearch
 set splitbelow 
 set splitright
 set colorcolumn=80
@@ -60,16 +61,6 @@ map <leader>h <C-w>h
 map <leader>j <C-w>j
 map <leader>k <C-w>k
 map <leader>l <C-w>l
-
-nnoremap . ,
-nnoremap , .
-vnoremap . ,
-vnoremap , .
-
-nnoremap ; :
-nnoremap : ;
-vnoremap ; :
-vnoremap : ;
 
 nnoremap < <<
 nnoremap > >>
