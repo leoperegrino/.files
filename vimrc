@@ -43,6 +43,7 @@ let mapleader = " "
 noremap <leader><leader> :
 nnoremap <leader>s :w<CR>
 nnoremap <leader>q :q<CR>
+nnoremap <leader>Q :q!<CR>
 nnoremap <leader>wq :wq<CR>
 nnoremap <leader>r :redraw!<CR>
 nnoremap <leader>p :!python -i %<CR>
