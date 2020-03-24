@@ -18,6 +18,7 @@ set completefunc=emoji#complete
 let g:instant_markdown_autostart = 0
 let g:instant_markdown_browser = "brave --new-window"
 
+
 syntax on
 autocmd BufWritePost *Xresources silent !xrdb %
 autocmd BufRead *.i3config set filetype=i3config
