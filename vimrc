@@ -53,9 +53,9 @@ nnoremap <leader>e :%s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g<CR>
 nnoremap <leader>m :silent !pandoc % -o ~/.cache/mdown/%:r.pdf && okular ~/.cache/mdown/%:r.pdf &<CR>:redraw!<CR>
 
 vmap <C-c> "+y
-vmap <C-x> "+c
-vmap <C-q> c<ESC>"+p
-imap <C-q> <ESC>"+pa
+vmap <C-x> "+c<ESC>
+vmap <C-p> c<ESC>"+p
+imap <C-p> <ESC>"+pa
 
 map <leader>h <C-w>h
 map <leader>j <C-w>j
