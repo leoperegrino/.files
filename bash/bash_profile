@@ -3,21 +3,22 @@
 neofetch
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-## Avoid duplicates
-#HISTCONTROL=ignoredups:erasedups
-#
-## When the shell exits, append to the history file instead of overwriting it
-#shopt -s histappend
-#
-## After each command, append to the history file and reread it
-#PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
-
-export PATH=$PATH:/home/leop/bin:/home/leop/.cargo/bin:/home/leop/.local/bin/
+export PATH="$PATH":"$CARGO_HOME":/home/leop/bin:/home/leop/.local/bin/
+export XDG_DATA_HOME="$HOME"/.local/share
+export XDG_CONFIG_HOME="$HOME"/.config
+export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
+export PYLINTHOME="$XDG_CACHE_HOME"/pylint
+export HISTFILE="$XDG_DATA_HOME"/bash/history
 export EDITOR=vim
 export BROWSER=brave
 
-export LESS=-Ri
+export VIMINIT=":source $XDG_CONFIG_HOME"/vim/vimrc
 
+export LESS=-Ri
+export LESSHISTFILE=-
 export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
 export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
 export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink

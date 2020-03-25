@@ -1,6 +1,13 @@
+set undofile
+set undodir=$XDG_DATA_HOME/vim/undo
+set directory=$XDG_DATA_HOME/vim/swap
+set backupdir=$XDG_DATA_HOME/vim/backup
+set viminfo+='1000,n$XDG_DATA_HOME/vim/viminfo
+set runtimepath=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
+
 set nocompatible
 filetype off                  
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.local/share/vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'ycm-core/YouCompleteMe'
@@ -10,7 +17,7 @@ Plugin 'mboughaba/i3config.vim'
 call vundle#end() 
 filetype plugin indent on
 
-call plug#begin()
+call plug#begin('~/.local/share/vim/plugged')
 Plug 'junegunn/vim-emoji'
 call plug#end()
 set completefunc=emoji#complete
@@ -36,8 +43,6 @@ set colorcolumn=80
 set shiftwidth=4
 set tabstop=4 
 set softtabstop=4
-set undodir=~/.vim/undodir
-set undofile
  
 let mapleader = " "
 noremap <leader><leader> :
