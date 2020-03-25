@@ -3,11 +3,11 @@ xset -b
 xset r rate 500 30
 setxkbmap -layout br -variant abnt2 -option caps:swapescape
 
-xset +fp /home/leop/.local/share/fonts
+xset +fp $XDG_DATA_HOME/fonts
 xset fp rehash
 
-xmodmap ~/.Xmodmap
-xrdb -merge ~/.Xresources
+xmodmap ~/.files/kbd/qwerty.altgr
+xrdb -merge ~/.files/X/xresources
 
 sleep 2 && xrandr --output eDP1 --auto --output HDMI1 --auto --left-of eDP1 && feh --bg-fill ~/pictures/wallpapers/wp4.jpg --bg-fill ~/pictures/wallpapers/wp4.jpg&
 exec i3
