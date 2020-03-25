@@ -9,7 +9,7 @@ set runtimepath=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
 
 filetype off                  
 set rtp+=~/.local/share/vim/bundle/Vundle.vim
-call vundle#begin()
+call vundle#begin('~/.local/share/vim/bundle')
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'ycm-core/YouCompleteMe'
 Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
