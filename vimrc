@@ -1,7 +1,6 @@
 set nocompatible
 
-set undofile
-set undodir=$XDG_DATA_HOME/vim/undo
+set undofile set undodir=$XDG_DATA_HOME/vim/undo
 set directory=$XDG_DATA_HOME/vim/swap
 set backupdir=$XDG_DATA_HOME/vim/backup
 set viminfo+=n$XDG_DATA_HOME/vim/viminfo
@@ -36,7 +35,6 @@ set encoding=utf-8
 set fileencoding=utf-8
 set relativenumber
 set autoindent
-set ignorecase
 set showcmd
 set incsearch
 set hlsearch
@@ -49,16 +47,18 @@ set softtabstop=4
  
 let mapleader = " "
 noremap <leader><leader> :
+
 nnoremap <leader>s :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>Q :q!<CR>
-nnoremap <leader>T :q!<CR>
 nnoremap <leader>wq :wq<CR>
-nnoremap <leader>r :redraw!<CR>
-nnoremap <leader>p :!python -i %<CR>
-nnoremap <leader>u :UndotreeToggle<CR>
-nnoremap <leader>i :InstantMarkdownPreview<CR>
 nnoremap <leader>w!! :silent w ! sudo tee >/dev/null  % <CR>
+
+nnoremap <leader>r :redraw!<CR>
+
+nnoremap <leader>P :!python -i %<CR>
+nnoremap <leader>U :UndotreeToggle<CR>
+nnoremap <leader>i :InstantMarkdownPreview<CR>
 nnoremap <leader>e :%s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g<CR>
 nnoremap <leader>m :silent !pandoc % -o ~/.cache/mdown/%:r.pdf && okular ~/.cache/mdown/%:r.pdf &<CR>:redraw!<CR>
 
@@ -67,15 +67,24 @@ vmap <C-x> "+c<ESC>
 vmap <C-p> c<ESC>"+p
 imap <C-p> <ESC>"+pa
 
-map <leader>h <C-w>h
-map <leader>j <C-w>j
-map <leader>k <C-w>k
-map <leader>l <C-w>l
+noremap <leader>h <C-w>H
+noremap <leader>j <C-w>J
+noremap <leader>k <C-w>K
+noremap <leader>l <C-w>L
+noremap <leader>p :tabp<CR>
+noremap <leader>n :tabn<CR>
 
-map <leader>H :tabp<CR>
-map <leader>J <C-w>j
-map <leader>K <C-w>k
-map <leader>L :tabn<CR>
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+noremap <C-i> :vert res -5<CR>
+noremap <C-o> :vert res +5<CR>
+noremap <C-u> :res -5<CR>
+nnoremap <C-p> :res +5<CR>
+
+nnoremap <leader>T :tabedit 
+nnoremap <leader>S :vsplit 
 
 nnoremap < <<
 nnoremap > >>
