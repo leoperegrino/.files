@@ -18,6 +18,7 @@ alias \
 	\
 	la="ls -lhANX --group-directories-first"\
 	l="ls -lhNX --group-directories-first"\
+	lsd="lsd -lAh1 --group-dirs --blocks permission,size,name"\
 	\
 	q="exit"\
 	cl="clear"\

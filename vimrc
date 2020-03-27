@@ -15,6 +15,8 @@ Plugin 'ycm-core/YouCompleteMe'
 Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
 Plugin 'mbbill/undotree'
 Plugin 'mboughaba/i3config.vim'
+Plugin 'xuhdev/vim-latex-live-preview'
+Plugin 'dense-analysis/ale'
 call vundle#end() 
 filetype plugin indent on
 
@@ -50,6 +52,7 @@ noremap <leader><leader> :
 nnoremap <leader>s :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>Q :q!<CR>
+nnoremap <leader>T :q!<CR>
 nnoremap <leader>wq :wq<CR>
 nnoremap <leader>r :redraw!<CR>
 nnoremap <leader>p :!python -i %<CR>
@@ -68,6 +71,11 @@ map <leader>h <C-w>h
 map <leader>j <C-w>j
 map <leader>k <C-w>k
 map <leader>l <C-w>l
+
+map <leader>H :tabp<CR>
+map <leader>J <C-w>j
+map <leader>K <C-w>k
+map <leader>L :tabn<CR>
 
 nnoremap < <<
 nnoremap > >>
