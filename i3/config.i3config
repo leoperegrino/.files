@@ -1,29 +1,49 @@
-font pango:Mono 9.5
+font pango:HeavyData Nerd Font 12
 
 bar {	
 status_command istatus
 separator_symbol "|"
+font pango:Cousine Nerd Font Bold 12
+#mode hide
+#hidden_state hide
+#modifier Mod4
+tray_output primary
+   colors {
+           background #1a0033
+           statusline #aa99ee 
+           separator #1a0033
+           #                  border  backgr. text
+           focused_workspace  #aa99ee #aa99ee #ffffff
+           active_workspace   #aa99ee #aa99ee #1a0033
+           inactive_workspace #aa99ee #1a0033 #888888
+           urgent_workspace   #000000 #fff000 #ffffff
+        }
 	position top}
 
+# autostart
 exec --no-startup-id nm-applet
 exec --no-startup-id xcompmgr 
 exec --no-startup-id volumeicon
 exec --no-startup-id blueman-applet
 exec --no-startup-id feh --bg-fill ~/pictures/wallpapers/wp4.jpg
+exec --no-startup-id /usr/bin/gnome-screensaver
 #exec_always --no-startup-id sleep 2 && $HOME/.config/polybar/launch.sh
 
-client.focused #ffff46 #99ccff #ffff66
-
+#              border  backgr. text    indicator   child_bolder
+client.focused #aa99ee #aa99ee #ffffff	#000000  #aa99ee
 for_window [class="[.]*"] floating disable
+for_window [class="[.]*"] split toggle
 new_window pixel 1
 gaps inner 15
 
+# set keys
 set $super Mod4
 set $alt Mod1
 set $shft Shift
 set $ctrl Control
 set $TERM termite
 
+# super
 bindsym $super+Return exec $TERM
 bindsym $super+e exec $TERM -e ranger
 bindsym $super+q kill
@@ -34,6 +54,7 @@ bindsym $super+Shift+d exec sudo dmenu_run
 bindsym $super+b exec brave
 bindsym $super+Shift+b exec firefox
 
+# termvim
 bindsym $alt+i exec --no-startup-id termvim $TERM i3
 bindsym $alt+Shift+i exec --no-startup-id termvim $TERM i3s
 
@@ -48,11 +69,9 @@ bindsym $alt+x exec --no-startup-id termvim $TERM xres
 bindsym $alt+Shift+x exec --no-startup-id termvim $TERM xinit
 
 bindsym $alt+c exec --no-startup-id termvim $TERM conf
+bindsym $alt+s exec --no-startup-id termvim $TERM bluet
 
-bindsym $super+i gaps inner current plus 5
-bindsym $super+o gaps inner current minus 5
-bindsym $super+Shift+o  gaps inner current set 0; gaps outer current set 0
-
+# reload
 # reload the configuration file
 bindsym $super+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -62,6 +81,7 @@ bindsym $super+Shift+q exec i3-msg exit
 
 focus_follows_mouse no
 
+# move/resize/split/etc
 # change focus
 bindsym $super+h focus left
 bindsym $super+j focus down
@@ -83,17 +103,18 @@ bindsym $super+Control+j resize grow height 10 px or 10 ppt
 bindsym $super+Control+k resize shrink height 10 px or 10 ppt
 bindsym $super+Control+l resize grow width 10 px or 10 ppt
 
+bindsym $super+i gaps inner current plus 5
+bindsym $super+o gaps inner current minus 5
+bindsym $super+Shift+o  gaps inner current set 0; gaps outer current set 0
+
 # split in horizontal/vertical orientation
-bindsym $super+v split v
-bindsym $super+Shift+V split h
+bindsym $super+s split toggle
 
 # enter fullscreen mode for the focused container
 bindsym $super+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $super+s layout stacking
-bindsym $super+w layout tabbed
-bindsym $super+x layout toggle split
+bindsym $super+w layout toggle stacking tabbed split
 
 # toggle tiling/floating and change focus
 bindsym $super+Shift+space floating toggle
@@ -109,8 +130,7 @@ bindsym $super+Shift+a focus child
 bindsym $alt+Tab workspace next
 bindsym $alt+apostrophe workspace prev
 
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
+# set ws
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -146,6 +166,7 @@ bindsym $super+Shift+8 move container to workspace number $ws8
 bindsym $super+Shift+9 move container to workspace number $ws9
 bindsym $super+Shift+0 move container to workspace number $ws10
 
+# extra confs
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
@@ -177,6 +198,7 @@ bindsym --release $shft+F12 exec --no-startup-id scrot '/tmp/%F_%T_$wx$h.png' -e
 # screenshot to clipboard
 bindsym --release $ctrl+Shift+F12 exec --no-startup-id scrot '/tmp/%F_%T_$wx$h.png' -fse 'xclip -selection clipboard -target image/png -i $f'
 
+# cursor keys
 # alternatively, you can use the cursor keys:
 bindsym $super+Left focus left
 bindsym $super+Down focus down

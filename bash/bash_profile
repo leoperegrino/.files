@@ -3,8 +3,11 @@
 neofetch
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
+# export
 export XDG_DATA_HOME="$HOME"/.local/share
 export XDG_CONFIG_HOME="$HOME"/.config
+export FILES="$HOME"/.files
+export FONTS=/usr/share/fonts
 
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
@@ -21,7 +24,7 @@ export EDITOR=vim
 export BROWSER=brave
 export PATH="$PATH":"$CARGO_HOME":"$HOME"/bin:"$HOME"/.local/bin/
 
-
+# less
 export LESS=-Ri
 export LESSHISTFILE=-
 export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink

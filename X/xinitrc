@@ -1,4 +1,5 @@
 #!/bin/sh
+. ~/.bash_profile
 xset -b
 xset r rate 500 30
 setxkbmap -layout br -variant abnt2 -option caps:swapescape
