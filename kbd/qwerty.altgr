@@ -1,5 +1,6 @@
 !xmodmap
 keycode 108 = Mode_switch
+pointer = 1 0 3
 
 clear control
 keycode 37 = Control_L

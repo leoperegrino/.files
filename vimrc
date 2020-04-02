@@ -23,6 +23,8 @@ Plugin 'mboughaba/i3config.vim'
 Plugin 'xuhdev/vim-latex-live-preview'
 Plugin 'dense-analysis/ale'
 Plugin 'ryanoasis/vim-devicons'
+Plugin 'vim-latex/vim-latex'
+Plugin 'dhruvasagar/vim-table-mode'
 call vundle#end() 
 filetype plugin indent on
 let g:instant_markdown_autostart = 0
@@ -79,8 +81,9 @@ nnoremap <leader>WW :silent w ! sudo tee >/dev/null  % <CR>
 nnoremap <leader>r :redraw!<CR>
 nnoremap <leader>c :setlocal spell! spelllang=en_us<CR>
 
-nnoremap <leader>p :!python -i %<CR>
 nnoremap <leader>g :Goyo<CR>
+nnoremap <leader>tm :TableModeEnable<CR>
+nnoremap <leader>p :!python -i %<CR>
 nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap <leader>i :InstantMarkdownPreview<CR>
 nnoremap <leader>e :%s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g<CR>
