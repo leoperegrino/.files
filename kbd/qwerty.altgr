@@ -37,10 +37,10 @@ keycode  41 = f F asterisk
 
 !keycode  42 = g G
 
-keycode  43 = h H asciicircum
-keycode  44 = j J ampersand
-keycode  45 = k K percent
-keycode  46 = l L dollar
+keycode  43 = h H percent
+keycode  44 = j J dollar
+keycode  45 = k K ampersand
+keycode  46 = l L asciicircum
                 
 keycode  52 = z Z underscore
 keycode  53 = x X numbersign

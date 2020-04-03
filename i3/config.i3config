@@ -3,7 +3,7 @@ font pango:HeavyData Nerd Font 12
 bar {	
 status_command istatus
 separator_symbol "|"
-font pango:Cousine Nerd Font Bold 12
+font pango:Cousine Nerd Font Bold 11
 #mode hide
 #hidden_state hide
 #modifier Mod4
@@ -21,7 +21,7 @@ tray_output primary
 	position top}
 
 # autostart
-exec --no-startup-id i3-msg split v
+#exec --no-startup-id i3-msg split v
 exec --no-startup-id nm-applet
 exec --no-startup-id xcompmgr 
 exec --no-startup-id volumeicon
@@ -34,7 +34,6 @@ exec --no-startup-id /usr/bin/gnome-screensaver
 client.focused #aa99ee #aa99ee #ffffff	#000000  #aa99ee
 
 for_window [class="[.]*"] floating disable
-for_window [class="[.]*"] split toggle 
 new_window pixel 1
 gaps inner 15
 
