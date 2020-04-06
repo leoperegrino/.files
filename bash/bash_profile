@@ -3,6 +3,13 @@
 neofetch
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
+# hist options
+shopt -s histappend
+export HISTCONTROL=ignoredups:erasedups
+export PROMPT_COMMAND="history -a; history -c; history -r"
+export HISTTIMEFORMAT='%d/%m %H:%M  '
+export HISTIGNORE="ls:cd"
+
 # export
 export XDG_DATA_HOME="$HOME"/.local/share
 export XDG_CONFIG_HOME="$HOME"/.config
@@ -33,5 +40,6 @@ export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
 export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
+# startx
 alias startx="startx $XDG_CONFIG_HOME/X11/xinitrc"
 [ "$(tty)" = "/dev/tty1" ] && startx
