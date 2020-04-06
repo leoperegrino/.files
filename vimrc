@@ -1,5 +1,4 @@
 set nocompatible
-set foldmethod=manual
 
 " dir options
 set undofile 
@@ -40,7 +39,6 @@ call plug#end()
 set completefunc=emoji#complete
 
 " au options
-syntax on
 autocmd BufWritePost *Xresources silent !xrdb %
 autocmd BufRead *.i3config set filetype=i3config
 autocmd BufWrite * mkview
@@ -52,6 +50,10 @@ augroup numbertoggle
 augroup END
 
 " view options
+syntax on
+hi Folded ctermbg=0 ctermfg=11
+hi Visual ctermbg=1
+set foldmethod=manual
 set encoding=utf-8
 set fileencoding=utf-8
 set nu rnu
@@ -59,11 +61,11 @@ set autoindent
 set showcmd
 set incsearch
 set hlsearch
-set splitbelow 
+set splitbelow
 set splitright
 set colorcolumn=80
 set shiftwidth=4
-set tabstop=4 
+set tabstop=4
 set softtabstop=4
 set listchars=tab:°\ ,trail:~
 set list
