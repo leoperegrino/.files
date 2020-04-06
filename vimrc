@@ -25,6 +25,8 @@ Plugin 'dense-analysis/ale'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-latex/vim-latex'
 Plugin 'dhruvasagar/vim-table-mode'
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
 call vundle#end() 
 filetype plugin indent on
 let g:instant_markdown_autostart = 0
@@ -63,7 +65,9 @@ set colorcolumn=80
 set shiftwidth=4
 set tabstop=4 
 set softtabstop=4
- 
+set listchars=tab:°\ ,trail:~
+set list
+
 " map options
 nnoremap < <<
 nnoremap > >>
