@@ -1,9 +1,9 @@
-font pango:HeavyData Nerd Font 12
+font pango:Monofurbold Nerd Font Mono 12
 
 bar {	
 status_command istatus
 separator_symbol "|"
-font pango:Cousine Nerd Font Bold 11
+font pango:Monofurbold Nerd Font Mono 11
 #mode hide
 #hidden_state hide
 #modifier Mod4
