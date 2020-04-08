@@ -14,7 +14,7 @@ tray_output primary
            separator #1a0033
            #                  border  backgr. text
            focused_workspace  #aa99ee #aa99ee #000000
-           active_workspace   #aa99ee #aa99ee #1a0033
+           active_workspace   #aa99ee #aa99ee #ffffff
            inactive_workspace #aa99ee #1a0033 #888888
            urgent_workspace   #000000 #fff000 #ffffff
         }
@@ -23,7 +23,8 @@ tray_output primary
 # autostart
 #exec --no-startup-id i3-msg split v
 exec --no-startup-id nm-applet
-exec --no-startup-id xcompmgr 
+#exec --no-startup-id xcompmgr 
+exec --no-startup-id picom -cCGf -i 0.8 -e 0.8 --sw-opti
 exec --no-startup-id volumeicon
 exec --no-startup-id blueman-applet
 exec --no-startup-id feh --bg-fill ~/pictures/wallpapers/wp4.jpg
