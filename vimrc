@@ -17,6 +17,7 @@ call vundle#begin('~/.local/share/vim/bundle')
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'ycm-core/YouCompleteMe'
 Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
+Plugin 'suan/instant-markdown-d'
 Plugin 'mbbill/undotree'
 Plugin 'mboughaba/i3config.vim'
 Plugin 'xuhdev/vim-latex-live-preview'
@@ -26,7 +27,9 @@ Plugin 'vim-latex/vim-latex'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
-call vundle#end() 
+Plugin 'tpope/vim-markdown'
+Plugin 'vimwiki/vimwiki'
+call vundle#end()
 filetype plugin indent on
 let g:instant_markdown_autostart = 0
 let g:instant_markdown_browser = "brave --new-window"
@@ -35,6 +38,7 @@ let g:instant_markdown_browser = "brave --new-window"
 call plug#begin('~/.local/share/vim/plugged')
 Plug 'junegunn/vim-emoji'
 Plug 'junegunn/goyo.vim'
+Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 call plug#end()
 set completefunc=emoji#complete
 
@@ -43,6 +47,7 @@ autocmd BufWritePost *Xresources silent !xrdb %
 autocmd BufRead *.i3config set filetype=i3config
 autocmd BufWrite * mkview
 autocmd BufRead * silent loadview
+autocmd BufEnter *.md so $XDG_DATA_HOME/vim/bundle/instant-markdown.vim
 augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained * set relativenumber
@@ -71,9 +76,6 @@ set listchars=tab:°\ ,trail:~
 set list
 
 " map options
-nnoremap < <<
-nnoremap > >>
-
 " leader options
 let mapleader = " "
 noremap <leader><leader> :
@@ -85,7 +87,8 @@ nnoremap <leader>wq :wq<CR>
 nnoremap <leader>WW :silent w ! sudo tee >/dev/null  % <CR>
 
 nnoremap <leader>r :redraw!<CR>
-nnoremap <leader>c :setlocal spell! spelllang=en_us<CR>
+nnoremap <leader>C :setlocal spell! spelllang=en_us<CR>
+nnoremap <leader>c :setlocal spell! spelllang=pt_br<CR>
 
 nnoremap <leader>g :Goyo<CR>
 nnoremap <leader>tm :TableModeEnable<CR>
@@ -120,3 +123,6 @@ noremap <C-i> :vert res -5<CR>
 noremap <C-o> :vert res +5<CR>
 noremap <C-n> :res -5<CR>
 noremap <C-m> :res +5<CR>
+
+nnoremap < <<
+nnoremap > >>
