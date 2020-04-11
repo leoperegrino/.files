@@ -32,6 +32,8 @@ Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'xuhdev/vim-latex-live-preview'
 Plugin 'vim-latex/vim-latex'
 
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'vimwiki/vimwiki'
 call vundle#end()
@@ -41,7 +43,7 @@ let g:instant_markdown_autostart = 0
 let g:instant_markdown_browser = "brave --new-window"
 let g:goyo_width = "50%"
 let g:goyo_height = "100%"
-function! s:goyo_leave()
+function! Goyo_leave()
 	colo ron
 	hi folded ctermbg=0 ctermfg=11
 	hi visual ctermbg=1
@@ -51,22 +53,23 @@ endfunction
 call plug#begin('~/.local/share/vim/plugged')
 Plug 'junegunn/vim-emoji'
 Plug 'junegunn/goyo.vim'
-Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 call plug#end()
 set completefunc=emoji#complete
 
 " au options
-autocmd BufWritePost *Xresources silent !xrdb %
-autocmd BufRead *.i3config set filetype=i3config
-autocmd BufWrite * mkview
-autocmd BufRead * silent loadview
-autocmd BufEnter *.md so $XDG_DATA_HOME/vim/bundle/instant-markdown.vim
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
 augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained * set relativenumber
   autocmd BufLeave,FocusLost   * set norelativenumber
 augroup END
+autocmd BufWritePost *Xresources silent !xrdb %
+autocmd BufRead *.i3config set filetype=i3config
+autocmd BufWrite * mkview
+autocmd BufRead * silent loadview
+autocmd BufRead * normal M
+autocmd BufRead * set nospell
+autocmd BufEnter *.md so $XDG_DATA_HOME/vim/bundle/instant-markdown.vim
+autocmd! User GoyoLeave nested call Goyo_leave()
 
 " view options
 syntax on
@@ -75,8 +78,8 @@ hi visual ctermbg=1
 set foldmethod=manual
 set encoding=utf-8
 set fileencoding=utf-8
-set nu rnu
 set autoindent
+set nu rnu
 set showcmd
 set incsearch
 set hlsearch
@@ -95,16 +98,17 @@ let mapleader = " "
 noremap <leader><leader> :
 
 nnoremap <leader>s :w<CR>
-nnoremap <leader>q :q<CR>
-nnoremap <leader>Q :q!<CR>
-nnoremap <leader>wq :wq<CR>
+nnoremap <leader>q :q \| q<CR>
+nnoremap <leader>Q :q \| q!<CR>
+nnoremap <leader>wq :q \| wq<CR>
+nnoremap <leader>B :.!$SHELL<CR>
 nnoremap <leader>WW :silent w ! sudo tee >/dev/null  % <CR>
 
 nnoremap <leader>r :redraw!<CR>
 nnoremap <leader>C :setlocal spell! spelllang=en_us<CR>
 nnoremap <leader>c :setlocal spell! spelllang=pt_br<CR>
 
-nnoremap <leader>g :Goyo<CR>
+nnoremap <leader>g :Goyo \| redraw!<CR>
 nnoremap <leader>p :!python -i %<CR>
 nnoremap <leader>N :NERDTreeToggle<CR>
 nnoremap <leader>u :UndotreeToggle<CR>
@@ -127,9 +131,14 @@ nnoremap <leader>S :vsplit
 " ctrl options
 vmap <C-c> "+y
 vmap <C-x> "+c<ESC>
-vmap <C-p> c<ESC>"+p
+vmap <C-p> c<ESC>"+P
 imap <C-p> <ESC>"+pa
-nmap <C-p> i"+p<ESC>
+nmap <C-p> "+p<ESC>
+
+noremap <C-e> j
+noremap j <C-e>j
+noremap <C-y> k
+noremap k <C-y>k
 
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
@@ -140,5 +149,7 @@ noremap <C-o> :vert res +5<CR>
 noremap <C-n> :res -5<CR>
 noremap <C-m> :res +5<CR>
 
-nnoremap < <<
-nnoremap > >>
+nmap < <<
+nmap > >>
+vnoremap < <gv
+vnoremap > >gv
