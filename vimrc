@@ -99,8 +99,8 @@ noremap <leader><leader> :
 
 nnoremap <leader>s :w<CR>
 nnoremap <leader>q :q \| q<CR>
-nnoremap <leader>Q :q \| q!<CR>
-nnoremap <leader>wq :q \| wq<CR>
+nnoremap <leader>Q :q! \| q!<CR>
+nnoremap <leader>wq :wq \| q<CR>
 nnoremap <leader>B :.!$SHELL<CR>
 nnoremap <leader>WW :silent w ! sudo tee >/dev/null  % <CR>
 
