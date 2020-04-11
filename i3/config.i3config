@@ -47,6 +47,7 @@ set $TERM termite
 
 # super
 bindsym $super+Return exec $TERM
+bindsym $super+z exec $TERM
 bindsym $super+e exec $TERM -e ranger
 bindsym $super+q kill
 bindsym $alt+r exec --no-startup-id redshift -O 4000
