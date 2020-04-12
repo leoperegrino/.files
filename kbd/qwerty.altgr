@@ -4,7 +4,7 @@ pointer = 1 0 3
 
 clear control
 keycode 37 = Control_L
-keycode 105 = slash question 
+keycode 105 = slash question
 keycode 107 = Control_R
 add control = Control_R
 add control = Control_L
@@ -21,12 +21,14 @@ keycode  27 = r R colon
 
 !keycode  28 = t T
 !keycode  29 = y Y
-!keycode  30 = u U
+keycode  30 = u U underscore
 
 keycode  31 = i I minus
 keycode  32 = o O equal
 keycode  33 = p P plus
 
+keycode  10 = 1 exclam bracketleft
+keycode  11 = 2 at bracketright
 keycode  18 = 9 parenleft braceleft
 keycode  19 = 0 parenright braceright
 
@@ -41,7 +43,7 @@ keycode  43 = h H percent
 keycode  44 = j J dollar
 keycode  45 = k K ampersand
 keycode  46 = l L asciicircum
-                
+
 keycode  52 = z Z underscore
 keycode  53 = x X numbersign
 keycode  54 = c C exclam
