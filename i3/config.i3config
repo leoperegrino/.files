@@ -27,12 +27,12 @@ exec --no-startup-id nm-applet
 exec --no-startup-id picom -cCGf -i 0.8 -e 0.8 --sw-opti
 exec --no-startup-id volumeicon
 exec --no-startup-id blueman-applet
-exec --no-startup-id feh --bg-fill ~/pictures/wallpapers/wp4.jpg
+exec --no-startup-id feh --bg-fill ~/pictures/wallpapers/wp4.jpg --no-fehbg
 exec --no-startup-id /usr/bin/gnome-screensaver
 #exec_always --no-startup-id sleep 2 && $HOME/.config/polybar/launch.sh
 
 #              border  backgr. text    indicator   child_bolder
-client.focused #aa99ee #aa99ee #ffffff	#000000  #aa99ee
+client.focused #aa99ee #aa99ee #ffffff	#aa99ee  #aa99ee
 
 for_window [class="[.]*"] floating disable
 new_window pixel 1
