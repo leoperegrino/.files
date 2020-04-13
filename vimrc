@@ -29,15 +29,17 @@ Plugin 'suan/instant-markdown-d'
 Plugin 'tpope/vim-markdown'
 Plugin 'dhruvasagar/vim-table-mode'
 
-Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'xuhdev/vim-latex-live-preview'
 Plugin 'vim-latex/vim-latex'
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'dkarter/bullets.vim'
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ryanoasis/vim-devicons'
 call vundle#end()
+filetype plugin indent on
 
 " vimplug options
 call plug#begin('~/.local/share/vim/plugged')
@@ -45,32 +47,46 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/seoul256.vim'
 call plug#end()
 
-filetype plugin on
+" plugins variables
+let g:pandoc#modules#disabled = ["spell"]
+let g:markdown_folding = 0
 let g:instant_markdown_autostart = 0
 let g:instant_markdown_browser = "brave --new-window"
+
+let g:airline_powerline_fonts = 1
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+"
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_section_y = ''
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline#extensions#whitespace#enabled = 0
+
 let g:goyo_width = "50%"
 let g:goyo_height = "100%"
 so $HOME/bin/goyo.vim
 
 " au options
+" editor options
 augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained * set relativenumber
   autocmd BufLeave,FocusLost   * set norelativenumber
 augroup END
-autocmd BufWritePost *Xresources silent !xrdb %
-autocmd BufRead *.i3config set filetype=i3config
 autocmd BufWrite * mkview
 autocmd BufRead * silent loadview
 autocmd BufRead * normal M
-autocmd FileType * set nospell
-autocmd BufEnter *.md so $XDG_DATA_HOME/vim/instant-markdown.vim
+" plugins au
+autocmd BufWritePost *xresources silent !xrdb %
+autocmd BufRead *.i3config set filetype=i3config
+autocmd FileType * AirlineTheme bubblegum
 autocmd! User GoyoLeave nested call Goyo_leave()
+" markdown fixes
+autocmd BufEnter *.md so $XDG_DATA_HOME/vim/instant-markdown.vim
 
 " view options
 syntax on
-filetype indent on
 hi folded ctermbg=NONE ctermfg=11
 hi visual ctermbg=1
 set foldmethod=manual
