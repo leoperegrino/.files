@@ -10,5 +10,5 @@ xset fp rehash
 xmodmap ~/.files/kbd/qwerty.altgr
 xrdb -merge ~/.files/X/xresources
 
-sleep 2 && xrandr --output eDP1 --auto --output HDMI1 --auto --left-of eDP1 && feh --bg-fill ~/pictures/wallpapers/wp4.jpg --bg-fill ~/pictures/wallpapers/wp4.jpg&
+sleep 2 && xrandr --output eDP1 --auto --output HDMI1 --auto --left-of eDP1 && feh --bg-fill ~/pictures/wallpapers/wp4.jpg --bg-fill ~/pictures/wallpapers/wp8.jpg --no-fehbg&
 exec i3
