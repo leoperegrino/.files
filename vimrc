@@ -11,6 +11,7 @@ set viminfo+=n$XDG_DATA_HOME/vim/viminfo
 set runtimepath=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
 
 " plugins options
+
 " vundle options
 filetype off
 set rtp+=~/.local/share/vim/bundle/Vundle.vim
@@ -26,11 +27,14 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'mboughaba/i3config.vim'
 Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
 Plugin 'suan/instant-markdown-d'
-Plugin 'tpope/vim-markdown'
+"Plugin 'tpope/vim-markdown'
+"Plugin 'godlygeek/tabular'
+"Plugin 'plasticboy/vim-markdown'
 Plugin 'dhruvasagar/vim-table-mode'
+"Plugin 'vimwiki/vimwiki'
 
-Plugin 'xuhdev/vim-latex-live-preview'
-Plugin 'vim-latex/vim-latex'
+"Plugin 'xuhdev/vim-latex-live-preview'
+"Plugin 'vim-latex/vim-latex'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'dkarter/bullets.vim'
@@ -49,6 +53,7 @@ call plug#end()
 
 " plugins variables
 let g:pandoc#modules#disabled = ["spell"]
+let g:pandoc#syntax#conceal#urls = 1
 let g:markdown_folding = 0
 let g:instant_markdown_autostart = 0
 let g:instant_markdown_browser = "brave --new-window"
@@ -65,9 +70,10 @@ let g:airline#extensions#whitespace#enabled = 0
 
 let g:goyo_width = "50%"
 let g:goyo_height = "100%"
-so $HOME/bin/goyo.vim
+so $BIN/vim/goyo.vim
 
 " au options
+
 " editor options
 augroup numbertoggle
   autocmd!
@@ -76,20 +82,28 @@ augroup numbertoggle
 augroup END
 autocmd BufWrite * mkview
 autocmd BufRead * silent loadview
-autocmd BufRead * normal M
+autocmd BufRead * normal Mzz
+
 " plugins au
 autocmd BufWritePost *xresources silent !xrdb %
 autocmd BufRead *.i3config set filetype=i3config
 autocmd FileType * AirlineTheme bubblegum
 autocmd! User GoyoLeave nested call Goyo_leave()
+
 " markdown fixes
-autocmd BufEnter *.md so $XDG_DATA_HOME/vim/instant-markdown.vim
+autocmd BufEnter *.md so $BIN/vim/instant-markdown.vim
+autocmd BufEnter *.md so $BIN/vim/pconceal.vim
 
 " view options
+
 syntax on
 hi folded ctermbg=NONE ctermfg=11
 hi visual ctermbg=1
+hi Conceal ctermbg=NONE
+hi foldcolumn ctermbg=NONE
+hi def link mkdURL Float
 set foldmethod=manual
+set conceallevel=2
 set encoding=utf-8
 set fileencoding=utf-8
 set wildmenu
@@ -108,6 +122,7 @@ set listchars=tab:°\ ,trail:~
 set list
 
 " map options
+
 " leader options
 let mapleader = " "
 noremap <leader><leader> :
