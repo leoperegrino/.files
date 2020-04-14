@@ -19,8 +19,8 @@ keycode  25 = w W backslash
 keycode  26 = e E bar
 keycode  27 = r R colon
 
-!keycode  28 = t T
-!keycode  29 = y Y
+keycode  28 = t T parenleft
+keycode  29 = y Y parenright
 keycode  30 = u U underscore
 
 keycode  31 = i I minus
