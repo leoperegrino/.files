@@ -4,9 +4,9 @@ bar {
 status_command istatus
 separator_symbol "|"
 font pango:Monofurbold Nerd Font Mono 11
-#mode hide
-#hidden_state hide
-#modifier Mod4
+mode hide
+hidden_state hide
+modifier Mod4
 tray_output primary
    colors {
            background #1a0033
