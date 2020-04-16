@@ -23,7 +23,6 @@ tray_output primary
 # autostart
 #exec --no-startup-id i3-msg split v
 exec --no-startup-id nm-applet
-#exec --no-startup-id xcompmgr 
 exec --no-startup-id picom -cCf -i 0.9 -e 1 --sw-opti 
 exec --no-startup-id volumeicon
 exec --no-startup-id blueman-applet
@@ -31,9 +30,10 @@ exec --no-startup-id feh --bg-fill ~/pictures/wallpapers/wp4.jpg --no-fehbg
 exec --no-startup-id /usr/bin/gnome-screensaver
 #exec_always --no-startup-id sleep 2 && $HOME/.config/polybar/launch.sh
 
+# default window
 #              border  backgr. text    indicator   child_bolder
 client.focused #aa99ee #aa99ee #ffffff	#aa99ee  #aa99ee
-
+#for_window [class=""] split toggle
 for_window [class="[.]*"] floating disable
 new_window pixel 1
 gaps inner 15
@@ -108,7 +108,13 @@ bindsym $super+Control+l resize grow width 10 px or 10 ppt
 
 bindsym $super+i gaps inner current plus 5
 bindsym $super+o gaps inner current minus 5
-bindsym $super+Shift+o  gaps inner current set 0; gaps outer current set 0
+bindsym $super+Ctrl+i gaps outer current plus 5
+bindsym $super+Ctrl+o gaps outer current minus 5
+bindsym $super+Shift+i gaps horizontal current plus 5
+bindsym $super+Shift+o gaps horizontal current minus 5
+bindsym $super+Ctrl+Shift+i gaps vertical current plus 5
+bindsym $super+Ctrl+Shift+o gaps vertical current minus 5
+bindsym $super+Shift+u gaps inner current set 0; gaps outer current set 0; gaps horizontal current set 0; gaps vertical current set 0
 
 # split in horizontal/vertical orientation
 bindsym $super+s split toggle
