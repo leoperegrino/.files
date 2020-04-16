@@ -134,6 +134,7 @@ nnoremap <leader>r :redraw!<CR>
 nnoremap <leader>C :setlocal spell! spelllang=en_us<CR>
 nnoremap <leader>c :setlocal spell! spelllang=pt_br<CR>
 nnoremap <leader>H :noh<CR>
+noremap <leader>P :norm "0p
 
 nnoremap <leader>g :Goyo \| set nu rnu \| redraw!<CR>
 nnoremap <leader>p :!python -i %<CR>
