@@ -18,13 +18,13 @@ tray_output primary
            inactive_workspace #aa99ee #1a0033 #888888
            urgent_workspace   #000000 #fff000 #ffffff
         }
-	position top}
+	position bottom}
 
 # autostart
 #exec --no-startup-id i3-msg split v
 exec --no-startup-id nm-applet
 #exec --no-startup-id xcompmgr 
-exec --no-startup-id picom -cCGf -i 0.8 -e 0.8 --sw-opti
+exec --no-startup-id picom -cCf -i 0.9 -e 1 --sw-opti 
 exec --no-startup-id volumeicon
 exec --no-startup-id blueman-applet
 exec --no-startup-id feh --bg-fill ~/pictures/wallpapers/wp4.jpg --no-fehbg
