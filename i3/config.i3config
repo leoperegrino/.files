@@ -9,34 +9,32 @@ hidden_state hide
 modifier Mod4
 tray_output primary
    colors {
-           background #1a0033
+           #background #1a0033
+           background #181818
            statusline #aa99ee 
            separator #1a0033
            #                  border  backgr. text
            focused_workspace  #aa99ee #aa99ee #000000
            active_workspace   #aa99ee #aa99ee #ffffff
-           inactive_workspace #aa99ee #1a0033 #888888
+           inactive_workspace #aa99ee #181818 #888888
            urgent_workspace   #000000 #fff000 #ffffff
         }
 	position bottom}
 
 # autostart
-#exec --no-startup-id i3-msg split v
 exec --no-startup-id nm-applet
-exec --no-startup-id picom -cCf -i 0.9 -e 1 --sw-opti 
+exec --no-startup-id picom
 exec --no-startup-id volumeicon
 exec --no-startup-id blueman-applet
-exec --no-startup-id feh --bg-fill ~/pictures/wallpapers/wp4.jpg --no-fehbg
-exec --no-startup-id /usr/bin/gnome-screensaver
-#exec_always --no-startup-id sleep 2 && $HOME/.config/polybar/launch.sh
 
 # default window
 #              border  backgr. text    indicator   child_bolder
 client.focused #aa99ee #aa99ee #ffffff	#aa99ee  #aa99ee
 #for_window [class=""] split toggle
 for_window [class="[.]*"] floating disable
-new_window pixel 1
-gaps inner 15
+new_window pixel 0
+border_radius 6
+gaps inner 35
 
 # set keys
 set $super Mod4
@@ -50,12 +48,13 @@ bindsym $super+Return exec $TERM
 bindsym $super+z exec $TERM
 bindsym $super+e exec $TERM -e ranger
 bindsym $super+q kill
-bindsym $alt+r exec --no-startup-id redshift -O 4000
-bindsym $alt+Shift+r exec --no-startup-id redshift -x
 bindsym $super+d exec dmenu_run 
 bindsym $super+Shift+d exec sudo dmenu_run 
+bindsym $super+a exec rofi -show drun
 bindsym $super+b exec brave
 bindsym $super+Shift+b exec firefox
+bindsym $alt+r exec --no-startup-id redshift -O 4000
+bindsym $alt+Shift+r exec --no-startup-id redshift -x
 
 # termvim
 bindsym $alt+i exec --no-startup-id termvim $TERM i3
@@ -80,7 +79,8 @@ bindsym $super+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $super+Shift+r restart
 # exit i3
-bindsym $super+Shift+q exec i3-msg exit
+bindsym $super+Shift+x exec i3-msg exit
+bindsym $super+Shift+q exec betterlockscreen --lock blur
 
 focus_follows_mouse no
 
@@ -133,8 +133,8 @@ bindsym $super+space focus mode_toggle
 floating_modifier $super
 
 # focus the parent and child container
-bindsym $super+a focus parent
-bindsym $super+Shift+a focus child
+# bindsym $super+a focus parent
+# bindsym $super+Shift+a focus child
 
 bindsym $alt+Tab workspace next
 bindsym $alt+apostrophe workspace prev

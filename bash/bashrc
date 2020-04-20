@@ -2,7 +2,7 @@
 force_color_prompt=yes
 set -o vi
 
-PS1='\
+PS1=' \
 \[\033[1;36m\]\
 \u\
 \[\033[37m\]\
@@ -35,4 +35,6 @@ alias \
 	\
 	q="exit"\
 	cl="clear"\
-	glances="glances -2 -5"
+	glances="glances -2 -5"\
+	rofi="rofi -show drun"\
+	feh="feh --no-fehbg"

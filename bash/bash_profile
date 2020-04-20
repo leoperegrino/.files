@@ -31,9 +31,11 @@ export VIMINIT=":source $XDG_CONFIG_HOME"/vim/vimrc
 
 export EDITOR=vim
 export BROWSER=brave
+export TERM=termite
 export PATH="$PATH":"$CARGO_HOME":"$HOME"/bin:"$HOME"/.local/bin/
 
 # less options
+export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
 export LESS=-Ri
 export LESSHISTFILE=-
 export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink

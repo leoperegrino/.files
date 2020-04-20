@@ -1,11 +1,3 @@
-!Xft.autohint: 0
-!Xft.antialias: 1
-!Xft.hinting: true
-!Xft.hintstyle: hintslight
-!Xft.dpi: 96
-!Xft.rgba: rgb
-!Xft.lcdfilter: lcddefault
-
 !------ Xterm ------!
 
 xterm.vt100.saveLines: 4096
@@ -29,8 +21,8 @@ URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
 
 URxvt*background: black
 URxvt*foreground: white
-URxvt*shading: 25
-URxvt*blurRadius: 10x10
+!URxvt*shading: 25
+!URxvt*blurRadius: 10x10
 
 URxvt.font: xft:pango:size=9.5
 URxvt.letterSpace: -2
@@ -41,4 +33,4 @@ URxvt.letterSpace: -2
 URxvt*scrollBar: False
 URxvt*saveLines: 2000
 URxvt*cursorBlink: True
-URxvt*transparent: True
+!URxvt*transparent: True
