@@ -1,0 +1,81 @@
+# Zathura configuration file
+# See man `man zathurarc'
+
+# set
+set page-padding 1
+set guioptions ""
+set pages-per-row 1
+set first-page-column 1:1
+set statusbar-home-tilde "true"
+set default-bg "#000000"
+set recolor
+set recolor-lightcolor "#181818"
+set recolor-darkcolor "#E0E0E0"
+set selection-notification "false"
+set selection-clipboard clipboard
+
+# normal
+map w adjust_window best-fit
+map W adjust_window width
+map s toggle_statusbar
+
+map 1 feedkeys :set<Space>pages-per-row<Space>1<Return>
+map 2 feedkeys :set<Space>pages-per-row<Space>2<Return>
+map 3 feedkeys :set<Space>pages-per-row<Space>3<Return>
+map 4 feedkeys :set<Space>pages-per-row<Space>4<Return>
+
+map F follow
+map f toggle_fullscreen
+map I toggle_index
+map c rotate rotate-cw
+
+map u scroll half-up
+map d scroll half-down
+map U scroll full-up
+map D scroll full-down
+
+unmap H
+map J scroll page-bottom
+map K scroll page-top
+unmap L
+map p navigate previous
+map n navigate next
+
+map i zoom in
+map o zoom out
+map r recolor
+map R reload
+
+# fullscreen
+map [fullscreen] w adjust_window best-fit
+map [fullscreen] W adjust_window width
+map [fullscreen] s toggle_statusbar
+
+map [fullscreen] 1 feedkeys :set<Space>pages-per-row<Space>1<Return>
+map [fullscreen] 2 feedkeys :set<Space>pages-per-row<Space>2<Return>
+map [fullscreen] 3 feedkeys :set<Space>pages-per-row<Space>3<Return>
+map [fullscreen] 4 feedkeys :set<Space>pages-per-row<Space>4<Return>
+
+map [fullscreen] F follow
+map [fullscreen] f toggle_fullscreen
+map [fullscreen] I toggle_index
+map [fullscreen] c rotate rotate-cw
+
+map [fullscreen] u scroll half-up
+map [fullscreen] d scroll half-down
+map [fullscreen] U scroll full-up
+map [fullscreen] D scroll full-down
+
+unmap [fullscreen] H
+map [fullscreen] J scroll page-bottom
+map [fullscreen] K scroll page-top
+unmap [fullscreen] L
+map [fullscreen] p navigate previous
+map [fullscreen] n navigate next
+
+map [fullscreen] i zoom in
+map [fullscreen] o zoom out
+map [fullscreen] r recolor
+map [fullscreen] R reload
+
+map [index] I toggle_index
