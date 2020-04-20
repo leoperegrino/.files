@@ -1,0 +1,18 @@
+[options]
+font = Monospace 12
+scrollback_lines = 10000
+#urgent_on_bell = true
+hyperlinks = true
+# "block", "underline" or "ibeam"
+cursor_shape = block
+
+[colors]
+#cursor = #dcdccc
+#cursor_foreground = #dcdccc
+#foreground = #dcdccc
+#foreground_bold = #ffffff
+background = rgba(18, 18, 18, 1)
+# If unset, will reverse foreground and background
+highlight = #2f2f2f
+
+# vim: ft=dosini cms=#%s
