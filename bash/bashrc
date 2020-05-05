@@ -35,6 +35,9 @@ alias \
 	\
 	q="exit"\
 	cl="clear"\
-	glances="glances -2 -5"\
 	rofi="rofi -show drun"\
+	sptd="spotifyd -b pulseaudio"\
+	octagui="octave --gui -H"\
+	picom="picom --experimental-backends"\
+	notif='notify-send "DUNST_COMMAND_TOGGLE"'\
 	feh="feh --no-fehbg"
