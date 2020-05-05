@@ -5,6 +5,8 @@ neofetch
 
 # hist options
 shopt -s histappend
+export HISTSIZE=
+export HISTFILESIZE=
 export HISTCONTROL=ignoredups:erasedups
 export PROMPT_COMMAND="history -a; history -c; history -r"
 export HISTTIMEFORMAT='%d/%m %H:%M  '
@@ -16,13 +18,14 @@ export XDG_CONFIG_HOME="$HOME"/.config
 export FILES="$HOME"/.files
 export BIN="$HOME"/bin
 export DOC="$HOME"/documents
-export FONTS=/usr/share/fonts
+export FONTS="$XDG_DATA_HOME"/fonts:/usr/share/fonts
 
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 
 export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
+export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 export PYLINTHOME="$XDG_CACHE_HOME"/pylint
 
@@ -32,7 +35,7 @@ export VIMINIT=":source $XDG_CONFIG_HOME"/vim/vimrc
 export EDITOR=vim
 export BROWSER=brave
 export TERM=termite
-export PATH="$PATH":"$CARGO_HOME":"$HOME"/bin:"$HOME"/.local/bin/
+export PATH="$PATH":"$HOME"/bin:"$HOME"/bin/monitor:"$HOME"/.local/bin/
 
 # less options
 export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
