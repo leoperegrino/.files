@@ -1,0 +1,8 @@
+alt + {8,9,0}
+	playerctl {previous,play-pause,next}
+
+alt + 7
+	bt
+
+alt + 1
+	notify-send "DUNST_COMMAND_TOGGLE"
