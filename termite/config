@@ -1,5 +1,5 @@
 [options]
-font = Monospace 12
+font = Inconsolata Nerd Font Mono 12
 scrollback_lines = 10000
 #urgent_on_bell = true
 hyperlinks = true
