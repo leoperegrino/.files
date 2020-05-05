@@ -8,7 +8,7 @@ xterm*VT100.Translations: !override \n\
 	Ctrl Alt <Key>J:	scroll-forw(10)
 xterm*background: black
 xterm*foreground: green
-xterm*faceName: Monospace
+xterm*faceName: Inconsolata Nerd Font
 xterm*faceSize: 10
 
 !------ URxvt ------!
@@ -19,13 +19,13 @@ URxvt.iso14755_52: false
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard
 URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
 
-URxvt*background: black
+URxvt*background: #181818
 URxvt*foreground: white
 !URxvt*shading: 25
 !URxvt*blurRadius: 10x10
 
-URxvt.font: xft:pango:size=9.5
-URxvt.letterSpace: -2
+URxvt.font: xft:Inconsolata Nerd Font:size=10
+!URxvt.letterSpace: -2
 !URxvt*colorBD:
 !URxvt*colorIT:
 !URxvt*colorUL:
