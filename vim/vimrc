@@ -19,7 +19,7 @@ call vundle#begin('~/.local/share/vim/bundle')
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'ycm-core/YouCompleteMe'
-Plugin 'dense-analysis/ale'
+"Plugin 'dense-analysis/ale'
 Plugin 'mbbill/undotree'
 Plugin 'preservim/nerdtree'
 Plugin 'tpope/vim-fugitive'
@@ -33,6 +33,7 @@ Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'dkarter/bullets.vim'
 
 Plugin 'vim-airline/vim-airline'
+Plugin 'lilydjwg/colorizer'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'cocopon/iceberg.vim'
