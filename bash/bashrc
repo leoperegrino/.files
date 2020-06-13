@@ -40,4 +40,4 @@ alias \
 	octagui="octave --gui -H"\
 	picom="picom --experimental-backends"\
 	notif='notify-send "DUNST_COMMAND_TOGGLE"'\
-	feh="feh --no-fehbg"
+	feh="feh --image-bg "#181818" --scale-down --no-fehbg"
