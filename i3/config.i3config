@@ -1,43 +1,40 @@
 # vim: ft=i3config
-font pango:Inconsolata Nerd Font 12
+font pango:Inconsolata 10
 
-bar {	
-#mode hide
-#modifier Mod4
+bar {
 position bottom
-#hidden_state hide
 separator_symbol "|"
 tray_output primary
-status_command istatus
-font pango:Inconsolata Nerd Font Bold 12
-	colors {
-		#background #1a0033
-		background	#181818
-		statusline	#aa99ee 
-		separator	#1a0033
-		#                  border  backgr. text
-		focused_workspace  #aa99ee #aa99ee #000000
-		active_workspace   #aa99ee #aa99ee #ffffff
-		inactive_workspace #aa99ee #181818 #888888
-		urgent_workspace   #000000 #fff000 #ffffff
-        }
+status_command i3status
+font pango:Inconsolata Nerd Font Bold 10
+#	colors {
+#		#background #1a0033
+#		background	#181818
+#		statusline	#aa99ee
+#		separator	#aa99ee
+#		#                  border  backgr. text
+#		focused_workspace  #aa99ee #aa99ee #000000
+#		active_workspace   #aa99ee #aa99ee #ffffff
+#		inactive_workspace #aa99ee #181818 #888888
+#		urgent_workspace   #000000 #fff000 #ffffff
+#        }
 }
 
 # autostart
 exec --no-startup-id nm-applet
 exec --no-startup-id picom --experimental-backends
-exec --no-startup-id volumeicon
+exec --no-startup-id pasystray
 exec --no-startup-id blueman-applet
 exec --no-startup-id sxhkd
+exec --no-startup-id feh --no-fehbg --bg-fill ~/pictures/wallpapers/wp12.jpg
 
 # default window
 # for_window [class=""] split toggle
 # for_window [class="[.]*"] floating disable
-#              border  backgr. text    indicator   child_bolder
-client.focused #181818 #181818 #ffffff	#181818  #181818
-new_window pixel 0
-border_radius 6
-gaps inner 35
+#workspace_layout tabbed
+bindsym $alt+space bar mode toggle
+new_window pixel 1
+gaps inner 15
 
 # set keys
 set $super	Mod4
@@ -47,32 +44,18 @@ set $ctrl	Control
 set $TERM	termite
 
 # super
-bindsym $super+Return	exec $TERM
-bindsym $super+z		exec $TERM
-bindsym $super+e 		exec $TERM -e ranger
 bindsym $super+q 		kill
-bindsym $super+d 		exec dmenu_run 
-bindsym $super+$shft+d	exec sudo dmenu_run 
-bindsym $super+a		exec rofi -show drun
-bindsym $super+b		exec firefox
-bindsym $super+$shft+b	exec brave
+bindsym $super+d 		exec dmenu_run
+bindsym $super+$shft+d	exec sudo dmenu_run
+#bindsym $super+a		exec rofi -show drun
 bindsym $alt+r			exec --no-startup-id redshift -O 4000
 bindsym $alt+$shft+r	exec --no-startup-id redshift -x
-
-# termvim
-bindsym $alt+i			exec --no-startup-id termvim $TERM i3
-bindsym $alt+$shft+i	exec --no-startup-id termvim $TERM i3s
-bindsym $alt+v			exec --no-startup-id termvim $TERM vimrc
-bindsym $alt+b			exec --no-startup-id termvim $TERM bashrc
-bindsym $alt+$shft+b	exec --no-startup-id termvim $TERM bashp
-bindsym $alt+x			exec --no-startup-id termvim $TERM xinit
-bindsym $alt+$shft+x	exec --no-startup-id termvim $TERM xres
 
 # reload
 bindsym $super+$shft+c reload
 bindsym $super+$shft+r restart
 bindsym $super+$shft+x exec i3-msg exit
-bindsym $super+$shft+q exec betterlockscreen --lock blur
+#bindsym $super+$shft+q exec betterlockscreen --lock blur
 focus_follows_mouse no
 
 # design
@@ -99,7 +82,7 @@ bindsym $super+$shft+i		gaps horizontal current plus 5
 bindsym $super+$shft+o		gaps horizontal current minus 5
 bindsym $super+ctrl+$shft+i	gaps vertical current plus 5
 bindsym $super+ctrl+$shft+o	gaps vertical current minus 5
-bindsym $super+$shft+u		gaps inner current set 0; gaps outer current set 0; gaps horizontal current set 0; gaps vertical current set 0
+bindsym $super+$shft+w		gaps inner current set 0; gaps outer current set 0; gaps horizontal current set 0; gaps vertical current set 0
 
 bindsym $super+s split toggle
 bindsym $super+f fullscreen toggle
@@ -108,9 +91,10 @@ bindsym $super+f fullscreen toggle
 floating_modifier $super
 bindsym $super+$shft+space	floating toggle
 bindsym $super+space		focus mode_toggle
-bindsym $super+w			layout toggle stacking tabbed split
-bindsym $alt+Tab			workspace next
-bindsym $alt+apostrophe		workspace prev
+bindsym $super+w			layout toggle tabbed split
+# stacking
+bindsym $super+Tab			workspace next
+bindsym $super+apostrophe	workspace prev
 
 # switch to workspace
 bindsym $super+1 workspace number "1"
@@ -138,16 +122,16 @@ bindsym $super+$shft+0 move container to workspace number "10"
 
 # extra confs
 # pactl
-bindsym XF86AudioRaiseVolume	exec --no-startup-id chvol sink inc 5
-bindsym XF86AudioLowerVolume	exec --no-startup-id chvol sink dec 5
-bindsym XF86AudioMute			exec --no-startup-id chvol sink toggle
-bindsym XF86AudioMicMute		exec --no-startup-id chvol source
+bindsym XF86AudioRaiseVolume	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute			exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute		exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym XF86MonBrightnessUp		exec --no-startup-id xbacklight -inc 9
 bindsym XF86MonBrightnessDown	exec --no-startup-id [ $(echo "$(xbacklight -get) > 9" | bc) -eq 1 ] && xbacklight -dec 9 
 
 # hdmi
-bindsym $ctrl+F6 exec --no-startup-id hdmi bri +1
-bindsym $ctrl+F5 exec --no-startup-id hdmi bri -1
+#bindsym $ctrl+F6 exec --no-startup-id hdmi bri +1
+#bindsym $ctrl+F5 exec --no-startup-id hdmi bri -1
 # screenshot
 bindsym --release $ctrl+F12			exec --no-startup-id print save
 bindsym --release $shft+F12			exec --no-startup-id print clip

@@ -1,13 +1,13 @@
 #!/bin/sh
-[[ -f ~/.bash_profile ]] && source ~/.bash_profile
+#[[ -f ~/.bash_profile ]] && source ~/.bash_profile
 
 xset -b
 xset r rate 500 30
-setxkbmap -layout br -variant abnt2 -option caps:swapescape
+setxkbmap -layout br -variant abnt2
 xinput set-prop "TPPS/2 Elan TrackPoint" "libinput Accel Speed" 0.5
+xinput set-prop "SynPS/2 Synaptics TouchPad" "Device Enabled" 0
+sleep 1 && xmodmap $FILES/kbd/qwerty.altgr&
+sxhkd&
+mpd&
 
-xmodmap $FILES/kbd/qwerty.altgr
-xrdb -merge $FILES/x/xresources
-
-sleep 2 && hdmi on 17
 exec i3

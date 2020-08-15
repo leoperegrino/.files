@@ -29,6 +29,7 @@ map f toggle_fullscreen
 map I toggle_index
 map c rotate rotate-cw
 
+map <Space> scroll half-down
 map u scroll half-up
 map d scroll half-down
 map U scroll full-up
@@ -61,6 +62,7 @@ map [fullscreen] f toggle_fullscreen
 map [fullscreen] I toggle_index
 map [fullscreen] c rotate rotate-cw
 
+map [fullscreen] <Space> scroll half-down
 map [fullscreen] u scroll half-up
 map [fullscreen] d scroll half-down
 map [fullscreen] U scroll full-up

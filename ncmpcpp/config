@@ -1,0 +1,79 @@
+# vim: ft=config
+
+# host
+mpd_host			= localhost
+mpd_port			= 6600
+mpd_music_dir		= "~/music"
+ncmpcpp_directory	= "~/.local/share/ncmpcpp"
+lyrics_directory	= "~/.local/share/ncmpcpp/lyrics"
+use_console_editor	= "yes"
+external_editor		= "vim"
+#connected_message_on_startup = "no"
+
+# interface
+startup_screen			= "media_library"
+#user_interface			= "alternative"
+browser_display_mode	= "columns"
+playlist_display_mode	= "columns"
+visualizer_type			= "spectrum"
+visualizer_look			= "_o"
+progressbar_look		= "->"
+media_library_primary_tag			= "artist"
+media_library_albums_split_by_date	= "yes"
+
+header_visibility		= "yes"
+statusbar_visibility	= "yes"
+header_text_scrolling	= "yes"
+display_bitrate			= "yes"
+display_volume_level	= "no"
+clock_display_seconds	= "yes"
+
+# etc
+space_add_mode			= "add_remove"
+screen_switcher_mode	= "previous"
+message_delay_time		= "3"
+centered_cursor			= "yes"
+ignore_leading_the		= "yes"
+ignore_diacritics		= "yes"
+
+# playlist
+playlist_show_mpd_host						= "no"
+playlist_disable_highlight_delay			= "0"
+playlist_shorten_total_times				= "yes"
+playlist_separate_albums					= "yes"
+fetch_lyrics_for_current_song_in_background = "yes"
+
+# formats
+#song_list_format =		"djsal"
+#song_columns_list_format =		"sajkl"
+song_status_format =	"$b{{$8"%t"}} $(122)por {$4%a{ $(122)em $7%b{ (%y)}} $3}|{$8%f}"
+song_library_format =	"{%n} - {%t}|{%f}"
+alternative_header_first_line_format =	"$b$1$aqqu$/a$9 {%t}|{%f} $1$atqq$/a$9$/b"
+alternative_header_second_line_format =	"{{$4$b%a$/b$9}{ - $7%b$9}{ ($4%y$9)}}|{%D}"
+
+# (pre|su)ffix
+current_item_prefix =					"$r$(204)$b"
+current_item_suffix =					"$/r$(end)$/b"
+current_item_inactive_column_prefix =	"$(238)$r"
+current_item_inactive_column_suffix =	"$/r$(end)"
+#now_playing_prefix =					""
+#now_playing_suffix =					""
+#browser_playlist_prefix =				""
+#selected_item_prefix =					""
+#selected_item_suffix =					""
+#modified_item_prefix =					""
+
+# colors
+empty_tag_marker =			"____"
+empty_tag_color =			"red"
+header_window_color =		"red"
+main_window_color = 		"122"
+state_line_color =			"150"
+progressbar_color = 		"150"
+progressbar_elapsed_color = "red:b"
+statusbar_color =			"122"
+statusbar_time_color =  	"cyan:b"
+#player_state_color =				""
+#alternative_ui_separator_color =	""
+window_border_color =				"white"
+#active_window_border =				""

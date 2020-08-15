@@ -1,5 +1,5 @@
 [options]
-font = Inconsolata Nerd Font Mono 12
+font = Noto Sans Mono 9
 scrollback_lines = 10000
 #urgent_on_bell = true
 hyperlinks = true
@@ -11,7 +11,7 @@ cursor_shape = block
 #cursor_foreground = #dcdccc
 #foreground = #dcdccc
 #foreground_bold = #ffffff
-background = rgba(18, 18, 18, 1)
+background = rgba(30, 30, 30, 1)
 # If unset, will reverse foreground and background
 highlight = #2f2f2f
 

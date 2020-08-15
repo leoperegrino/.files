@@ -1,0 +1,117 @@
+# vim: ft=config
+def_key "f"
+	dummy
+def_key "F"
+	dummy
+
+# navigation
+# hjkl
+def_key "h"
+	previous_column
+def_key "h"
+	jump_to_parent_directory
+def_key "j"
+	scroll_down
+def_key "k"
+	scroll_up
+def_key "l"
+	next_column
+def_key "l"
+	enter_directory
+def_key "l"
+	run_action
+def_key "l"
+	play_item
+
+# scroll (artist|album)
+def_key "["
+	scroll_up_artist
+def_key "]"
+	scroll_down_artist
+def_key "{"
+	scroll_up_album
+def_key "}"
+	scroll_down_album
+def_key "J"
+	move_selected_items_down
+def_key "K"
+	move_selected_items_up
+
+# g G page (up|down)
+def_key "G"
+	move_end
+def_key "g"
+	move_home
+def_key "u"
+	page_up
+def_key "d"
+	page_down
+
+# interface
+def_key "s"
+	show_search_engine
+def_key "s"
+	reset_search_engine
+def_key "V"
+	show_visualizer
+def_key "b"
+	show_browser
+def_key "P"
+	show_playlist
+def_key "m"
+	show_media_library
+def_key "m"
+	toggle_media_library_columns_mode
+def_key "t"
+	show_tag_editor
+def_key "c"
+	show_clock
+def_key "i"
+  show_artist_info
+def_key "L"
+	show_lyrics
+
+# player
+def_key "n"
+	next
+def_key "N"
+	previous
+def_key "p"
+	pause
+def_key "v"
+	select_item
+	scroll_down
+def_key "+"
+	seek_forward
+def_key "-"
+	seek_backward
+def_key "S"
+	stop
+
+# etc
+def_key "U"
+	update_database
+def_key "x"
+	delete_playlist_items
+def_key "ctrl-s"
+	save_playlist
+def_key "C"
+	toggle_consume
+
+# disable bindings
+def_key "8"
+	dummy
+def_key "7"
+	dummy
+def_key "6"
+	dummy
+def_key "5"
+	dummy
+def_key "4"
+	dummy
+def_key "3"
+	dummy
+def_key "2"
+	dummy
+def_key "1"
+	dummy

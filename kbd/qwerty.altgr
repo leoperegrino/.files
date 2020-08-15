@@ -1,3 +1,4 @@
+! vim: ft=config
 ! make altgr mode_switch
 keycode 108 = Mode_switch
 ! disable primary paste
@@ -12,10 +13,10 @@ add control = Control_R
 add control = Control_L
 
 ! caps:swapescape
-!clear lock
-!keycode 9 = Caps_Lock
-!keycode 66 = Escape
-!add lock = Caps_Lock
+clear lock
+keycode 9 = Caps_Lock
+keycode 66 = Escape
+add lock = Caps_Lock
 
 ! number row
 keycode  10 = 1 exclam bracketleft
@@ -28,11 +29,9 @@ keycode  24 = q Q period
 keycode  25 = w W backslash
 keycode  26 = e E bar
 keycode  27 = r R colon
-
 keycode  28 = t T parenleft
 keycode  29 = y Y parenright
 keycode  30 = u U underscore
-
 keycode  31 = i I minus
 keycode  32 = o O equal
 keycode  33 = p P plus
@@ -42,21 +41,17 @@ keycode  38 = a A asciitilde
 keycode  39 = s S slash
 keycode  40 = d D quotedbl
 keycode  41 = f F asterisk
-
-!keycode  42 = g G
-
-keycode  43 = h H percent
+keycode  42 = g G comma
+keycode  43 = h H ampersand
 keycode  44 = j J dollar
-keycode  45 = k K ampersand
+keycode  45 = k K percent
 keycode  46 = l L asciicircum
 
 ! lower row
-keycode  52 = z Z underscore
+keycode  52 = z Z comma
 keycode  53 = x X numbersign
 keycode  54 = c C exclam
 keycode  55 = v V semicolon
-
 keycode  56 = b B question
-
 keycode  57 = n N bracketleft
 keycode  58 = m M bracketright
