@@ -3,32 +3,34 @@ set nocompatible
 " dir options
 set path+=~/bin,~/.files/**
 set undofile
-set undodir=$XDG_DATA_HOME/vim/undo
-set directory=$XDG_DATA_HOME/vim/swap
-set backupdir=$XDG_DATA_HOME/vim/backup
-set viewdir=$XDG_DATA_HOME/vim/view
-set viminfo='10,/50,:100,n$XDG_DATA_HOME/vim/viminfo/info
+set undodir=$XDG_CONFIG_HOME/vim/undo
+set directory=$XDG_CONFIG_HOME/vim/swap
+set backupdir=$XDG_CONFIG_HOME/vim/backup
+set viewdir=$XDG_CONFIG_HOME/vim/view
+set viminfo='10,/50,:100,n$XDG_CONFIG_HOME/vim/viminfo/info
 set runtimepath=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
 
 " plugins options
 
 " vundle options
 filetype off
-set rtp+=~/.local/share/vim/bundle/Vundle.vim
-call vundle#begin('~/.local/share/vim/bundle')
+set rtp+=~/.config/vim/bundle/Vundle.vim
+call vundle#begin('~/.config/vim/bundle')
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'ycm-core/YouCompleteMe'
+"Plugin 'ycm-core/YouCompleteMe'
 "Plugin 'dense-analysis/ale'
+"Plugin 'vim-syntastic/syntastic'
+"Plugin 'nvie/vim-flake8'
 Plugin 'mbbill/undotree'
 Plugin 'preservim/nerdtree'
-Plugin 'tpope/vim-fugitive'
+"Plugin 'tpope/vim-fugitive'
 
 "Plugin 'vim-latex/vim-latex'
 "Plugin 'xuhdev/vim-latex-live-preview'
 Plugin 'mboughaba/i3config.vim'
 Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
-Plugin 'dhruvasagar/vim-table-mode'
+"Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'dkarter/bullets.vim'
 
@@ -36,28 +38,28 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'lilydjwg/colorizer'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ryanoasis/vim-devicons'
-Plugin 'cocopon/iceberg.vim'
+"Plugin 'cocopon/iceberg.vim'
 Plugin 'challenger-deep-theme/vim', {'name': 'challenger-deep-theme'}
-Plugin 'arcticicestudio/nord-vim'
+"Plugin 'arcticicestudio/nord-vim'
 call vundle#end()
 filetype plugin indent on
 
 " vimplug options
-call plug#begin('~/.local/share/vim/plugged')
+call plug#begin('~/.config/vim/plugged')
 Plug 'junegunn/goyo.vim'
-Plug 'junegunn/seoul256.vim'
+"Plug 'junegunn/seoul256.vim'
 call plug#end()
 
 " plugins variables
 "let g:pandoc#modules#disabled = ["spell"]
 let g:pandoc#syntax#conceal#urls = 1
 let g:instant_markdown_autostart = 0
-let g:instant_markdown_browser = "brave --new-window"
+let g:instant_markdown_browser = "firefox --new-window"
+let g:ycm_autoclose_preview_window_after_completion=1
 
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
-"
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_section_y = ''
@@ -77,8 +79,9 @@ augroup numbertoggle
   autocmd BufLeave,FocusLost   * set norelativenumber
 augroup END
 augroup pandoc_syntax
-	au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+  au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
 augroup END
+autocmd BufNewFile,BufFilePre,BufRead *.java set et
 autocmd BufWrite * mkview
 autocmd BufRead * silent loadview
 
@@ -89,12 +92,14 @@ autocmd FileType * AirlineTheme bubblegum
 autocmd! User GoyoLeave nested call Goyo_leave()
 
 " view options
-
 syntax on
 colorscheme challenger_deep
 hi conceal ctermbg=NONE
-hi linenr ctermfg=150 ctermbg=233
+hi ColorColumn ctermbg=NONE
+hi Normal ctermbg=NONE
+hi linenr ctermfg=150 ctermbg=NONE
 hi folded ctermbg=NONE ctermfg=150
+hi visual ctermbg=240
 set foldtext=foldtext()
 set foldmethod=manual
 set foldclose=all
@@ -111,11 +116,12 @@ set incsearch
 set hlsearch
 set splitbelow
 set splitright
-set colorcolumn=80
+set scrolloff=7
+"set colorcolumn=80
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
-set listchars=tab:`\ ,trail:~
+set listchars=tab:\´\ ,trail:~
 set fillchars=fold:\ 
 set list
 
@@ -128,6 +134,7 @@ noremap <leader><leader> :
 nnoremap <leader>s :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>Q :q!<CR>
+nnoremap <leader>aq :qa<CR>
 nnoremap <leader>wq :wq<CR>
 nnoremap <leader>B :.!$SHELL<CR>
 nnoremap <leader>WW :silent w ! sudo tee >/dev/null  % <CR>
@@ -139,13 +146,15 @@ nnoremap <leader>H :noh<CR>
 noremap <leader>P "0p
 
 nnoremap <leader>g :Goyo \| set nu rnu \| redraw!<CR>
-nnoremap <leader>p :!python -i %<CR>
+nnoremap <leader>y :!python %<CR>
 nnoremap <leader>N :NERDTreeToggle<CR>
 nnoremap <leader>u :UndotreeToggle<CR>
+"nnoremap <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 nnoremap <leader>tm :TableModeEnable<CR>
 nnoremap <leader>i :InstantMarkdownPreview<CR>
-nnoremap <leader>m :silent !pandoc % -o ~/.cache/mdown/%:r.pdf && zathura ~/.cache/mdown/%:r.pdf &<CR>:redraw!<CR>
+nnoremap <leader>m :silent !pandoc % -o ~/.cache/mdown/%:r.pdf 
+			\&& zathura ~/.cache/mdown/%:r.pdf &<CR>:redraw!<CR>
 
 noremap <leader>h <C-w>H
 noremap <leader>j <C-w>J
@@ -154,6 +163,12 @@ noremap <leader>l <C-w>L
 noremap <leader>p :tabp<CR>
 noremap <leader>n :tabn<CR>
 
+nnoremap <leader>D mmgg:vsplit %<CR>
+					\:set so=0<CR>
+					\zRLzt
+					\:set scb<CR>
+					\<C-w><C-h>:set scb<CR>
+					\'mzz
 nnoremap <leader>T :tabedit 
 nnoremap <leader>S :vsplit 
 
@@ -166,6 +181,7 @@ nmap <C-y> "+p<ESC>
 
 noremap <C-p> jzz
 noremap <C-e> kzz
+map <C-s> <ESC>
 
 let g:BASH_Ctrl_j = 'off'
 let g:BASH_Ctrl_k = 'off'
@@ -173,8 +189,8 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
-noremap <C-i> :vert res -5<CR>
-noremap <C-o> :vert res +5<CR>
+noremap <C-x> :vert res -5<CR>
+noremap <C-b> :vert res +5<CR>
 noremap <C-n> :res -5<CR>
 noremap <C-m> :res +5<CR>
 
