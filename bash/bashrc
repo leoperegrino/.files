@@ -24,6 +24,7 @@ alias \
 	grep="grep -i --color=auto"\
 	mkdir="mkdir -pv" \
 	cp="cp -iv" \
+	xmod="xmodmap /home/leop/.files/kbd/qwerty.altgr" \
 	\
 	upp="yay -Syu"\
 	shut="shutdown now"\
@@ -39,5 +40,5 @@ alias \
 	sptd="spotifyd -b pulseaudio"\
 	octagui="octave --gui -H"\
 	picom="picom --experimental-backends"\
+	LA="nmcli con up LA"\
 	notif='notify-send "DUNST_COMMAND_TOGGLE"'\
-	feh="feh --image-bg "#181818" --scale-down --no-fehbg"
