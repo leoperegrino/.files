@@ -1,8 +1,49 @@
-alt + {8,9,0}
-	playerctl {previous,play-pause,next}
+# vim: ft=config
+# sxhkd configs
 
 alt + 7
 	bt
 
-alt + 1
-	notify-send "DUNST_COMMAND_TOGGLE"
+alt + p
+	pavucontrol
+
+alt + {8,9,0}
+	mpc {prev,toggle,next} &>/dev/null
+
+# super starts
+super + {b,shift b}
+	{firefox,qutebrowser}
+
+super + m
+	termite -e ncmpcpp
+
+super + {z,Return}
+	termite -d $HOME
+
+super + e
+	termite -e "ranger"
+
+super + n
+	termite -e newsboat
+
+# alt configs
+alt + v
+	termite -e "vim $FILES/vim/vimrc"
+
+alt + x
+	termite -e "vim $FILES/x/xinitrc"
+
+alt + s
+	termite -e "vim $FILES/sxhkd/sxhkdrc"
+
+alt + {b,shift + b}
+	termite -e "vim $FILES/bash/{bashrc,bash_profile}"
+
+alt + {i,shift + i}
+	termite -e "vim $FILES/i3/{config.i3config,i3status.conf}"
+
+alt + {m,shift + m}
+	termite -e "vim $FILES/ncmpcpp/{config,bindings}"
+
+alt + {n,shift + n}
+	termite -e "vim $FILES/newsboat/{config,urls}"
