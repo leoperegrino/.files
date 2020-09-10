@@ -138,6 +138,7 @@ hi ColorColumn ctermbg=NONE
 hi Normal ctermbg=NONE
 hi linenr ctermfg=150 ctermbg=NONE
 hi folded ctermbg=NONE ctermfg=150
+hi Pmenu ctermbg=236 ctermfg=150
 hi visual ctermbg=240
 hi! link CursorLineNr LineNr
 set foldtext=foldtext()
