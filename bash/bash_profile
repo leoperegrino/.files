@@ -11,25 +11,33 @@ export HISTTIMEFORMAT='%d/%m %H:%M  '
 export HISTIGNORE="ls:cd:q:cl"
 
 # export options
-export PATH="$PATH":"$HOME"/bin
+export FOAM=/usr/local/OpenFOAM/OpenFOAM-dev/bin/
+export PATH="$PATH":"$HOME"/bin:"$FOAM":"$HOME"/.local/bin
 export XDG_DATA_HOME="$HOME"/.local/share
+export XDG_CACHE_HOME="$HOME"/.cache
 export XDG_CONFIG_HOME="$HOME"/.config
 export FILES="$HOME"/.files
 export BIN="$HOME"/bin
 export DOC="$HOME"/documents
-export FONTS="$XDG_DATA_HOME"/fonts:/usr/share/fonts
 
-export HISTFILE="$XDG_DATA_HOME"/bash/history
 export XINITRC="$FILES"/x/xinitrc
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+export PYLINTHOME="$XDG_CACHE_HOME"/pylint
+export FONTS="$XDG_DATA_HOME"/fonts:/usr/share/fonts
+export HISTFILE="$XDG_DATA_HOME"/bash/history
+export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 export GTK_RC_FILES="$XDG_CONFIG_HOME"/gtk-1.0/gtkrc
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
-export KDEHOME="$XDG_CONFIG_HOME"/kde4
+export IPYTHONDIR="$XDG_CONFIG_HOME"/ipython
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
+export R_PROFILE_USER="$XDG_CONFIG_HOME"/R/Rprofile
+export R_ENVIRON_USER="$XDG_CONFIG_HOME"/R/Renviron
+export R_HISTFILE="$XDG_CONFIG_HOME"/R/Rhistory
 export VIMINIT=":source $XDG_CONFIG_HOME"/vim/vimrc
 
-export EDITOR=vim
+export EDITOR=nvim
 export BROWSER=firefox
 export TERM=termite
 
