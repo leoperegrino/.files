@@ -57,6 +57,7 @@ call plug#end()
 let g:tex_flavor = 'latex'
 let g:vimtex_fold_enabled=1
 let g:vimtex_complete_enabled=0
+let g:instant_markdown_autostart = 0
 let g:livepreview_previewer = 'zathura'
 let g:pandoc#syntax#conceal#urls = 1
 "
@@ -110,7 +111,7 @@ so $BIN/vim/goyo.vim
 " au options
 "
 " editor options
-autocmd! BufEnter * hi! link Pmenu airline_c
+autocmd! FileType help wincmd L
 autocmd! BufWrite * mkview
 autocmd! BufRead * silent! loadview
 autocmd! BufRead *.* set noreadonly
@@ -130,22 +131,31 @@ autocmd! User GoyoLeave nested call Goyo_leave()
 syntax on
 colorscheme challenger_deep
 hi conceal ctermbg=NONE
-hi ColorColumn ctermbg=NONE
-hi Normal ctermbg=NONE
-hi linenr ctermbg=NONE
-hi linenr ctermfg=228
+hi normal ctermbg=NONE
 hi folded ctermbg=NONE
+hi linenr ctermbg=NONE
+"hi cursorlinenr ctermbg=NONE
+"hi termcursor ctermfg=233
+hi comment ctermfg=245
+hi linenr ctermfg=228
+"hi cursorlinenr ctermfg=228
 hi folded ctermfg=228
-"hi Pmenu ctermbg=236 ctermfg=150
+hi pmenu ctermbg=236
+hi pmenu ctermfg=228
 hi visual ctermbg=240
-hi! link CursorLineNr LineNr
-set foldtext=foldtext()
+hi nontext ctermfg=238
+hi! link cursorlinenr linenr
+"hi ColorColumn ctermbg=NONE
+"set colorcolumn=80
 "set foldmethod=manual
+"set conceallevel=2
+set foldtext=foldtext()
 set foldclose=all
 set foldopen=all
-set conceallevel=2
 set encoding=utf-8
 set fileencoding=utf-8
+set guicursor=i:ver25
+set guicursor=a:blinkon25
 set smartcase
 set wildmenu
 set autoindent
@@ -156,11 +166,10 @@ set hlsearch
 set splitbelow
 set splitright
 set scrolloff=7
-"set colorcolumn=80
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
-set listchars=tab:\´\ ,trail:~
+set listchars=tab:\ ,trail:~
 set fillchars=fold:\ 
 set list
 
