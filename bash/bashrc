@@ -18,13 +18,14 @@ PS1=' \
 alias \
 	mv="mv -iv" \
 	rm="rm -iv" \
-	ln="ln -v"\
 	ls="ls -1 --color=auto"\
-	sl="sl -al"\
 	grep="grep -i --color=auto"\
 	mkdir="mkdir -pv" \
+	ln="ln -v"\
 	cp="cp -iv" \
-	xmod="xmodmap /home/leop/.files/kbd/qwerty.altgr" \
+	q="exit"\
+	cl="clear"\
+	xmod="xmodmap $FILES/kbd/qwerty.altgr" \
 	\
 	upp="yay -Syu"\
 	shut="shutdown now"\
@@ -34,11 +35,10 @@ alias \
 	l="ls -lhNX --group-directories-first"\
 	lsd="lsd -lAh1 --group-dirs --blocks permission,size,name"\
 	\
-	q="exit"\
-	cl="clear"\
+	vim="nvim"\
+	python="python -q"\
 	rofi="rofi -show drun"\
-	sptd="spotifyd -b pulseaudio"\
-	octagui="octave --gui -H"\
 	picom="picom --experimental-backends"\
-	LA="nmcli con up LA"\
-	notif='notify-send "DUNST_COMMAND_TOGGLE"'\
+	yay="yay --nodiffmenu --noeditmenu"
+	r="R --quiet"\
+	LA="nmcli con up LA"
