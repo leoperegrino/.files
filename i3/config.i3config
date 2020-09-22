@@ -2,22 +2,21 @@
 font pango:Inconsolata 10
 
 bar {
-position bottom
-separator_symbol "|"
-tray_output primary
-status_command i3status
-font pango:Inconsolata Nerd Font Bold 10
-#	colors {
-#		#background #1a0033
-#		background	#181818
-#		statusline	#aa99ee
-#		separator	#aa99ee
-#		#                  border  backgr. text
-#		focused_workspace  #aa99ee #aa99ee #000000
-#		active_workspace   #aa99ee #aa99ee #ffffff
-#		inactive_workspace #aa99ee #181818 #888888
-#		urgent_workspace   #000000 #fff000 #ffffff
-#        }
+	position bottom
+		separator_symbol "|"
+		tray_output primary
+		status_command i3status
+		font pango:Inconsolata Nerd Font Bold 10
+		colors {
+			background #282A36
+				statusline #F8F8F2
+				separator  #44475A
+				focused_workspace  #44475A #44475A #F8F8F2
+				active_workspace   #282A36 #44475A #F8F8F2
+				inactive_workspace #282A36 #282A36 #BFBFBF
+				urgent_workspace   #FF5555 #FF5555 #F8F8F2
+				binding_mode       #FF5555 #FF5555 #F8F8F2
+		}
 }
 
 # autostart
@@ -26,12 +25,15 @@ exec --no-startup-id picom --experimental-backends
 exec --no-startup-id pasystray
 exec --no-startup-id blueman-applet
 exec --no-startup-id sxhkd
-exec --no-startup-id feh --no-fehbg --bg-fill ~/pictures/wallpapers/wp12.jpg
 
 # default window
-# for_window [class=""] split toggle
-# for_window [class="[.]*"] floating disable
-#workspace_layout tabbed
+# class                 border  bground text    indicator child_border
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+client.background       #F8F8F2
 bindsym $alt+space bar mode toggle
 new_window pixel 1
 gaps inner 15
@@ -55,7 +57,6 @@ bindsym $alt+$shft+r	exec --no-startup-id redshift -x
 bindsym $super+$shft+c reload
 bindsym $super+$shft+r restart
 bindsym $super+$shft+x exec i3-msg exit
-#bindsym $super+$shft+q exec betterlockscreen --lock blur
 focus_follows_mouse no
 
 # design

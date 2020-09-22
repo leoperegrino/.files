@@ -128,14 +128,16 @@ autocmd! User GoyoLeave nested call Goyo_leave()
 "
 " view options
 syntax on
-colorscheme desert
+colorscheme challenger_deep
 hi conceal ctermbg=NONE
 hi ColorColumn ctermbg=NONE
 hi Normal ctermbg=NONE
 hi linenr ctermbg=NONE
+hi linenr ctermfg=228
 hi folded ctermbg=NONE
+hi folded ctermfg=228
 "hi Pmenu ctermbg=236 ctermfg=150
-"hi visual ctermbg=240
+hi visual ctermbg=240
 hi! link CursorLineNr LineNr
 set foldtext=foldtext()
 "set foldmethod=manual
