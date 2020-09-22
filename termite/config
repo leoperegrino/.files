@@ -8,8 +8,8 @@ hyperlinks = true
 cursor_shape = block
 
 [colors]
-#cursor = #dcdccc
-#cursor_foreground = #dcdccc
+;cursor = #181818
+;cursor_foreground = #181818
 #foreground = #dcdccc
 #foreground_bold = #ffffff
 ;background = rgba(30, 30, 30, 1)
