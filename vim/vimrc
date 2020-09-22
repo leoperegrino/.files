@@ -16,58 +16,53 @@ endif
 set runtimepath=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
 
 " plugins options
-
+"
 " vundle options
 filetype off
 set rtp+=~/.config/vim/bundle/Vundle.vim
 call vundle#begin('~/.config/vim/bundle')
 Plugin 'VundleVim/Vundle.vim'
 "
-"Plugin 'ycm-core/YouCompleteMe'
 Plugin 'mbbill/undotree'
 Plugin 'preservim/nerdtree'
-"Plugin 'tpope/vim-fugitive'
-"Plugin 'SirVer/ultisnips'
-"Plugin 'jiangmiao/auto-pairs'
 Plugin 'preservim/nerdcommenter'
 Plugin 'francoiscabrol/ranger.vim'
+Plugin 'wmvanvliet/jupyter-vim.git'
 "
 Plugin 'mboughaba/i3config.vim'
 Plugin 'lervag/vimtex'
 Plugin 'xuhdev/vim-latex-live-preview'
-Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
-"Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'dkarter/bullets.vim'
 "
+Plugin 'dracula/vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'lilydjwg/colorizer'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ryanoasis/vim-devicons'
-"Plugin 'junegunn/limelight.vim'
-"Plugin 'cocopon/iceberg.vim'
 Plugin 'challenger-deep-theme/vim', {'name': 'challenger-deep-theme'}
-"Plugin 'arcticicestudio/nord-vim'
 call vundle#end()
 filetype plugin indent on
-
+"
 " vimplug options
 call plug#begin('~/.config/vim/plugged')
 Plug 'junegunn/goyo.vim'
 Plug 'neoclide/coc.nvim'
-"Plug 'junegunn/seoul256.vim'
 call plug#end()
-
+"
 " plugins variables
-
+"
 " pandoc/md/tex
 "let g:pandoc#modules#disabled = ["spell"]
 let g:tex_flavor = 'latex'
+let g:vimtex_fold_enabled=1
+let g:vimtex_complete_enabled=0
 let g:livepreview_previewer = 'zathura'
 let g:pandoc#syntax#conceal#urls = 1
-let g:instant_markdown_autostart = 0
-let g:instant_markdown_browser = "firefox --new-window"
-
+"
+" jupyter
+let g:jupyter_mapkeys=0
+"
 " coc
 let g:coc_config_home = '$XDG_CONFIG_HOME/coc'
 set updatetime=300
@@ -85,13 +80,13 @@ else
 	inoremap <silent><expr> <c-@> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 endif
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-
+"
 " NERD
 let NERDDefaultAlign='start'
 let NERDCreateDefaultMappings=0
 let NERDTreeShowHidden=1
 let NERDTreeQuitOnOpen=1
-
+"
 " airline
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
@@ -105,7 +100,7 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#fnamemode=':t'
-
+"
 " Goyo
 "let g:limelight_conceal_ctermfg=1
 let g:goyo_width = "50%"
@@ -113,36 +108,37 @@ let g:goyo_height = "100%"
 so $BIN/vim/goyo.vim
 
 " au options
-
+"
 " editor options
 autocmd! BufEnter * hi! link Pmenu airline_c
-autocmd! BufEnter * set noreadonly
 autocmd! BufWrite * mkview
 autocmd! BufRead * silent! loadview
+autocmd! BufRead *.* set noreadonly
 autocmd! BufEnter,FocusGained * set relativenumber
 autocmd! BufLeave,FocusLost   * set norelativenumber
 autocmd! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
 autocmd! BufNewFile,BufFilePre,BufRead *.tex set updatetime=700
 autocmd! BufNewFile,BufFilePre,BufRead *.java set expandtab
-
+"
 " plugins au
+autocmd FileType tex noremap <F5> :LLPStartPreview<CR>
 autocmd BufRead *.i3config set filetype=i3config
-autocmd FileType * AirlineTheme bubblegum
+autocmd FileType * AirlineTheme deus
 autocmd! User GoyoLeave nested call Goyo_leave()
-
+"
 " view options
 syntax on
-colorscheme challenger_deep
+colorscheme desert
 hi conceal ctermbg=NONE
 hi ColorColumn ctermbg=NONE
 hi Normal ctermbg=NONE
-hi linenr ctermfg=150 ctermbg=NONE
-hi folded ctermbg=NONE ctermfg=150
-hi Pmenu ctermbg=236 ctermfg=150
-hi visual ctermbg=240
+hi linenr ctermbg=NONE
+hi folded ctermbg=NONE
+"hi Pmenu ctermbg=236 ctermfg=150
+"hi visual ctermbg=240
 hi! link CursorLineNr LineNr
 set foldtext=foldtext()
-set foldmethod=manual
+"set foldmethod=manual
 set foldclose=all
 set foldopen=all
 set conceallevel=2
@@ -167,7 +163,7 @@ set fillchars=fold:\
 set list
 
 " map options
-
+"
 " leader maps
 let mapleader = " "
 noremap <leader><leader> :
@@ -196,26 +192,21 @@ nnoremap <leader>1 :bp<CR>
 nnoremap <leader>2 :bn<CR>
 "
 nnoremap <leader>D mmgg:vsplit %<CR>
-					   \:set so=0<CR>
-					   \zRLzt
-					   \:set scb<CR>
-					   \<C-w><C-h>:set scb<CR>
-					   \'mzz
-
+			\:set so=0<CR>
+			\zRLzt
+			\:set scb<CR>
+			\<C-w><C-h>:set scb<CR>
+			\'mzz
+"
 " F maps
 nmap <F1> :call NERDComment('n','toggle')<CR>
 vmap <F1> :call NERDComment('x','toggle')<CR>
 nmap <F2> <Plug>(coc-rename)
-noremap <F3> :InstantMarkdownPreview<CR>
-noremap <F4> :LLPStartPreview<CR>
-noremap <F5> :silent !pandoc % -o ~/.cache/mdown/%:r.pdf 
-			   \&& zathura ~/.cache/mdown/%:r.pdf &<CR>:redraw!<CR>
-noremap <F6> :Goyo \| set nu rnu \| redraw!<CR>
-noremap <F7> :!python %<CR>
-noremap <F8> :NERDTreeToggle<CR>
-noremap <F9> :UndotreeToggle<CR>
-noremap <F10> :TableModeEnable<CR>
-
+"
+noremap <F10> :Goyo \| set nu rnu \| redraw!<CR>
+noremap <F11> :NERDTreeToggle<CR>
+noremap <F12> :UndotreeToggle<CR>
+"
 " ctrl maps
 vmap <C-c> "+y
 vmap <C-x> "+c<ESC>
