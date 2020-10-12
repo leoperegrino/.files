@@ -1,8 +1,8 @@
 # vim: ft=config
 # sxhkd configs
 
-alt + 7
-	bt
+alt + {7,shift + 7}
+	{bt,blueman-manager}
 
 alt + p
 	pavucontrol
@@ -11,7 +11,7 @@ alt + {8,9,0}
 	mpc {prev,toggle,next} &>/dev/null
 
 # super starts
-super + {b,shift b}
+super + {b,shift + b}
 	{firefox,qutebrowser}
 
 super + m
@@ -22,6 +22,9 @@ super + {z,Return}
 
 super + e
 	termite -e "ranger"
+
+super + {a,shift + a}
+	rofi -show drun -config "$FILES/rofi/{blurry.rasi,launchpad.rasi}"
 
 super + n
 	termite -e newsboat

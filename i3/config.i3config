@@ -46,12 +46,9 @@ set $ctrl	Control
 set $TERM	termite
 
 # super
-bindsym $super+q 		kill
-bindsym $super+d 		exec dmenu_run
-bindsym $super+$shft+d	exec sudo dmenu_run
-#bindsym $super+a		exec rofi -show drun
-bindsym $alt+r			exec --no-startup-id redshift -O 4000
-bindsym $alt+$shft+r	exec --no-startup-id redshift -x
+bindsym $super+q kill
+bindsym $super+d exec dmenu_run
+#bindsym $super+a exec rofi
 
 # reload
 bindsym $super+$shft+c reload
@@ -123,8 +120,8 @@ bindsym $super+$shft+0 move container to workspace number "10"
 
 # extra confs
 # pactl
-bindsym XF86AudioRaiseVolume	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioRaiseVolume	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2%
+bindsym XF86AudioLowerVolume	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2%
 bindsym XF86AudioMute			exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute		exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym XF86MonBrightnessUp		exec --no-startup-id xbacklight -inc 9
@@ -136,6 +133,7 @@ bindsym XF86MonBrightnessDown	exec --no-startup-id [ $(echo "$(xbacklight -get) 
 # screenshot
 bindsym --release $ctrl+F12			exec --no-startup-id print save
 bindsym --release $shft+F12			exec --no-startup-id print clip
+bindsym --release $alt+F12			exec --no-startup-id print selectsave
 bindsym --release $ctrl+$shft+F12	exec --no-startup-id print select
 
 # cursor keys

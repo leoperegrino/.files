@@ -46,6 +46,7 @@ filetype plugin indent on
 "
 " vimplug options
 call plug#begin('~/.config/vim/plugged')
+Plug 'ojroques/vim-scrollstatus'
 Plug 'junegunn/goyo.vim'
 Plug 'neoclide/coc.nvim'
 call plug#end()
@@ -90,6 +91,7 @@ let NERDTreeQuitOnOpen=1
 "
 " airline
 let g:airline_powerline_fonts = 1
+let g:airline_section_x = '%{ScrollStatus()}'
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
@@ -113,8 +115,8 @@ so $BIN/vim/goyo.vim
 " editor options
 autocmd! FileType help wincmd L
 autocmd! BufWrite * mkview
-autocmd! BufRead * silent! loadview
-autocmd! BufRead *.* set noreadonly
+autocmd! FileType * silent! loadview
+autocmd! BufRead * set noreadonly
 autocmd! BufEnter,FocusGained * set relativenumber
 autocmd! BufLeave,FocusLost   * set norelativenumber
 autocmd! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
@@ -147,8 +149,8 @@ hi nontext ctermfg=238
 hi! link cursorlinenr linenr
 "hi ColorColumn ctermbg=NONE
 "set colorcolumn=80
-"set foldmethod=manual
-"set conceallevel=2
+set foldmethod=manual
+set conceallevel=2
 set foldtext=foldtext()
 set foldclose=all
 set foldopen=all
@@ -169,7 +171,7 @@ set scrolloff=7
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
-set listchars=tab:\ ,trail:~
+set listchars=tab:\|\ ,trail:~
 set fillchars=fold:\ 
 set list
 

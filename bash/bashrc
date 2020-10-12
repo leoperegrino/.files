@@ -37,7 +37,6 @@ alias \
 	\
 	vim="nvim"\
 	python="python -q"\
-	rofi="rofi -show drun"\
 	picom="picom --experimental-backends"\
 	yay="yay --nodiffmenu --noeditmenu"
 	r="R --quiet"\
