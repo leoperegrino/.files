@@ -1,6 +1,9 @@
 # vim: ft=config
 # sxhkd configs
 
+alt + 1
+	randwp
+
 alt + {7,shift + 7}
 	{bt,blueman-manager}
 

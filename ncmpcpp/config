@@ -8,7 +8,7 @@ ncmpcpp_directory	= "~/.local/share/ncmpcpp"
 lyrics_directory	= "~/.local/share/ncmpcpp/lyrics"
 use_console_editor	= "yes"
 external_editor		= "vim"
-#connected_message_on_startup = "no"
+connected_message_on_startup = "no"
 
 # interface
 startup_screen			= "media_library"
@@ -20,7 +20,8 @@ visualizer_look			= "_o"
 progressbar_look		= "->"
 media_library_primary_tag			= "artist"
 media_library_albums_split_by_date	= "yes"
-
+jump_to_now_playing_song_at_start = "yes"
+#
 header_visibility		= "yes"
 statusbar_visibility	= "yes"
 header_text_scrolling	= "yes"
@@ -31,7 +32,7 @@ clock_display_seconds	= "yes"
 # etc
 space_add_mode			= "add_remove"
 screen_switcher_mode	= "previous"
-message_delay_time		= "3"
+message_delay_time		= "1"
 centered_cursor			= "yes"
 ignore_leading_the		= "yes"
 ignore_diacritics		= "yes"
@@ -40,27 +41,28 @@ ignore_diacritics		= "yes"
 playlist_show_mpd_host						= "no"
 playlist_disable_highlight_delay			= "0"
 playlist_shorten_total_times				= "yes"
-playlist_separate_albums					= "yes"
+playlist_separate_albums					= "no"
 fetch_lyrics_for_current_song_in_background = "yes"
 
 # formats
-#song_list_format =		"djsal"
-#song_columns_list_format =		"sajkl"
-#song_status_format =	"$b{{$8"%t"}} $(122)por {$4%a{ $(122)em $7%b{ (%y)}} $3}|{$8%f}"
-#song_library_format =	"{%n} - {%t}|{%f}"
-#alternative_header_first_line_format =	"$b$1$aqqu$/a$9 {%t}|{%f} $1$atqq$/a$9$/b"
-#alternative_header_second_line_format =	"{{$4$b%a$/b$9}{ - $7%b$9}{ ($4%y$9)}}|{%D}"
+#song_list_format =
+#song_columns_list_format =
+song_status_format =	"{$(blue){%t}$(end) por {$(green)%a$(end) em {$(12)%b$(end){ (%y)}}}}|{%f}"
+#song_library_format =
+#alternative_header_first_line_format =
+#alternative_header_second_line_format =
+song_columns_list_format = "(4)[]{} (15)[green]{a} (26)[12]{b} (30)[blue]{t} (5)[magenta]{l}"
 
 # (pre|su)ffix
-#current_item_prefix =					"$r$(204)$b"
-#current_item_suffix =					"$/r$(end)$/b"
-#current_item_inactive_column_prefix =	"$(238)$r"
-#current_item_inactive_column_suffix =	"$/r$(end)"
-#now_playing_prefix =					""
-#now_playing_suffix =					""
+current_item_prefix =					"$b$(green)>> "
+current_item_suffix =					" <<$/b$(end)"
+current_item_inactive_column_prefix =	"$b$(244)>> "
+current_item_inactive_column_suffix =	" <<$/b$(end)"
+now_playing_prefix =					"$b$(yellow)>> "
+now_playing_suffix =					"$/b$(end)"
 #browser_playlist_prefix =				""
-#selected_item_prefix =					""
-#selected_item_suffix =					""
+selected_item_prefix =					"$b$(magenta)>> "
+selected_item_suffix =					"$/b$(end)"
 #modified_item_prefix =					""
 
 # colors

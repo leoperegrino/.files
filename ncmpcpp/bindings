@@ -56,7 +56,7 @@ def_key "V"
 	show_visualizer
 def_key "b"
 	show_browser
-def_key "P"
+def_key "p"
 	show_playlist
 def_key "m"
 	show_media_library
@@ -76,7 +76,7 @@ def_key "n"
 	next
 def_key "N"
 	previous
-def_key "p"
+def_key "P"
 	pause
 def_key "v"
 	select_item
@@ -87,6 +87,11 @@ def_key "-"
 	seek_backward
 def_key "S"
 	stop
+def_key "space"
+	add_item_to_playlist
+	pause
+def_key "space"
+  toggle_visualization_type
 
 # etc
 def_key "U"

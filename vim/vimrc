@@ -146,6 +146,7 @@ hi pmenu ctermbg=236
 hi pmenu ctermfg=228
 hi visual ctermbg=240
 hi nontext ctermfg=238
+hi specialkey ctermfg=238
 hi! link cursorlinenr linenr
 "hi ColorColumn ctermbg=NONE
 "set colorcolumn=80
@@ -215,6 +216,7 @@ nnoremap <leader>D mmgg:vsplit %<CR>
 nmap <F1> :call NERDComment('n','toggle')<CR>
 vmap <F1> :call NERDComment('x','toggle')<CR>
 nmap <F2> <Plug>(coc-rename)
+noremap <F3> :!python -i %<CR>
 "
 noremap <F10> :Goyo \| set nu rnu \| redraw!<CR>
 noremap <F11> :NERDTreeToggle<CR>
