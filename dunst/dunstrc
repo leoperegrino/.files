@@ -109,7 +109,7 @@
     # dmenu path.
     dmenu = /usr/bin/dmenu -p dunst:
     # Browser for opening urls in context menu.
-    browser = /usr/bin/brave --new-window
+    browser = /usr/bin/firefox --new-window
     # Always run rule-defined scripts, even if the notification is suppressed
     always_run_script = true
     # Define the title of the windows spawned by dunst
@@ -153,8 +153,8 @@
 # [urgency]
 [urgency_low]
     # colors have to be defined in quotation marks
-    background = "#181818"
-    foreground = "#888888"
+    background = "#404254"
+    foreground = "#f4f99d"
     timeout = 5
     #icon = /path/to/low-urgent-icon
 
@@ -165,8 +165,8 @@
     #icon = /path/to/normal-urgent-icon
 
 [urgency_critical]
-    background = "#900000"
+    background = "#ff5555"
     foreground = "#ffffff"
-    frame_color = "#ff0000"
+    frame_color = "#000000"
     timeout = 0
     #icon = /path/to/critical-urgent-icon
