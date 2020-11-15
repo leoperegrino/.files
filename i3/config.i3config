@@ -91,8 +91,8 @@ bindsym $super+$shft+space	floating toggle
 bindsym $super+space		focus mode_toggle
 bindsym $super+w			layout toggle tabbed split
 # stacking
-bindsym $super+Tab			workspace next
-bindsym $super+apostrophe	workspace prev
+bindsym $super+Tab			focus left
+bindsym $super+apostrophe	focus right
 
 # switch to workspace
 bindsym $super+1 workspace number "1"
