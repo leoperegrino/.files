@@ -8,13 +8,13 @@ hyperlinks = true
 cursor_shape = block
 
 [colors]
-;cursor = #181818
-;cursor_foreground = #181818
+#cursor = #181818
+#cursor_foreground = #181818
 #foreground = #dcdccc
 #foreground_bold = #ffffff
-;background = rgba(30, 30, 30, 1)
+#background = rgba(30, 30, 30, 1)
 # If unset, will reverse foreground and background
-;highlight = #2f2f2f
+#highlight = #2f2f2f
 
 # dracula theme
 # special

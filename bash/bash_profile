@@ -21,7 +21,7 @@ export BIN="$HOME"/bin
 export DOC="$HOME"/documents
 
 export XINITRC="$FILES"/x/xinitrc
-export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+export XAUTHORITY="$XDG_CACHE_HOME"/Xauthority
 export PYLINTHOME="$XDG_CACHE_HOME"/pylint
 export FONTS="$XDG_DATA_HOME"/fonts:/usr/share/fonts
 export HISTFILE="$XDG_DATA_HOME"/bash/history
@@ -53,4 +53,4 @@ export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
 alias startx="startx $XINITRC"
 [[ -f ~/.bashrc ]] && . ~/.bashrc
-startx
+[[ $(tty) = '/dev/tty1' ]] && startx

@@ -8,7 +8,7 @@ xinput set-prop "TPPS/2 Elan TrackPoint" "libinput Accel Speed" 0.5
 xinput set-prop "SynPS/2 Synaptics TouchPad" "Device Enabled" 0
 #xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
 sleep 1 && xmodmap $FILES/kbd/qwerty.altgr&
-hdmi on
+randwp
 sxhkd&
 
 exec i3

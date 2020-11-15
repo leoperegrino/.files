@@ -8,7 +8,7 @@ PS1=' \
 \[\033[37m\]\
 @\
 \[\033[3;31m\]\
-\h:\
+[\h]:\
 \[\033[0;1;32m\]\
 \w\
 \[\033[37m\]\
@@ -36,8 +36,9 @@ alias \
 	lsd="lsd -lAh1 --group-dirs --blocks permission,size,name"\
 	\
 	vim="nvim"\
+	ytdl="youtube-dl"\
 	python="python -q"\
+	ipynb="setsid -f jupyter notebook >/dev/null 2>&1"\
 	picom="picom --experimental-backends"\
 	yay="yay --nodiffmenu --noeditmenu"
-	r="R --quiet"\
-	LA="nmcli con up LA"
+	r="R --quiet"

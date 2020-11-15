@@ -15,7 +15,7 @@ alt + {8,9,0}
 
 # super starts
 super + {b,shift + b}
-	{firefox,qutebrowser}
+	{firefox,brave}
 
 super + m
 	termite -e ncmpcpp
@@ -35,6 +35,9 @@ super + n
 # alt configs
 alt + v
 	termite -e "vim $FILES/vim/vimrc"
+
+alt + e
+	termite -e "vim $FILES/ranger/rc.conf"
 
 alt + x
 	termite -e "vim $FILES/x/xinitrc"

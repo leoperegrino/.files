@@ -89,7 +89,6 @@ def_key "S"
 	stop
 def_key "space"
 	add_item_to_playlist
-	pause
 def_key "space"
   toggle_visualization_type
 
