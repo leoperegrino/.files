@@ -2,12 +2,12 @@
 # newsboat config
 
 # config
-browser "firefox --new-window %u"
+browser "setsid -f firefox %u >/dev/null 2>&1"
 prepopulate-query-feeds yes
 show-keymap-hint no
 goto-next-feed no
 feed-sort-order firsttag
-#external-url-viewer "urlscan -dc -r 'qutebrowser {} &>/dev/null'"
+external-url-viewer "urlscan -dsHc -r 'linkhandler' -p"
 #wrap-scroll no
 #auto-reload yes
 #toggleitemread-jumps-to-next-unread yes
@@ -72,11 +72,10 @@ bind-key h quit
 bind-key a toggle-article-read
 bind-key n next
 bind-key p prev
-bind-key U show-urls
+bind-key u show-urls
 
 # macros
 unbind-key ,
-bind-key . macro-prefix
+bind-key ' macro-prefix
 macro V set browser "youtube-dl" ; open-in-browser ; set browser firefox
-macro C set browser "youtube-viewer --comments=%u" ; open-in-browser ; set browser firefox
 macro w set browser "setsid -f mpv -quiet >/dev/null 2>&1" ; open-in-browser ; set browser firefox
