@@ -28,6 +28,9 @@ Plugin 'preservim/nerdtree'
 Plugin 'preservim/nerdcommenter'
 Plugin 'francoiscabrol/ranger.vim'
 Plugin 'wmvanvliet/jupyter-vim.git'
+"Plugin 'sillybun/vim-repl'
+Plugin 'jpalardy/vim-slime'
+Plugin 'hanschen/vim-ipython-cell'
 "
 Plugin 'mboughaba/i3config.vim'
 Plugin 'lervag/vimtex'
@@ -63,6 +66,7 @@ let g:livepreview_previewer = 'zathura'
 let g:pandoc#syntax#conceal#urls = 1
 "
 " jupyter
+let g:slime_paste_file = "$XDG_CACHE/slime_paste"
 let g:jupyter_mapkeys=0
 "
 " coc
