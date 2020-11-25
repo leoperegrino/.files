@@ -36,6 +36,8 @@ client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 client.background       #F8F8F2
 bindsym $alt+space bar mode toggle
 new_window pixel 1
+workspace_layout tabbed
+# border_radius 10
 gaps inner 15
 
 # set keys
@@ -47,12 +49,13 @@ set $TERM	termite
 
 # super
 bindsym $super+q kill
-bindsym $super+d exec dmenu_run
+bindsym $super+d exec --no-startup-id dmenu_run
 #bindsym $super+a exec rofi
 
 # reload
 bindsym $super+$shft+c reload
 bindsym $super+$shft+r restart
+bindsym $super+$shft+q exec --no-startup-id i3lock -efi "$HOME/pictures/wallpapers/wp7.png"
 bindsym $super+$shft+x exec i3-msg exit
 focus_follows_mouse no
 
@@ -61,17 +64,18 @@ bindsym $super+h focus left
 bindsym $super+j focus down
 bindsym $super+k focus up
 bindsym $super+l focus right
-bindsym $super+$shft+h	move left
-bindsym $super+$shft+j	move down
-bindsym $super+$shft+k	move up
-bindsym $super+$shft+l	move right
+bindsym $super+$shft+h	move left 30 px
+bindsym $super+$shft+j	move down 30 px
+bindsym $super+$shft+k	move up 30 px
+bindsym $super+$shft+l	move right 30 px
 bindsym $super+p		move workspace to output right
-
-bindsym $super+ctrl+h resize shrink width 10 px or 10 ppt
-bindsym $super+ctrl+j resize grow height 10 px or 10 ppt
-bindsym $super+ctrl+k resize shrink height 10 px or 10 ppt
-bindsym $super+ctrl+l resize grow width 10 px or 10 ppt
-
+bindsym $super+ctrl		move position mouse
+#
+bindsym $super+ctrl+h resize shrink width 30 px
+bindsym $super+ctrl+j resize grow height 30 px
+bindsym $super+ctrl+k resize shrink height 30 px
+bindsym $super+ctrl+l resize grow width 30 px
+#
 bindsym $super+i			gaps inner current plus 5
 bindsym $super+o			gaps inner current minus 5
 bindsym $super+ctrl+i		gaps outer current plus 5
@@ -81,7 +85,7 @@ bindsym $super+$shft+o		gaps horizontal current minus 5
 bindsym $super+ctrl+$shft+i	gaps vertical current plus 5
 bindsym $super+ctrl+$shft+o	gaps vertical current minus 5
 bindsym $super+$shft+w		gaps inner current set 0; gaps outer current set 0; gaps horizontal current set 0; gaps vertical current set 0
-
+#
 bindsym $super+s split toggle
 bindsym $super+f fullscreen toggle
 
@@ -91,8 +95,8 @@ bindsym $super+$shft+space	floating toggle
 bindsym $super+space		focus mode_toggle
 bindsym $super+w			layout toggle tabbed split
 # stacking
-bindsym $super+Tab			focus left
-bindsym $super+apostrophe	focus right
+bindsym $super+Tab			focus right
+bindsym $super+apostrophe	focus left
 
 # switch to workspace
 bindsym $super+1 workspace number "1"
@@ -142,13 +146,13 @@ bindsym $super+Left		focus left
 bindsym $super+Down		focus down
 bindsym $super+Up		focus up
 bindsym $super+Right	focus right
-
+#
 # alternatively, you can use the cursor keys:
 bindsym $super+$shft+Left	move left
 bindsym $super+$shft+Down	move down
 bindsym $super+$shft+Up		move up
 bindsym $super+$shft+Right	move right
-
+#
 # cursor resize
 bindsym $super+Control+Left		resize shrink width 10 px or 10 ppt
 bindsym $super+Control+Down		resize grow height 10 px or 10 ppt
