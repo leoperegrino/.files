@@ -4,6 +4,11 @@ def_key "f"
 def_key "F"
 	dummy
 
+def_key ">"
+	volume_up
+def_key "<"
+	volume_down
+
 # navigation
 # hjkl
 def_key "h"
@@ -70,6 +75,8 @@ def_key "i"
   show_artist_info
 def_key "L"
 	show_lyrics
+def_key "E"
+	show_playlist_editor
 
 # player
 def_key "n"
