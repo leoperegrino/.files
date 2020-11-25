@@ -32,7 +32,7 @@ clock_display_seconds	= "yes"
 # etc
 space_add_mode			= "add_remove"
 screen_switcher_mode	= "previous"
-message_delay_time		= "1"
+message_delay_time		= "0"
 centered_cursor			= "yes"
 ignore_leading_the		= "yes"
 ignore_diacritics		= "yes"

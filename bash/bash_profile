@@ -11,7 +11,6 @@ export HISTTIMEFORMAT='%d/%m %H:%M  '
 export HISTIGNORE="ls:cd:q:cl"
 
 # export options
-export FOAM=/usr/local/OpenFOAM/OpenFOAM-dev/bin/
 export PATH="$PATH":"$HOME"/bin:"$FOAM":"$HOME"/.local/bin
 export XDG_DATA_HOME="$HOME"/.local/share
 export XDG_CACHE_HOME="$HOME"/.cache
@@ -19,7 +18,7 @@ export XDG_CONFIG_HOME="$HOME"/.config
 export FILES="$HOME"/.files
 export BIN="$HOME"/bin
 export DOC="$HOME"/documents
-
+#
 export XINITRC="$FILES"/x/xinitrc
 export XAUTHORITY="$XDG_CACHE_HOME"/Xauthority
 export PYLINTHOME="$XDG_CACHE_HOME"/pylint
@@ -36,7 +35,7 @@ export R_PROFILE_USER="$XDG_CONFIG_HOME"/R/Rprofile
 export R_ENVIRON_USER="$XDG_CONFIG_HOME"/R/Renviron
 export R_HISTFILE="$XDG_CONFIG_HOME"/R/Rhistory
 export VIMINIT=":source $XDG_CONFIG_HOME"/vim/vimrc
-
+#
 export EDITOR=nvim
 export BROWSER=firefox
 export TERM=termite

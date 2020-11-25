@@ -40,5 +40,4 @@ alias \
 	python="python -q"\
 	ipynb="setsid -f jupyter notebook >/dev/null 2>&1"\
 	picom="picom --experimental-backends"\
-	yay="yay --nodiffmenu --noeditmenu"
 	r="R --quiet"

@@ -1,2 +1,2 @@
-feh --image-bg '#181818' --scale-down --no-fehbg
+feh -P --cache-size 20 --image-bg '#181818' --scale-down --no-fehbg
 

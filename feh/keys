@@ -5,4 +5,5 @@ scroll_up k
 scroll_down j
 scroll_left h
 scroll_right l
+toggle_info I
 toggle_filenames F
