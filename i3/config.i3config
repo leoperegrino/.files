@@ -124,7 +124,7 @@ bindsym $super+$shft+0 move container to workspace number "10"
 
 # extra confs
 # pactl
-bindsym XF86AudioRaiseVolume	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2%
+bindsym XF86AudioRaiseVolume	exec --no-startup-id [ $(amixer -D pulse | grep -Pom 1 '\[\K\d+') -lt 99 ] && pactl set-sink-volume @DEFAULT_SINK@ +2%
 bindsym XF86AudioLowerVolume	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2%
 bindsym XF86AudioMute			exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute		exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
