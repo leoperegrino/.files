@@ -17,42 +17,45 @@ alt + {8,9,0}
 super + {b,shift + b}
 	{firefox,brave}
 
-super + m
-	termite -e ncmpcpp
+super + {m,shift + m}
+	alacritty -e {ncmpcpp,musikcube}
 
 super + {z,Return}
+	alacritty --working-directory $HOME
+
+super + {shift + z,shift + Return}
 	termite -d $HOME
 
 super + e
-	termite -e "ranger"
+	alacritty -e ranger
 
 super + {a,shift + a}
-	rofi -show drun -config "$FILES/rofi/{blurry.rasi,launchpad.rasi}"
+	rofi -show drun -config $FILES/rofi/{blurry.rasi,launchpad.rasi}
 
 super + n
-	termite -e newsboat
+	alacritty -e newsboat
 
 # alt configs
 alt + v
-	termite -e "vim $FILES/vim/vimrc"
+	alacritty -e vim $FILES/vim/vimrc
 
 alt + e
-	termite -e "vim $FILES/ranger/rc.conf"
+	alacritty -e vim $FILES/ranger/rc.conf
 
 alt + x
-	termite -e "vim $FILES/x/xinitrc"
+	alacritty -e vim $FILES/x/xinitrc
 
 alt + s
-	termite -e "vim $FILES/sxhkd/sxhkdrc"
+	alacritty -e vim $FILES/sxhkd/sxhkdrc
 
 alt + {b,shift + b}
-	termite -e "vim $FILES/bash/{bashrc,bash_profile}"
+	alacritty -e vim $FILES/bash/{bashrc,bash_profile}
 
 alt + {i,shift + i}
-	termite -e "vim $FILES/i3/{config.i3config,i3status.conf}"
+	alacritty -e vim $FILES/i3/{config.i3config,i3status.conf}
 
 alt + {m,shift + m}
-	termite -e "vim $FILES/ncmpcpp/{config,bindings}"
+	alacritty -e vim $FILES/ncmpcpp/{config,bindings}
 
 alt + {n,shift + n}
-	termite -e "vim $FILES/newsboat/{config,urls}"
+	alacritty -e vim $FILES/newsboat/{config,urls}

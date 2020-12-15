@@ -1,6 +1,7 @@
 #!/bin/bash
 force_color_prompt=yes
 set -o vi
+set -o noclobber
 
 PS1=' \
 \[\033[1;36m\]\
@@ -36,6 +37,7 @@ alias \
 	lsd="lsd -lAh1 --group-dirs --blocks permission,size,name"\
 	\
 	vim="nvim"\
+	mpv="mpvc"\
 	ytdl="youtube-dl"\
 	python="python -q"\
 	ipynb="setsid -f jupyter notebook >/dev/null 2>&1"\

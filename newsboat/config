@@ -38,7 +38,7 @@ color listnormal color238 default
 feedlist-title-format "  Feeds (%u unread)"
 feedlist-format "%6i %11u   %t"
 articlelist-title-format "Articles in '%T' (%u unread)"
-articlelist-format "%6i   %D   %?T?|%-18T|  ?%t"
+articlelist-format "%6i   %D   %?T?|%-22T|  ?%t"
 itemview-title-format "Article '%T'"
 #
 selecttag-title-format "Select Tag"
@@ -66,19 +66,19 @@ bind-key K prev-unread
 bind-key G end
 bind-key g home
 bind-key d pagedown
-bind-key U pageup
+bind-key u pageup
 bind-key l open
 bind-key h quit
 bind-key a toggle-article-read
 bind-key n next
 bind-key p prev
-bind-key u show-urls
+bind-key U show-urls
 
 # macros
 unbind-key ,
 bind-key ' macro-prefix
-macro V set browser "youtube-dl" ; open-in-browser ; set browser "setsid -f firefox %u &>/dev/null"
+macro V set browser "youtube-dl -4" ; open-in-browser ; set browser "setsid -f firefox %u &>/dev/null"
+macro w set browser "setsid -f mpv -quiet &>/dev/null" ; open-in-browser ; set browser "setsid -f firefox %u &>/dev/null"
 
 macro i set external-url-viewer "imghandler 2>/dev/null"; show-urls ; set external-url-viewer "urlscan -dsHc -r 'linkhandler' -p"
-
-macro w set browser "setsid -f mpv -quiet &>/dev/null" ; open-in-browser ; set browser "setsid -f firefox %u &>/dev/null"
+macro p set external-url-viewer "podhandler"; show-urls ; set external-url-viewer "urlscan -dsHc -r 'linkhandler' -p"

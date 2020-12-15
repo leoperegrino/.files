@@ -1,5 +1,6 @@
 #!/bin/bash
 # ~/.bash_profile
+export EVENT_NOEPOLL=1
 
 # hist options
 shopt -s histappend
@@ -18,23 +19,26 @@ export XDG_CONFIG_HOME="$HOME"/.config
 export FILES="$HOME"/.files
 export BIN="$HOME"/bin
 export DOC="$HOME"/documents
+export FONTS="$XDG_DATA_HOME"/fonts:/usr/share/fonts
+export HISTFILE="$XDG_DATA_HOME"/bash/history
 #
 export XINITRC="$FILES"/x/xinitrc
 export XAUTHORITY="$XDG_CACHE_HOME"/Xauthority
-export PYLINTHOME="$XDG_CACHE_HOME"/pylint
-export FONTS="$XDG_DATA_HOME"/fonts:/usr/share/fonts
-export HISTFILE="$XDG_DATA_HOME"/bash/history
-export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
-export GTK_RC_FILES="$XDG_CONFIG_HOME"/gtk-1.0/gtkrc
-export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
-export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
+export VIMINIT=":source $XDG_CONFIG_HOME"/vim/vimrc
+export ZDOTDIR="$FILES"/zsh
+#
 export IPYTHONDIR="$XDG_CONFIG_HOME"/ipython
-export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
+export PYLINTHOME="$XDG_CACHE_HOME"/pylint
 export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
+#
+export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export R_PROFILE_USER="$XDG_CONFIG_HOME"/R/Rprofile
 export R_ENVIRON_USER="$XDG_CONFIG_HOME"/R/Renviron
 export R_HISTFILE="$XDG_CONFIG_HOME"/R/Rhistory
-export VIMINIT=":source $XDG_CONFIG_HOME"/vim/vimrc
+export GTK_RC_FILES="$XDG_CONFIG_HOME"/gtk-1.0/gtkrc
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 #
 export EDITOR=nvim
 export BROWSER=firefox
