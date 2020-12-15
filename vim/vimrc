@@ -27,12 +27,14 @@ Plugin 'mbbill/undotree'
 Plugin 'preservim/nerdtree'
 Plugin 'preservim/nerdcommenter'
 Plugin 'francoiscabrol/ranger.vim'
-Plugin 'wmvanvliet/jupyter-vim.git'
+"Plugin 'ervandew/supertab'
+"Plugin 'wmvanvliet/jupyter-vim.git'
 "Plugin 'sillybun/vim-repl'
-Plugin 'jpalardy/vim-slime'
-Plugin 'hanschen/vim-ipython-cell'
+"Plugin 'jpalardy/vim-slime'
+"Plugin 'hanschen/vim-ipython-cell'
 "
 Plugin 'mboughaba/i3config.vim'
+Plugin 'baskerville/vim-sxhkdrc'
 Plugin 'lervag/vimtex'
 Plugin 'xuhdev/vim-latex-live-preview'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
@@ -66,7 +68,7 @@ let g:livepreview_previewer = 'zathura'
 let g:pandoc#syntax#conceal#urls = 1
 "
 " jupyter
-let g:slime_paste_file = "$XDG_CACHE/slime_paste"
+let g:slime_paste_file = "$XDG_CACHE_HOME/slime_paste"
 let g:jupyter_mapkeys=0
 "
 " coc
@@ -220,16 +222,15 @@ nnoremap <leader>D mmgg:vsplit %<CR>
 nmap <F1> :call NERDComment('n','toggle')<CR>
 vmap <F1> :call NERDComment('x','toggle')<CR>
 nmap <F2> <Plug>(coc-rename)
-noremap <F3> :!python -i %<CR>
+nnoremap <F3> :!python -i %<CR>
 "
-noremap <F10> :Goyo \| set nu rnu \| redraw!<CR>
-noremap <F11> :NERDTreeToggle<CR>
+noremap <F10> :NERDTreeToggle<CR>
+noremap <F11> :Goyo \| set nu rnu \| redraw!<CR>
 noremap <F12> :UndotreeToggle<CR>
 "
 " ctrl maps
 vmap <C-c> "+y
 vmap <C-x> "+c<ESC>
-"imap <C-@> <CR>
 "
 noremap <C-p> jzz
 noremap <C-e> kzz
@@ -242,6 +243,7 @@ noremap <C-b> :vert res +5<CR>
 noremap <C-n> :res -5<CR>
 noremap <C-m> :res +5<CR>
 "
+nmap Y y$
 nmap < <<
 nmap > >>
 vnoremap < <gv

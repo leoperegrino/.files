@@ -1,13 +1,4 @@
 # vim: ft=config
-def_key "f"
-	dummy
-def_key "F"
-	dummy
-
-def_key ">"
-	volume_up
-def_key "<"
-	volume_down
 
 # navigation
 # hjkl
@@ -23,9 +14,11 @@ def_key "l"
 	next_column
 def_key "l"
 	enter_directory
-def_key "l"
-	run_action
-def_key "l"
+#def_key "l"
+#    run_action
+def_key "ç"
+	play_item
+def_key "f"
 	play_item
 
 # scroll (artist|album)
@@ -54,9 +47,11 @@ def_key "d"
 
 # interface
 def_key "s"
-	show_search_engine
-def_key "s"
-	reset_search_engine
+	sort_playlist
+#def_key "s"
+#    show_search_engine
+#def_key "s"
+#    reset_search_engine
 def_key "V"
 	show_visualizer
 def_key "b"
@@ -72,6 +67,8 @@ def_key "t"
 def_key "c"
 	show_clock
 def_key "i"
+  show_song_info
+def_key "I"
   show_artist_info
 def_key "L"
 	show_lyrics
@@ -83,6 +80,10 @@ def_key "n"
 	next
 def_key "N"
 	previous
+def_key ">"
+	volume_up
+def_key "<"
+	volume_down
 def_key "P"
 	pause
 def_key "v"
@@ -104,8 +105,8 @@ def_key "U"
 	update_database
 def_key "x"
 	delete_playlist_items
-def_key "ctrl-s"
-	save_playlist
+#def_key "ctrl-s"
+#    save_playlist
 def_key "C"
 	toggle_consume
 
@@ -125,4 +126,8 @@ def_key "3"
 def_key "2"
 	dummy
 def_key "1"
+	dummy
+#def_key "f"
+#    dummy
+def_key "F"
 	dummy
