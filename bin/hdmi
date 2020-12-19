@@ -1,0 +1,34 @@
+#!/bin/bash
+
+case "$1" in
+	on)
+		# $w1 is main wpp number and $w2 is HDMI1 wpp number
+		w1="${2:-archdra.webp}"
+		w2="${3:-archdra.webp}"
+
+		xrandr --output eDP1 --auto --output HDMI1 --auto --left-of eDP1
+		feh --bg-fill ~/pictures/wallpapers/"$w1" \
+			--bg-fill ~/pictures/wallpapers/"$w2" \
+			--no-fehbg&
+		[ -z "$(pgrep picom)" ] && picom --experimental-backends&
+		;;
+	off)
+		# $w1 is main wpp number
+		w1="${2:-archdra.webp}"
+
+		xrandr --output eDP1 --auto --output HDMI1 --off
+		feh --bg-fill ~/pictures/wallpapers/"$w1" --no-fehbg
+		[ -z "$(pgrep picom)" ] && picom --experimental-backends&
+		;;
+	bri)
+		# xrandr hdmi brightness value
+		ival="$(xrandr --verbose | grep -i brightness | awk {'if(NR==2) print $2'})"
+		fval="$(echo "$ival + $3/10"|bc -l)"
+
+		[ -n "$ival" ] \
+		&& [ "$(echo "$ival>0.1 && $ival<2"|bc -l)" == 1 ] \
+		&& xrandr --output HDMI1 --brightness "$fval"
+
+		echo "${fval:-1}"
+		;;
+esac

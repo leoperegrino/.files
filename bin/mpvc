@@ -1,0 +1,5 @@
+#!/bin/bash
+
+declare filename="$1"
+
+mpv "$filename" --chapters-file=".${filename%.*}.chapters"

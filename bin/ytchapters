@@ -1,0 +1,22 @@
+#!/bin/bash
+
+tempf="$(mktemp)"
+
+youtube-dl -J "$1" | jq -r '.title, .uploader, .chapters[]?[]?' > "$tempf"
+
+read title < "$tempf"
+
+if [ "$(wc -l < $tempf)" -lt 3 ]; then
+	echo "no chapters found"
+	rm "$tempf"
+
+else
+	sed -e '1s/^/;FFMETADATA1\ntitle=/g' \
+		-e '2s/^/artist=/g' \
+		-e '3~3s/^/\n[CHAPTER]\nTIMEBASE=1\/1\nSTART=/g' \
+		-e '4~3s/^/END=/g' \
+		-e '5~3s/^/title=/g' \
+		-i "$tempf"
+
+	mv "$tempf" "$PWD/.${title//\//_}.chapters"
+fi

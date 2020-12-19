@@ -1,0 +1,19 @@
+#!/bin/bash
+# vim: ft=sh
+
+filename='%d-%m-%Y_%H:%M:%S_$wx$h.png'
+
+case $1 in
+	save)
+		scrot $filename -e 'mv $f ~/pictures/'
+		;;
+	clip)
+		scrot "/tmp/$filename" -e 'xclip -selection clipboard -target image/png -i $f'
+		;;
+	select)
+		scrot "/tmp/$filename" -fse 'xclip -selection clipboard -target image/png -i $f'
+		;;
+	selectsave)
+		scrot "/tmp/$filename" -fse 'mv $f ~/pictures/'
+		;;
+esac

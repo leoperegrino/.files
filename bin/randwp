@@ -1,0 +1,15 @@
+#!/bin/bash
+
+DIR="$HOME/pictures/wallpapers/"
+
+# wallpapers count
+count=$(ls -1 $DIR | wc -l)
+
+# random number where max is $count
+rand=$((RANDOM % count))
+
+# take the first rand'th lines and get the last of them
+wp=$(ls -1 $DIR | head -n $rand  | tail -n1)
+
+# finally
+feh --no-fehbg --bg-fill "$DIR/$wp"
