@@ -19,8 +19,8 @@ PS1=' \
 alias \
 	mv="mv -iv" \
 	rm="rm -iv" \
-	ls="ls -1 --color=auto"\
-	grep="grep -i --color=auto"\
+	ls="ls -1 --color=always"\
+	grep="grep -i --color=always"\
 	mkdir="mkdir -pv" \
 	ln="ln -v"\
 	cp="cp -iv" \

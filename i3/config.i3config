@@ -135,10 +135,10 @@ bindsym XF86MonBrightnessDown	exec --no-startup-id [ $(echo "$(xbacklight -get) 
 #bindsym $ctrl+F6 exec --no-startup-id hdmi bri +1
 #bindsym $ctrl+F5 exec --no-startup-id hdmi bri -1
 # screenshot
-bindsym --release $ctrl+F12			exec --no-startup-id print save
-bindsym --release $shft+F12			exec --no-startup-id print clip
-bindsym --release $alt+F12			exec --no-startup-id print selectsave
-bindsym --release $ctrl+$shft+F12	exec --no-startup-id print select
+bindsym --release $ctrl+F12			exec --no-startup-id printscn save
+bindsym --release $shft+F12			exec --no-startup-id printscn clip
+bindsym --release $alt+F12			exec --no-startup-id printscn selectsave
+bindsym --release $ctrl+$shft+F12	exec --no-startup-id printscn select
 
 # cursor keys
 # alternatively, you can use the cursor keys:
