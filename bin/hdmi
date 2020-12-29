@@ -7,18 +7,22 @@ case "$1" in
 		w2="${3:-archdra.webp}"
 
 		xrandr --output eDP1 --auto --output HDMI1 --auto --left-of eDP1
+
 		feh --bg-fill ~/pictures/wallpapers/"$w1" \
 			--bg-fill ~/pictures/wallpapers/"$w2" \
-			--no-fehbg&
-		[ -z "$(pgrep picom)" ] && picom --experimental-backends&
+			--no-fehbg
+
+		[ -z "$(pgrep picom)" ] && picom --experimental-backends
 		;;
 	off)
 		# $w1 is main wpp number
 		w1="${2:-archdra.webp}"
 
 		xrandr --output eDP1 --auto --output HDMI1 --off
+
 		feh --bg-fill ~/pictures/wallpapers/"$w1" --no-fehbg
-		[ -z "$(pgrep picom)" ] && picom --experimental-backends&
+
+		[ -z "$(pgrep picom)" ] && picom --experimental-backends
 		;;
 	bri)
 		# xrandr hdmi brightness value
