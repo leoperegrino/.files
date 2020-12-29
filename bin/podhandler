@@ -1,0 +1,47 @@
+#!/bin/bash
+
+STDIN="$(</dev/stdin)"
+TITLE=$(grep -Po 'Title: \K.*' <<< "$STDIN")
+FEED=$(grep -Po 'Feed: \K.*' <<< "$STDIN")
+LINK=$(grep -Po 'Link: \K.*' <<< "$STDIN")
+DATA=$(awk '/Date: / {print $3,$4,$5}' <<< "$STDIN")
+
+if [ "$FEED" = "Stack Overflow Podcast" ]; then
+
+	FOLDER="$HOME/videos/StackOverflow"
+	FILENAME="$FOLDER/$TITLE - $DATA.mp3"
+
+	if ! [ -e "$FILENAME" ]; then
+
+		HTML=$(curl "$LINK")
+
+		# grep between the domain and question mark
+		API=$(grep -Po 'player.simplecast.com/\K.*(?=\?)' <<< "$HTML")
+
+		JSON=$(curl "https://api.simplecast.com/episodes/$API/player")
+
+		# get enclosure_url from JSON
+		MP3=$(jq -r '.enclosure_url' <<< "$JSON")
+
+		curl "$MP3" > "$FILENAME"
+	fi
+
+elif [ "$FEED" = "Let's Talk Bitcoin Podcast" ]; then
+
+		FOLDER="$HOME/videos/Let's Talk Bitcoin!"
+		TITLE="${TITLE% }"
+		FILENAME="$FOLDER/${TITLE#*! } - $DATA.mp3"
+
+		if ! [ -e "$FILENAME" ]; then
+
+			HTML=$(curl "$LINK")
+			MP3=$(grep -o https.*mp3 <<< "$HTML")
+			curl -L "$MP3" > "$FILENAME"
+		fi
+
+fi
+
+setsid -f mpv -quiet \
+			--fullscreen=no \
+			--player-operation-mode=pseudo-gui \
+			"$FILENAME" >/dev/null 2>&1
