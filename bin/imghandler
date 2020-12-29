@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# read standard input, a newsboat rss article
+STDIN="$(</dev/stdin)"
+CACHE="$XDG_CACHE_HOME"/newsboat
+FEED=$(grep -Po 'Feed: \K.*' <<< "$STDIN")
+DATA=$(awk '/Date: / {print $3,$4,$5}' <<< "$STDIN")
+
+for link in $(echo "$STDIN" | urlscan -n); do
+	case "$link" in
+		
+		*p50x50*)
+		;;
+
+		*facebook*videos*)
+			HASH=${link%/}
+			HASH=${HASH##*/}
+			FILENAME="$CACHE/$FEED - $DATA - $HASH"
+
+			if [[ -z $(ls "$FILENAME"*) ]]; then
+				youtube-dl "$link" -o "$FILENAME"
+			fi
+
+			setsid -f mpv --fullscreen=no "$FILENAME"* &>/dev/null
+			break
+		;;
+
+		*fbcdn.net*)
+			HASH=$(sed s'/.*\/\(.*\)?.*/\1/' <<< "$link")
+			FILENAME="$CACHE/$FEED - $DATA - $HASH"
+
+			if ! [[ -e "$FILENAME" ]]; then
+				curl -sL "$link" > "$FILENAME"
+			fi
+
+			setsid -f feh --start-at "$FILENAME" &>/dev/null
+		;;
+
+	esac
+done
