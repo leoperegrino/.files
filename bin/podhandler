@@ -5,6 +5,7 @@ TITLE=$(grep -Po 'Title: \K.*' <<< "$STDIN")
 FEED=$(grep -Po 'Feed: \K.*' <<< "$STDIN")
 LINK=$(grep -Po 'Link: \K.*' <<< "$STDIN")
 DATA=$(awk '/Date: / {print $3,$4,$5}' <<< "$STDIN")
+DATA=$(date -d "$DATA" +%Y_%m_%d)
 
 if [ "$FEED" = "Stack Overflow Podcast" ]; then
 

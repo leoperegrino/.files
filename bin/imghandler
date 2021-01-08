@@ -4,7 +4,11 @@
 STDIN="$(</dev/stdin)"
 CACHE="$XDG_CACHE_HOME"/newsboat
 FEED=$(grep -Po 'Feed: \K.*' <<< "$STDIN")
+FOLDER="$CACHE/$FEED"
 DATA=$(awk '/Date: / {print $3,$4,$5}' <<< "$STDIN")
+DATA=$(date -d "$DATA" +%Y_%m_%d)
+
+[ ! -d "$FOLDER" ] && mkdir "$FOLDER"
 
 for link in $(echo "$STDIN" | urlscan -n); do
 	case "$link" in
@@ -15,9 +19,9 @@ for link in $(echo "$STDIN" | urlscan -n); do
 		*facebook*videos*)
 			HASH=${link%/}
 			HASH=${HASH##*/}
-			FILENAME="$CACHE/$FEED - $DATA - $HASH"
+			FILENAME="$FOLDER/$DATA - $HASH"
 
-			if [[ -z $(ls "$FILENAME"*) ]]; then
+			if [ -z $(ls "$FILENAME"*) ]; then
 				youtube-dl "$link" -o "$FILENAME"
 			fi
 
@@ -27,13 +31,13 @@ for link in $(echo "$STDIN" | urlscan -n); do
 
 		*fbcdn.net*)
 			HASH=$(sed s'/.*\/\(.*\)?.*/\1/' <<< "$link")
-			FILENAME="$CACHE/$FEED - $DATA - $HASH"
+			FILENAME="$FOLDER/$DATA - $HASH"
 
-			if ! [[ -e "$FILENAME" ]]; then
+			if ! [ -e "$FILENAME" ]; then
 				curl -sL "$link" > "$FILENAME"
 			fi
 
-			setsid -f feh --start-at "$FILENAME" &>/dev/null
+			setsid -f sxiv -ab "$FILENAME" "$CACHE" &>/dev/null
 		;;
 
 	esac
