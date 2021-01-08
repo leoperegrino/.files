@@ -17,8 +17,8 @@ alt + {8,9,0}
 super + {b,shift + b}
 	{firefox,brave}
 
-super + {m,shift + m}
-	alacritty -e {ncmpcpp,musikcube}
+super + m
+	alacritty -e ncmpcpp
 
 super + {z,Return}
 	alacritty --working-directory $HOME
@@ -32,12 +32,16 @@ super + e
 super + {a,shift + a}
 	rofi -show drun -config $FILES/rofi/{blurry.rasi,launchpad.rasi}
 
-super + n
-	alacritty -e newsboat
+super + y
+	alacritty -e bash -i -c newsyt
+
+super + {n,shift + n}
+	alacritty -e {newsboat,bash -i -c newsmemes}
 
 # alt configs
-alt + v
-	alacritty -e vim $FILES/vim/vimrc
+
+alt + {v,shift + v}
+	alacritty -e vim $FILES/vim/{vimrc.vim,plugins.vim}
 
 alt + e
 	alacritty -e vim $FILES/ranger/rc.conf

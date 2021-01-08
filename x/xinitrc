@@ -1,11 +1,11 @@
 #!/bin/sh
-#[[ -f ~/.bash_profile ]] && source ~/.bash_profile
 
 xset -b
 xset r rate 350 40
 setxkbmap -layout br -variant abnt2
 xinput set-prop "TPPS/2 Elan TrackPoint" "libinput Accel Speed" 0.5
 xinput set-prop "SynPS/2 Synaptics TouchPad" "Device Enabled" 0
+if [ -f "$FILES/x/xresources" ]; then xrdb -merge "$FILES/x/xresources"; fi
 #xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
 randwp
 
