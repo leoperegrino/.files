@@ -1,0 +1,64 @@
+#!/bin/sh
+
+# args
+while [ $# -gt 0 ]; do
+	case $1 in
+		-l|--limit)
+			shift
+			LIMIT=$1
+			case $LIMIT in
+				''|*[!0-9]*)
+					echo 'limit is NaN'
+					exit 1
+			esac
+			shift
+			;;
+		-f|--filter)
+			FILTER=1
+			shift
+			;;
+		-h|--history)
+			HIST=1
+			shift
+			;;
+		*)
+			SUB=$1
+			shift
+			;;
+	esac
+done
+
+if [ -z "$SUB" ]; then
+	SUBS="$XDG_CONFIG_HOME/redyt/subs"
+	SUB=$(dmenu -p "Select Subreddit r/" -i -l 10 < "$SUBS")
+	[ -z "$SUB" ] && exit 1
+fi
+
+CACHE="$XDG_CACHE_HOME/redyt"
+FOLDER="$CACHE/$SUB"
+AGENT="your bot 0.1"
+LINK="https://www.reddit.com/r/"$SUB"/hot.json?limit=${LIMIT:-100}"
+
+if [ ! -d "$FOLDER" ]; then mkdir "$FOLDER"; fi
+
+tmp="$CACHE/tmp$(date +%N).json"
+curl -L -A "$AGENT" "$LINK" > "$tmp"
+
+URLS=$(cat "$tmp" | jq -r '.. | .url_overridden_by_dest? // empty' | sort -u | grep -Ev '(gallery|reddit)')
+rm "$tmp"
+
+for URL in $URLS; do
+	if [ ! -e "$FOLDER/${URL##*/}" ]; then
+		if [ $HIST ]; then
+			[ $(grep -c "${URL##*/}" "$FOLDER/hist" 2>/dev/null) -gt 0 ] && continue
+			echo "${URL##*/}" >> "$FOLDER/hist"
+		fi
+		wget -P "$FOLDER" $URL --hsts-file="$XDG_CACHE_HOME/wget/hsts"
+	fi
+done
+
+if [ $FILTER ]; then
+	sxiv -abo "$FOLDER" >/dev/stdout
+else
+	sxiv -ab "$FOLDER"
+fi
