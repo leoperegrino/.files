@@ -12,4 +12,4 @@ rand=$((RANDOM % count))
 wp=$(ls -1 $DIR | head -n $rand  | tail -n1)
 
 # finally
-feh --no-fehbg --bg-fill "$DIR/$wp"
+wal -i "$DIR/$wp"
