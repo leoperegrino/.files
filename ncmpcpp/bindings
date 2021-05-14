@@ -18,8 +18,6 @@ def_key "l"
 #    run_action
 def_key "ç"
 	play_item
-def_key "f"
-	play_item
 
 # scroll (artist|album)
 def_key "["
@@ -48,6 +46,8 @@ def_key "d"
 # interface
 def_key "s"
 	sort_playlist
+def_key "f"
+    find_item_forward
 #def_key "s"
 #    show_search_engine
 #def_key "s"
@@ -105,8 +105,8 @@ def_key "U"
 	update_database
 def_key "x"
 	delete_playlist_items
-#def_key "ctrl-s"
-#    save_playlist
+def_key "ctrl-s"
+    save_playlist
 def_key "C"
 	toggle_consume
 
@@ -127,7 +127,5 @@ def_key "2"
 	dummy
 def_key "1"
 	dummy
-#def_key "f"
-#    dummy
 def_key "F"
 	dummy

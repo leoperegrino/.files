@@ -2,15 +2,15 @@
 # newsboat config
 
 # config
-browser "setsid -f firefox %u &>/dev/null"
+browser "setsid -f $BROWSER %u &>/dev/null"
 prepopulate-query-feeds yes
 show-keymap-hint no
 goto-next-feed no
 feed-sort-order firsttag
 external-url-viewer "urlscan -dsHc -r 'linkhandler' -p"
 wrap-scroll no
-auto-reload no
-#toggleitemread-jumps-to-next-unread yes
+auto-reload yes
+# toggleitemread-jumps-to-next-unread yes
 always-display-description yes
 
 # hightlight
@@ -39,7 +39,7 @@ feedlist-title-format "  Feeds (%u unread)"
 feedlist-format "%6i %11u   %t"
 articlelist-title-format "Articles in '%T' (%u unread)"
 articlelist-format "%6i   %D   %?T?|%-22T|  ?%t"
-itemview-title-format "Article '%T'"
+itemview-title-format "Article: '%T'"
 #
 selecttag-title-format "Select Tag"
 selecttag-format "[%2i]   %-12T (%n unread articles in %f feeds)"
@@ -47,7 +47,7 @@ selecttag-format "[%2i]   %-12T (%n unread articles in %f feeds)"
 searchresult-title-format "Search results (%u unread, %t total)%?F? matching filter `%F'&?"
 help-title-format "%N %V - Help"
 dialogs-title-format "Dialogs"
-datetime-format "%d-%b-%y"
+datetime-format "%F"
 
 # keybindings
 unbind-key C
@@ -77,8 +77,7 @@ bind-key U show-urls
 # macros
 unbind-key ,
 bind-key ' macro-prefix
-macro V set browser "youtube-dl -4" ; open-in-browser ; set browser "setsid -f firefox %u &>/dev/null"
-macro w set browser "setsid -f mpv -quiet &>/dev/null" ; open-in-browser ; set browser "setsid -f firefox %u &>/dev/null"
-
+macro V set browser "~/bin/ytnews &>/dev/null" ; open-in-browser ; set browser "setsid -f $BROWSER %u &>/dev/null"
+macro w set browser "setsid -f mpv -quiet &>/dev/null" ; open-in-browser ; set browser "setsid -f $BROWSER %u &>/dev/null"
 macro i set external-url-viewer "imghandler 2>/dev/null"; show-urls ; set external-url-viewer "urlscan -dsHc -r 'linkhandler' -p"
 macro p set external-url-viewer "podhandler"; show-urls ; set external-url-viewer "urlscan -dsHc -r 'linkhandler' -p"

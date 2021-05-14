@@ -6,7 +6,7 @@ case "$1" in
 		w1="${2:-archdra.webp}"
 		w2="${3:-archdra.webp}"
 
-		xrandr --output eDP1 --auto --output HDMI1 --auto --left-of eDP1
+		xrandr --output eDP1 --auto --output HDMI1 --set audio on --auto --left-of eDP1
 
 		feh --bg-fill ~/pictures/wallpapers/"$w1" \
 			--bg-fill ~/pictures/wallpapers/"$w2" \

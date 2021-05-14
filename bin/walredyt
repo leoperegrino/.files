@@ -1,8 +1,11 @@
 #!/bin/bash
-
-wps=$(redyt wallpapers --history --filter)
-[ ! -z "$wps" ] && mv $wps "$HOME/pictures/wallpapers"
 cache="$XDG_CACHE_HOME"/redyt/wallpapers
+
+wps=$(redyt wallpapers --history --filter --limit 100)
+
+for file in $wps; do
+	mv $file "$HOME/pictures/wallpapers"
+done
 
 for file in "$cache"/*; do
 	! [ "$file" = "$cache/hist" ] && rm $file

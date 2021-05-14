@@ -1,28 +1,18 @@
 #!/bin/bash
-# script to read markdown files and output a tex pdf with name of the last argument
-[ $# == 1 ] && echo "output name not given" && exit 1
+# script to read markdown files and output a tex pdf
+[ $# -eq 0 ] && exit
+[ $# -eq 1 ] && title="$(basename --suffix='.md' $1)" || { title="$1"; shift; }
 
 # if metadata exists: convert using meta.yaml and template.tex to output LASTARGUMENT.tex
-if [ -f ./meta.yaml ]; then
-		pandoc meta.yaml "$@" -o $1.tex --natbib --template=$DOC/templates/article/article.tex
-else
-		pandoc "$@" -o $1.tex --natbib
-fi
+pandoc "$@" -o $title.tex --natbib -s
 
 # generate latex pdf, bibtex for references and run pdflatex 2 needed times for pdf with references
-pdflatex $1.tex
-bibtex $1.aux
-pdflatex $1.tex
-pdflatex $1.tex
+pdflatex $title.tex
+bibtex $title.aux
+pdflatex $title.tex
+pdflatex $title.tex
 
 # remove unneeded files
-for etc in $1.{aux,bbl,blg,log,out,tex,toc}; do
+for etc in $title.{aux,bbl,blg,log,out,tex,toc}; do
 	[ -f $etc ] && rm $etc
 done
-
-cat << MSG
-
-success!
-MSG
-
-exit 0

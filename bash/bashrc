@@ -3,7 +3,7 @@ force_color_prompt=yes
 set -o vi
 set -o noclobber
 
-PS1=' \
+PS1='\
 \[\033[1;36m\]\
 \u\
 \[\033[37m\]\
@@ -16,30 +16,44 @@ PS1=' \
 \$\
 \[\033[0m\]'
 
-alias \
-	mv="mv -iv" \
-	rm="rm -iv" \
-	ls="ls -1 --color=always"\
-	grep="grep -i --color=always"\
-	mkdir="mkdir -pv" \
-	ln="ln -v"\
-	cp="cp -iv" \
-	q="exit"\
-	cl="clear"\
-	xmod="xmodmap $FILES/kbd/qwerty.altgr" \
-	\
-	upp="yay -Syu"\
-	shut="shutdown now"\
-	susp="systemctl suspend"\
-	\
-	la="ls -lhANX --group-directories-first"\
-	l="ls -lhNX --group-directories-first"\
-	lsd="lsd -lAh1 --group-dirs --blocks permission,size,name"\
-	\
-	vim="nvim"\
-	mpv="mpvc"\
-	ytdl="youtube-dl"\
-	python="python -q"\
-	ipynb="setsid -f jupyter notebook >/dev/null 2>&1"\
-	picom="picom --experimental-backends"\
-	r="R --quiet"
+# alias
+alias mv="mv -iv"
+alias rm="rm -iv"
+alias ln="ln -v"
+alias cp="cp -iv"
+alias ls="EXA_ICON_SPACING=2 exa -1 --group-directories-first --color=always"
+alias l="ls --icons"
+alias la="l -la"
+alias grep="grep -i --color=always"
+alias mkdir="mkdir -pv"
+alias less="less -i"
+#
+alias s="systemctl"
+alias j="journalctl -fb"
+alias h="history"
+alias q="exit"
+alias c="clear"
+alias e="vim ."
+#
+alias up="sudo pacman -Syu"
+alias shut="shutdown now"
+alias susp="systemctl suspend"
+#
+alias vi="vim"
+alias bashrc='vim $HOME/.bashrc'
+alias bashpr='vim $HOME/.bash_profile'
+alias vimrc='vim $FILES/vim/vimrc.vim'
+#
+alias picom="picom --experimental-backends"
+alias mpv="mpvc"
+alias sxiv="sxiv -ab"
+alias ytdl="youtube-dl"
+alias newsmemes="newsboat -c $XDG_DATA_HOME/newsboat/meme_cache.db -u $FILES/newsboat/urls_memes"
+alias newsyt="newsboat -c $XDG_DATA_HOME/newsboat/yt_cache.db -u $FILES/newsboat/urls_yt"
+
+colors="$HOME/.cache/wal/sequences"
+[ -f  "$colors" ] && (cat "$colors" &)
+
+function pass() { clipctl disable; /usr/bin/pass $@; clipctl enable; }
+gpg-connect-agent updatestartuptty /bye &>/dev/null
+export GPG_TTY="$(tty)"

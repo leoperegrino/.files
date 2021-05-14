@@ -1,4 +1,4 @@
-# vim: ft=config
+# vim: ft=config nolist
 
 # host
 mpd_host			= localhost
@@ -10,17 +10,23 @@ use_console_editor	= "yes"
 external_editor		= "vim"
 connected_message_on_startup = "no"
 
+# visualizer
+visualizer_data_source	= "/tmp/mpd.fifo"
+visualizer_output_name 	= "my_fifo"
+visualizer_in_stereo	= "yes"
+visualizer_type			= "spectrum"
+visualizer_look			= "*o"
+
 # interface
 startup_screen			= "media_library"
-#user_interface			= "alternative"
+# user_interface			= "alternative"
 browser_display_mode	= "columns"
 playlist_display_mode	= "columns"
-visualizer_type			= "spectrum"
-visualizer_look			= "_*"
 progressbar_look		= "->"
+empty_tag_marker		= "____"
 media_library_primary_tag			= "artist"
 media_library_albums_split_by_date	= "yes"
-jump_to_now_playing_song_at_start = "yes"
+jump_to_now_playing_song_at_start	= "yes"
 #
 header_visibility		= "yes"
 statusbar_visibility	= "yes"
@@ -30,6 +36,8 @@ display_volume_level	= "no"
 clock_display_seconds	= "yes"
 
 # etc
+# execute_on_song_change	= notify-send "Now Playing" "$(mpc --format '%title% \n%artist% - %album%' current)"
+# execute_on_player_state_change = ""
 space_add_mode			= "add_remove"
 screen_switcher_mode	= "previous"
 message_delay_time		= "1"
@@ -54,28 +62,13 @@ song_status_format =	"{$(blue){%t}$(end) por {$(green)%a$(end) {em $(12)%b$(end)
 song_columns_list_format = "(4)[]{} (15)[green]{a} (26)[12]{b} (30)[blue]{t} (5)[magenta]{l}"
 
 # (pre|su)ffix
-current_item_prefix =					"$b$(green)>> "
-current_item_suffix =					" <<$/b$(end)"
-current_item_inactive_column_prefix =	"$b$(244)>> "
-current_item_inactive_column_suffix =	" <<$/b$(end)"
-now_playing_prefix =					"$b$(yellow)>> "
-now_playing_suffix =					"$/b$(end)"
-#browser_playlist_prefix =				""
-selected_item_prefix =					"$b$(magenta)>> "
-selected_item_suffix =					"$/b$(end)"
-#modified_item_prefix =					""
-
-# colors
-empty_tag_marker =			"____"
-#empty_tag_color =			"red"
-#header_window_color =		"red"
-#main_window_color = 		"122"
-#state_line_color =			"150"
-#progressbar_color = 		"150"
-#progressbar_elapsed_color = "red:b"
-#statusbar_color =			"122"
-#statusbar_time_color =  	"cyan:b"
-#player_state_color =				""
-#alternative_ui_separator_color =	""
-#window_border_color =				"white"
-#active_window_border =				""
+current_item_prefix					= "$b$(green)>> "
+current_item_suffix					= " <<$/b$(end)"
+current_item_inactive_column_prefix = "$b>> "
+current_item_inactive_column_suffix = " <<$/b"
+now_playing_prefix					= "$b$(yellow)>> "
+now_playing_suffix					= "$/b$(end)"
+#browser_playlist_prefix			= ""
+selected_item_prefix				= "$b$(magenta)>> "
+selected_item_suffix 				= "$/b$(end)"
+#modified_item_prefix				= ""

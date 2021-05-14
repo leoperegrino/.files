@@ -2,7 +2,7 @@
 ! make altgr mode_switch
 keycode 108 = Mode_switch
 ! disable primary paste
-!pointer = 1 0 3
+! pointer = 1 0 3
 
 ! thinkpad specifics
 clear control
@@ -11,6 +11,8 @@ keycode 105 = slash question
 keycode 107 = Control_R
 add control = Control_R
 add control = Control_L
+
+keycode 111 = Up Up Down
 
 ! caps:swapescape
 clear lock
@@ -21,6 +23,10 @@ add lock = Caps_Lock
 ! number row
 keycode  10 = 1 exclam bracketleft
 keycode  11 = 2 at bracketright
+keycode  12 = 3 numbersign numbersign
+keycode  13 = 4 dollar dollar
+keycode  14 = 5 percent percent
+keycode  17 = 8 asterisk asterisk
 keycode  18 = 9 parenleft braceleft
 keycode  19 = 0 parenright braceright
 

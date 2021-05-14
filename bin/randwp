@@ -12,4 +12,4 @@ rand=$((RANDOM % count))
 wp=$(ls -1 $DIR | head -n $rand  | tail -n1)
 
 # finally
-wal -i "$DIR/$wp"
+wal -qi "$DIR/$wp"

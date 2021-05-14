@@ -1,8 +1,9 @@
-# vim: ft=config
+# vim: ft=config syntax=sh
 # sxhkd configs
 
-alt + 1
-	randwp
+# 0-9
+alt + {1,4}
+	{randwp,trash $(cat $HOME/.cache/wal/wal) && randwp}
 
 alt + {7,shift + 7}
 	{bt,blueman-manager}
@@ -11,55 +12,60 @@ alt + p
 	pavucontrol
 
 alt + {8,9,0}
-	mpc {prev,toggle,next} &>/dev/null
+	playerctl {previous,play-pause,next} &>/dev/null
 
-# super starts
-super + {b,shift + b}
-	{firefox,brave}
+# super
+super + {b,shift + b,ctrl + b}
+	{firefox,brave,librewolf}
 
 super + m
-	alacritty -e ncmpcpp
+	alacritty -e bash -ic 'TERM=xterm-256color ncmpcpp'
 
 super + {z,Return}
-	alacritty --working-directory $HOME
+	alacritty
 
-super + {shift + z,shift + Return}
-	termite -d $HOME
+super + {p,shift + p}
+	{clips,pswd}
 
 super + e
-	alacritty -e ranger
+	alacritty -e bash -ic 'TERM=xterm-256color ranger'
 
 super + {a,shift + a}
 	rofi -show drun -config $FILES/rofi/{blurry.rasi,launchpad.rasi}
 
 super + y
-	alacritty -e bash -i -c newsyt
+	alacritty -e bash -ic newsyt
 
 super + {n,shift + n}
-	alacritty -e {newsboat,bash -i -c newsmemes}
+	alacritty -e bash -ic {newsboat,newsmemes}
 
-# alt configs
+# alt
+alt + f
+	files
 
 alt + {v,shift + v}
-	alacritty -e vim $FILES/vim/{vimrc.vim,plugins.vim}
+	alacritty -e bash -ic 'vim $FILES/vim/{vimrc.vim,plugins.vim}'
 
-alt + e
-	alacritty -e vim $FILES/ranger/rc.conf
+alt + r
+	alacritty -e bash -ic 'vim $FILES/ranger/rc.conf'
 
 alt + x
-	alacritty -e vim $FILES/x/xinitrc
+	alacritty -e bash -ic 'vim $FILES/x/xinitrc'
 
 alt + s
-	alacritty -e vim $FILES/sxhkd/sxhkdrc
+	alacritty -e bash -ic 'vim $FILES/sxhkd/sxhkdrc'
 
 alt + {b,shift + b}
-	alacritty -e vim $FILES/bash/{bashrc,bash_profile}
+	alacritty -e bash -ic 'vim $FILES/bash/{bashrc,bash_profile}'
 
 alt + {i,shift + i}
-	alacritty -e vim $FILES/i3/{config.i3config,i3status.conf}
+	alacritty -e bash -ic 'vim $FILES/i3/{config.i3config,i3status.conf}'
 
 alt + {m,shift + m}
-	alacritty -e vim $FILES/ncmpcpp/{config,bindings}
+	alacritty -e bash -ic 'vim $FILES/ncmpcpp/{config,bindings}'
+
+alt + y
+	alacritty -e bash -ic 'vim $FILES/newsboat/urls_yt'
 
 alt + {n,shift + n}
-	alacritty -e vim $FILES/newsboat/{config,urls}
+	alacritty -e bash -ic 'vim $FILES/newsboat/{config,urls}'
