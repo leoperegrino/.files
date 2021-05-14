@@ -3,9 +3,10 @@
 #
 live_config_reload: true
 
-import:
+# import:
+#     - /home/leop/.files/alacritty/challenger-deep.yml
 #    - /home/leop/.files/alacritty/nord.yml
-    - /home/leop/.files/alacritty/dracula.yml
+#    - /home/leop/.files/alacritty/dracula.yml
 
 env:
     BROWSER: firefox
@@ -26,6 +27,12 @@ shell:
   program: /bin/bash
 #  args:
 #    - --login
+
+# cursor:
+#   style:
+#     shape: Block
+#     blinking: On
+#     blink_interval: 500
 
 mouse:
   #hide_when_typing: false
