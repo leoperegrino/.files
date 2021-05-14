@@ -1,102 +1,97 @@
 # vim: ft=i3config
-font pango:Inconsolata 10
+font pango:Inconsolata 9.5
 
 bar {
 	position bottom
-		separator_symbol "|"
-		tray_output primary
-		status_command i3status
-		font pango:Inconsolata Nerd Font Bold 10
-		colors {
-			background #282A36
-				statusline #F8F8F2
-				separator  #44475A
-				focused_workspace  #44475A #44475A #F8F8F2
-				active_workspace   #282A36 #44475A #F8F8F2
-				inactive_workspace #282A36 #282A36 #BFBFBF
-				urgent_workspace   #FF5555 #FF5555 #F8F8F2
-				binding_mode       #FF5555 #FF5555 #F8F8F2
-		}
+	separator_symbol "|"
+	tray_output primary
+	status_command i3status
+	font pango: Noto Sans Mono Bold 8.5
+	colors {
+			background #000000
+			statusline $fg
+			separator  $fg
+			focused_workspace  $fg $bg     $fg
+			active_workspace   $bg $fg     $bg
+			inactive_workspace $bg $fg     $bg
+			urgent_workspace   $fg #ff5458 $fg
+			binding_mode       $fg $bg     $fg
+	}
 }
 
 # autostart
-exec --no-startup-id nm-applet
-exec --no-startup-id picom --experimental-backends
-exec --no-startup-id pasystray
+exec --no-startup-id picom
+exec --no-startup-id sleep 2 && pkill picom
+exec --no-startup-id sleep 2.05 && picom --experimental-backends
 exec --no-startup-id blueman-applet
+exec --no-startup-id nm-applet
+exec --no-startup-id pasystray
+exec --no-startup-id dunst
+exec --no-startup-id mpDris2 -j
+exec --no-startup-id clipmenud
+exec --no-startup-id xmod
 exec --no-startup-id sxhkd
 
-# default window
-# class                 border  bground text    indicator child_border
-client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
-client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
-client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
-client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
-client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
-client.background       #F8F8F2
-bindsym $alt+space bar mode toggle
-new_window pixel 1
-workspace_layout tabbed
-# border_radius 10
-gaps inner 15
-
 # set keys
-set $super	Mod4
-set $alt	Mod1
-set $shft	Shift
-set $ctrl	Control
-set $TERM	termite
+set $super  Mod4
+set $alt    Mod1
+set $shift  Shift
+set $ctrl   Control
 
 # super
-bindsym $super+q kill
-bindsym $super+d exec --no-startup-id dmenu_run
-#bindsym $super+a exec rofi
+bindsym $super+q        kill
+bindsym $super+$shift+c reload
+bindsym $super+$shift+r restart
+bindsym $super+$shift+x exec i3-msg exit
+bindsym $super+d        exec --no-startup-id dmenu_run -l 15 -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg" -fn 'Noto Sans Mono: size=10'
+bindsym $super+$shift+d exec --no-startup-id rofi -show
 
-# reload
-bindsym $super+$shft+c reload
-bindsym $super+$shft+r restart
-bindsym $super+$shft+q exec --no-startup-id i3lock -efi "$HOME/pictures/wallpapers/wp7.png"
-bindsym $super+$shft+x exec i3-msg exit
+# default window
+set_from_resource $fg i3wm.color7 #f0f0f0
+set_from_resource $bg i3wm.color2 #f0f0f0
+#class                 border  backgr. text indicator child_border
+client.focused          $fg     $bg     $fg  $bg       $bg
+client.focused_inactive $bg     $fg     $bg  $bg       $bg
+client.unfocused        $bg     $fg     $bg  $bg       $bg
+client.urgent           $bg     $bg     $fg  $bg       $bg
+client.placeholder      $bg     $bg     $fg  $bg       $bg
+client.background       $bg
+#
+floating_modifier $super
 focus_follows_mouse no
+hide_edge_borders   none
+workspace_layout    tabbed
+new_window          pixel 1
+gaps                inner 15
+#
+bindsym $super+Tab          focus right
+bindsym $super+apostrophe   focus left
+bindsym $alt+space          bar mode toggle
+bindsym $super+space        focus mode_toggle
+bindsym $super+$shift+space floating toggle
+bindsym $super+w            layout toggle tabbed split
+bindsym $super+s            split toggle
+bindsym $super+f            fullscreen toggle
 
 # design
-bindsym $super+h focus left
-bindsym $super+j focus down
-bindsym $super+k focus up
-bindsym $super+l focus right
-bindsym $super+$shft+h	move left 30 px
-bindsym $super+$shft+j	move down 30 px
-bindsym $super+$shft+k	move up 30 px
-bindsym $super+$shft+l	move right 30 px
-bindsym $super+p		move workspace to output right
-bindsym $super+ctrl		move position mouse
+bindsym $super+h        focus left
+bindsym $super+j        focus down
+bindsym $super+k        focus up
+bindsym $super+l        focus right
+bindsym $super+$shift+h move left 30 px
+bindsym $super+$shift+j move down 30 px
+bindsym $super+$shift+k move up 30 px
+bindsym $super+$shift+l move right 30 px
+bindsym $super+v        move workspace to output right
 #
-bindsym $super+ctrl+h resize shrink width 30 px
-bindsym $super+ctrl+j resize grow height 30 px
+bindsym $super+ctrl+h resize shrink width  30 px
+bindsym $super+ctrl+j resize grow   height 30 px
 bindsym $super+ctrl+k resize shrink height 30 px
-bindsym $super+ctrl+l resize grow width 30 px
+bindsym $super+ctrl+l resize grow   width  30 px
 #
-bindsym $super+i			gaps inner current plus 5
-bindsym $super+o			gaps inner current minus 5
-bindsym $super+ctrl+i		gaps outer current plus 5
-bindsym $super+ctrl+o		gaps outer current minus 5
-bindsym $super+$shft+i		gaps horizontal current plus 5
-bindsym $super+$shft+o		gaps horizontal current minus 5
-bindsym $super+ctrl+$shft+i	gaps vertical current plus 5
-bindsym $super+ctrl+$shft+o	gaps vertical current minus 5
-bindsym $super+$shft+w		gaps inner current set 0; gaps outer current set 0; gaps horizontal current set 0; gaps vertical current set 0
-#
-bindsym $super+s split toggle
-bindsym $super+f fullscreen toggle
-
-# container layout
-floating_modifier $super
-bindsym $super+$shft+space	floating toggle
-bindsym $super+space		focus mode_toggle
-bindsym $super+w			layout toggle tabbed split
-# stacking
-bindsym $super+Tab			focus right
-bindsym $super+apostrophe	focus left
+bindsym $super+i        gaps inner current plus 5
+bindsym $super+o        gaps inner current minus 5
+bindsym $super+$shift+w gaps inner current set 0; gaps outer current set 0; gaps horizontal current set 0; gaps vertical current set 0
 
 # switch to workspace
 bindsym $super+1 workspace number "1"
@@ -111,50 +106,27 @@ bindsym $super+9 workspace number "9"
 bindsym $super+0 workspace number "10"
 
 # move focused container to workspace
-bindsym $super+$shft+1 move container to workspace number "1"
-bindsym $super+$shft+2 move container to workspace number "2"
-bindsym $super+$shft+3 move container to workspace number "3"
-bindsym $super+$shft+4 move container to workspace number "4"
-bindsym $super+$shft+5 move container to workspace number "5"
-bindsym $super+$shft+6 move container to workspace number "6"
-bindsym $super+$shft+7 move container to workspace number "7"
-bindsym $super+$shft+8 move container to workspace number "8"
-bindsym $super+$shft+9 move container to workspace number "9"
-bindsym $super+$shft+0 move container to workspace number "10"
+bindsym $super+$shift+1 move container to workspace number "1"
+bindsym $super+$shift+2 move container to workspace number "2"
+bindsym $super+$shift+3 move container to workspace number "3"
+bindsym $super+$shift+4 move container to workspace number "4"
+bindsym $super+$shift+5 move container to workspace number "5"
+bindsym $super+$shift+6 move container to workspace number "6"
+bindsym $super+$shift+7 move container to workspace number "7"
+bindsym $super+$shift+8 move container to workspace number "8"
+bindsym $super+$shift+9 move container to workspace number "9"
+bindsym $super+$shift+0 move container to workspace number "10"
 
-# extra confs
-# pactl
-bindsym XF86AudioRaiseVolume	exec --no-startup-id [ $(amixer -D pulse | grep -Pom 1 '\[\K\d+') -lt 99 ] && pactl set-sink-volume @DEFAULT_SINK@ +2%
-bindsym XF86AudioLowerVolume	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2%
-bindsym XF86AudioMute			exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute		exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym XF86MonBrightnessUp		exec --no-startup-id xbacklight -inc 9
-bindsym XF86MonBrightnessDown	exec --no-startup-id [ $(echo "$(xbacklight -get) > 9" | bc) -eq 1 ] && xbacklight -dec 9 
+# XF86
+bindsym XF86AudioRaiseVolume    exec --no-startup-id pamixer -i 2
+bindsym XF86AudioLowerVolume    exec --no-startup-id pamixer -d 2
+bindsym XF86AudioMute           exec --no-startup-id pamixer -t
+bindsym XF86AudioMicMute        exec --no-startup-id pamixer --default-source -t
+bindsym XF86MonBrightnessUp     exec --no-startup-id xbacklight -inc 9
+bindsym XF86MonBrightnessDown   exec --no-startup-id [ $(echo "$(xbacklight -get) > 9" | bc) -eq 1 ] && xbacklight -dec 9
 
-# hdmi
-#bindsym $ctrl+F6 exec --no-startup-id hdmi bri +1
-#bindsym $ctrl+F5 exec --no-startup-id hdmi bri -1
 # screenshot
-bindsym --release $ctrl+F12			exec --no-startup-id printscn save
-bindsym --release $shft+F12			exec --no-startup-id printscn clip
-bindsym --release $alt+F12			exec --no-startup-id printscn selectsave
-bindsym --release $ctrl+$shft+F12	exec --no-startup-id printscn select
-
-# cursor keys
-# alternatively, you can use the cursor keys:
-bindsym $super+Left		focus left
-bindsym $super+Down		focus down
-bindsym $super+Up		focus up
-bindsym $super+Right	focus right
-#
-# alternatively, you can use the cursor keys:
-bindsym $super+$shft+Left	move left
-bindsym $super+$shft+Down	move down
-bindsym $super+$shft+Up		move up
-bindsym $super+$shft+Right	move right
-#
-# cursor resize
-bindsym $super+Control+Left		resize shrink width 10 px or 10 ppt
-bindsym $super+Control+Down		resize grow height 10 px or 10 ppt
-bindsym $super+Control+Up		resize shrink height 10 px or 10 ppt
-bindsym $super+Control+Right	resize grow width 10 px or 10 ppt
+bindsym --release $ctrl+F12         exec --no-startup-id printscn save
+bindsym --release $shift+F12        exec --no-startup-id printscn clip
+bindsym --release $alt+F12          exec --no-startup-id printscn selectsave
+bindsym --release $ctrl+$shift+F12  exec --no-startup-id printscn select
