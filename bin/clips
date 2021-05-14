@@ -1,0 +1,14 @@
+#!/bin/sh
+
+fg=$(xrdb -query | awk '{if($1 ~ "color7") {print $2; exit}}')
+bg=$(xrdb -query | awk '{if($1 ~ "color2") {print $2; exit}}')
+fg=${fg:-#000000}
+bg=${bg:-#ffffff}
+
+clipmenu \
+	-i \
+	-nb "$fg" \
+	-nf "$bg" \
+	-sb "$bg" \
+	-sf "$fg" \
+	-fn 'Noto Sans Mono: size=10'
