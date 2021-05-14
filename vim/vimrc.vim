@@ -1,141 +1,71 @@
+" vim: foldmethod=manual
 set nocompatible
 
-" dir
+" dirs
 set undofile
-set shortmess+=A
-set path+=$HOME/bin/vim
-set path+=$HOME/.files/vim
-set undodir=$XDG_CONFIG_HOME/vim/undo//
-set directory=$XDG_CONFIG_HOME/vim/swap//
-set backupdir=$XDG_CONFIG_HOME/vim/backup//
-set runtimepath+=$VIMRUNTIME
-set runtimepath+=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after
-set runtimepath+=$HOME/.files/vim,$HOME/bin/vim
-if !has('nvim')
-	set viewdir=$XDG_CONFIG_HOME/vim/view/vim//
-	set viminfo='100,/50,:100,n$XDG_CONFIG_HOME/vim/viminfo/info
-else
-	set viewdir=$XDG_CONFIG_HOME/vim/view/nvim/
-endif
+set swapfile
+set writebackup
+set viminfo='100,/50,:100,n$XDG_CONFIG_HOME/vim/viminfo/info
+set backupdir             =$XDG_CONFIG_HOME/vim/backup//
+set undodir               =$XDG_CONFIG_HOME/vim/undo//
+set viewdir               =$XDG_CONFIG_HOME/vim/view//
+set directory             =$XDG_CONFIG_HOME/vim/swap//
+set runtimepath          +=$XDG_CONFIG_HOME/vim
+set runtimepath          +=$FILES/vim
+set runtimepath          +=$VIMRUNTIME
 
 " set
-"set colorcolumn=80
-"set viewoptions-=options
-set foldmethod=manual
-set conceallevel=2
-set foldtext=foldtext()
-set foldclose=all
-set foldopen=all
-set encoding=utf-8
-set fileencoding=utf-8
-set ignorecase
-set smartcase
+set autochdir
+set encoding=utf-8 fileencoding=utf-8
+set viewoptions-=options shortmess+=AF
+set clipboard=unnamed
+set hidden switchbuf=usetab
+set updatetime=300 lazyredraw
+set signcolumn=yes cursorline
+set laststatus=2 statusline=%f\ \ %y%m%r%h%w%=(%l,%v)\ [%p%%,%L]\ %n
+set showtabline=2
+set conceallevel=3
+set foldclose=all foldopen=hor foldmethod=indent foldminlines=3
+set shiftwidth=4 tabstop=4 softtabstop=4
+set autoindent smartindent
+set number relativenumber
+set scrolloff=7 sidescrolloff=7
+set ignorecase smartcase
+set incsearch hlsearch
 set wildmenu
-set autoindent
-set nu rnu
-set showcmd
-set incsearch
-set hlsearch
-set splitbelow
-set splitright
-set scrolloff=7
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
-set listchars=tab:\|\ ,trail:~
+set splitbelow splitright
+set matchpairs+=<:>
+set list listchars=tab:\|\ ,trail:~
 set fillchars=fold:\ 
-set list
+
+" let
+let g:netrw_home = "$XDG_CONFIG_HOME/vim"
+let g:netrw_altv = 1           " splitright
+let g:netrw_alto = 0           " splitbelow
+let g:netrw_banner = 0         " no banner
+let g:netrw_preview = 0        " preview horizontaly
+let g:netrw_winsize   = 70     " preview size 70%
+let g:netrw_liststyle = 3      " tree style
+let g:netrw_list_hide= '^\..*' " hide dot files
+let g:netrw_browse_split = 0   " <CR> opens in current window
+let &t_SI.="\e[5 q"
+let &t_SR.="\e[4 q"
+let &t_EI.="\e[1 q"
 
 " autocmd
-autocmd! FileType help wincmd L
-autocmd! FileType man wincmd L
-autocmd! BufWrite * mkview
-autocmd! FileType * silent! loadview
-autocmd! BufRead * set noreadonly
-autocmd! BufWrite xresources silent! !xrdb -merge %
-autocmd! BufEnter,FocusGained * set relativenumber
-autocmd! BufLeave,FocusLost   * set norelativenumber
-autocmd! BufNewFile,BufFilePre,BufRead *.tex set updatetime=700
-autocmd! BufNewFile,BufFilePre,BufRead *.java set expandtab
+augroup vimrc
+	autocmd!
+	autocmd FileType     tex,markdown  set textwidth=80
+	autocmd FileType     python,java   set expandtab
+	autocmd BufRead      *             set noreadonly
+	autocmd BufWrite     *             mkview
+	autocmd FileType     *             silent! loadview
+	autocmd FileType     help          wincmd L | vertical resize 88
+	autocmd CmdlineLeave :             echo ''
+	autocmd BufWritePost vimrc.vim     silent source %
+augroup END
 
 runtime plugins.vim
-
-" highlight
-syntax on
-colorscheme challenger_deep
-hi conceal ctermbg=NONE
-hi normal ctermbg=NONE
-hi folded ctermbg=NONE
-hi linenr ctermbg=NONE
-hi linenr ctermfg=228
-hi comment ctermfg=245
-hi folded ctermfg=228
-hi pmenu ctermbg=236
-hi pmenu ctermfg=228
-hi visual ctermbg=240
-hi nontext ctermfg=238
-hi specialkey ctermfg=238
-hi! link cursorlinenr linenr
-"hi cursorlinenr ctermbg=NONE
-"hi cursorlinenr ctermfg=228
-"hi ColorColumn ctermbg=NONE
-
-" leader maps
-let mapleader = " "
-noremap <leader><leader> :
-"
-nnoremap <leader>s :w<CR>
-nnoremap <leader>q :q<CR>
-nnoremap <leader>Q :q!<CR>
-nnoremap <leader>aq :qa<CR>
-nnoremap <leader>wq :wq<CR>
-nnoremap <leader>WW :silent w ! sudo tee >/dev/null  % <CR>
-"
-nnoremap <leader>C :setlocal spell! spelllang=en_us<CR>
-nnoremap <leader>c :setlocal spell! spelllang=pt_br<CR>
-nnoremap <leader>H :noh<CR>
-noremap <leader>P "0p
-"
-noremap <leader>h <C-w>H
-noremap <leader>j <C-w>J
-noremap <leader>k <C-w>K
-noremap <leader>l <C-w>L
-noremap <leader>p :tabp<CR>
-noremap <leader>n :tabn<CR>
-nnoremap <leader>T :tabedit 
-nnoremap <leader>S :vsplit 
-nnoremap <leader>1 :bp<CR>
-nnoremap <leader>2 :bn<CR>
-"
-nnoremap <leader>F vipzf}j
-nnoremap <leader>D mmgg:vsplit %<CR>
-			\:set so=0<CR>
-			\zRLzt
-			\:set scb<CR>
-			\<C-w><C-h>:set scb<CR>
-			\'mzz
-
-" F maps
-nnoremap <F3> :!python -i %<CR>
-
-" ctrl maps
-vmap <C-c> "+y
-vmap <C-x> "+c<ESC>
-"
-nnoremap r <C-r>
-noremap <C-p> jzz
-noremap <C-e> kzz
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
-noremap <C-f> :vert res -5<CR>
-noremap <C-b> :vert res +5<CR>
-noremap <C-n> :res -5<CR>
-noremap <C-m> :res +5<CR>
-
-nmap Y y$
-nmap < <<
-nmap > >>
-vnoremap < <gv
-vnoremap > >gv
+runtime highlighting.vim
+runtime functions.vim
+runtime maps.vim
