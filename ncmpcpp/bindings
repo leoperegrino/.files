@@ -1,7 +1,7 @@
-# vim: ft=config
+# vim: ft=config fdm=marker
 
-# navigation
 # hjkl
+# {{{
 def_key "h"
 	previous_column
 def_key "h"
@@ -16,24 +16,20 @@ def_key "l"
 	enter_directory
 #def_key "l"
 #    run_action
-def_key "ç"
-	play_item
-
-# scroll (artist|album)
-def_key "["
-	scroll_up_artist
-def_key "]"
-	scroll_down_artist
-def_key "{"
-	scroll_up_album
-def_key "}"
-	scroll_down_album
 def_key "J"
 	move_selected_items_down
 def_key "K"
 	move_selected_items_up
+def_key "J"
+	move_sort_order_down
+def_key "K"
+	move_sort_order_up
+def_key "ç"
+	play_item
+# }}}
 
-# g G page (up|down)
+# gGdu
+# {{{
 def_key "G"
 	move_end
 def_key "g"
@@ -42,53 +38,65 @@ def_key "u"
 	page_up
 def_key "d"
 	page_down
+def_key "ctrl-u"
+	page_up
+def_key "ctrl-d"
+	page_down
+# }}}
 
 # interface
+# {{{
 def_key "s"
 	sort_playlist
 def_key "f"
     find_item_forward
-#def_key "s"
-#    show_search_engine
-#def_key "s"
-#    reset_search_engine
-def_key "V"
+def_key "F"
 	show_visualizer
+def_key "space"
+	require_screen "visualizer"
+	toggle_visualization_type
 def_key "b"
 	show_browser
 def_key "p"
 	show_playlist
+def_key "t"
+	show_tag_editor
+def_key "T"
+  toggle_library_tag_type
+def_key "l"
+	require_screen "playlist"
+	show_lyrics
+def_key "l"
+	require_screen "lyrics"
+	show_playlist
+	jump_to_playing_song
+	show_lyrics
+def_key "e"
+	require_screen "media_library"
+	edit_song
+def_key "e"
+	require_screen "lyrics"
+	edit_lyrics
+def_key "e"
+	require_screen "playlist"
+	show_lyrics
+	edit_lyrics
+def_key "E"
+	show_playlist_editor
 def_key "m"
 	show_media_library
 def_key "m"
 	toggle_media_library_columns_mode
-def_key "t"
-	show_tag_editor
-def_key "c"
-	show_clock
-def_key "i"
-  show_song_info
-def_key "I"
-  show_artist_info
-def_key "L"
-	show_lyrics
-def_key "E"
-	show_playlist_editor
+# }}}
 
 # player
+# {{{
 def_key "n"
 	next
 def_key "N"
 	previous
-def_key ">"
-	volume_up
-def_key "<"
-	volume_down
 def_key "P"
 	pause
-def_key "v"
-	select_item
-	scroll_down
 def_key "+"
 	seek_forward
 def_key "-"
@@ -96,21 +104,25 @@ def_key "-"
 def_key "S"
 	stop
 def_key "space"
-	add_item_to_playlist
+	require_screen "playlist"
+	select_item
+	scroll_down
 def_key "space"
-  toggle_visualization_type
+	add_item_to_playlist
+# }}}
 
 # etc
-def_key "U"
-	update_database
+# {{{
 def_key "x"
 	delete_playlist_items
 def_key "ctrl-s"
     save_playlist
-def_key "C"
-	toggle_consume
+def_key "U"
+  update_database
+# }}}
 
 # disable bindings
+# {{{
 def_key "8"
 	dummy
 def_key "7"
@@ -127,5 +139,4 @@ def_key "2"
 	dummy
 def_key "1"
 	dummy
-def_key "F"
-	dummy
+# }}}
