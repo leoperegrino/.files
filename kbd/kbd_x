@@ -1,5 +1,5 @@
-! vim: ft=config
-! make altgr mode_switch
+! vim: syntax=dosini
+! map altgr to mode_switch
 keycode 108 = Mode_switch
 ! disable primary paste
 ! pointer = 1 0 3
@@ -21,43 +21,43 @@ keycode 66 = Escape
 add lock = Caps_Lock
 
 ! number row
-keycode  10 = 1 exclam bracketleft
-keycode  11 = 2 at bracketright
-keycode  12 = 3 numbersign numbersign
-keycode  13 = 4 dollar dollar
-keycode  14 = 5 percent percent
-keycode  17 = 8 asterisk asterisk
-keycode  18 = 9 parenleft braceleft
-keycode  19 = 0 parenright braceright
+keycode 10 = 1 exclam bracketleft
+keycode 11 = 2 at bracketright
+keycode 12 = 3 numbersign numbersign
+keycode 13 = 4 dollar dollar
+keycode 14 = 5 percent percent
+keycode 17 = 8 asterisk asterisk
+keycode 18 = 9 parenleft braceleft
+keycode 19 = 0 parenright braceright
 
 ! upper row
-keycode  24 = q Q period
-keycode  25 = w W backslash
-keycode  26 = e E bar
-keycode  27 = r R colon
-keycode  28 = t T parenleft
-keycode  29 = y Y parenright
-keycode  30 = u U underscore
-keycode  31 = i I minus
-keycode  32 = o O equal
-keycode  33 = p P plus
+keycode 24 = q Q period
+keycode 25 = w W backslash
+keycode 26 = e E bar
+keycode 27 = r R colon
+keycode 28 = t T parenleft
+keycode 29 = y Y parenright
+keycode 30 = u U underscore
+keycode 31 = i I minus
+keycode 32 = o O equal
+keycode 33 = p P plus
 
 ! middle row
-keycode  38 = a A asciitilde
-keycode  39 = s S slash
-keycode  40 = d D quotedbl
-keycode  41 = f F asterisk
-keycode  42 = g G comma
-keycode  43 = h H ampersand
-keycode  44 = j J dollar
-keycode  45 = k K percent
-keycode  46 = l L asciicircum
+keycode 38 = a A asciitilde
+keycode 39 = s S slash
+keycode 40 = d D quotedbl
+keycode 41 = f F asterisk
+keycode 42 = g G comma
+keycode 43 = h H ampersand
+keycode 44 = j J dollar
+keycode 45 = k K percent
+keycode 46 = l L asciicircum
 
 ! lower row
-keycode  52 = z Z comma
-keycode  53 = x X numbersign
-keycode  54 = c C exclam
-keycode  55 = v V semicolon
-keycode  56 = b B question
-keycode  57 = n N bracketleft
-keycode  58 = m M bracketright
+keycode 52 = z Z comma
+keycode 53 = x X numbersign
+keycode 54 = c C exclam
+keycode 55 = v V semicolon
+keycode 56 = b B question
+keycode 57 = n N bracketleft
+keycode 58 = m M bracketright
