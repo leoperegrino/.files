@@ -1,4 +1,4 @@
-# vim: ft=config
+# vim: syntax=conf
 # newsboat config
 
 # config
@@ -10,6 +10,9 @@ feed-sort-order firsttag
 external-url-viewer "urlscan -dsHc -r 'linkhandler' -p"
 wrap-scroll no
 auto-reload yes
+reload-threads 20
+html-renderer "elinks -dump"
+download-full-page yes
 # toggleitemread-jumps-to-next-unread yes
 always-display-description yes
 
@@ -76,8 +79,8 @@ bind-key U show-urls
 
 # macros
 unbind-key ,
-bind-key ' macro-prefix
+bind-key \ macro-prefix
+macro v pipe-to "vim -"
 macro V set browser "~/bin/ytnews &>/dev/null" ; open-in-browser ; set browser "setsid -f $BROWSER %u &>/dev/null"
 macro w set browser "setsid -f mpv -quiet &>/dev/null" ; open-in-browser ; set browser "setsid -f $BROWSER %u &>/dev/null"
-macro i set external-url-viewer "imghandler 2>/dev/null"; show-urls ; set external-url-viewer "urlscan -dsHc -r 'linkhandler' -p"
-macro p set external-url-viewer "podhandler"; show-urls ; set external-url-viewer "urlscan -dsHc -r 'linkhandler' -p"
+macro i set html-renderer "internal"; pipe-to "imghandler 2>/dev/null"; set html-renderer "elinks -dump"
