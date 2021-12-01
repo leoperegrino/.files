@@ -39,8 +39,10 @@ unmap H
 map J scroll page-bottom
 map K scroll page-top
 unmap L
+map P search backward
+map N search forward
 map p navigate previous
-map P navigate next
+map n navigate next
 #
 map i zoom in
 map o zoom out
