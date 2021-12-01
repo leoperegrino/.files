@@ -1,9 +1,0 @@
-# vim: ft=dosini cms=#%s
-
-[options]
-font = Noto Sans Mono 9
-scrollback_lines = 10000
-fullscreen=false
-#urgent_on_bell = true
-hyperlinks = true
-cursor_shape = block
