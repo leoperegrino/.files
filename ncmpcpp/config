@@ -6,6 +6,7 @@ mpd_port			= 6600
 mpd_music_dir		= "~/music"
 ncmpcpp_directory	= "~/.cache/ncmpcpp"
 lyrics_directory	= "~/.cache/ncmpcpp/lyrics"
+lyrics_fetchers     = letras, tekstowo, azlyrics, sing365, metrolyrics, jahlyrics, plyrics, internet
 use_console_editor	= "yes"
 external_editor		= "vim"
 connected_message_on_startup = "no"
