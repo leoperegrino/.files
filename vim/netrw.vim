@@ -1,0 +1,9 @@
+let g:netrw_home = "$HOME/.cache/vim"
+let g:netrw_altv = 1           " splitright
+let g:netrw_alto = 0           " splitbelow
+let g:netrw_banner = 0         " no banner
+let g:netrw_preview = 0        " preview horizontaly
+let g:netrw_winsize   = 70     " preview size 70%
+let g:netrw_liststyle = 3      " tree style
+let g:netrw_list_hide= '^\..*' " hide dot files
+let g:netrw_browse_split = 0   " <CR> opens in current window

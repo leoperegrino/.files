@@ -11,7 +11,11 @@ endfunction
 
 function! g:ShowDoc()
 	if (index(['vim','help'], &filetype) >= 0)
-		execute 'h '.expand('<cword>')
+		execute 'HP' expand('<cword>')
+	elseif (index(['','text'], &filetype) >= 0)
+		silent! execute 'TranslateW' getline('.')
+	elseif &filetype == 'tex'
+		VimtexDocPackage
 	elseif (coc#rpc#ready())
 		call CocActionAsync('doHover')
 	else
@@ -51,6 +55,27 @@ function! g:ToggleNetrw() abort
 	nnoremap <buffer><C-l> :wincmd l<CR>
 	nnoremap <buffer>o :call netrw#Call('NetrwSplit', 5) <bar> wincmd K<CR>
 	nnoremap <buffer>v :call netrw#Call('NetrwSplit', 5) <bar> wincmd =<CR>
-	setlocal bufhidden=wipe
+	setlocal bufhidden=delete
 	setlocal winfixwidth
+endfunction
+
+function! g:SmoothScroll(direction) abort
+	let s:lines = line('w$') - line('w0') + 1
+	let s:middle = (line('w0') + round(s:lines / 2) - 1)
+
+	if a:direction == 'down'
+		normal j
+		if line('.') == s:middle + 1
+			normal zz
+		elseif line('.') > s:middle + 1
+			exe "normal! 2\<c-e>"
+		endif
+	elseif a:direction == 'up'
+		normal k
+		if line('.') == s:middle - 1
+			normal zz
+		elseif line('.') < s:middle - 1
+			exe "normal! 2\<c-y>"
+		endif
+	endif
 endfunction

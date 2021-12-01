@@ -1,6 +1,11 @@
+let g:goyo_width = "50%"
+let g:goyo_height = "100%"
+
 function! s:goyo_enter()
 	let b:quitting = 0
 	let b:quitting_bang = 0
+	let b:sintaxe=&syntax
+	let b:tipo=&filetype
 	autocmd QuitPre <buffer> let b:quitting = 1
 	cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
 endfunction
@@ -13,7 +18,10 @@ function! s:goyo_leave()
 			qa
 		endif
 	endif
-	silent! runtime vimrc.vim
+	source ~/.files/vim/highlighting.vim
+	source ~/.files/vim/statusline.vim
+	exec 'set filetype=' . b:tipo
+	exec 'set syntax=' . b:sintaxe
 endfunction
 
 autocmd! User GoyoEnter call <SID>goyo_enter()
