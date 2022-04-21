@@ -1,9 +1,8 @@
-# vim: ft=config syntax=sh
-# sxhkd configs
+# vim: foldmethod=marker
 
-# 0-9
+# 0-9 {{{
 alt + {1,4}
-	{randwp,trash $(cat $HOME/.cache/wal/wal) && randwp}
+	{randwp,trash "$(cat $HOME/.cache/wal/wal)" && randwp}
 
 alt + {7,shift + 7}
 	{bt,blueman-manager}
@@ -22,65 +21,77 @@ alt + apostrophe
 
 ctrl + shift + apostrophe
 	dunstctl close-all
+# }}}
 
-# super
+# super {{{
 super + {b,shift + b,ctrl + b}
 	{firefox,brave,librewolf}
 
-super+d
+super + d
 	d_run
+
+super + shift + y
+	networkmanager_dmenu
 
 super + a
 	rofi -show
 
-super + m
-	alacritty -e $SHELL -ic 'TERM=xterm ncmpcpp'
+super + g
+	${TERM} -e ${SHELL} -ic htop
+
+super + t
+	${TERM} -e ${SHELL} -ic 'task && zsh -i'
+
+super + shift + t
+	tor-browser
 
 super + {z,Return}
-	alacritty
+	$TERM
+
+super + m
+	${TERM} -e ${SHELL} -ic 'TERM=xterm ncmpcpp'
 
 super + {p,shift + p}
 	{clips,pswd}
 
 super + e
-	alacritty -e $SHELL -ic 'TERM=xterm ranger'
+	${TERM} -e ${SHELL} -ic 'TERM=xterm ranger'
 
 super + y
-	alacritty -e $SHELL -ic newsyt
+	${TERM} -e ${SHELL} -ic news
 
 super + {n,shift + n}
-	alacritty -e $SHELL -ic {newsboat,newsmemes}
+	${TERM} -e ${SHELL} -ic 'news {tech, meme}'
+# }}}
 
-# alt
+# alt {{{
 alt + f
 	files
 
 alt + {v,shift + v}
-	alacritty -e $SHELL -ic 'vim $HOME/.files/vim/{vimrc.vim,plugins.vim}'
+	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.files/vim/{vimrc.vim,plugins.vim}'
 
 alt + r
-	alacritty -e $SHELL -ic 'vim $HOME/.files/ranger/rc.conf'
+	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.files/ranger/rc.conf'
 
-alt + x
-	alacritty -e $SHELL -ic 'vim $HOME/.files/x/xinitrc'
+alt + {x,shift + x}
+	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.files/{x/xinitrc,sh/profile}'
 
 alt + s
-	alacritty -e $SHELL -ic 'vim $HOME/.files/sxhkd/sxhkdrc'
+	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.files/sxhkd/sxhkdrc'
 
 alt + {b,shift + b}
-	alacritty -e $SHELL -ic 'vim $HOME/.files/bash/{bashrc,bash_profile}'
+	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.files/bash/{bashrc,bash_profile}'
 
 alt + {z,shift + z}
-	alacritty -e $SHELL -ic 'vim $HOME/.files/zsh/{zshrc,zprofile}'
+	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.files/zsh/{zshrc,zprofile}'
 
 alt + {i,shift + i}
-	alacritty -e $SHELL -ic 'vim $HOME/.files/i3/{i3config,i3status.conf}'
+	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.files/i3/{i3config,i3status.conf}'
 
 alt + {m,shift + m}
-	alacritty -e $SHELL -ic 'vim $HOME/.files/ncmpcpp/{config,bindings}'
-
-alt + y
-	alacritty -e $SHELL -ic 'vim $HOME/.files/newsboat/urls_yt'
+	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.files/ncmpcpp/{config,bindings}'
 
 alt + {n,shift + n}
-	alacritty -e $SHELL -ic 'vim $HOME/.files/newsboat/{config,urls}'
+	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.files/newsboat/{config,urls}'
+# }}}
