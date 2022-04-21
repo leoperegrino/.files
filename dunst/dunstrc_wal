@@ -1,6 +1,6 @@
 # vim: syntax=cfg
 # template for using with pywal.
-# pywal will generate a colorscheme and fill {} placeholders with it.
+# pywal will generate a colorscheme and fill {{}} placeholders with it.
 # the generated version will be your real dunstrc.
 
 [global]
