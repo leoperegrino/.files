@@ -14,5 +14,5 @@ mkdir "${HISTFILE%/*}" && touch "${HISTFILE}"
 # }}}
 
 if [ "$(tty)" = '/dev/tty1' ]; then
-	startx "$XINITRC" 2>/dev/null
+	exec startx "$XINITRC" 2>/dev/null
 fi

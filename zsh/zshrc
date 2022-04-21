@@ -1,5 +1,5 @@
 #!/bin/sh
-# vim: foldmethod=marker syntax=zsh
+# vim: foldmethod=marker
 set -o noclobber
 stty -ixon
 
@@ -52,6 +52,7 @@ bindkey "^[[3~" delete-char
 bindkey '^ ' autosuggest-accept
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
+bindkey '^R' history-incremental-search-backward
 bindkey -v
 bindkey -v '^?' backward-delete-char
 bindkey -M vicmd v edit-command-line
@@ -80,30 +81,32 @@ compdef _task t=task
 precmd_functions+=( vcs_info )
 
 function zle-line-init zle-keymap-select {
-	NOR='%F{green}[N]%f '
-	INS='%F{red}[I]%f '
+	PROMPT='%B'
+	RPROMPT='%B'
 
 	case ${KEYMAP} in
-		vicmd)      PROMPT=${NOR}; echo -ne '\e[1 q';;
-		main|viins) PROMPT=${INS}; echo -ne '\e[5 q';;
-		*)          PROMPT='';;
+		vicmd)      PROMPT+='%F{green}[N]%f '; echo -ne '\e[1 q';;
+		main|viins) PROMPT+='%F{red}[I]%f '  ; echo -ne '\e[5 q';;
+		*)          PROMPT+='';;
 	esac
 
-	RPROMPT+='[%F{yellow}%?%f]'
-	PROMPT+='%B'
+	# PROMPT+='%(L.%L.) '
 	PROMPT+='%F{red}%n%f'
 	PROMPT+='@'
 	PROMPT+='%F{blue}%m%f'
 	PROMPT+=': '
 	PROMPT+='%F{green}%~%f '
-	PROMPT+='%# '
+	PROMPT+='%(!.#.$) '
 	PROMPT+='%b'
 
-	if [ -n "$RANGER_LEVEL" ]; then
-		export PROMPT="%F{blue}[R]%f$PROMPT"
+	if git rev-parse --git-dir > /dev/null 2>&1; then
+		PROMPT+="%B%F{yellow}(\$vcs_info_msg_0_)%f%b "
 	fi
 
-	RPROMPT="%B%F{yellow}\$vcs_info_msg_0_%f%b"
+	if [ "${VIRTUAL_ENV}" ]; then
+		RPROMPT+='%F{magenta}[venv:${VIRTUAL_ENV/\/home\/leop/~}]%f'
+	fi
+	RPROMPT+='%F{yellow}%(?..[%?])%f'
 
 	zle reset-prompt
 }
