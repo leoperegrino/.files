@@ -1,8 +1,8 @@
 #!/bin/sh
 # vim: foldmethod=marker
 force_color_prompt=yes
+set -o vi
 set -o noclobber
-stty -ixon
 
 # bash colors {{{
 # Reset
