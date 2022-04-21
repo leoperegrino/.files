@@ -1,0 +1,34 @@
+// vim: syntax=css
+configuration {
+	font: "Noto Sans 12";
+	modi: "combi,drun,run,window,ssh";
+	combi-modi: "drun,window,run,ssh";
+	combi-hide-mode-prefix: true;
+	terminal: "alacritty";
+	show-icons: true;
+	icon-theme: "Papirus";
+	sidebar-mode: false;
+	m: "-1";
+	scroll-method: 1;
+	window-thumbnail: true;
+	drun-use-desktop-cache: true;
+	drun-reload-desktop-cache: true;
+	cache-dir: "/home/leop/.cache/rofi" ;
+	kb-mode-next: "Control+o,Control+Tab";
+	kb-mode-previous: "Control+i,Control+ISO_Left_Tab";
+	display-combi: "all" ;
+	/* width: 40; */
+	/* lines: 20; */
+	/* xoffset: 410; */
+	yoffset: -20;
+}
+
+entry { placeholder: ""; }
+listview { cycle: false; }
+element-icon { size: 35px; }
+window {
+	height: 80%;
+	width: 40%;
+	}
+
+@import "/home/leop/.cache/wal/colors-rofi-dark.rasi"
