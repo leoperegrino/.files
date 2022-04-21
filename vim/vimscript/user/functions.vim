@@ -9,9 +9,9 @@ function! g:SetLinenr(enter) abort
 	endif
 endfunction
 
-function! g:ShowDoc()
+function! g:ShowDoc() abort
 	if (index(['vim','help'], &filetype) >= 0)
-		execute 'HP' expand('<cword>')
+		execute 'help' expand('<cword>')
 	elseif (index(['','text'], &filetype) >= 0)
 		silent! execute 'TranslateW' getline('.')
 	elseif &filetype == 'tex'
@@ -55,7 +55,7 @@ function! g:ToggleNetrw() abort
 	nnoremap <buffer><C-l> :wincmd l<CR>
 	nnoremap <buffer>o :call netrw#Call('NetrwSplit', 5) <bar> wincmd K<CR>
 	nnoremap <buffer>v :call netrw#Call('NetrwSplit', 5) <bar> wincmd =<CR>
-	setlocal bufhidden=delete
+	setlocal bufhidden=wipe
 	setlocal winfixwidth
 endfunction
 
@@ -79,3 +79,8 @@ function! g:SmoothScroll(direction) abort
 		endif
 	endif
 endfunction
+
+function! SynGroup()
+    let l:s = synID(line('.'), col('.'), 1)
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun

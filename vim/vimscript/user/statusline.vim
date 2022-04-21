@@ -4,7 +4,7 @@ execute 'hi RevStatusLine'
 	   \ 'cterm=bold'
 
 set statusline=%#revstatusline#
-set statusline+=\ 
+set statusline+=\ \ \ 
 set statusline+=%{coc#status()}
 set statusline+=\ 
 set statusline+=%{get(b:,'coc_current_function','')}
@@ -20,10 +20,8 @@ set statusline+=%m
 set statusline+=%r
 set statusline+=%h
 set statusline+=%w
-set statusline+=[%l,%L]
-set statusline+=[%p%%]
+set statusline+=[%l/%L,%p%%]
 set statusline+=[%c]
-set statusline+=[%{wordcount().words}]
 set statusline+=%=
 set statusline+=
 set statusline+=\ 

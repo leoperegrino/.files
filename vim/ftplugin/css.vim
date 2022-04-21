@@ -1,0 +1,1 @@
+setlocal foldminlines=0
