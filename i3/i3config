@@ -1,4 +1,4 @@
-# vim: syntax=i3config foldmethod=marker
+# vim: syntax=i3config filetype=i3config foldmethod=marker
 font pango:Noto Sans Mono Bold 8
 
 # bar {{{
