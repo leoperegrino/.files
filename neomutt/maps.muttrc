@@ -1,0 +1,26 @@
+# vim: filetype=neomuttrc
+#
+bind pager j next-line
+bind pager k previous-line
+bind pager g top
+bind pager G bottom
+bind pager U bottom
+bind pager N search-opposite
+bind attach,index,pager \CD next-page
+bind attach,index,pager \CU previous-page
+bind attach,index,pager d next-page
+bind attach,index,pager u previous-page
+bind attach,index g first-entry
+bind attach,index G last-entry
+bind index l display-message
+bind index,pager h exit
+bind index,pager \<BackTab> sidebar-prev
+bind index,pager \<Tab> sidebar-next
+bind index,pager \CO sidebar-open
+bind index \Cg imap-fetch-mail
+
+macro pager U <pipe-entry>'urlscan -dsHc'<enter> 'Follow links with urlview'
+macro index B ":toggle sidebar_visible\n" "sidebar toggled"
+macro index,pager  \Cr ":source ~/.config/neomutt/neomuttrc\n" "Reload muttrc"
+macro index,pager  \Cn ":push <sidebar-next><sidebar-open>\n" "changed folder"
+macro index,pager  \Cp ":push <sidebar-prev><sidebar-open>\n" "changed folder"

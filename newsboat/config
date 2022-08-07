@@ -2,7 +2,7 @@
 # newsboat config
 
 # config
-browser "setsid -f $BROWSER %u &>/dev/null"
+browser "setsid -f brave %u &>/dev/null"
 prepopulate-query-feeds yes
 show-keymap-hint no
 goto-next-feed no
@@ -80,7 +80,7 @@ bind-key U show-urls
 # macros
 unbind-key ,
 bind-key \ macro-prefix
-macro v pipe-to "vim -"
-macro V set browser "~/bin/ytnews &>/dev/null" ; open-in-browser ; set browser "setsid -f $BROWSER %u &>/dev/null"
+macro v pipe-to "${EDITOR} -"
+macro V set browser "~/bin/ytnews &>/dev/null" ; open-in-browser ; set browser "setsid -f brave %u &>/dev/null"
 macro w set browser "setsid -f mpv -quiet &>/dev/null" ; open-in-browser ; set browser "setsid -f $BROWSER %u &>/dev/null"
 macro i set html-renderer "internal"; pipe-to "imghandler 2>/dev/null"; set html-renderer "elinks -dump"

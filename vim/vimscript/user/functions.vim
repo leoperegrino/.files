@@ -9,6 +9,10 @@ function! g:SetLinenr(enter) abort
 	endif
 endfunction
 
+function! g:Untrail() abort
+	execute '%s/\s\+$//g'
+endfunction
+
 function! g:ShowDoc() abort
 	if (index(['vim','help'], &filetype) >= 0)
 		execute 'help' expand('<cword>')

@@ -1,36 +1,54 @@
-# vim: foldmethod=marker
+# vim: foldmethod=marker ft=sh
 
-# 0-9 {{{
-alt + {1,4}
-	{randwp,trash "$(cat $HOME/.cache/wal/wal)" && randwp}
-
-alt + {7,shift + 7}
-	{bt,blueman-manager}
-
-alt + p
-	pavucontrol
-
+# F {{{
+alt + 1
+	pamixer -t
+alt + 2
+	pamixer -d 2
+alt + 3
+	pamixer -i 2
+	
+alt + 4
+	[ $(echo "$(xbacklight -get) > 9" | bc) -eq 1 ] && xbacklight -dec 9
+alt + 5
+	xbacklight -inc 9
+alt + 7
+	blueman-manager
 alt + {8,9,0}
 	playerctl {previous,play-pause,next} &>/dev/null
 
-ctrl + apostrophe
-	dunstctl close
+alt + equal
+	printscn save
+alt + shift + equal
+	printscn clip
+alt + ctrl + equal
+	printscn selectsave
+alt + ctrl + shift + equal
+	printscn select
+# }}}
+
+# alt {{{
+alt + p
+	pavucontrol
+
+alt + w
+	randwp
 
 alt + apostrophe
 	pybtc
 
-ctrl + shift + apostrophe
+alt + q
 	dunstctl close-all
 # }}}
 
 # super {{{
 super + {b,shift + b,ctrl + b}
-	{firefox,brave,librewolf}
+	{brave,firefox,librewolf}
 
 super + d
 	d_run
 
-super + shift + y
+super + y
 	networkmanager_dmenu
 
 super + a
@@ -40,7 +58,7 @@ super + g
 	${TERM} -e ${SHELL} -ic htop
 
 super + t
-	${TERM} -e ${SHELL} -ic 'task && zsh -i'
+	${TERM} -e ${SHELL} -ic "task && ${SHELL} -i"
 
 super + shift + t
 	tor-browser
@@ -48,8 +66,14 @@ super + shift + t
 super + {z,Return}
 	$TERM
 
+super + {shift + Return}
+	$TERM -o "font.size=13"
+
 super + m
 	${TERM} -e ${SHELL} -ic 'TERM=xterm ncmpcpp'
+
+super + shift + m
+	${TERM} -o "font.size=13" -e ${SHELL} -ic 'TERM=xterm ncmpcpp'
 
 super + {p,shift + p}
 	{clips,pswd}
@@ -57,41 +81,44 @@ super + {p,shift + p}
 super + e
 	${TERM} -e ${SHELL} -ic 'TERM=xterm ranger'
 
-super + y
-	${TERM} -e ${SHELL} -ic news
+super + shift + e
+	${TERM} -o "font.size=13" -e ${SHELL} -ic 'TERM=xterm ranger'
 
-super + {n,shift + n}
-	${TERM} -e ${SHELL} -ic 'news {tech, meme}'
+super + n
+	news
+
+super + v
+	hdmi
 # }}}
 
-# alt {{{
+# vim {{{
 alt + f
 	files
 
 alt + {v,shift + v}
-	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.files/vim/{vimrc.vim,plugins.vim}'
+	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.config/vim/{vimrc.vim,plugins.vim}'
 
 alt + r
-	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.files/ranger/rc.conf'
+	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.config/ranger/rc.conf'
 
 alt + {x,shift + x}
-	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.files/{x/xinitrc,sh/profile}'
+	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.config/{x/xinitrc,sh/profile}'
 
 alt + s
-	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.files/sxhkd/sxhkdrc'
+	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.config/sxhkd/sxhkdrc'
 
 alt + {b,shift + b}
-	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.files/bash/{bashrc,bash_profile}'
+	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.config/bash/{bashrc,bash_profile}'
 
 alt + {z,shift + z}
-	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.files/zsh/{zshrc,zprofile}'
+	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.config/zsh/{zshrc,zprofile}'
 
 alt + {i,shift + i}
-	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.files/i3/{i3config,i3status.conf}'
+	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.config/i3/config'
 
 alt + {m,shift + m}
-	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.files/ncmpcpp/{config,bindings}'
+	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.config/ncmpcpp/{config,bindings}'
 
-alt + {n,shift + n}
-	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.files/newsboat/{config,urls}'
+alt + n
+	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.config/newsboat/config'
 # }}}

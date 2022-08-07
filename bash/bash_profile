@@ -7,15 +7,16 @@ source "$XDG_CONFIG_HOME/bash/bashrc"
 
 # history {{{
 shopt -s histappend
-export HISTFILE="$XDG_CACHE_HOME/bash/history"
-export HISTSIZE=
-export HISTFILESIZE=
-export HISTCONTROL=ignoredups:erasedups:ignorespace
+export       HISTFILE="$XDG_CACHE_HOME/bash/history"
+export       HISTSIZE=
+export   HISTFILESIZE=
+export    HISTCONTROL=ignoredups:erasedups:ignorespace
 export PROMPT_COMMAND="history -a; history -c; history -r"
 export HISTTIMEFORMAT='%d/%m/%y %H:%M  '
-export HISTIGNORE="ls:cd:q:c"
+export     HISTIGNORE="ls:cd:q:c"
+mkdir "${HISTFILE%/*}" && touch "${HISTFILE}"
 # }}}
 
 if [ "$(tty)" = '/dev/tty1' ]; then
-	startx "$XINITRC" 2>/dev/null
+	exec startx "$XINITRC" 2>/dev/null
 fi

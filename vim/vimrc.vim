@@ -21,28 +21,31 @@ endif
 " }}}
 
 " set {{{
+set background=dark
 set autochdir
 set nowrap
 set encoding=utf-8 fileencoding=utf-8 fileformat=unix
 set viewoptions-=options sessionoptions-=options
 set shortmess+=AFI shortmess-=S
+set completeopt=menu,menuone,noselect
 set formatoptions-=cro
 set clipboard=unnamed
 set noshowmode
 set hidden
 set startofline
-set switchbuf=usetab
+set switchbuf=vsplit
 set updatetime=300 lazyredraw
 set signcolumn=yes cursorline colorcolumn=79
 set laststatus=2 showtabline=2
 set conceallevel=3
+set laststatus=3
 set foldclose=
 set foldopen+=insert,jump foldopen-=block
 set foldmethod=syntax
 set foldminlines=3 foldlevelstart=1
 set shiftwidth=4 tabstop=4 softtabstop=4
 set scrolloff=7 sidescrolloff=15
-set number relativenumber
+set number norelativenumber
 set autoindent smartindent
 set splitbelow splitright
 set ignorecase smartcase infercase
@@ -50,7 +53,7 @@ set incsearch hlsearch
 set wildmenu wildignorecase
 set wildignore+=*.pyc,*pycache*
 set matchpairs+=<:>
-set list listchars=tab:\▎\ ,trail:~
+set list listchars=tab:\ \ ,trail:~
 set fillchars=fold:\ 
 " }}}
 
@@ -66,10 +69,10 @@ let &t_EI.="\e[2 q"
 " autocmd {{{
 augroup vimrc
 	autocmd!
-	autocmd FileType     *  silent! loadview
 	autocmd FileType     qf nnoremap <buffer> <CR> <CR>:lclose<CR>
+	autocmd FileType     *  silent! loadview
 	autocmd BufWrite     *  mkview
-	autocmd BufEnter     *  set formatoptions-=cro
+	" autocmd BufEnter     *  set formatoptions-=cro
 	autocmd BufEnter     *  set noreadonly
 	autocmd InsertEnter  *  set nolist
 	autocmd InsertLeave  *  set list

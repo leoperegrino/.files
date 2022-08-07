@@ -1,5 +1,7 @@
 local servers_opts = {}
 
+local lspconfig = require("lspconfig")
+
 servers_opts.sumneko_lua = function(server, opts)
 	opts.settings = {
 		Lua = {
@@ -13,7 +15,7 @@ servers_opts.sumneko_lua = function(server, opts)
 		},
 	}
 
-	server:setup(opts)
+	lspconfig[server.name].setup(opts)
 end
 
 servers_opts.rust_analyzer = function(server, opts)
@@ -51,24 +53,56 @@ servers_opts.rust_analyzer = function(server, opts)
 		},
 	}
 
-	local rust_opts = vim.tbl_deep_extend("force", server:get_default_options(), opts)
-	rust_tools.setup { server = rust_opts , tools = tools, dap = dap}
+	rust_tools.setup { server = opts , tools = tools, dap = dap}
 	server:attach_buffers()
 	rust_tools.start_standalone_if_required()
+end
+
+servers_opts.texlab = function(server, opts)
+	opts.settings = {
+		texlab = {
+			build = {
+				args = { "-v", "%f" },
+				executable = "arara",
+				forwardSearchAfter = true,
+				onSave = true
+			}
+		}
+	}
+
+	lspconfig[server.name].setup(opts)
 end
 
 servers_opts.pylsp = function(server, opts)
 	opts.settings = {
 		pylsp = {
 			plugins = {
-				jedi_hover = {
-					enabled = false
-				}
+				pyflakes = { enabled = false },
+				jedi_hover = { enabled = false },
 			}
 		}
 	}
 
-	server:setup(opts)
+	lspconfig[server.name].setup(opts)
+end
+
+servers_opts.tsserver = function(server, opts)
+	-- opts.filetypes = { "typescript", "typescriptreact", "typescript.tsx" }
+	opts.init_options = { preferences = { disableSuggestions = true }}
+	opts.settings = {
+		tsserver =
+			{
+				compilerOptions = {
+					module = "commonjs",
+					target = "es6",
+					checkJs = false
+				},
+				exclude = {
+					"node_modules"
+				}
+		}
+	}
+	lspconfig[server.name].setup(opts)
 end
 
 return servers_opts

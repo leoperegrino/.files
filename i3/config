@@ -1,0 +1,159 @@
+# vim: ft=i3config syntax=i3config foldmethod=marker
+font pango:Noto Sans Mono Bold 8
+
+# bar {{{
+bar {
+    output HDMI1
+	status_command i3status-rs
+	font pango: Noto Sans Mono Bold 13
+	colors {
+			background #000000
+			statusline $fg
+			separator  $fg
+			focused_workspace  $fg $bg     $fg
+			active_workspace   $bg $fg     $bg
+			inactive_workspace $bg $fg     $bg
+			urgent_workspace   $fg #ff5458 $fg
+			binding_mode       $fg $bg     $fg
+	}
+}
+
+bar {
+	output primary
+	tray_output primary
+	position bottom
+	separator_symbol "|"
+	status_command i3status-rs
+	font pango: Noto Sans Mono Bold 8.5
+	colors {
+			background #000000
+			statusline $fg
+			separator  $fg
+			focused_workspace  $fg $bg     $fg
+			active_workspace   $bg $fg     $bg
+			inactive_workspace $bg $fg     $bg
+			urgent_workspace   $fg #ff5458 $fg
+			binding_mode       $fg $bg     $fg
+	}
+}
+# }}}
+
+# autostart {{{
+exec --no-startup-id picom --experimental-backends
+exec --no-startup-id mpDris2 -j
+exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
+exec --no-startup-id dunst
+exec --no-startup-id clipmenud
+exec --no-startup-id xmod
+exec --no-startup-id sxhkd
+exec --no-startup-id sleep 2 && rfbt
+# }}}
+
+# set keys {{{
+set $super  Mod4
+set $alt    Mod1
+set $shift  Shift
+set $ctrl   Control
+# }}}
+
+# super {{{
+bindsym $super+q        kill
+bindsym $super+$shift+c reload
+bindsym $super+$shift+r restart
+bindsym $super+$shift+x exec i3-msg exit
+# }}}
+
+# default window {{{
+set_from_resource $fg i3wm.color7 #f0f0f0
+set_from_resource $bg i3wm.color2 #f0f0f0
+set_from_resource $c6 i3wm.color6 #f0f0f0
+#class                 border  backgr. text indicator child_border
+client.focused          $fg     $bg     $fg  $bg       $bg
+client.focused_inactive $bg     $fg     $bg  $bg       $bg
+client.unfocused        $bg     $fg     $bg  $bg       $bg
+client.urgent           $bg     $bg     $fg  $bg       $bg
+client.placeholder      $bg     $bg     $fg  $bg       $bg
+client.background       $bg
+
+floating_modifier   $super
+focus_follows_mouse no
+hide_edge_borders   none
+workspace_layout    tabbed
+new_window          pixel 1
+gaps                inner 10
+for_window [window_role="GtkFileChooserDialog"] floating disable
+
+bindsym $super+minus        move scratchpad
+bindsym $super+$shift+minus scratchpad show
+bindsym $super+Tab          focus right
+bindsym $super+apostrophe   focus left
+bindsym $alt+space          bar mode toggle
+bindsym $super+space        focus mode_toggle
+bindsym $super+$shift+space floating toggle
+bindsym $super+w            layout toggle tabbed split
+bindsym $super+s            split toggle
+bindsym $super+$shift+s     sticky toggle
+bindsym $super+f            fullscreen toggle
+# }}}
+
+# design {{{
+bindsym $super+h        focus left
+bindsym $super+j        focus down
+bindsym $super+k        focus up
+bindsym $super+l        focus right
+bindsym $super+$shift+h move left  30 px
+bindsym $super+$shift+j move down  30 px
+bindsym $super+$shift+k move up    30 px
+bindsym $super+$shift+l move right 30 px
+bindsym $super+u        move workspace to output right
+
+bindsym $super+ctrl+h resize shrink width  30 px
+bindsym $super+ctrl+j resize grow   height 30 px
+bindsym $super+ctrl+k resize shrink height 30 px
+bindsym $super+ctrl+l resize grow   width  30 px
+
+bindsym $super+i        gaps inner current plus  5
+bindsym $super+o        gaps inner current minus 5
+bindsym $super+$shift+w gaps inner current set 0; gaps outer current set 0; gaps horizontal current set 0; gaps vertical current set 0
+# }}}
+
+# switch to workspace {{{
+bindsym $super+1 workspace number "1"
+bindsym $super+2 workspace number "2"
+bindsym $super+3 workspace number "3"
+bindsym $super+4 workspace number "4"
+bindsym $super+5 workspace number "5"
+bindsym $super+6 workspace number "6"
+bindsym $super+7 workspace number "7"
+bindsym $super+8 workspace number "8"
+bindsym $super+9 workspace number "9"
+bindsym $super+0 workspace number "10"
+# }}}
+
+# move focused container to workspace {{{
+bindsym $super+$shift+1 move container to workspace number "1"
+bindsym $super+$shift+2 move container to workspace number "2"
+bindsym $super+$shift+3 move container to workspace number "3"
+bindsym $super+$shift+4 move container to workspace number "4"
+bindsym $super+$shift+5 move container to workspace number "5"
+bindsym $super+$shift+6 move container to workspace number "6"
+bindsym $super+$shift+7 move container to workspace number "7"
+bindsym $super+$shift+8 move container to workspace number "8"
+bindsym $super+$shift+9 move container to workspace number "9"
+bindsym $super+$shift+0 move container to workspace number "10"
+# }}}
+
+# XF86 {{{
+bindsym XF86Favorites           exec --no-startup-id randwp
+bindsym XF86AudioRaiseVolume    exec --no-startup-id pamixer -i 2
+bindsym XF86AudioLowerVolume    exec --no-startup-id pamixer -d 2
+bindsym XF86AudioMute           exec --no-startup-id pamixer -t
+bindsym XF86AudioPlay           exec --no-startup-id mpc toggle
+bindsym XF86AudioPause          exec --no-startup-id mpc toggle
+bindsym XF86AudioNext           exec --no-startup-id mpc next
+bindsym XF86AudioPrev           exec --no-startup-id mpc prev
+bindsym XF86AudioMicMute        exec --no-startup-id pamixer --default-source -t
+bindsym XF86MonBrightnessUp     exec --no-startup-id xbacklight -inc 9
+bindsym XF86MonBrightnessDown   exec --no-startup-id [ $(echo "$(xbacklight -get) > 9" | bc) -eq 1 ] && xbacklight -dec 9
+# }}}

@@ -1,0 +1,1 @@
+application/pdf; setsid -f zathura %s >/dev/null 2>&1;

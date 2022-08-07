@@ -1,7 +1,7 @@
 // vim: syntax=css
 configuration {
 	font: "Noto Sans 12";
-	modi: "combi,drun,run,window,ssh";
+	modi: "drun,run,window,ssh,combi";
 	combi-modi: "drun,window,run,ssh";
 	combi-hide-mode-prefix: true;
 	terminal: "alacritty";
@@ -13,7 +13,7 @@ configuration {
 	window-thumbnail: true;
 	drun-use-desktop-cache: true;
 	drun-reload-desktop-cache: true;
-	cache-dir: "/home/leop/.cache/rofi" ;
+	cache-dir: ".cache/rofi" ;
 	kb-mode-next: "Control+o,Control+Tab";
 	kb-mode-previous: "Control+i,Control+ISO_Left_Tab";
 	display-combi: "all" ;
@@ -23,12 +23,21 @@ configuration {
 	yoffset: -20;
 }
 
-entry { placeholder: ""; }
-listview { cycle: false; }
-element-icon { size: 35px; }
+entry {
+	placeholder: "";
+	}
+
+listview {
+	cycle: false;
+	}
+
+element-icon {
+	size: 5%;
+	}
+
 window {
 	height: 80%;
 	width: 40%;
 	}
 
-@import "/home/leop/.cache/wal/colors-rofi-dark.rasi"
+@import "~/.cache/wal/colors-rofi-dark.rasi"

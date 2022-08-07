@@ -10,7 +10,7 @@ fns.hi.set('noBgDiffChange', 'NONE', fns.hi.get_group('DiffChange').fg )
 fns.hi.set('noBgDiffDelete', 'NONE', fns.hi.get_group('DiffDelete').fg )
 
 fns.hi.set('statusline'  , statusline_bg)
-fns.hi.set('cursorline'  , statusline_bg)
+fns.hi.set('cursorline'  , statusline_bg, 'none', 'none')
 fns.hi.set('pmenu'       , statusline_bg)
 fns.hi.set('tablinefill' , statusline_bg)
 fns.hi.set('vertsplit'   , statusline_bg)

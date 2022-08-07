@@ -46,4 +46,10 @@ M.copy = function(original)
 end
 
 
+_G.Untrail = function()
+	vim.cmd[[execute '%s/\s\+$//g']]
+end
+vim.cmd[[command! -nargs=0 Untrail :lua Untrail()]]
+
+
 return M

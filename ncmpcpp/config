@@ -51,7 +51,7 @@ ignore_diacritics    = "yes"
 playlist_show_mpd_host           = "no"
 playlist_disable_highlight_delay = "0"
 playlist_shorten_total_times     = "yes"
-playlist_separate_albums         = "no"
+playlist_separate_albums         = "yes"
 fetch_lyrics_for_current_song_in_background = "yes"
 
 # formats

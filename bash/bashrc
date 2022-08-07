@@ -29,14 +29,9 @@ PS1+="${BG}\w${OFF}"
 PS1+=" \$ "
 # }}}
 
-function pass() { # {{{
-	clipctl disable
-	PASSWORD_STORE_GENERATED_LENGTH=12 /usr/bin/pass $@
-	clipctl enable
-}
-# }}}
-
 source "$XDG_CONFIG_HOME/sh/aliasrc"
+source "$XDG_CONFIG_HOME/sh/functions"
+alias h="history"
 
 [ -z "${VIM_TERMINAL}" ] && (cat "$HOME/.cache/wal/sequences" 2>/dev/null &)
 

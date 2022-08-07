@@ -1,54 +1,57 @@
-local opts = { noremap=true, silent=true }
-local keymap = vim.api.nvim_set_keymap
-local buf_keymap = vim.api.nvim_buf_set_keymap
+local opts = { noremap = true, silent = true }
+local keymap = vim.keymap.set
 local buf_set_option = vim.api.nvim_buf_set_option
 local telescope = ":lua require('telescope.builtin')"
-local diagnostic = ":lua vim.diagnostic"
+local dap = ":lua require('dap')"
+local dapui = ":lua require('dapui')"
+local diagnostic = vim.diagnostic
 local lsp_buf = ":lua vim.lsp.buf"
 local M = {}
 
 
 M.lsp = function(bufnr)
+	local buf_opts = { buffer = bufnr, noremap=true, silent=true }
 	buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	if vim.bo.filetype == "vim" or vim.bo.filetype == "sh" then
 	else
-		buf_keymap(bufnr, "n", "K"      , ":lua vim.lsp.buf.hover()<CR>" , opts)
+		keymap("n", "K"      , ":lua vim.lsp.buf.hover()<CR>" , buf_opts)
 	end
 
-	buf_keymap(bufnr, "n", "gL"  , diagnostic .. ".setloclist({open=false})<cr>" .. telescope .. ".loclist()<cr>", opts)
-	buf_keymap(bufnr, "n", "gQ"  , diagnostic .. ".setqflist({open=false})<cr>" .. telescope .. ".quickfix()<cr>", opts)
-	buf_keymap(bufnr, "n", "gd"  , telescope .. ".lsp_definitions()<cr>"       , opts)
-	buf_keymap(bufnr, "n", "gI"  , telescope .. ".lsp_implementations()<cr>"   , opts)
-	buf_keymap(bufnr, "n", "gt"  , telescope .. ".lsp_type_definitions()<cr>"  , opts)
-	buf_keymap(bufnr, "n", "gr"  , telescope .. ".lsp_references()<cr>"        , opts)
-	buf_keymap(bufnr, "n", "glr" , lsp_buf .. ".rename()<CR>"                  , opts)
-	buf_keymap(bufnr, "n", "gld" , lsp_buf .. ".declaration()<CR>"             , opts)
-	buf_keymap(bufnr, "n", "gls" , lsp_buf .. ".signature_help()<CR>"          , opts)
-	buf_keymap(bufnr, "n", "glc" , lsp_buf .. ".code_action()<CR>"             , opts)
-	buf_keymap(bufnr, "n", "glw" , lsp_buf .. ".add_workspace_folder()<CR>"    , opts)
-	buf_keymap(bufnr, "n", "glW" , lsp_buf .. ".remove_workspace_folder()<CR>" , opts)
-	buf_keymap(bufnr, "n", "glf" , lsp_buf .. ".formatting()<CR>"              , opts)
-	buf_keymap(bufnr, "n", "gll" , ":lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
+	keymap("n", "gL"  , ":lua vim.diagnostic.setloclist({open=false})<cr>" .. telescope .. ".loclist()<cr>", buf_opts)
+	keymap("n", "gQ"  , ":lua vim.diagnostic.setqflist({open=false})<cr>" .. telescope .. ".quickfix()<cr>", buf_opts)
+	keymap("n", "gd"  , telescope .. ".lsp_definitions()<cr>"       , buf_opts)
+	keymap("n", "gI"  , telescope .. ".lsp_implementations()<cr>"   , buf_opts)
+	keymap("n", "gt"  , telescope .. ".lsp_type_definitions()<cr>"  , buf_opts)
+	keymap("n", "gr"  , telescope .. ".lsp_references()<cr>"        , buf_opts)
+	keymap("n", "glr" , lsp_buf .. ".rename()<CR>"                  , buf_opts)
+	keymap("n", "gld" , lsp_buf .. ".declaration()<CR>"             , buf_opts)
+	keymap("n", "gls" , lsp_buf .. ".signature_help()<CR>"          , buf_opts)
+	keymap("n", "glc" , lsp_buf .. ".code_action()<CR>"             , buf_opts)
+	keymap("n", "glw" , lsp_buf .. ".add_workspace_folder()<CR>"    , buf_opts)
+	keymap("n", "glW" , lsp_buf .. ".remove_workspace_folder()<CR>" , buf_opts)
+	keymap("n", "glf" , lsp_buf .. ".formatting()<CR>"              , buf_opts)
+	keymap("n", "gll" , ":lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", buf_opts)
 end
 
 
 M.plugins = function()
-	keymap("n", "gh"         , diagnostic .. ".open_float()<CR>", opts)
-	keymap("n", "[d"         , diagnostic .. ".goto_prev()<CR>" , opts)
-	keymap("n", "Ç"          , diagnostic .. ".goto_prev()<CR>" , opts)
-	keymap("n", "]d"         , diagnostic .. ".goto_next()<CR>" , opts)
-	keymap("n", "ç"          , diagnostic .. ".goto_next()<CR>" , opts)
-	keymap("n", "<leader>eq" , diagnostic .. ".setloclist()<CR>", opts)
+	keymap("n", "gh"         , diagnostic.open_float, opts)
+	keymap("n", "[d"         , diagnostic.goto_prev , opts)
+	keymap("n", "Ç"          , diagnostic.goto_prev , opts)
+	keymap("n", "]d"         , diagnostic.goto_next , opts)
+	keymap("n", "ç"          , diagnostic.goto_next , opts)
+	keymap("n", "<leader>eq" , diagnostic.setloclist, opts)
 
 	keymap("n", "<leader>tt" , ":lua _TERM_TOGGLE()<cr>"    , opts)
 	keymap("n", "<leader>tg" , ":lua _LAZYGIT_TOGGLE()<cr>" , opts)
 	keymap("n", "<leader>tp" , ":lua _IPYTHON_TOGGLE()<cr>" , opts)
 	keymap("n", "<leader>th" , ":lua _HTOP_TOGGLE()<cr>"    , opts)
-	keymap("n", "<leader>tsl", ":ToggleTermSendCurrentLine 3<cr>i"    , opts)
-	keymap("v", "<leader>tsL", ":ToggleTermSendVisualLines 3<cr>i"    , opts)
-	keymap("v", "<leader>tsv", ":ToggleTermSendVisualSelection 3<cr>i", opts)
+	keymap("n", "<leader>tsl", ":ToggleTermSendCurrentLine 3<cr>"    , opts)
+	keymap("v", "<leader>tsL", ":ToggleTermSendVisualLines 3<cr>"    , opts)
+	keymap("v", "<leader>tsv", ":ToggleTermSendVisualSelection 3<cr>", opts)
 
+	keymap("n", "<leader>d"  , dapui .. ".toggle()<cr>"          , opts)
 	keymap("n", "<leader>b"  , telescope .. ".buffers()<cr>"     , opts)
 	keymap("n", "<leader>g"  , telescope .. ".git_files()<cr>"   , opts)
 	keymap("n", "<leader>ff" , telescope .. ".find_files()<cr>"  , opts)
@@ -59,9 +62,17 @@ M.plugins = function()
 	keymap("n", "<F1>"       , ":lua _COMMENT()<CR>"           , opts)
 	keymap("v", "<F1>"       , ":lua _VCOMMENT()<CR>"          , opts)
 	keymap("n", "<F2>"       , ":lua vim.lsp.buf.rename()<CR>" , opts)
-	keymap("n", "<F8>"       , ":ToggleTerm<cr>"               , opts)
+	keymap("n", "<F3>"       , dap .. ".step_back()<cr>"       , opts)
+	keymap("n", "<F4>"       , dap .. ".step_into()<cr>"       , opts)
+	keymap("n", "<F5>"       , dap .. ".step_over()<cr>"       , opts)
+	keymap("n", "<F6>"       , dap .. ".step_out()<cr>"        , opts)
+	keymap("n", "<F7>"       , dap .. ".continue()<cr>"        , opts)
+	keymap("n", "<F8>"       , dap .. ".toggle_breakpoint()<cr>"  , opts)
 	keymap("n", "<F9>"       , ":NvimTreeToggle<cr>"           , opts)
+	keymap("n", "<F10>"      , ":ToggleTerm<cr>"               , opts)
 	keymap("n", "<F12>"      , ":SymbolsOutline<cr>"           , opts)
+
+	keymap("i", "<C-x><C-o>" , "<cmd>lua require('cmp').complete()<CR>", opts)
 end
 
 
@@ -83,9 +94,9 @@ M.leader = function()
 	keymap('n', '<leader>j'       , '<C-w>J'     , opts)
 	keymap('n', '<leader>k'       , '<C-w>K'     , opts)
 	keymap('n', '<leader>l'       , '<C-w>L'     , opts)
-	keymap('n', '<leader>8'       , ']s'         , opts)
+	keymap('n', '<leader>8'       , '[s'         , opts)
 	keymap('n', '<leader>9'       , '1z='        , opts)
-	keymap('n', '<leader>0'       , '[s'         , opts)
+	keymap('n', '<leader>0'       , ']s'         , opts)
 	keymap('' , '<leader>P'       , '"0p'        , opts)
 	keymap('n', '<leader>C'       , ':setlocal spell! spelllang=en_us<CR>', opts)
 	keymap('n', '<leader>c'       , ':setlocal spell! spelllang=pt_br<CR>', opts)
@@ -100,8 +111,8 @@ M.ctrl = function()
 	keymap('i', '<C-e>'     , '<ESC>A'            , opts)
 	keymap('i', '<C-a>'     , '<ESC>I'            , opts)
 	keymap('' , '<C-r>'     , '<Nop>'             , opts)
-	keymap('n', '<C-p>'     , 'jzz'               , opts)
-	keymap('n', '<C-e>'     , 'kzz'               , opts)
+	keymap('n', '<C-p>'     , 'kzz'               , opts)
+	keymap('n', '<C-n>'     , 'jzz'               , opts)
 	keymap('n', '<C-h>'     , ':wincmd h<CR>'     , opts)
 	keymap('n', '<C-j>'     , ':wincmd j<CR>'     , opts)
 	keymap('n', '<C-k>'     , ':wincmd k<CR>'     , opts)
@@ -110,8 +121,6 @@ M.ctrl = function()
 	keymap('n', '<C-b>'     , ':vert res +5<CR>'  , opts)
 	keymap('n', '<C-s>'     , ':res -5<CR>'       , opts)
 	keymap('n', '<C-g>'     , ':res +5<CR>'       , opts)
-	keymap('n', '<C-p>'     , 'jzz'               , opts)
-	keymap('n', '<C-e>'     , 'kzz'               , opts)
 	keymap('t', '<C-h>'     , [[<C-\><C-N><C-w>h]], opts)
 	keymap('t', '<C-j>'     , [[<C-\><C-N><C-w>j]], opts)
 	keymap('t', '<C-k>'     , [[<C-\><C-N><C-w>k]], opts)
@@ -140,6 +149,7 @@ end
 
 
 M.commands = function()
+	vim.cmd[[command! Format execute 'lua vim.lsp.buf.formatting()']]
 	vim.cmd[[command! -nargs=1 -complete=highlight FH exec 'filter /\c.*' . substitute('<args>', ' ', '\\\&\.\*', '') . '/ hi']]
 	vim.cmd[[command! -nargs=1 -complete=command H vert help <args>]]
 	vim.cmd[[cnoreabbrev help vert help]]

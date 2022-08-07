@@ -1,4 +1,4 @@
-! vim: syntax=dosini
+! vim: syntax=xmodmap filetype=xmodmap
 ! map altgr to mode_switch
 keycode 108 = Mode_switch
 ! disable primary paste
@@ -7,10 +7,10 @@ keycode 108 = Mode_switch
 ! thinkpad specifics
 clear control
 keycode 37 = Control_L
-keycode 105 = slash question
 keycode 107 = Control_R
 add control = Control_R
 add control = Control_L
+! keycode 105 = slash question
 
 keycode 111 = Up Up Down
 

@@ -1,0 +1,32 @@
+# vim: filetype=neomuttrc
+#
+set use_from = yes
+set editor = $EDITOR
+set charset = "utf-8"
+set send_charset = "utf-8"
+set debug_file = "~/.cache/neomutt/debug"
+set mailcap_path = "~/.config/neomutt/mailcap"
+set sleep_time = 0
+set wait_key = no
+set abort_key = "<Esc>"
+set move = no
+
+set ssl_force_tls = yes
+set ssl_starttls = yes
+set imap_check_subscribed
+set timeout = 15
+set mail_check = 120
+set imap_keepalive = 300
+unset imap_passive
+
+set date_format = "%y-%m-%d"
+set sidebar_visible = yes
+set index_format = "%2C | %Z [%d] %-30.30F (%-4.4c) %s"
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set sidebar_divider_char = '│'
+set pager_stop = yes
+# set pager = bat
+
+source colorschemes/dracula.muttrc
+source accounts.muttrc
+source maps.muttrc

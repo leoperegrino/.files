@@ -23,6 +23,6 @@ function! MyHandler(context)
 endfunction
 
 let g:pandoc#keyboard#use_default_mappings = 0
-let g:pandoc#biblio#bibs = ['/home/leop/documents/tex/master.bib']
+let g:pandoc#biblio#bibs = ['~/documents/tex/master.bib']
 let g:pandoc#modules#disabled = ["hypertext", "formatting", "folding", "metadata", "keyboard", "spell"]
 let g:pandoc#folding#fold_yaml = 1

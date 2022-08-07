@@ -22,10 +22,6 @@
     max_icon_size = 48
     icon_path = /usr/share/icons/Papirus/64x64/apps
 
-    ### Misc/Advanced ###
-    dmenu = dmen -p dunst:
-    browser = /usr/bin/firefox --new-window
-
 [experimental]
     per_monitor_dpi = true
 
@@ -46,4 +42,4 @@
     foreground = "#FFFFFF"
     frame_color = "{foreground}"
     #icon = /path/to/critical-urgent-icon
-    timeout = 0
+    timeout = 15

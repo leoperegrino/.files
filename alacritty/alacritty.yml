@@ -2,9 +2,8 @@
 # alacritty config
 
 live_config_reload: true
-
-env:
-    BROWSER: firefox
+imports:
+  - ~/.cache/wal/alacritty.yml
 
 scrolling:
   history: 100000
@@ -15,19 +14,10 @@ window:
     y: 0
 
 font:
-  #bold:
-  #italic:
-  #bold_italic:
   normal:
     family: Noto Sans Mono Nerd Font
     style: Regular
   size: 8.5
-
-# cursor:
-#   style:
-#     shape: Block
-#     blinking: On
-#     blink_interval: 500
 
 key_bindings:
   - { key: K,  mods: Alt, action: ScrollPageUp,  }

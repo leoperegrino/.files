@@ -1,0 +1,44 @@
+[user]
+	email = leo@ltp.pt
+	name = ltp
+	signingkey = 14942C04BEE31D71
+
+[core]
+	pager = LESS='-j.3 -QFSRiPm ' bat --language=gitlog
+
+[commit]
+	gpgsign = true
+
+[merge]
+	tool = vimdiff
+
+[pull]
+	rebase = false
+
+[log]
+	date = iso-local
+
+[blame]
+	date = format:%Y-%m-%d %H:%M:%S
+
+[init]
+	defaultBranch = master
+
+[pager]
+	status = true
+
+[alias]
+	b = branch --list --all
+	ca = commit --all
+	d = diff
+	dev = checkout develop
+	l = log --graph --all
+	mas = checkout master
+	mit = commit -m
+	out = checkout
+	p = pull --all
+	rev-log = rev-list --pretty --reverse --all --date=format:'%Y-%m-%d %H:%M:%S'
+	s = status
+	ss = show --show-signature
+	t = log --graph --oneline --all
+	undo = reset HEAD~1

@@ -1,0 +1,3 @@
+# vim: ft=sh
+--config-locations ~/.config/yt-dlp/config
+--output ~/videos/%(extractor)s_-_%(channel)s_-_%(uploader)s_-_%(upload_date)s_-_%(title)s_-_%(id)s.%(ext)s

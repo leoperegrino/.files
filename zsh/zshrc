@@ -95,31 +95,28 @@ function zle-line-init zle-keymap-select {
 	PROMPT+='@'
 	PROMPT+='%F{blue}%m%f'
 	PROMPT+=': '
-	PROMPT+='%F{green}%~%f '
+	PROMPT+='%F{green}%6(~.………/%2d.%~)%f '
 	PROMPT+='%(!.#.$) '
-	PROMPT+='%b'
 
 	if git rev-parse --git-dir > /dev/null 2>&1; then
-		PROMPT+="%B%F{yellow}(\$vcs_info_msg_0_)%f%b "
+		PROMPT+="%F{yellow}(\$vcs_info_msg_0_)%f "
 	fi
 
 	if [ "${VIRTUAL_ENV}" ]; then
-		RPROMPT+='%F{magenta}[venv:${VIRTUAL_ENV/\/home\/leop/~}]%f'
+		RPROMPT+='%F{magenta}[venv:${VIRTUAL_ENV}]%f'
 	fi
 	RPROMPT+='%F{yellow}%(?..[%?])%f'
 
+	PROMPT+='%b'
+	RPROMPT+='%b'
 	zle reset-prompt
 }
 # }}}
 
-function pass() { # {{{
-	clipctl disable
-	PASSWORD_STORE_GENERATED_LENGTH=12 /usr/bin/pass $@
-	clipctl enable
-}
-# }}}
-
 source "$XDG_CONFIG_HOME/sh/aliasrc"
+source "$XDG_CONFIG_HOME/sh/functions"
+alias help="run-help"
+alias h="history 1"
 
 [ -z "${VIM_TERMINAL}" ] && (cat "$HOME/.cache/wal/sequences" 2>/dev/null &)
 

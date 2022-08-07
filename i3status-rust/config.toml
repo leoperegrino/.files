@@ -1,0 +1,97 @@
+[theme]
+name = "plain"
+[icons]
+name = "awesome"
+[icons.overrides]
+music = "🔊"
+backlight_empty = "🌑"
+backlight_1     = "🌘"
+backlight_2     = "🌘"
+backlight_3     = "🌘"
+backlight_4     = "🌘"
+backlight_5     = "🌗"
+backlight_6     = "🌗"
+backlight_7     = "🌗"
+backlight_8     = "🌗"
+backlight_9     = "🌖"
+backlight_10    = "🌖"
+backlight_11    = "🌖"
+backlight_12    = "🌖"
+backlight_13    = "🌖"
+backlight_full  = "🌕"
+[theme.overrides]
+separator = ' '
+
+[[block]]
+block = "taskwarrior"
+interval = 60
+on_click = "alacritty -e zsh -c 'task && zsh -i'"
+format = "{count} {filter_name}"
+warning_threshold = 10
+critical_threshold = 20
+[[block.filters]]
+name = "tasks"
+filter = "+PENDING"
+
+# [[block]]
+# block = "music"
+# dynamic_width = true
+# marquee_interval = 10
+# on_click = "alacritty -e ncmpcpp"
+# hide_when_empty = true
+# buttons = ["prev", "play", "next"]
+# format = "{combo}"
+
+[[block]]
+block = "disk_space"
+path = "/"
+info_type = "available"
+warning = 20.0
+alert = 10.0
+format = "{icon} {available} ({percentage:1})"
+
+[[block]]
+block = "memory"
+on_click = ""
+format_mem = "{mem_used:4} ({mem_used_percents:1})"
+display_type = "memory"
+icons = true
+interval = 5
+warning_mem = 80
+critical_mem = 95
+
+[[block]]
+block = "cpu"
+on_click = "alacritty -e zsh -ic htop"
+interval = 1
+
+[[block]]
+block = "sound"
+
+[[block]]
+block = "backlight"
+device = "intel_backlight"
+
+[[block]]
+block = "battery"
+interval = 10
+format = "{percentage} {time}"
+
+[[block]]
+block = "time"
+format = "%a %d/%m | %R:%S"
+interval = 1
+locale = "pt_BR"
+
+[[block]]
+block = "net"
+device = "wlp5s0"
+on_click = "alacritty -e zsh -ic 'sudo bandwhich'"
+format = "{ssid} {speed_down;K*b} {speed_up;K*b}"
+interval = 5
+
+[[block]]
+block = "bluetooth"
+mac = "50:5B:C2:B4:4B:C8"
+hide_disconnected = true
+format = ""
