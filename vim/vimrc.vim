@@ -51,7 +51,7 @@ set autoindent smartindent
 set splitbelow splitright
 set ignorecase smartcase infercase
 set incsearch hlsearch
-set wildmenu wildignorecase
+set wildmenu wildmode=full wildignorecase
 set wildignore+=*.pyc,*pycache*
 set matchpairs+=<:>
 set list listchars=tab:\ \ ,trail:~
