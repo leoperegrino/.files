@@ -1,10 +1,9 @@
-runtime user/highlighting.vim
-runtime user/goyo.vim
-runtime user/coc.vim
-runtime user/nerdtree.vim
-runtime user/undotree.vim
-runtime user/limelight.vim
-runtime user/tex.vim
-runtime user/statusline.vim
-runtime user/function.vim
-runtime user/maps.vim
+runtime user/core/keymaps.vim
+runtime user/core/functions.vim
+
+runtime user/plugins/init.vim
+silent! colorscheme deus
+runtime user/core/highlighting.vim
+runtime user/plugins/setups/init.vim
+
+runtime user/lsp/coc.vim

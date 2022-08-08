@@ -77,6 +77,16 @@ if !has('nvim')
 endif
 " }}}
 
+nnoremap <silent> K :call ShowDoc()<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
+noremap  <silent> <leader>g :GFiles<CR>
+noremap  <silent> <leader>t :ToggleTerm<CR>
+nnoremap <F1>  :Commentary<CR>
+nnoremap <F2>  :call CocActionAsync('rename')<CR>
+nnoremap <F9>  :NERDTreeToggle<CR>
+nnoremap <F10> :Goyo<CR>
+nnoremap <F11> :UndotreeToggle<CR>
+nnoremap <F12> :exec 'TagbarToggle' <bar> wincmd l<CR>
+
 command! -nargs=1 -complete=highlight FH exec 'filter /\c.*' . substitute('<args>', ' ', '\\\&\.\*', '') . '/ hi'
 command! -nargs=1 -complete=command H vert help <args>
-cnoreabbrev help vert help
