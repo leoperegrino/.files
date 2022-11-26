@@ -22,6 +22,7 @@ packer.startup(
 		use 'williamboman/nvim-lsp-installer'
 		use 'neovim/nvim-lspconfig'
 		use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+		use 'nvim-treesitter/nvim-treesitter-context'
 		use 'jose-elias-alvarez/null-ls.nvim'
 
 		use 'mfussenegger/nvim-dap'
