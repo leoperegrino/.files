@@ -58,6 +58,8 @@ alias py="python -q"
 alias ipy="ipython"
 alias ncmpcpp="TERM=xterm ncmpcpp -q"
 alias ranger="TERM=xterm ranger ."
+alias ef='setsid -f easyeffects --gapplication-service &'
+alias code="code --extensions-dir ${XDG_DATA_HOME}/vscode/extensions"
 alias sqlite3="sqlite3 -init ${XDG_CONFIG_HOME}/sqlite3/sqliterc"
-alias element-desktop="element-desktop --profile-dir "${XDG_DATA_HOME}/Element
+alias element-desktop="element-desktop --profile-dir ${XDG_DATA_HOME}/Element"
 alias mbsync='mbsync -c $HOME/.config/isync/mbsyncrc'
