@@ -39,7 +39,7 @@ bar {
 # }}}
 
 # autostart {{{
-exec --no-startup-id picom --experimental-backends
+exec --no-startup-id picom
 exec --no-startup-id mpDris2 -j
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
@@ -48,6 +48,7 @@ exec --no-startup-id clipmenud
 exec --no-startup-id xmod
 exec --no-startup-id sxhkd
 exec --no-startup-id sleep 2 && rfbt
+exec --no-startup-id pasystray
 # }}}
 
 # set keys {{{
