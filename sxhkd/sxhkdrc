@@ -37,7 +37,7 @@ alt + w
 alt + apostrophe
 	pybtc
 
-alt + q
+alt + Tab
 	dunstctl close-all
 # }}}
 
