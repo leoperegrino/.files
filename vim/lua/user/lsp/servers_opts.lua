@@ -26,7 +26,6 @@ servers_opts.rust_analyzer = function(server, opts)
 
 	local tools = {
 		autoSetHints = true,
-		hover_with_actions = true,
 		executor = require("rust-tools/executors").termopen,
 		on_initialized = nil,
 		inlay_hints = {
@@ -55,7 +54,6 @@ servers_opts.rust_analyzer = function(server, opts)
 
 	rust_tools.setup { server = opts , tools = tools, dap = dap}
 	server:attach_buffers()
-	rust_tools.start_standalone_if_required()
 end
 
 servers_opts.texlab = function(server, opts)

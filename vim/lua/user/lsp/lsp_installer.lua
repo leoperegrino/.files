@@ -21,12 +21,12 @@ end
 local keymaps = require('user.core.keymaps')
 local servers_opts = require('user.lsp.servers_opts')
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 capabilities.offsetEncoding = { "utf-16" }
 
 
 local lsp_highlight_document = function(client)
-	if client.resolved_capabilities.document_highlight then
+	if client.server_capabilities.document_highlight then
 		vim.api.nvim_exec(
 			[[
 			hi! link LspReferenceText  visual

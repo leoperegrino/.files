@@ -30,9 +30,9 @@ comment.setup {
 }
 
 function _COMMENT()
-	require("Comment.api").toggle_current_linewise()
+	require("Comment.api").toggle.linewise()
 end
 
 function _VCOMMENT()
-	require("Comment.api").toggle_linewise_op(vim.fn.visualmode())
+	require("Comment.api").toggle.linewise(vim.fn.visualmode())
 end
