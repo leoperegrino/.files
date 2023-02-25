@@ -32,7 +32,7 @@ M.lsp = function(bufnr)
 	keymap("n", "glc" , lsp_buf .. ".code_action()<CR>"             , buf_opts)
 	keymap("n", "glw" , lsp_buf .. ".add_workspace_folder()<CR>"    , buf_opts)
 	keymap("n", "glW" , lsp_buf .. ".remove_workspace_folder()<CR>" , buf_opts)
-	keymap("n", "glf" , lsp_buf .. ".formatting()<CR>"              , buf_opts)
+	keymap("n", "glf" , lsp_buf .. ".format({async=true})<CR>"      , buf_opts)
 	keymap("n", "gll" , ":lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", buf_opts)
 end
 
