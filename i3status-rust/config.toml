@@ -1,7 +1,7 @@
 [theme]
-name = "plain"
+theme = "plain"
 [icons]
-name = "awesome"
+icons = "awesome4"
 [icons.overrides]
 music = "🔊"
 backlight_empty = "🌑"
@@ -24,11 +24,14 @@ separator = ' '
 
 [[block]]
 block = "taskwarrior"
+data_location = "${XDG_DATA_HOME}/taskwarrior"
 interval = 60
-on_click = "alacritty -e zsh -c 'task && zsh -i'"
-format = "{count} {filter_name}"
+format = "$icon $count $filter_name "
 warning_threshold = 10
 critical_threshold = 20
+[[block.click]]
+button = "left"
+cmd = "alacritty -e zsh -c 'task && zsh -i'"
 [[block.filters]]
 name = "tasks"
 filter = "+PENDING"
@@ -37,10 +40,12 @@ filter = "+PENDING"
 # block = "music"
 # dynamic_width = true
 # marquee_interval = 10
-# on_click = "alacritty -e ncmpcpp"
 # hide_when_empty = true
 # buttons = ["prev", "play", "next"]
 # format = "{combo}"
+# [[block.click]]
+# button = "left"
+# cmd = "alacritty -e ncmpcpp"
 
 [[block]]
 block = "disk_space"
@@ -48,22 +53,21 @@ path = "/"
 info_type = "available"
 warning = 20.0
 alert = 10.0
-format = "{icon} {available} ({percentage:1})"
+format = "$icon $available ($percentage.eng(w:1)) "
 
 [[block]]
 block = "memory"
-on_click = ""
-format_mem = "{mem_used:4} ({mem_used_percents:1})"
-display_type = "memory"
-icons = true
+format = "$icon $mem_used.eng(w:4) ($mem_used_percents.eng(w:1)) "
 interval = 5
 warning_mem = 80
 critical_mem = 95
 
 [[block]]
 block = "cpu"
-on_click = "alacritty -e zsh -ic htop"
 interval = 1
+[[block.click]]
+cmd = "alacritty -e zsh -ic htop"
+button = "left"
 
 [[block]]
 block = "sound"
@@ -75,23 +79,32 @@ device = "intel_backlight"
 [[block]]
 block = "battery"
 interval = 10
-format = "{percentage} {time}"
+format = " $icon $percentage $time "
 
 [[block]]
 block = "time"
-format = "%a %d/%m | %R:%S"
 interval = 1
-locale = "pt_BR"
+format = "$icon $timestamp.datetime(format:'%a %d/%m | %R:%S', locale:pt_BR) "
 
 [[block]]
 block = "net"
 device = "wlp5s0"
-on_click = "alacritty -e zsh -ic 'sudo bandwhich'"
-format = "{ssid} {speed_down;K*b} {speed_up;K*b}"
+format = "$speed_down.eng(p:K) $speed_up.eng(p:K) "
+interval = 2
+[[block.click]]
+button = "left"
+cmd = "alacritty -e zsh -ic 'sudo bandwhich'"
+
+[[block]]
+block = "custom"
+command = '''nmcli -t connection | awk -F : '(NR == 1){ print $1 }''''
 interval = 5
+[[block.click]]
+button = "left"
+cmd = "alacritty -e zsh -ic 'sudo bandwhich'"
 
 [[block]]
 block = "bluetooth"
 mac = "50:5B:C2:B4:4B:C8"
-hide_disconnected = true
+disconnected_format = ""
 format = ""
