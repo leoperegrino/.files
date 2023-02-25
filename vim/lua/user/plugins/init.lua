@@ -52,6 +52,7 @@ packer.startup(
 		use 'kyazdani42/nvim-tree.lua'
 		-- use 'ray-x/lsp_signature.nvim'
 		use 'nvim-telescope/telescope.nvim'
+		use 'debugloop/telescope-undo.nvim'
 
 		use 'ajmwagar/vim-deus'
 		use 'p00f/nvim-ts-rainbow'

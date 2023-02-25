@@ -6,7 +6,13 @@ end
 vim.cmd[[autocmd User TelescopePreviewerLoaded setlocal number]]
 
 -- telescope.load_extension('dap')
+telescope.load_extension('undo')
 telescope.setup{
+	-- extensions = {
+ --        undo = {
+ --          -- telescope-undo.nvim config, see below
+ --        },
+ --    },
 	defaults = {
 		scroll_strategy = "limit",
 		layout_config = {

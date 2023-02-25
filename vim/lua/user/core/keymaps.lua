@@ -72,6 +72,7 @@ M.plugins = function()
 	keymap("n", "<F8>"       , dap .. ".toggle_breakpoint()<cr>"  , opts)
 	keymap("n", "<F9>"       , ":NvimTreeToggle<cr>"           , opts)
 	keymap("n", "<F10>"      , ":ToggleTerm<cr>"               , opts)
+	keymap("n", "<F11>"      , ":Telescope undo<cr>"           , opts)
 	keymap("n", "<F12>"      , ":SymbolsOutline<cr>"           , opts)
 
 	keymap("i", "<C-x><C-o>" , "<cmd>lua require('cmp').complete()<CR>", opts)
