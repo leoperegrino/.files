@@ -1,14 +1,12 @@
-local set_symbols_outline_state = function()
-  vim.g['symbols_outline_state'] = require('symbols-outline').state
+local outline_status_ok, outline = pcall(require, "symbols-outline")
+if not outline_status_ok then
+	return
 end
 
-_G.set_symbols_outline_state = set_symbols_outline_state
-
-vim.cmd[[autocmd BufEnter * :lua set_symbols_outline_state()]]
 vim.cmd[[autocmd BufEnter * if winnr('$') == 1 && exists('g:symbols_outline_state.outline_buf') && g:symbols_outline_state.outline_buf | quit | endif]]
 vim.cmd[[hi! link FocusedSymbol statusline]]
 
-vim.g.symbols_outline = {
+outline.setup {
 	highlight_hovered_item = true,
 	show_guides = true,
 	auto_preview = false,
@@ -28,6 +26,8 @@ vim.g.symbols_outline = {
 		toggle_preview = "K",
 		rename_symbol = "r",
 		code_actions = "a",
+		fold_all = "c",
+		unfold_all = "O",
 	},
 	lsp_blacklist = {},
 	symbol_blacklist = {},
