@@ -18,13 +18,13 @@ servers_opts.sumneko_lua = function(server, opts)
 	lspconfig[server.name].setup(opts)
 end
 
-servers_opts.rust_analyzer = function(server, opts)
+servers_opts.rust_analyzer = function(_, opts)
 	local rust_tools_ok, rust_tools = pcall(require, "rust-tools")
 	if not rust_tools_ok then
 		return
 	end
 
-	local tools = {
+	opts.tools = {
 		autoSetHints = true,
 		executor = require("rust-tools/executors").termopen,
 		on_initialized = nil,
@@ -44,16 +44,22 @@ servers_opts.rust_analyzer = function(server, opts)
 		hover_actions = { auto_focus = false },
 	}
 
-	local dap = {
-		adapter = {
-			type = "executable",
-			command = "lldb-vscode",
-			name = "rt_lldb",
-		},
+	opts.dap = {
+		adapter = require("rust-tools.dap").get_codelldb_adapter(
+			"/usr/bin/codelldb",
+			"/usr/lib/codelldb/lldb/lib/liblldb.so"
+		)
 	}
 
-	rust_tools.setup { server = opts , tools = tools, dap = dap}
-	server:attach_buffers()
+	opts.server = {
+		settings = {
+			["rust-analyzer"] = {
+				inlayHints = { locationLinks = false },
+			}
+		}
+	}
+
+	rust_tools.setup(opts)
 end
 
 servers_opts.texlab = function(server, opts)

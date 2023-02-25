@@ -14,6 +14,8 @@ M.lsp = function(bufnr)
 	buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	if vim.bo.filetype == "vim" or vim.bo.filetype == "sh" then
+	elseif vim.bo.filetype == "rust" then
+		keymap("n", "K"      , ":RustHoverActions<CR>" , buf_opts)
 	else
 		keymap("n", "K"      , ":lua vim.lsp.buf.hover()<CR>" , buf_opts)
 	end
