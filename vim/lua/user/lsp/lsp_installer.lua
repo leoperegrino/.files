@@ -1,13 +1,19 @@
-local lsp_installer_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
-if not lsp_installer_ok then
+local mason_ok, mason = pcall(require, "mason")
+if not mason_ok then
 	return
 end
 
-lsp_installer.setup{}
+local mason_lspconfig_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
+if not mason_lspconfig then
+	return
+end
+
+mason.setup{}
+mason_lspconfig.setup{}
 local lspconfig = require("lspconfig")
 
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = {"lsp-installer", "lspinfo"},
+	pattern = {"mason", "lsp-installer", "lspinfo"},
 	callback = function()
 		vim.api.nvim_win_set_config(0, { border = "rounded" })
 	end,
@@ -50,7 +56,7 @@ local on_attach = function(client, bufnr)
 	lsp_highlight_document(client)
 end
 
-local servers = lsp_installer.get_installed_servers()
+local servers = mason_lspconfig.get_installed_servers()
 
 local opts = {
 	on_attach = on_attach,
@@ -59,11 +65,11 @@ local opts = {
 
 for _, server in ipairs(servers) do
 
-	local server_opt = servers_opts[server.name]
+	local server_opt = servers_opts[server]
 
 	if server_opt then
 		server_opt(server, opts)
 	else
-		lspconfig[server.name].setup(opts)
+		lspconfig[server].setup(opts)
 	end
 end

@@ -19,8 +19,9 @@ packer.startup(
 		use 'wbthomason/packer.nvim'
 		use 'nvim-lua/plenary.nvim'
 
-		use 'williamboman/nvim-lsp-installer'
 		use 'neovim/nvim-lspconfig'
+		use "williamboman/mason.nvim"
+		use "williamboman/mason-lspconfig.nvim"
 		use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 		use 'nvim-treesitter/nvim-treesitter-context'
 		use 'jose-elias-alvarez/null-ls.nvim'

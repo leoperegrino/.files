@@ -2,10 +2,10 @@ local servers_opts = {}
 
 local lspconfig = require("lspconfig")
 
-servers_opts.sumneko_lua = function(server, opts)
+servers_opts.lua_ls = function(server, opts)
 	opts.settings = {
 		Lua = {
-			diagnostics = { globals = { "vim" }, },
+			diagnostics = { globals = { "vim", "require" }, },
 			workspace = {
 				library = {
 					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
@@ -15,7 +15,7 @@ servers_opts.sumneko_lua = function(server, opts)
 		},
 	}
 
-	lspconfig[server.name].setup(opts)
+	lspconfig[server].setup(opts)
 end
 
 servers_opts.rust_analyzer = function(_, opts)
@@ -74,7 +74,7 @@ servers_opts.texlab = function(server, opts)
 		}
 	}
 
-	lspconfig[server.name].setup(opts)
+	lspconfig[server].setup(opts)
 end
 
 servers_opts.pylsp = function(server, opts)
@@ -87,7 +87,7 @@ servers_opts.pylsp = function(server, opts)
 		}
 	}
 
-	lspconfig[server.name].setup(opts)
+	lspconfig[server].setup(opts)
 end
 
 servers_opts.tsserver = function(server, opts)
@@ -106,7 +106,7 @@ servers_opts.tsserver = function(server, opts)
 				}
 		}
 	}
-	lspconfig[server.name].setup(opts)
+	lspconfig[server].setup(opts)
 end
 
 return servers_opts
