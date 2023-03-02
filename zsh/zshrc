@@ -12,7 +12,8 @@ zmodload -i zsh/complist
 # }}}
 
 # autoload {{{
-autoload -U compinit; compinit
+fpath=("${XDG_DATA_HOME}/zsh" ${fpath})
+autoload -U compinit; compinit -d "${XDG_CACHE_HOME}/zsh/zcompdump-${ZSH_VERSION}"
 autoload -U up-line-or-beginning-search
 autoload -U vcs_info
 autoload -U down-line-or-beginning-search
@@ -67,6 +68,7 @@ bindkey -M menuselect '\e' send-break
 # }}}
 
 # zstyle {{{
+zstyle ':completion:*' file-list all
 zstyle ':vcs_info:git:*' formats '%b'
 zstyle ':completion:*' menu select
 zstyle ':completion:*' insert-tab false
@@ -118,7 +120,7 @@ source "$XDG_CONFIG_HOME/sh/functions"
 alias help="run-help"
 alias h="history 1"
 
-[ -z "${VIM_TERMINAL}" ] && (cat "$HOME/.cache/wal/sequences" 2>/dev/null &)
+[ -z "${VIM_TERMINAL}" ] && (cat "${XDG_CACHE_HOME}/wal/sequences" 2>/dev/null &)
 
 gpg-connect-agent updatestartuptty /bye &>/dev/null
 export GPG_TTY="$(tty)"
