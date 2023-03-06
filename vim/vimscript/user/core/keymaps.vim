@@ -37,8 +37,8 @@ inoremap <C-b> <Left>
 inoremap <C-e> <ESC>A
 inoremap <C-a> <ESC>I
 noremap  <C-r> <Nop>
-noremap  <C-p> jzz
-noremap  <C-e> kzz
+noremap  <C-p> kzz
+noremap  <C-n> jzz
 noremap  <C-h> :wincmd h<CR>
 noremap  <C-j> :wincmd j<CR>
 noremap  <C-k> :wincmd k<CR>
@@ -47,9 +47,6 @@ noremap  <C-f> :vert res -5<CR>
 noremap  <C-b> :vert res +5<CR>
 noremap  <C-s> :res -5<CR>
 noremap  <C-g> :res +5<CR>
-nnoremap  <C-p> :call SmoothScroll('down')<CR>
-nnoremap  <C-e> :call SmoothScroll('up')<CR>
-tnoremap  <C-h> <C-\><C-N><C-w>h
 tnoremap  <C-j> <C-\><C-N><C-w>j
 tnoremap  <C-k> <C-\><C-N><C-w>k
 tnoremap  <C-l> <C-\><C-N><C-w>l
@@ -72,9 +69,7 @@ noremap  gF :vsplit <cfile><CR>
 nnoremap yu :let @/='\<' . expand('<cword>') . '\>' <BAR> set hlsearch<CR>
 nnoremap yU :let @/= expand('<cword>') <BAR> set hlsearch<CR>
 nnoremap <silent><esc> :noh <bar> match none<CR><esc>
-if !has('nvim')
-	nnoremap <esc>^[ <esc>^[
-endif
+nnoremap <esc>^[ <esc>^[
 " }}}
 
 nnoremap <silent> K :call ShowDoc()<CR>
