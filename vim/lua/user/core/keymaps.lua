@@ -1,40 +1,11 @@
+local M = {}
+
 local opts = { noremap = true, silent = true }
 local keymap = vim.keymap.set
-local buf_set_option = vim.api.nvim_buf_set_option
 local telescope = ":lua require('telescope.builtin')"
 local dap = ":lua require('dap')"
 local dapui = ":lua require('dapui')"
 local diagnostic = vim.diagnostic
-local lsp_buf = ":lua vim.lsp.buf"
-local M = {}
-
-
-M.lsp = function(bufnr)
-	local buf_opts = { buffer = bufnr, noremap=true, silent=true }
-	buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
-	if vim.bo.filetype == "vim" or vim.bo.filetype == "sh" then
-	elseif vim.bo.filetype == "rust" then
-		keymap("n", "K"      , ":RustHoverActions<CR>" , buf_opts)
-	else
-		keymap("n", "K"      , ":lua vim.lsp.buf.hover()<CR>" , buf_opts)
-	end
-
-	keymap("n", "gL"  , ":lua vim.diagnostic.setloclist({open=false})<cr>" .. telescope .. ".loclist()<cr>", buf_opts)
-	keymap("n", "gQ"  , ":lua vim.diagnostic.setqflist({open=false})<cr>" .. telescope .. ".quickfix()<cr>", buf_opts)
-	keymap("n", "gd"  , telescope .. ".lsp_definitions()<cr>"       , buf_opts)
-	keymap("n", "gI"  , telescope .. ".lsp_implementations()<cr>"   , buf_opts)
-	keymap("n", "gt"  , telescope .. ".lsp_type_definitions()<cr>"  , buf_opts)
-	keymap("n", "gr"  , telescope .. ".lsp_references()<cr>"        , buf_opts)
-	keymap("n", "glr" , lsp_buf .. ".rename()<CR>"                  , buf_opts)
-	keymap("n", "gld" , lsp_buf .. ".declaration()<CR>"             , buf_opts)
-	keymap("n", "gls" , lsp_buf .. ".signature_help()<CR>"          , buf_opts)
-	keymap("n", "glc" , lsp_buf .. ".code_action()<CR>"             , buf_opts)
-	keymap("n", "glw" , lsp_buf .. ".add_workspace_folder()<CR>"    , buf_opts)
-	keymap("n", "glW" , lsp_buf .. ".remove_workspace_folder()<CR>" , buf_opts)
-	keymap("n", "glf" , lsp_buf .. ".format({async=true})<CR>"      , buf_opts)
-	keymap("n", "gll" , ":lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", buf_opts)
-end
 
 
 M.plugins = function()
@@ -159,7 +130,7 @@ M.commands = function()
 end
 
 
-M.non_buf = function()
+M.setup = function()
 	M.plugins()
 	M.leader()
 	M.ctrl()

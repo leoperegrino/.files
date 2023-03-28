@@ -1,9 +1,9 @@
+local keymaps = require('user.lsp.keymaps')
 
-local keymaps = require('user.core.keymaps')
 local null_ls = require("null-ls")
 
-local on_attach = function(client, bufnr)
-	keymaps.lsp(bufnr)
+local on_attach = function(_, bufnr)
+	keymaps.setup(bufnr)
 end
 
 vim.api.nvim_create_autocmd("FileType", {
