@@ -1,9 +1,6 @@
-local status_ok, lualine = pcall(require, "lualine")
-if not status_ok then
-	return
-end
-
 local fns = require('user.core.functions')
+
+local lualine = require("lualine")
 
 local statusline  = fns.hi.get_group('StatusLine').bg
 local diff_change = fns.hi.get_group('DiffChange').fg

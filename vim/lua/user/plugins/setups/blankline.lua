@@ -1,7 +1,4 @@
-local blankline_status_ok, blankline = pcall(require, "indent_blankline")
-if not blankline_status_ok then
-	return
-end
+local blankline = require("indent_blankline")
 
 vim.opt.list = true
 -- vim.cmd [[highlight IndentBlanklineIndent1 ctermbg=233 gui=nocombine]]

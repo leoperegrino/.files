@@ -1,9 +1,7 @@
-local status_ok, fidget = pcall(require, "fidget")
-if not status_ok then
-	return
-end
-
 local fns = require('user.core.functions')
+
+local fidget = require("fidget")
+
 fns.hi.set('FidgetTitle', 'NONE', fns.hi.get_group('Title').fg)
 
 

@@ -1,7 +1,4 @@
-local gitsigns_status_ok, gitsigns = pcall(require, "gitsigns")
-if not gitsigns_status_ok then
-	return
-end
+local gitsigns = require("gitsigns")
 
 local git_hl = function(hl_group)
 	return {

@@ -1,7 +1,4 @@
-local outline_status_ok, outline = pcall(require, "symbols-outline")
-if not outline_status_ok then
-	return
-end
+local outline = require("symbols-outline")
 
 vim.cmd[[autocmd BufEnter * if winnr('$') == 1 && exists('g:symbols_outline_state.outline_buf') && g:symbols_outline_state.outline_buf | quit | endif]]
 vim.cmd[[hi! link FocusedSymbol statusline]]

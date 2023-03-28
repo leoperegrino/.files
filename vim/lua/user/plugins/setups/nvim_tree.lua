@@ -1,8 +1,4 @@
-local status_ok, nvim_tree = pcall(require, "nvim-tree")
-if not status_ok then
-	return
-end
-
+local nvim_tree = require("nvim-tree")
 
 nvim_tree.setup {
 	auto_reload_on_write = true,
