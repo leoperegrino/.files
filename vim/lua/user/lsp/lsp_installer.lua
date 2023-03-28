@@ -32,8 +32,8 @@ capabilities.offsetEncoding = { "utf-16" }
 
 
 local lsp_highlight_document = function(client)
-	if client.server_capabilities.document_highlight then
-		vim.api.nvim_exec(
+	if client.server_capabilities.documentHighlightProvider then
+		vim.cmd(
 			[[
 			hi! link LspReferenceText  visual
 			hi! link LspReferenceRead  visual
@@ -43,7 +43,7 @@ local lsp_highlight_document = function(client)
 			autocmd! CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
 			autocmd! CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
 			autocmd! CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-			autocmd! TextYankPost *       silent! lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200})
+			autocmd! TextYankPost *       lua require('vim.highlight').on_yank({ higroup = 'Visual', timeout = 200 })
 			augroup END
 			]],
 			false
