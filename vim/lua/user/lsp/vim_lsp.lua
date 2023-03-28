@@ -1,41 +1,78 @@
+local M = {}
+
 local signs = {
-	{ name = "DiagnosticSignError", text = "" , hl = "noBgDiffDelete"},
-	{ name = "DiagnosticSignWarn" , text = "" , hl = "noBgDiffText"  },
-	{ name = "DiagnosticSignHint" , text = "" , hl = "noBgDiffAdd"   },
-	{ name = "DiagnosticSignInfo" , text = "" , hl = "noBgDiffChange"},
+	DiagnosticSignError = { text = "" , hl = "noBgDiffDelete"},
+	DiagnosticSignWarn  = { text = "" , hl = "noBgDiffText"  },
+	DiagnosticSignHint  = { text = "" , hl = "noBgDiffAdd"   },
+	DiagnosticSignInfo  = { text = "" , hl = "noBgDiffChange"},
 }
 
-for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name,
-		{ texthl = sign.hl, text = sign.text, numhl = "" }
+M.sign_define = function()
+	for sign, config in ipairs(signs) do
+		vim.fn.sign_define(sign,
+			{ texthl = config.hl, text = config.text, numhl = "" }
+		)
+	end
+end
+
+
+M.diagnostic_config = function()
+	local config = {
+		virtual_text = false,
+		signs = { active = signs },
+		update_in_insert = false,
+		underline = false,
+		severity_sort = true,
+		float = {
+			focus = false,
+			focusable = true,
+			style = "minimal",
+			border = "rounded",
+			source = "always",
+			header = "",
+			prefix = "",
+		},
+	}
+
+	vim.diagnostic.config(config)
+end
+
+M.handlers = function()
+	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+		vim.lsp.handlers.hover,
+		{ border = "rounded" , focusable = true }
+	)
+
+	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+		vim.lsp.handlers.signature_help,
+		{ border = "rounded" }
 	)
 end
 
-local config = {
-	virtual_text = false,
-	signs = { active = signs },
-	update_in_insert = false,
-	underline = false,
-	severity_sort = true,
-	float = {
-		focus = false,
-		focusable = true,
-		style = "minimal",
-		border = "rounded",
-		source = "always",
-		header = "",
-		prefix = "",
-	},
-}
-vim.diagnostic.config(config)
+M.lsp_highlight_document = function(client)
+	if client.server_capabilities.documentHighlightProvider then
+		vim.cmd(
+			[[
+			hi! link LspReferenceText  visual
+			hi! link LspReferenceRead  visual
+			hi! link LspReferenceWrite visual
+			augroup lsp_document_highlight
+			autocmd! * <buffer>
+			autocmd! CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
+			autocmd! CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+			autocmd! CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+			autocmd! TextYankPost *       lua require('vim.highlight').on_yank({ higroup = 'Visual', timeout = 200 })
+			augroup END
+			]],
+			false
+		)
+	end
+end
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-	vim.lsp.handlers.hover,
-	{ border = "rounded" ,
-	focusable = true }
-)
+M.setup = function()
+	M.sign_define()
+	M.diagnostic_config()
+	M.handlers()
+end
 
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-	vim.lsp.handlers.signature_help,
-	{ border = "rounded" }
-)
+return M
