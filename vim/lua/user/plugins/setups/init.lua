@@ -1,6 +1,7 @@
 require("user.plugins.setups.blankline")
 require("user.plugins.setups.cmp")
 require("user.plugins.setups.comment")
+require("user.plugins.setups.metals")
 require("user.plugins.setups.dap")
 require("user.plugins.setups.dressing")
 require("user.plugins.setups.fidget")

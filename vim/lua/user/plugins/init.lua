@@ -43,6 +43,7 @@ packer.startup(
 		use 'saadparwaiz1/cmp_luasnip'
 		use 'rafamadriz/friendly-snippets'
 
+		use { 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" } }
 		use 'simrat39/rust-tools.nvim'
 
 		-- use 'chentoast/marks.nvim'
