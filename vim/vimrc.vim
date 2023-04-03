@@ -7,7 +7,8 @@ syntax on
 " dirs {{{
 set undofile
 set swapfile
-set writebackup
+set backup writebackup
+set backupdir=$XDG_STATE_HOME/nvim/backup//
 set runtimepath^=$XDG_DATA_HOME/vim
 set runtimepath^=$XDG_CONFIG_HOME/vim
 set runtimepath^=$XDG_CONFIG_HOME/vim/vimscript
