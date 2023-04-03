@@ -3,6 +3,7 @@ local dap = require("dap")
 local metals = require("metals")
 
 local keymaps = require('user.lsp.keymaps')
+local vim_lsp = require('user.lsp.vim_lsp')
 
 dap.configurations.scala = {
 	{
@@ -24,26 +25,6 @@ dap.configurations.scala = {
 	},
 }
 
-local lsp_highlight_document = function(client)
-	if client.server_capabilities.documentHighlightProvider then
-		vim.api.nvim_exec(
-			[[
-			hi! link LspReferenceText  visual
-			hi! link LspReferenceRead  visual
-			hi! link LspReferenceWrite visual
-			augroup lsp_document_highlight
-			autocmd! * <buffer>
-			autocmd! CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
-			autocmd! CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
-			autocmd! CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-			autocmd! TextYankPost *       silent! lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200})
-			augroup END
-			]],
-			false
-		)
-	end
-end
-
 local metals_config = metals.bare_config()
 
 metals_config.settings = {
@@ -56,7 +37,7 @@ metals_config.capabilities = cmp_nvim_lsp.default_capabilities()
 
 metals_config.on_attach = function(client, bufnr)
 	keymaps.setup(bufnr)
-	lsp_highlight_document(client)
+	vim_lsp.lsp_highlight_document(client)
 	metals.setup_dap()
 	vim.keymap.set('n', 'gm',
 		'<cmd>lua require("telescope").extensions.metals.commands()<CR>',
