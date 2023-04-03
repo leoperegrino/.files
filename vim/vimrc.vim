@@ -16,11 +16,11 @@ set runtimepath^=$XDG_CONFIG_HOME/vim/vimscript/user
 if ! has('nvim')
 	set t_Co=256
 	set viminfo     ='100,/50,:100
-	set viminfofile =$XDG_DATA_HOME/vim/info
-	set undodir     =$XDG_DATA_HOME/vim/undo/    | call mkdir(&undodir,   'p')
-	set directory   =$XDG_DATA_HOME/vim/swap//   | call mkdir(&directory, 'p')
-	set backupdir   =$XDG_DATA_HOME/vim/backup// | call mkdir(&backupdir, 'p')
-	set viewdir     =$XDG_DATA_HOME/vim/view//   | call mkdir(&viewdir,   'p')
+	set viminfofile =$XDG_STATE_HOME/vim/info
+	set undodir     =$XDG_STATE_HOME/vim/undo/    | call mkdir(&undodir,   'p')
+	set directory   =$XDG_STATE_HOME/vim/swap//   | call mkdir(&directory, 'p')
+	set backupdir   =$XDG_STATE_HOME/vim/backup// | call mkdir(&backupdir, 'p')
+	set viewdir     =$XDG_STATE_HOME/vim/view//   | call mkdir(&viewdir,   'p')
 endif
 " }}}
 
