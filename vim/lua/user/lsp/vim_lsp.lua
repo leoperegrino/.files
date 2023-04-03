@@ -8,7 +8,7 @@ local signs = {
 }
 
 M.sign_define = function()
-	for sign, config in ipairs(signs) do
+	for sign, config in pairs(signs) do
 		vim.fn.sign_define(sign,
 			{ texthl = config.hl, text = config.text, numhl = "" }
 		)
