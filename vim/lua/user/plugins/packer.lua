@@ -3,17 +3,43 @@ local M = {}
 local packer = require("packer")
 local packer_util = require("packer.util")
 
-M.setup = function()
 
+M.bootstrap = function()
+	local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+	local packer_url =  'https://github.com/wbthomason/packer.nvim'
+
+	if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+		PACKER_BOOTSTRAP = vim.fn.system({
+				'git',
+				'clone',
+				'--depth', '1',
+				packer_url,
+				install_path
+			})
+
+		print "Installing packer close and reopen Neovim..."
+		vim.cmd([[packadd packer.nvim]])
+	end
+end
+
+
+M.reset = function()
 	packer.reset()
-	packer.init {
+end
+
+
+M.init = function()
+	packer.init({
 		display = {
 			open_fn = function()
-				return packer_util.float { border = "rounded" }
+				return packer_util.float({ border = "rounded" })
 			end,
 		},
-	}
+	})
+end
 
+
+M.startup = function()
 	packer.startup(
 		function(use)
 			use 'wbthomason/packer.nvim'
@@ -48,7 +74,7 @@ M.setup = function()
 
 			-- use 'chentoast/marks.nvim'
 			use 'numToStr/Comment.nvim'
-			use { 'windwp/nvim-autopairs', config = function() require("nvim-autopairs").setup {} end }
+			use { 'windwp/nvim-autopairs', config = function() require("nvim-autopairs").setup() end }
 			use 'akinsho/toggleterm.nvim'
 			use 'kyazdani42/nvim-tree.lua'
 			-- use 'ray-x/lsp_signature.nvim'
@@ -67,11 +93,14 @@ M.setup = function()
 			use 'lewis6991/gitsigns.nvim'
 
 			if PACKER_BOOTSTRAP then
-				require('packer').sync()
+				packer.sync()
 			end
 		end
 	)
+end
 
+
+M.autocmd = function()
 	vim.api.nvim_create_augroup("packer_user_config", {})
 	vim.api.nvim_create_autocmd("BufWritePost", {
 		group = "packer_user_config",
@@ -79,5 +108,15 @@ M.setup = function()
 		command = [[source <afile> | PackerSync]]
 	})
 end
+
+
+M.setup = function()
+	M.bootstrap()
+	M.reset()
+	M.init()
+	M.startup()
+	M.autocmd()
+end
+
 
 return M
