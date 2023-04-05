@@ -49,7 +49,7 @@ M.handlers = function()
 	)
 end
 
-M.lsp_highlight_document = function(client)
+M.highlight_document = function(client)
 	if client.server_capabilities.documentHighlightProvider then
 		vim.cmd(
 			[[

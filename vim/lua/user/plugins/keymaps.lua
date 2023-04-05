@@ -6,6 +6,24 @@ local telescope = ":lua require('telescope.builtin')"
 local dap = ":lua require('dap')"
 local dapui = ":lua require('dapui')"
 
+
+M.lsp = function(bufnr)
+	local buf_opts = { buffer = bufnr, noremap = true, silent = true }
+
+	if vim.bo.filetype == "vim" or vim.bo.filetype == "sh" then
+	elseif vim.bo.filetype == "rust" then
+		keymap("n", "K", ":RustHoverActions<CR>" , buf_opts)
+	else
+		keymap("n", "K", ":lua vim.lsp.buf.hover()<CR>" , buf_opts)
+	end
+
+	keymap("n", "gd"  , telescope .. ".lsp_definitions()<cr>"       , buf_opts)
+	keymap("n", "gI"  , telescope .. ".lsp_implementations()<cr>"   , buf_opts)
+	keymap("n", "gt"  , telescope .. ".lsp_type_definitions()<cr>"  , buf_opts)
+	keymap("n", "gr"  , telescope .. ".lsp_references()<cr>"        , buf_opts)
+end
+
+
 M.plugins = function()
 	keymap("n", "gG" , ":Gitsigns<cr>", opts)
 
@@ -42,8 +60,5 @@ M.plugins = function()
 	keymap("i", "<C-x><C-o>" , "<cmd>lua require('cmp').complete()<CR>", opts)
 end
 
-M.setup = function()
-	M.plugins()
-end
 
 return M

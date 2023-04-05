@@ -2,8 +2,8 @@ local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local dap = require("dap")
 local metals = require("metals")
 
-local keymaps = require('user.lsp.keymaps')
-local vim_lsp = require('user.lsp.vim_lsp')
+local keymaps = require('user.core.keymaps').lsp
+local vim_lsp = require('user.core.lsp')
 
 dap.configurations.scala = {
 	{
@@ -37,7 +37,7 @@ metals_config.capabilities = cmp_nvim_lsp.default_capabilities()
 
 metals_config.on_attach = function(client, bufnr)
 	keymaps.setup(bufnr)
-	vim_lsp.lsp_highlight_document(client)
+	vim_lsp.highlight_document(client)
 	metals.setup_dap()
 	vim.keymap.set('n', 'gm',
 		'<cmd>lua require("telescope").extensions.metals.commands()<CR>',
