@@ -118,13 +118,21 @@ M.commands = function()
 end
 
 
-M.setup = function()
-	M.diagnostic()
-	M.leader()
-	M.ctrl()
-	M.etc()
-	M.commands()
-end
+M.buffer = {
+	setup = function(bufnr)
+		M.lsp(bufnr)
+	end
+}
+
+M.global = {
+	setup = function()
+		M.diagnostic()
+		M.leader()
+		M.ctrl()
+		M.etc()
+		M.commands()
+	end
+}
 
 
 return M

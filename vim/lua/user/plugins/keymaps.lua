@@ -61,4 +61,18 @@ M.plugins = function()
 end
 
 
+M.buffer = {
+	setup = function(bufnr)
+		M.lsp(bufnr)
+	end
+}
+
+
+M.global = {
+	setup = function()
+		M.plugins()
+	end
+}
+
+
 return M

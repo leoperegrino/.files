@@ -3,17 +3,17 @@ local plugins = require("user.plugins")
 
 
 local on_attach = function(client, bufnr)
-	core.keymaps.lsp(bufnr)
+	core.keymaps.buffer.setup(bufnr)
 	core.lsp.highlight_document(client)
-	plugins.keymaps.lsp(bufnr)
+	plugins.keymaps.buffer.setup(bufnr)
 end
 
 
 core.lsp.setup()
-core.keymaps.setup()
+core.keymaps.global.setup()
 
 plugins.packer.setup()
-plugins.keymaps.plugins()
+plugins.keymaps.global.setup()
 plugins.lsp.setup(on_attach)
 
 vim.cmd[[silent! colorscheme deus]]
