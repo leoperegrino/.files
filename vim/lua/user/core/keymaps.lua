@@ -110,7 +110,8 @@ end
 
 
 M.commands = function()
-	vim.cmd[[command! Format execute 'lua vim.lsp.buf.format({async=true})']]
+	vim.cmd[[command! -nargs=0 Format execute 'lua vim.lsp.buf.format({async=true})']]
+	vim.cmd[[command! -nargs=0 Untrail execute '%s/\s\+$//g']]
 	vim.cmd[[command! -nargs=1 -complete=highlight FH exec 'filter /\c.*' . substitute('<args>', ' ', '\\\&\.\*', '') . '/ hi']]
 	vim.cmd[[command! -nargs=1 -complete=command H vert help <args>]]
 	vim.cmd[[cnoreabbrev help vert help]]
