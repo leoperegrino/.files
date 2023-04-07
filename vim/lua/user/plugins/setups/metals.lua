@@ -1,9 +1,8 @@
-local cmp_nvim_lsp = require("cmp_nvim_lsp")
+local M = {}
+
 local dap = require("dap")
 local metals = require("metals")
 
-local keymaps = require('user.core.keymaps').lsp
-local vim_lsp = require('user.core.lsp')
 
 dap.configurations.scala = {
 	{
@@ -25,31 +24,37 @@ dap.configurations.scala = {
 	},
 }
 
-local metals_config = metals.bare_config()
 
-metals_config.settings = {
-	showImplicitArguments = true,
-	sbtScript = 'sbt -ivy "$XDG_DATA_HOME"/ivy2 -sbt-dir "$XDG_DATA_HOME"/sbt',
-	excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
-}
+M.setup = function(opts)
+	local metals_config = metals.bare_config()
 
-metals_config.capabilities = cmp_nvim_lsp.default_capabilities()
+	metals_config.settings = {
+		showImplicitArguments = true,
+		sbtScript = 'sbt -ivy "$XDG_DATA_HOME"/ivy2 -sbt-dir "$XDG_DATA_HOME"/sbt',
+		excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
+	}
 
-metals_config.on_attach = function(client, bufnr)
-	keymaps.setup(bufnr)
-	vim_lsp.highlight_document(client)
-	metals.setup_dap()
-	vim.keymap.set('n', 'gm',
-		'<cmd>lua require("telescope").extensions.metals.commands()<CR>',
-		{ buffer = bufnr, noremap=true, silent=true }
-	)
+	metals_config.on_attach = function(_, bufnr)
+		opts.on_attach()
+		metals.setup_dap()
+		vim.keymap.set('n', 'gm',
+			'<cmd>lua require("telescope").extensions.metals.commands()<CR>',
+			{ buffer = bufnr, noremap=true, silent=true }
+		)
+	end
+
+	metals_config.capabilities = opts.capabilities
+
+	local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+
+	vim.api.nvim_create_autocmd("FileType", {
+		pattern = { "scala", "sbt", "java" },
+		callback = function()
+			metals.initialize_or_attach(metals_config)
+		end,
+		group = nvim_metals_group,
+	})
 end
 
-local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "scala", "sbt", "java" },
-	callback = function()
-		metals.initialize_or_attach(metals_config)
-	end,
-	group = nvim_metals_group,
-})
+
+return M

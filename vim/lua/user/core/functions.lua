@@ -46,5 +46,14 @@ M.copy = function(original)
 end
 
 
+M.merge = function(t, u)
+	t = t or {}
+	u = u or {}
+	for k, v in pairs(u) do
+		t[k] = v
+	end
+	return t
+end
+
 
 return M

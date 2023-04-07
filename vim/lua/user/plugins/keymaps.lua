@@ -10,13 +10,7 @@ local dapui = ":lua require('dapui')"
 M.lsp = function(bufnr)
 	local buf_opts = { buffer = bufnr, noremap = true, silent = true }
 
-	if vim.bo.filetype == "vim" or vim.bo.filetype == "sh" then
-	elseif vim.bo.filetype == "rust" then
-		keymap("n", "K", ":RustHoverActions<CR>" , buf_opts)
-	else
-		keymap("n", "K", ":lua vim.lsp.buf.hover()<CR>" , buf_opts)
-	end
-
+	keymap("n", "K"   , ":lua vim.lsp.buf.hover()<CR>"              , buf_opts)
 	keymap("n", "gd"  , telescope .. ".lsp_definitions()<cr>"       , buf_opts)
 	keymap("n", "gI"  , telescope .. ".lsp_implementations()<cr>"   , buf_opts)
 	keymap("n", "gt"  , telescope .. ".lsp_type_definitions()<cr>"  , buf_opts)

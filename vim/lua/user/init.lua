@@ -14,9 +14,10 @@ core.keymaps.global.setup()
 
 plugins.packer.setup()
 plugins.keymaps.global.setup()
-plugins.lsp.setup(on_attach)
+local opts = plugins.make_opts(on_attach)
+plugins.lsp.setup(opts)
 
 vim.cmd[[silent! colorscheme deus]]
 
 core.highlighting.setup()
-plugins.setups.setup()
+plugins.setups.setup(opts)
