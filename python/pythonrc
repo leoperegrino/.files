@@ -4,8 +4,13 @@ import os
 import readline
 
 
+state = os.environ.get(
+    'XDG_STATE_HOME',
+    os.path.expanduser('~/.local/state')
+)
+
 histfile = os.path.join(
-    os.path.expandvars("$XDG_CACHE_HOME"),
+    state,
     "python/python_history"
 )
 

@@ -7,7 +7,7 @@ source "${XDG_CONFIG_HOME}/bash/bashrc"
 
 # history {{{
 shopt -s histappend
-export       HISTFILE="$XDG_CACHE_HOME/bash/history"
+export       HISTFILE="${XDG_STATE_HOME}/bash/history"
 export       HISTSIZE=
 export   HISTFILESIZE=
 export    HISTCONTROL=ignoredups:erasedups:ignorespace
