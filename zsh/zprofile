@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/zsh
 # vim: foldmethod=marker
 
-source "$HOME/.config/sh/profile"
-source "$XDG_CONFIG_HOME/sh/pagerrc"
-source "$XDG_CONFIG_HOME/zsh/zshrc"
+source "${HOME}/.config/sh/profile"
+source "${XDG_CONFIG_HOME}/sh/pagerrc"
+source "${XDG_CONFIG_HOME}/zsh/zshrc"
 
 # history {{{
 export       HISTFILE="$XDG_CACHE_HOME/zsh/history"
@@ -14,5 +14,5 @@ mkdir "${HISTFILE%/*}" 2>/dev/null && touch "${HISTFILE}"
 # }}}
 
 if [ "$(tty)" = '/dev/tty1' ]; then
-	exec startx "$XINITRC" &>/dev/null
+	exec startx "${XINITRC}" &>/dev/null
 fi

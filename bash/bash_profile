@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 # vim: foldmethod=marker
 
-source "$HOME/.config/sh/profile"
-source "$XDG_CONFIG_HOME/sh/pagerrc"
-source "$XDG_CONFIG_HOME/bash/bashrc"
+source "${HOME}/.config/sh/profile"
+source "${XDG_CONFIG_HOME}/sh/pagerrc"
+source "${XDG_CONFIG_HOME}/bash/bashrc"
 
 # history {{{
 shopt -s histappend
@@ -18,5 +18,5 @@ mkdir "${HISTFILE%/*}" 2>/dev/null && touch "${HISTFILE}"
 # }}}
 
 if [ "$(tty)" = '/dev/tty1' ]; then
-	exec startx "$XINITRC" 2>/dev/null
+	exec startx "${XINITRC}" 2>/dev/null
 fi

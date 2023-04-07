@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 # vim: foldmethod=marker
 set -o noclobber
 stty -ixon
@@ -115,8 +115,8 @@ function zle-line-init zle-keymap-select {
 }
 # }}}
 
-source "$XDG_CONFIG_HOME/sh/aliasrc"
-source "$XDG_CONFIG_HOME/sh/functions"
+source "${XDG_CONFIG_HOME}/sh/aliasrc"
+source "${XDG_CONFIG_HOME}/sh/functions"
 alias help="run-help"
 alias h="history 1"
 

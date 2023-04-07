@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # vim: foldmethod=marker
 force_color_prompt=yes
 set -o vi
@@ -29,11 +29,11 @@ PS1+="${BG}\w${OFF}"
 PS1+=" \$ "
 # }}}
 
-source "$XDG_CONFIG_HOME/sh/aliasrc"
-source "$XDG_CONFIG_HOME/sh/functions"
+source "${XDG_CONFIG_HOME}/sh/aliasrc"
+source "${XDG_CONFIG_HOME}/sh/functions"
 alias h="history"
 
-[ -z "${VIM_TERMINAL}" ] && (cat "$HOME/.cache/wal/sequences" 2>/dev/null &)
+[ -z "${VIM_TERMINAL}" ] && (cat "${HOME}/.cache/wal/sequences" 2>/dev/null &)
 
 gpg-connect-agent updatestartuptty /bye &>/dev/null
 export GPG_TTY="$(tty)"

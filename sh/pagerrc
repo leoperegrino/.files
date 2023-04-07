@@ -3,7 +3,7 @@
 export           MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # export           LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
 export               LESS='-j.3 -QSRiPm '
-export          LESSKEYIN="$XDG_CONFIG_HOME/sh/lesskey"
+export          LESSKEYIN="${XDG_CONFIG_HOME}/sh/lesskey"
 export       LESSHISTFILE="$XDG_CACHE_HOME/less/history"
 export   LESS_TERMCAP_mb=$'\E[1;31m'
 export   LESS_TERMCAP_md=$'\E[1;36m'
