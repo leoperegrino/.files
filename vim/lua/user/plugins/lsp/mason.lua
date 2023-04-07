@@ -1,6 +1,6 @@
 local M = {}
 
-local fns = require("user.core.functions")
+local utils = require('user.utils')
 
 local lspconfig = require("lspconfig")
 local mason = require("mason")
@@ -14,7 +14,7 @@ M.setup_servers = function(config, opts)
 		if server == 'rust_analyzer' then
 		else
 
-			opts = fns.merge(opts, config[server])
+			opts = utils.merge(opts, config[server])
 
 			lspconfig[server].setup(opts)
 

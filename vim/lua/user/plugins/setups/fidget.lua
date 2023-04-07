@@ -1,8 +1,8 @@
-local fns = require('user.core.functions')
+local utils = require('user.utils')
 
 local fidget = require("fidget")
 
-fns.hi.set('FidgetTitle', 'NONE', fns.hi.get_group('Title').fg)
+utils.hi.set('FidgetTitle', 'NONE', utils.hi.get_group('Title').fg)
 
 
 fidget.setup {

@@ -1,6 +1,6 @@
 local M = {}
 
-local fns = require('user.core.functions')
+local utils = require('user.utils')
 
 local visual_bg = 236 -- '#303030'
 local statusline_bg = 233 -- '#121212'
@@ -8,37 +8,37 @@ local cursorlinenr_fg = 223 -- 'ffd7af'
 
 
 M.setup = function()
-	fns.hi.set('noBgDiffAdd'   , 'NONE', fns.hi.get_group('DiffAdd').fg    )
-	fns.hi.set('noBgDiffText'  , 'NONE', fns.hi.get_group('DiffText').fg   )
-	fns.hi.set('noBgDiffChange', 'NONE', fns.hi.get_group('DiffChange').fg )
-	fns.hi.set('noBgDiffDelete', 'NONE', fns.hi.get_group('DiffDelete').fg )
+	utils.hi.set('noBgDiffAdd'   , 'NONE', utils.hi.get_group('DiffAdd').fg    )
+	utils.hi.set('noBgDiffText'  , 'NONE', utils.hi.get_group('DiffText').fg   )
+	utils.hi.set('noBgDiffChange', 'NONE', utils.hi.get_group('DiffChange').fg )
+	utils.hi.set('noBgDiffDelete', 'NONE', utils.hi.get_group('DiffDelete').fg )
 
-	fns.hi.set('statusline'  , statusline_bg)
-	fns.hi.set('cursorline'  , statusline_bg, 'none', 'none')
-	fns.hi.set('pmenu'       , statusline_bg)
-	fns.hi.set('tablinefill' , statusline_bg)
-	fns.hi.set('vertsplit'   , statusline_bg)
-	fns.hi.set('cursorlinenr', statusline_bg, cursorlinenr_fg, 'bold')
+	utils.hi.set('statusline'  , statusline_bg)
+	utils.hi.set('cursorline'  , statusline_bg, 'none', 'none')
+	utils.hi.set('pmenu'       , statusline_bg)
+	utils.hi.set('tablinefill' , statusline_bg)
+	utils.hi.set('vertsplit'   , statusline_bg)
+	utils.hi.set('cursorlinenr', statusline_bg, cursorlinenr_fg, 'bold')
 
-	fns.hi.set('visual' , visual_bg, nil, 'NONE')
-	fns.hi.set('conceal', nil, 'NONE')
-	fns.hi.set('folded' , 'NONE')
-	fns.hi.set('linenr' , 'NONE')
-	fns.hi.set('normal' , 'NONE')
+	utils.hi.set('visual' , visual_bg, nil, 'NONE')
+	utils.hi.set('conceal', nil, 'NONE')
+	utils.hi.set('folded' , 'NONE')
+	utils.hi.set('linenr' , 'NONE')
+	utils.hi.set('normal' , 'NONE')
 
-	fns.hi.link('errormsg'    ,  'warningmsg')
-	fns.hi.link('normalfloat' ,  'pmenu'     )
-	fns.hi.link('spellbad'    ,  'error'     )
-	fns.hi.link('folded'      ,  'linenr'    )
-	fns.hi.link('colorcolumn' ,  'cursorline')
-	fns.hi.link('signcolumn'  ,  'linenr'    )
-	fns.hi.link('foldcolumn'  ,  'linenr'    )
-	fns.hi.link('nontext'     ,  'comment'   )
-	fns.hi.link('specialkey'  ,  'comment'   )
-	fns.hi.link('statuslinenc',  'linenr'    )
-	fns.hi.link('tabline'     ,  'statusline')
-	fns.hi.link('title'       ,  'statusline')
-	fns.hi.link('tablinesel'  ,  'statusline')
+	utils.hi.link('errormsg'    ,  'warningmsg')
+	utils.hi.link('normalfloat' ,  'pmenu'     )
+	utils.hi.link('spellbad'    ,  'error'     )
+	utils.hi.link('folded'      ,  'linenr'    )
+	utils.hi.link('colorcolumn' ,  'cursorline')
+	utils.hi.link('signcolumn'  ,  'linenr'    )
+	utils.hi.link('foldcolumn'  ,  'linenr'    )
+	utils.hi.link('nontext'     ,  'comment'   )
+	utils.hi.link('specialkey'  ,  'comment'   )
+	utils.hi.link('statuslinenc',  'linenr'    )
+	utils.hi.link('tabline'     ,  'statusline')
+	utils.hi.link('title'       ,  'statusline')
+	utils.hi.link('tablinesel'  ,  'statusline')
 end
 
 

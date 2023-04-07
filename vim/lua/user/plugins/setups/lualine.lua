@@ -1,13 +1,13 @@
-local fns = require('user.core.functions')
+local utils = require('user.utils')
 
 local lualine = require("lualine")
 
-local statusline  = fns.hi.get_group('StatusLine').bg
-local diff_change = fns.hi.get_group('DiffChange').fg
-local diff_add    = fns.hi.get_group('DiffAdd').fg
-local diff_delete = fns.hi.get_group('DiffDelete').fg
-local diff_text   = fns.hi.get_group('DiffText').fg
-local visual_hl   = fns.hi.get_group('Visual').bg
+local statusline  = utils.hi.get_group('StatusLine').bg
+local diff_change = utils.hi.get_group('DiffChange').fg
+local diff_add    = utils.hi.get_group('DiffAdd').fg
+local diff_delete = utils.hi.get_group('DiffDelete').fg
+local diff_text   = utils.hi.get_group('DiffText').fg
+local visual_hl   = utils.hi.get_group('Visual').bg
 
 local n = 'purple'
 local i = 'green'
@@ -24,10 +24,10 @@ local inactive = {
 	c = bold_statusline,
 }
 
-local normal = fns.copy(inactive)
-local insert = fns.copy(inactive)
-local visual = fns.copy(inactive)
-local replace = fns.copy(inactive)
+local normal = utils.copy(inactive)
+local insert = utils.copy(inactive)
+local visual = utils.copy(inactive)
+local replace = utils.copy(inactive)
 
 normal.a  = { gui = 'bold', bg = n }
 insert.a  = { gui = 'bold', bg = i }
