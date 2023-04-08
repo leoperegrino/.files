@@ -42,10 +42,11 @@ M.setup = function(opts)
 		}
 	}
 
-	local _on_attach = opts.on_attach
+	local default_attach = opts.on_attach
+	opts.on_attach = nil
 
-	opts.on_attach = function(_, bufnr)
-		_on_attach(_, bufnr)
+	opts.server.on_attach = function(client, bufnr)
+		default_attach(client, bufnr)
 
 		vim.keymap.set("n", "K",
 			":RustHoverActions<CR>" ,
