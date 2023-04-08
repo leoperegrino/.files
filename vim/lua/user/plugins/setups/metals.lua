@@ -1,10 +1,11 @@
 local M = {}
 
+local utils = require("user.utils")
 local dap = require("dap")
 local metals = require("metals")
 
 
-dap.configurations.scala = {
+local dap_configuration =  {
 	{
 		type = "scala",
 		request = "launch",
@@ -24,36 +25,58 @@ dap.configurations.scala = {
 	},
 }
 
+local metals_settings = {
+	showImplicitArguments = true,
+	sbtScript = 'sbt -ivy "$XDG_DATA_HOME"/ivy2 -sbt-dir "$XDG_DATA_HOME"/sbt',
+	excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
+}
 
-M.setup = function(opts)
-	local metals_config = metals.bare_config()
 
-	metals_config.settings = {
-		showImplicitArguments = true,
-		sbtScript = 'sbt -ivy "$XDG_DATA_HOME"/ivy2 -sbt-dir "$XDG_DATA_HOME"/sbt',
-		excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
-	}
-
-	metals_config.on_attach = function(_, bufnr)
-		opts.on_attach()
-		metals.setup_dap()
-		vim.keymap.set('n', 'gm',
-			'<cmd>lua require("telescope").extensions.metals.commands()<CR>',
-			{ buffer = bufnr, noremap=true, silent=true }
-		)
+M.autocmd = function(metals_config)
+	local group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+	local pattern = { "scala", "sbt", "java" }
+	local callback = function()
+		metals.initialize_or_attach(metals_config)
 	end
 
-	metals_config.capabilities = opts.capabilities
-
-	local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
-
 	vim.api.nvim_create_autocmd("FileType", {
-		pattern = { "scala", "sbt", "java" },
-		callback = function()
-			metals.initialize_or_attach(metals_config)
-		end,
-		group = nvim_metals_group,
+		pattern = pattern,
+		callback = callback,
+		group = group,
 	})
+end
+
+
+M.metals_attach = function(default_attach)
+	return function(client, bufnr)
+		local buf_opts = { buffer = bufnr, noremap=true, silent=true }
+
+		default_attach(client, bufnr)
+		metals.setup_dap()
+
+		vim.keymap.set('n', 'gm',
+			'<cmd>lua require("telescope").extensions.metals.commands()<CR>',
+			buf_opts
+		)
+		vim.keymap.set('n', 'gw',
+			'<cmd>lua require("metals").hover_worksheet()<CR>',
+			buf_opts
+		)
+	end
+end
+
+
+M.setup = function(opts)
+	dap.configurations.scala = dap_configuration
+
+	local default_attach = opts.on_attach
+	local metals_config = metals.bare_config()
+
+	metals_config = utils.merge(metals_config, opts)
+	metals_config.settings = metals_settings
+	metals_config.on_attach = M.metals_attach(default_attach)
+
+	M.autocmd(metals_config)
 end
 
 
