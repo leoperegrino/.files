@@ -1,44 +1,56 @@
 local M = {}
 
 local utils = require('user.utils')
+local get_hl = utils.get_hl
+local update_hl = utils.update_hl
+local link_hl = utils.link_hl
 
 local visual_bg = 236 -- '#303030'
 local statusline_bg = 233 -- '#121212'
 local cursorlinenr_fg = 223 -- 'ffd7af'
 
 
+local set_no_bg_hl = function(name, val)
+	val.ctermbg = nil
+	val.cterm.reverse = false
+	val.cterm.bold = true
+
+	return update_hl(name, val)
+end
+
+
 M.setup = function()
-	utils.hi.set('noBgDiffAdd'   , 'NONE', utils.hi.get_group('DiffAdd').fg    )
-	utils.hi.set('noBgDiffText'  , 'NONE', utils.hi.get_group('DiffText').fg   )
-	utils.hi.set('noBgDiffChange', 'NONE', utils.hi.get_group('DiffChange').fg )
-	utils.hi.set('noBgDiffDelete', 'NONE', utils.hi.get_group('DiffDelete').fg )
+	set_no_bg_hl('noBgDiffAdd'   , get_hl('DiffAdd'   ))
+	set_no_bg_hl('noBgDiffText'  , get_hl('DiffText'  ))
+	set_no_bg_hl('noBgDiffChange', get_hl('DiffChange'))
+	set_no_bg_hl('noBgDiffDelete', get_hl('DiffDelete'))
 
-	utils.hi.set('statusline'  , statusline_bg)
-	utils.hi.set('cursorline'  , statusline_bg, 'none', 'none')
-	utils.hi.set('pmenu'       , statusline_bg)
-	utils.hi.set('tablinefill' , statusline_bg)
-	utils.hi.set('vertsplit'   , statusline_bg)
-	utils.hi.set('cursorlinenr', statusline_bg, cursorlinenr_fg, 'bold')
+	set_no_bg_hl('title', get_hl('statusline'))
 
-	utils.hi.set('visual' , visual_bg, nil, 'NONE')
-	utils.hi.set('conceal', nil, 'NONE')
-	utils.hi.set('folded' , 'NONE')
-	utils.hi.set('linenr' , 'NONE')
-	utils.hi.set('normal' , 'NONE')
+	update_hl('statusline'  , { ctermbg = statusline_bg })
+	update_hl('cursorline'  , { ctermbg = statusline_bg, ctermfg = 'none', cterm = {} })
+	update_hl('pmenu'       , { ctermbg = statusline_bg })
+	update_hl('tablinefill' , { ctermbg = statusline_bg })
+	update_hl('vertsplit'   , { ctermbg = statusline_bg })
+	update_hl('cursorlinenr', { ctermbg = statusline_bg, ctermfg = cursorlinenr_fg, cterm = { bold = true } })
 
-	utils.hi.link('errormsg'    ,  'warningmsg')
-	utils.hi.link('normalfloat' ,  'pmenu'     )
-	utils.hi.link('spellbad'    ,  'error'     )
-	utils.hi.link('folded'      ,  'linenr'    )
-	utils.hi.link('colorcolumn' ,  'cursorline')
-	utils.hi.link('signcolumn'  ,  'linenr'    )
-	utils.hi.link('foldcolumn'  ,  'linenr'    )
-	utils.hi.link('nontext'     ,  'comment'   )
-	utils.hi.link('specialkey'  ,  'comment'   )
-	utils.hi.link('statuslinenc',  'linenr'    )
-	utils.hi.link('tabline'     ,  'statusline')
-	utils.hi.link('title'       ,  'statusline')
-	utils.hi.link('tablinesel'  ,  'statusline')
+	update_hl('visual' , { ctermbg = visual_bg , cterm = {} })
+	update_hl('conceal', { ctermfg = 'none' })
+	update_hl('linenr' , { ctermbg = 'none' })
+	update_hl('normal' , { ctermbg = 'none' })
+
+	link_hl('errormsg'    ,  'warningmsg')
+	link_hl('normalfloat' ,  'pmenu'     )
+	link_hl('spellbad'    ,  'error'     )
+	link_hl('folded'      ,  'linenr'    )
+	link_hl('colorcolumn' ,  'cursorline')
+	link_hl('signcolumn'  ,  'linenr'    )
+	link_hl('foldcolumn'  ,  'linenr'    )
+	link_hl('nontext'     ,  'comment'   )
+	link_hl('specialkey'  ,  'comment'   )
+	link_hl('statuslinenc',  'linenr'    )
+	link_hl('tabline'     ,  'statusline')
+	link_hl('tablinesel'  ,  'statusline')
 end
 
 

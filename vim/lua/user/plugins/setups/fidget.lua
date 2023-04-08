@@ -2,8 +2,6 @@ local utils = require('user.utils')
 
 local fidget = require("fidget")
 
-utils.hi.set('FidgetTitle', 'NONE', utils.hi.get_group('Title').fg)
-
 
 fidget.setup {
 	text = {

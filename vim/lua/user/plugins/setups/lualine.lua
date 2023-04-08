@@ -2,12 +2,12 @@ local utils = require('user.utils')
 
 local lualine = require("lualine")
 
-local statusline  = utils.hi.get_group('StatusLine').bg
-local diff_change = utils.hi.get_group('DiffChange').fg
-local diff_add    = utils.hi.get_group('DiffAdd').fg
-local diff_delete = utils.hi.get_group('DiffDelete').fg
-local diff_text   = utils.hi.get_group('DiffText').fg
-local visual_hl   = utils.hi.get_group('Visual').bg
+local statusline  = utils.get_hl('StatusLine').ctermbg
+local diff_change = utils.get_hl('DiffChange').ctermfg
+local diff_add    = utils.get_hl('DiffAdd').ctermfg
+local diff_delete = utils.get_hl('DiffDelete').ctermfg
+local diff_text   = utils.get_hl('DiffText').ctermfg
+local visual_hl   = utils.get_hl('Visual').ctermbg
 
 local n = 'purple'
 local i = 'green'
