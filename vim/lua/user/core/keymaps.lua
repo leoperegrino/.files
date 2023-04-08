@@ -43,7 +43,10 @@ M.leader = function()
 	keymap('n', '<leader>q'       , ':q<CR>'     , opts)
 	keymap('n', '<leader>Q'       , ':q!<CR>'    , opts)
 	keymap('n', '<leader>wq'      , ':wq<CR>'    , opts)
-	keymap('' , '<leader>H'       , ':noh<CR>'   , opts)
+	keymap('n', '<leader>H'       , ':H '        , { noremap = true })
+	keymap('n', '<leader>L'       , ':lua '      , { noremap = true })
+	keymap('n', '<leader>='       , ':= '        , { noremap = true })
+	keymap('n', '<leader>m'       , ':vert Man ' , { noremap = true })
 	keymap('n', '<leader>1'       , ':tabp<CR>'  , opts)
 	keymap('n', '<leader>2'       , ':tabn<CR>'  , opts)
 	keymap('n', '<leader>T'       , ':tabedit '  , { noremap = true })
@@ -51,6 +54,7 @@ M.leader = function()
 	keymap('n', '<leader>p'       , ':bp<CR>'    , opts)
 	keymap('n', '<leader>n'       , ':bn<CR>'    , opts)
 	keymap('n', '<leader>vb'      , ':vert sb '  , { noremap = true })
+	keymap('n', '<leader>B'       , ':Bd<CR>'    , opts)
 	keymap('n', '<leader>h'       , '<C-w>H'     , opts)
 	keymap('n', '<leader>j'       , '<C-w>J'     , opts)
 	keymap('n', '<leader>k'       , '<C-w>K'     , opts)
@@ -66,6 +70,9 @@ end
 
 
 M.ctrl = function()
+	keymap('c', '<C-d>'     , '<c-f>'             , opts)
+	keymap('c', '<C-f>'     , '<Right>'           , opts)
+	keymap('c', '<C-b>'     , '<Left>'            , opts)
 	keymap('v', '<C-c>'     , '"+y'               , opts)
 	keymap('i', '<C-f>'     , '<Right>'           , opts)
 	keymap('i', '<C-b>'     , '<Left>'            , opts)
@@ -110,11 +117,11 @@ end
 
 
 M.commands = function()
+	vim.cmd[[command! -nargs=0 Bd bn | bd #]]
 	vim.cmd[[command! -nargs=0 Format execute 'lua vim.lsp.buf.format({async=true})']]
 	vim.cmd[[command! -nargs=0 Untrail execute '%s/\s\+$//g']]
 	vim.cmd[[command! -nargs=1 -complete=highlight FH exec 'filter /\c.*' . substitute('<args>', ' ', '\\\&\.\*', '') . '/ hi']]
 	vim.cmd[[command! -nargs=1 -complete=command H vert help <args>]]
-	vim.cmd[[cnoreabbrev help vert help]]
 end
 
 

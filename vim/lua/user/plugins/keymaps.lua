@@ -11,6 +11,7 @@ M.lsp = function(bufnr)
 	local buf_opts = { buffer = bufnr, noremap = true, silent = true }
 
 	keymap("n", "K"   , ":lua vim.lsp.buf.hover()<CR>"              , buf_opts)
+	keymap("n", "gD"  , ":vsplit<CR>" .. telescope .. ".lsp_definitions()<cr>", buf_opts)
 	keymap("n", "gd"  , telescope .. ".lsp_definitions()<cr>"       , buf_opts)
 	keymap("n", "gI"  , telescope .. ".lsp_implementations()<cr>"   , buf_opts)
 	keymap("n", "gt"  , telescope .. ".lsp_type_definitions()<cr>"  , buf_opts)
