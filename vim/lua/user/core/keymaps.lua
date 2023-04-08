@@ -6,24 +6,20 @@ local keymap = vim.keymap.set
 
 M.lsp = function(bufnr)
 	local buf_opts = { buffer = bufnr, noremap = true, silent = true }
-	local telescope = ":lua require('telescope.builtin')"
-	local diagnostic = ":lua vim.diagnostic"
 	local lsp_buf = ":lua vim.lsp.buf"
+	local bufmap = function(mode, key, map) keymap(mode, key, map, buf_opts) end
 
-	keymap("n", "gL"  , diagnostic .. ".setloclist({open=false})<cr>" .. telescope .. ".loclist()<cr>", buf_opts)
-	keymap("n", "gQ"  , diagnostic .. ".setqflist({open=false})<cr>" .. telescope .. ".quickfix()<cr>", buf_opts)
-	keymap("n", "gd"  , telescope .. ".lsp_definitions()<cr>"       , buf_opts)
-	keymap("n", "gI"  , telescope .. ".lsp_implementations()<cr>"   , buf_opts)
-	keymap("n", "gt"  , telescope .. ".lsp_type_definitions()<cr>"  , buf_opts)
-	keymap("n", "gr"  , telescope .. ".lsp_references()<cr>"        , buf_opts)
-	keymap("n", "glr" , lsp_buf .. ".rename()<CR>"                  , buf_opts)
-	keymap("n", "gld" , lsp_buf .. ".declaration()<CR>"             , buf_opts)
-	keymap("n", "gls" , lsp_buf .. ".signature_help()<CR>"          , buf_opts)
-	keymap("n", "glc" , lsp_buf .. ".code_action()<CR>"             , buf_opts)
-	keymap("n", "glw" , lsp_buf .. ".add_workspace_folder()<CR>"    , buf_opts)
-	keymap("n", "glW" , lsp_buf .. ".remove_workspace_folder()<CR>" , buf_opts)
-	keymap("n", "glf" , lsp_buf .. ".format({async=true})<CR>"      , buf_opts)
-	keymap("n", "gll" , ":lua =vim.lsp.buf.list_workspace_folders()<CR>", buf_opts)
+	if vim.bo.filetype ~= "vim" and vim.bo.filetype ~= "sh" then
+		bufmap("n", "K"   , lsp_buf .. ".hover()<CR>")
+	end
+	bufmap("n", "glr" , lsp_buf .. ".rename()<CR>")
+	bufmap("n", "gld" , lsp_buf .. ".declaration()<CR>")
+	bufmap("n", "gls" , lsp_buf .. ".signature_help()<CR>")
+	bufmap("n", "glc" , lsp_buf .. ".code_action()<CR>")
+	bufmap("n", "glw" , lsp_buf .. ".add_workspace_folder()<CR>")
+	bufmap("n", "glW" , lsp_buf .. ".remove_workspace_folder()<CR>")
+	bufmap("n", "glf" , lsp_buf .. ".format({async=true})<CR>")
+	bufmap("n", "gll" , ":= vim.lsp.buf.list_workspace_folders()<CR>")
 end
 
 
