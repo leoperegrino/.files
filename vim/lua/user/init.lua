@@ -20,4 +20,5 @@ plugins.lsp.setup(opts)
 vim.cmd[[silent! colorscheme deus]]
 
 core.highlighting.setup()
-plugins.setups.setup(opts)
+plugins.setups.global.setup()
+plugins.setups.buffer.setup(opts)
