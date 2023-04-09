@@ -40,7 +40,7 @@ M.plugins = function()
 	keymap("n", "<leader>ff" , telescope .. ".find_files()<cr>")
 	keymap("n", "<leader>fg" , telescope .. ".live_grep()<cr>")
 	keymap("n", "<leader>fh" , telescope .. ".help_tags()<cr>")
-	keymap("n", "<leader>fb" , telescope .. ".builtin()<cr>")
+	keymap("n", "T"          , telescope .. ".builtin()<cr>")
 
 	keymap("n", "<F1>"       , ":lua _COMMENT()<CR>")
 	keymap("v", "<F1>"       , ":lua _VCOMMENT()<CR>")

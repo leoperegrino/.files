@@ -56,7 +56,6 @@ M.startup = function()
 			use 'rcarriga/nvim-dap-ui'
 			use 'theHamsta/nvim-dap-virtual-text'
 			use 'mfussenegger/nvim-dap-python'
-			-- use 'nvim-telescope/telescope-dap.nvim'
 
 			use 'hrsh7th/nvim-cmp'
 			use 'hrsh7th/cmp-buffer'
@@ -79,6 +78,7 @@ M.startup = function()
 			use 'kyazdani42/nvim-tree.lua'
 			-- use 'ray-x/lsp_signature.nvim'
 			use 'nvim-telescope/telescope.nvim'
+			use 'nvim-telescope/telescope-symbols.nvim'
 			use 'debugloop/telescope-undo.nvim'
 
 			use 'ajmwagar/vim-deus'
