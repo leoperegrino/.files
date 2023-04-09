@@ -65,29 +65,6 @@ local diagnostics_color = {
 	hint  = { gui = 'bold', bg = b_bg, fg = diff_add },
 }
 
--- local lsp_progress = {
--- 	'lsp_progress',
--- 	separators = {
--- 		component = ' ',
--- 		progress = ' | ',
--- 		percentage = { pre = '', post = '%% ' },
--- 		title = { pre = '', post = ': ' },
--- 		lsp_client_name = { pre = '[', post = ']' },
--- 		spinner = { pre = '', post = '' },
--- 		message = { commenced = 'In Progress', completed = 'Completed' },
--- 	},
--- 	display_components = { 'lsp_client_name', 'spinner', { 'title', 'percentage', 'message' } },
--- 	timer = { progress_enddelay = 500, spinner = 1000, lsp_client_name_enddelay = 1000 },
--- 	spinner_symbols = { '🌑 ', '🌒 ', '🌓 ', '🌔 ', '🌕 ', '🌖 ', '🌗 ', '🌘 ' },
--- 	fmt = function(str)
--- 		if string.len(str) > 60  then
--- 			return str:sub(1,60) .. ' ...'
--- 		else
--- 			return str
--- 		end
--- 	end,
--- }
-
 lualine.setup {
 	options = {
 		icons_enabled = true,
