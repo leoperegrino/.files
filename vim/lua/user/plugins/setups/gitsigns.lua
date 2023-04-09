@@ -1,21 +1,16 @@
 local gitsigns = require("gitsigns")
 
-local git_hl = function(hl_group, text)
-	return {
-	hl = hl_group,
-	text = text,
-	numhl =  hl_group,
-	linehl =  hl_group,
-	show_count = true
-	}
+local sign = function(text)
+	return { text = text, show_count = true }
 end
 
 local signs = {
-	add          = git_hl('noBgDiffAdd'   , '┃'),
-	change       = git_hl('noBgDiffChange', '┃'),
-	delete       = git_hl('noBgDiffDelete', '▁'),
-	topdelete    = git_hl('noBgDiffDelete', '▔'),
-	changedelete = git_hl('noBgDiffDelete', '~')
+	add          = sign('┃'),
+	change       = sign('┃'),
+	delete       = sign('▁'),
+	topdelete    = sign('▔'),
+	changedelete = sign('~'),
+	untracked    = sign('┆'),
 }
 
 gitsigns.setup {
@@ -47,6 +42,18 @@ gitsigns.setup {
 		relative = "cursor",
 		row = 0,
 		col = 1,
+	},
+	count_chars = {
+		[1]   = '₁',
+		[2]   = '₂',
+		[3]   = '₃',
+		[4]   = '₄',
+		[5]   = '₅',
+		[6]   = '₆',
+		[7]   = '₇',
+		[8]   = '₈',
+		[9]   = '₉',
+		['+'] = '+',
 	},
 	yadm = {
 		enable = false,
