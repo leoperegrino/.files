@@ -1,8 +1,6 @@
 " vim: foldmethod=marker
 set nocompatible
 set background=dark
-filetype plugin indent on
-syntax on
 
 " dirs {{{
 set undofile
@@ -23,6 +21,9 @@ if ! has('nvim')
 	set viewdir     =$XDG_STATE_HOME/vim/view//   | call mkdir(&viewdir,   'p')
 endif
 " }}}
+
+filetype plugin indent on
+syntax on
 
 " set {{{
 set autochdir
