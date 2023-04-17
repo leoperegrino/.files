@@ -7,6 +7,7 @@ local signs = {
 	DiagnosticSignInfo  = { text = "" , hl = "noBgDiffChange"},
 }
 
+
 M.sign_define = function()
 	for sign, config in pairs(signs) do
 		vim.fn.sign_define(sign,
@@ -37,6 +38,7 @@ M.diagnostic_config = function()
 	vim.diagnostic.config(config)
 end
 
+
 M.handlers = function()
 	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
 		vim.lsp.handlers.hover,
@@ -49,30 +51,36 @@ M.handlers = function()
 	)
 end
 
-M.highlight_document = function(client)
+
+M.highlight_document = function(client, bufnr)
 	if client.server_capabilities.documentHighlightProvider then
-		vim.cmd(
-			[[
-			hi! link LspReferenceText  visual
-			hi! link LspReferenceRead  visual
-			hi! link LspReferenceWrite visual
-			augroup lsp_document_highlight
-			autocmd! * <buffer>
-			autocmd! CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
-			autocmd! CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
-			autocmd! CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-			autocmd! TextYankPost *       lua require('vim.highlight').on_yank({ higroup = 'Visual', timeout = 200 })
-			augroup END
-			]],
-			false
-		)
+		local augroup = vim.api.nvim_create_augroup
+		local group = "lsp_document_highlight"
+
+		local hi_yank = function() require('vim.highlight').on_yank() end
+		local autocmd = function(event, callback, buffer, pattern)
+			vim.api.nvim_create_autocmd(event, {
+				pattern = pattern,
+				group = group,
+				buffer = buffer,
+				callback = callback
+			})
+		end
+
+		augroup(group, {})
+		autocmd("TextYankPost", hi_yank, nil, '*')
+		autocmd("CursorHold", vim.lsp.buf.document_highlight, bufnr)
+		autocmd("CursorHoldI", vim.lsp.buf.document_highlight, bufnr)
+		autocmd("CursorMoved", vim.lsp.buf.clear_references, bufnr)
 	end
 end
+
 
 M.setup = function()
 	M.sign_define()
 	M.diagnostic_config()
 	M.handlers()
 end
+
 
 return M

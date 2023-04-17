@@ -4,7 +4,7 @@ local plugins = require("user.plugins")
 
 local on_attach = function(client, bufnr)
 	core.keymaps.buffer.setup(bufnr)
-	core.lsp.highlight_document(client)
+	core.lsp.highlight_document(client, bufnr)
 	plugins.keymaps.buffer.setup(bufnr)
 end
 
