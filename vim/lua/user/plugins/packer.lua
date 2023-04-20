@@ -71,23 +71,27 @@ M.startup = function()
 			use { 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" } }
 			use 'simrat39/rust-tools.nvim'
 
-			-- use 'chentoast/marks.nvim'
 			use 'numToStr/Comment.nvim'
 			use { 'windwp/nvim-autopairs', config = function() require("nvim-autopairs").setup() end }
 			use 'akinsho/toggleterm.nvim'
 			use 'kyazdani42/nvim-tree.lua'
-			-- use 'ray-x/lsp_signature.nvim'
 			use 'nvim-telescope/telescope.nvim'
 			use 'nvim-telescope/telescope-symbols.nvim'
 			use 'debugloop/telescope-undo.nvim'
 
-			use 'ajmwagar/vim-deus'
+			-- use 'ajmwagar/vim-deus'
+			use { 'Mofiqul/vscode.nvim',
+				config = function()
+					local vs = require('vscode')
+					vs.setup({ group_overrides = { Folded = { guibg = 0 } }})
+					vs.load()
+				end
+			}
 			use 'p00f/nvim-ts-rainbow'
 			use 'stevearc/dressing.nvim'
 			use 'kyazdani42/nvim-web-devicons'
 			use 'simrat39/symbols-outline.nvim'
 			use 'nvim-lualine/lualine.nvim'
-			-- use 'arkav/lualine-lsp-progress'
 			use 'j-hui/fidget.nvim'
 			use "lukas-reineke/indent-blankline.nvim"
 			use 'lewis6991/gitsigns.nvim'
@@ -115,7 +119,7 @@ M.setup = function()
 	M.reset()
 	M.init()
 	M.startup()
-	M.autocmd()
+	-- M.autocmd()
 end
 
 

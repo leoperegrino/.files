@@ -1,10 +1,10 @@
 local M = {}
 
 local signs = {
-	DiagnosticSignError = { text = "" , hl = "noBgDiffDelete"},
-	DiagnosticSignWarn  = { text = "" , hl = "noBgDiffText"  },
-	DiagnosticSignHint  = { text = "" , hl = "noBgDiffAdd"   },
-	DiagnosticSignInfo  = { text = "" , hl = "noBgDiffChange"},
+	DiagnosticSignError = { text = "" , hl = "GitSignsDelete"},
+	DiagnosticSignWarn  = { text = "" , hl = "GitSignsText"  },
+	DiagnosticSignHint  = { text = "" , hl = "GitSignsAdd"   },
+	DiagnosticSignInfo  = { text = "" , hl = "GitSignsChange"},
 }
 
 
