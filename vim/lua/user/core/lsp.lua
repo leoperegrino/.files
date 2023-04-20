@@ -76,6 +76,11 @@ M.highlight_document = function(client, bufnr)
 end
 
 
+M.on_attach = function(client, bufnr)
+	M.highlight_document(client, bufnr)
+end
+
+
 M.setup = function()
 	M.sign_define()
 	M.diagnostic_config()

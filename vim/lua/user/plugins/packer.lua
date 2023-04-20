@@ -83,7 +83,7 @@ M.startup = function()
 			use { 'Mofiqul/vscode.nvim',
 				config = function()
 					local vs = require('vscode')
-					vs.setup({ group_overrides = { Folded = { guibg = 0 } }})
+					vs.setup({ group_overrides = { Folded = { bg = nil } }})
 					vs.load()
 				end
 			}

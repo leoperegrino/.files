@@ -121,21 +121,17 @@ M.commands = function()
 end
 
 
-M.buffer = {
-	setup = function(bufnr)
-		M.lsp(bufnr)
-	end
-}
+M.on_attach = function(_, bufnr)
+	M.lsp(bufnr)
+end
 
-M.global = {
-	setup = function()
-		M.diagnostic()
-		M.leader()
-		M.ctrl()
-		M.etc()
-		M.commands()
-	end
-}
+M.setup = function()
+	M.diagnostic()
+	M.leader()
+	M.ctrl()
+	M.etc()
+	M.commands()
+end
 
 
 return M

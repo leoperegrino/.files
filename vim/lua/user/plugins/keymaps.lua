@@ -71,18 +71,14 @@ M.plugins = function()
 end
 
 
-M.buffer = {
-	setup = function(bufnr)
-		M.lsp(bufnr)
-	end
-}
+M.on_attach = function(_, bufnr)
+	M.lsp(bufnr)
+end
 
 
-M.global = {
-	setup = function()
-		M.plugins()
-	end
-}
+M.setup = function()
+	M.plugins()
+end
 
 
 return M
