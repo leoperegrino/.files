@@ -5,7 +5,7 @@ local mason = require('user.plugins.lsp.mason')
 
 
 M.attach = function(opts)
-	mason.setup(config, opts)
+	mason.attach(config, opts)
 end
 
 

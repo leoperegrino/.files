@@ -17,7 +17,6 @@ M.setup_servers = function(config, opts)
 			opts = utils.merge(opts, config[server])
 
 			lspconfig[server].setup(opts)
-
 		end
 	end
 end
@@ -33,7 +32,7 @@ M.autocmd = function()
 end
 
 
-M.setup = function(config, opts)
+M.attach = function(config, opts)
 	mason.setup()
 	mason_lspconfig.setup()
 
