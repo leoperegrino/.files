@@ -1,60 +1,72 @@
 local nvim_tree = require("nvim-tree")
 
+
+local on_attach = function(bufnr)
+	local api = require('nvim-tree.api')
+	local keymap = vim.keymap.set
+
+	local opts = function(desc)
+		return {
+			desc = 'nvim-tree: ' .. desc,
+			buffer = bufnr,
+			noremap = true,
+			silent = true,
+			nowait = true
+		}
+	end
+
+	keymap( 'n',   '<CR>'   , api.node.open.edit               , opts('Open')                   )
+	keymap( 'n',   'o'      , api.node.open.edit               , opts('Open')                   )
+	keymap( 'n',   'h'      , api.node.navigate.parent_close   , opts('Close Directory')        )
+	keymap( 'n',   'O'      , api.node.open.horizontal         , opts('Open: Horizontal Split') )
+	keymap( 'n',   's'      , api.node.open.vertical           , opts('Open: Vertical Split')   )
+	keymap( 'n',   'U'      , api.tree.change_root_to_parent   , opts('Up')                     )
+	keymap( 'n',   'C'      , api.tree.change_root_to_node     , opts('CD')                     )
+	keymap( 'n',   '<C-k>'  , api.node.navigate.sibling.prev   , opts('Previous Sibling')       )
+	keymap( 'n',   '<C-j>'  , api.node.navigate.sibling.next   , opts('Next Sibling')           )
+	keymap( 'n',   'p'      , api.node.navigate.parent         , opts('Parent Directory')       )
+	keymap( 'n',   'X'      , api.tree.collapse_all            , opts('Collapse')               )
+	keymap( 'n',   '<C-t>'  , api.node.open.tab                , opts('Open: New Tab')          )
+	keymap( 'n',   '?'      , api.tree.toggle_help             , opts('Help')                   )
+	keymap( 'n',   'K'      , api.node.navigate.sibling.first  , opts('First Sibling')          )
+	keymap( 'n',   'a'      , api.fs.create                    , opts('Create')                 )
+	keymap( 'n',   'J'      , api.node.navigate.sibling.last   , opts('Last Sibling')           )
+	keymap( 'n',   'r'      , api.fs.rename                    , opts('Rename')                 )
+	keymap( 'n',   'R'      , api.tree.reload                  , opts('Refresh')                )
+	keymap( 'n',   'x'      , api.fs.cut                       , opts('Cut')                    )
+	keymap( 'n',   'c'      , api.fs.copy.node                 , opts('Copy')                   )
+	keymap( 'n',   'P'      , api.fs.paste                     , opts('Paste')                  )
+	keymap( 'n',   'y'      , api.fs.copy.filename             , opts('Copy Name')              )
+	keymap( 'n',   'Y'      , api.fs.copy.relative_path        , opts('Copy Relative Path')     )
+	keymap( 'n',   'q'      , api.tree.close                   , opts('Close')                  )
+	keymap( 'n',   'T'      , api.tree.toggle_custom_filter    , opts('Toggle Hidden')          )
+	keymap( 'n',   'I'      , api.tree.toggle_gitignore_filter , opts('Toggle Git Ignore')      )
+	keymap( 'n',   'i'      , api.tree.toggle_hidden_filter    , opts('Toggle Dotfiles')        )
+	keymap( 'n',   'S'      , api.node.run.cmd                 , opts('Run Command')            )
+end
+
+
 nvim_tree.setup {
+	on_attach = on_attach,
 	auto_reload_on_write = true,
 	disable_netrw = true,
 	hijack_cursor = true,
 	hijack_netrw = true,
 	hijack_unnamed_buffer_when_opening = false,
-	ignore_buffer_on_setup = false,
-	open_on_setup = false,
 	open_on_tab = false,
 	respect_buf_cwd = false,
 	sort_by = "name",
 	update_cwd = false,
-	ignore_ft_on_setup = { },
 	view = {
 		width = 30,
-		hide_root_folder = true,
 		side = "left",
 		preserve_window_proportions = false,
 		signcolumn = "yes",
 		number = false,
 		relativenumber = false,
-		mappings = {
-			custom_only = true,
-			list = {
-				{ key = {"<CR>", "o" }, action = "edit" },
-				{ key = "h",            action = "close_node" },
-				{ key = "O",            action = "split" },
-				{ key = "s",            action = "vsplit" },
-				{ key = "U",            action = "dir_up" },
-				{ key = "C",            action = "cd" },
-				{ key = "<C-k>",        action = "prev_sibling" },
-				{ key = "<C-j>",        action = "next_sibling" },
-				{ key = "p",            action = "parent_node" },
-				{ key = "X",            action = "collapse_all" },
-				{ key = "<C-t>",        action = "tabnew" },
-				{ key = "?",            action = "toggle_help" },
-				{ key = "K",            action = "first_sibling" },
-				{ key = "a",            action = "create" },
-				{ key = "J",            action = "last_sibling" },
-				{ key = "r",            action = "rename" },
-				{ key = "R",            action = "refresh" },
-				{ key = "x",            action = "cut" },
-				{ key = "c",            action = "copy" },
-				{ key = "P",            action = "paste" },
-				{ key = "y",            action = "copy_name" },
-				{ key = "Y",            action = "copy_path" },
-				{ key = "q",            action = "close" },
-				{ key = "T",            action = "toggle_custom" },
-				{ key = "I",            action = "toggle_git_ignored" },
-				{ key = "i",            action = "toggle_dotfiles" },
-				{ key = "S",            action = "run_file_command" },
-			},
-		},
 	},
 	renderer = {
+		root_folder_label = false,
 		root_folder_modifier = ':h',
 		icons = {
 			padding = '  ',
