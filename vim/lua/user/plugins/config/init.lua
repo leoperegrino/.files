@@ -20,9 +20,9 @@ end
 
 
 M.attach = function(opts)
-	require("user.plugins.config.metals").setup(opts)
-	require("user.plugins.config.rust_tools").setup(opts)
-	require("user.plugins.config.null_ls").setup(opts)
+	require("user.plugins.config.metals").attach(opts)
+	require("user.plugins.config.rust_tools").attach(opts)
+	require("user.plugins.config.null_ls").attach(opts)
 end
 
 

@@ -66,7 +66,7 @@ M.metals_attach = function(default_attach)
 end
 
 
-M.setup = function(opts)
+M.attach = function(opts)
 	dap.configurations.scala = dap_configuration
 
 	local default_attach = opts.on_attach

@@ -5,7 +5,7 @@ local termopen = require("rust-tools/executors").termopen
 local rust_tools_dap = require("rust-tools.dap")
 
 
-M.setup = function(opts)
+M.attach = function(opts)
 
 	opts.tools = {
 		autoSetHints = true,
