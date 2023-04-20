@@ -1,7 +1,7 @@
 local M = {}
 
 local lsp = require('user.plugins.lsp')
-local setups = require('user.plugins.setups')
+local config = require('user.plugins.config')
 local packer = require('user.plugins.packer')
 local keymaps = require('user.plugins.keymaps')
 
@@ -14,7 +14,7 @@ end
 M.setup = function()
 	packer.setup()
 	keymaps.setup()
-	setups.setup()
+	config.setup()
 end
 
 
@@ -31,7 +31,7 @@ M.attach = function(on_attach)
 	}
 
 	lsp.attach(opts)
-	setups.attach(opts)
+	config.attach(opts)
 end
 
 
