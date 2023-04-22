@@ -72,10 +72,10 @@ let &t_EI.="\e[2 q"
 " autocmd {{{
 augroup vimrc
 	autocmd!
-	autocmd FileType     qf nnoremap <buffer> <CR> <CR>:lclose<CR>
+	autocmd FileType     qf nnoremap <buffer> <CR> <CR>:lclose<CR>:cclose<CR>
 	autocmd FileType     *  silent! loadview
 	autocmd BufWrite     *  mkview
-	" autocmd BufEnter     *  set formatoptions-=cro
+	autocmd BufWritePre  *  call mkdir(expand("<afile>:p:h"), "p")
 	autocmd BufEnter     *  set noreadonly
 	autocmd InsertEnter  *  set nolist
 	autocmd InsertLeave  *  set list
