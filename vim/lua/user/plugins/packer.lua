@@ -1,11 +1,12 @@
 local M = {}
 
 local packer = require("packer")
-local packer_util = require("packer.util")
+local util = require("packer.util")
+local pack = vim.fn.stdpath('data') .. '/site/pack'
 
 
 M.bootstrap = function()
-	local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+	local install_path = util.join_paths(pack, 'packer', 'start', 'packer.nvim')
 	local packer_url =  'https://github.com/wbthomason/packer.nvim'
 
 	if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -17,30 +18,14 @@ M.bootstrap = function()
 				install_path
 			})
 
-		print "Installing packer close and reopen Neovim..."
+		print("Installing packer close and reopen Neovim...")
 		vim.cmd([[packadd packer.nvim]])
 	end
 end
 
 
-M.reset = function()
-	packer.reset()
-end
-
-
-M.init = function()
-	packer.init({
-		display = {
-			open_fn = function()
-				return packer_util.float({ border = "rounded" })
-			end,
-		},
-	})
-end
-
-
 M.startup = function()
-	packer.startup(
+	packer.startup({
 		function(use)
 			use 'wbthomason/packer.nvim'
 			use 'nvim-lua/plenary.nvim'
@@ -99,27 +84,25 @@ M.startup = function()
 			if PACKER_BOOTSTRAP then
 				packer.sync()
 			end
-		end
-	)
-end
-
-
-M.autocmd = function()
-	vim.api.nvim_create_augroup("packer_user_config", {})
-	vim.api.nvim_create_autocmd("BufWritePost", {
-		group = "packer_user_config",
-		pattern = "*/user/plugins/packer.lua",
-		command = [[source <afile> | PackerSync]]
+		end,
+		config = {
+			-- https://github.com/wbthomason/packer.nvim/issues/201#issuecomment-1011066526
+			compile_path = util.join_paths(
+				pack, 'loader', 'start', 'packer.nvim', 'plugin', 'packer.lua'
+			),
+			display = {
+				open_fn = function()
+					return util.float({ border = "rounded" })
+				end,
+			}
+		}
 	})
 end
 
 
 M.setup = function()
 	M.bootstrap()
-	M.reset()
-	M.init()
 	M.startup()
-	-- M.autocmd()
 end
 
 
