@@ -1,6 +1,19 @@
 local M = {}
 
 
+---function to create a closure with a specific options table
+---@param opts table
+---@return function
+M.keymap_with = function(opts)
+	return function(mode, key, map)
+		vim.keymap.set(mode, key, map, opts)
+	end
+end
+
+
+---alias for the nvim api that will follow links recursively
+---@param name string
+---@return table
 M.get_hl = function(name)
 	local hl = vim.api.nvim_get_hl(0, { name = name })
 
