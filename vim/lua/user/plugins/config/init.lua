@@ -1,22 +1,35 @@
 local M = {}
 
 
-M.setup = function()
-	require("user.plugins.config.blankline")
-	require("user.plugins.config.cmp")
-	require("user.plugins.config.comment")
-	require("user.plugins.config.dap")
-	require("user.plugins.config.dressing")
-	require("user.plugins.config.fidget")
-	require("user.plugins.config.gitsigns")
-	require("user.plugins.config.lualine")
-	require("user.plugins.config.nvim_tree")
-	require("user.plugins.config.outline")
-	require("user.plugins.config.context")
-	require("user.plugins.config.telescope")
-	require("user.plugins.config.toggleterm")
-	require("user.plugins.config.treesitter")
+M.cmp        = function() require("user.plugins.config.cmp")        end
+M.gitsigns   = function() require("user.plugins.config.gitsigns")   end
+M.lualine    = function() require("user.plugins.config.lualine")    end
+M.nvim_tree  = function() require("user.plugins.config.nvim_tree")  end
+M.telescope  = function() require("user.plugins.config.telescope")  end
+M.fidget     = function() require('fidget').setup()	                end
+M.comment    = function() require('Comment').setup()                end
+M.autopairs  = function() require('nvim-autopairs').setup()         end
+M.context    = function() require('treesitter-context').setup()     end
+M.blankline  = function() require('indent_blankline').setup({ show_current_context = true, show_current_context_start = true }) end
+M.dressing   = function() require('dressing').setup({ input = { win_options = { winblend = 0 }}}) end
+
+
+M.treesitter = function()
+	require('nvim-treesitter.configs').setup({ highlight = { enable = true }})
+	vim.cmd[[
+	set foldmethod=expr
+	set foldexpr=nvim_treesitter#foldexpr()
+	set nofoldenable
+	]]
 end
+
+
+M.vscode     = function()
+	local vs = require('vscode')
+	vs.setup({ group_overrides = { Folded = { bg = nil } }})
+	vs.load()
+end
+
 
 
 M.attach = function(opts)

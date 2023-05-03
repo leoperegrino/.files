@@ -14,7 +14,6 @@ end
 M.setup = function()
 	packer.setup()
 	keymaps.setup()
-	config.setup()
 end
 
 

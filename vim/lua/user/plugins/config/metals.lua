@@ -1,33 +1,12 @@
 local M = {}
 
 local utils = require("user.utils")
-local dap = require("dap")
 local metals = require("metals")
 
 
-local dap_configuration =  {
-	{
-		type = "scala",
-		request = "launch",
-		name = "RunOrTest",
-		metals = {
-			runType = "runOrTestFile",
-			--args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
-		},
-	},
-	{
-		type = "scala",
-		request = "launch",
-		name = "Test Target",
-		metals = {
-			runType = "testTarget",
-		},
-	},
-}
-
 local metals_settings = {
 	showImplicitArguments = true,
-	sbtScript = 'sbt -ivy "$XDG_DATA_HOME"/ivy2 -sbt-dir "$XDG_DATA_HOME"/sbt',
+	sbtScript = 'sbt',
 	excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
 }
 
@@ -52,7 +31,7 @@ M.metals_attach = function(default_attach)
 		local buf_opts = { buffer = bufnr, noremap=true, silent=true }
 
 		default_attach(client, bufnr)
-		metals.setup_dap()
+		-- metals.setup_dap()
 
 		vim.keymap.set('n', 'gm',
 			'<cmd>lua require("telescope").extensions.metals.commands()<CR>',
@@ -67,8 +46,6 @@ end
 
 
 M.attach = function(opts)
-	dap.configurations.scala = dap_configuration
-
 	local default_attach = opts.on_attach
 	local metals_config = metals.bare_config()
 

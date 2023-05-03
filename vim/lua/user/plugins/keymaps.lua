@@ -22,7 +22,8 @@ M.on_attach = function(_, bufnr)
 	bufmap("n", "gI"  , telescope.lsp_implementations )
 	bufmap("n", "gt"  , telescope.lsp_type_definitions)
 	bufmap("n", "gr"  , telescope.lsp_references      )
-	bufmap("n", "gR"  , function() telescope.lsp_references({ attach_mappings = vsplit })         end)
+	bufmap("n", "gD"  , function() telescope.lsp_definitions({ attach_mappings = vsplit })    end)
+	bufmap("n", "gR"  , function() telescope.lsp_references({ jump_type = 'vsplit' })         end)
 	bufmap("n", "gL"  , function() vim.diagnostic.setloclist({ open=false }) telescope.loclist()  end)
 	bufmap("n", "gQ"  , function() vim.diagnostic.setqflist({ open=false })  telescope.quickfix() end)
 end
@@ -60,9 +61,7 @@ M.setup = function()
 	keymap("n", "<F2>"       , vim.lsp.buf.rename   )
 
 	keymap("n", "<F9>"       , "<cmd>NvimTreeToggle<cr>")
-	keymap("n", "<F10>"      , "<cmd>ToggleTerm<cr>"    )
 	keymap("n", "<F11>"      , "<cmd>Telescope undo<cr>")
-	keymap("n", "<F12>"      , "<cmd>SymbolsOutline<cr>")
 
 	keymap("i", "<C-x><C-o>" , "<cmd>lua require('cmp').complete()<CR>")
 end

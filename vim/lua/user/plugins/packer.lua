@@ -1,87 +1,99 @@
 local M = {}
 
-local packer = require("packer")
-local util = require("packer.util")
+local packer = require('packer')
+
+local c = require('user.plugins.config')
+local util = require('packer.util')
+
 local pack = vim.fn.stdpath('data') .. '/site/pack'
 
 
 M.bootstrap = function()
 	local install_path = util.join_paths(pack, 'packer', 'start', 'packer.nvim')
 	local packer_url =  'https://github.com/wbthomason/packer.nvim'
+	local bootstrapped = false
 
 	if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-		PACKER_BOOTSTRAP = vim.fn.system({
-				'git',
-				'clone',
-				'--depth', '1',
-				packer_url,
-				install_path
-			})
+		bootstrapped = vim.fn.system({
+			'git',
+			'clone',
+			'--depth', '1',
+			packer_url,
+			install_path
+		})
 
-		print("Installing packer close and reopen Neovim...")
+		print('Installing packer close and reopen Neovim...')
 		vim.cmd([[packadd packer.nvim]])
 	end
+
+	return bootstrapped
 end
 
 
 M.startup = function()
+	local bootstrapped = M.bootstrap()
+
 	packer.startup({
 		function(use)
-			use 'wbthomason/packer.nvim'
-			use 'nvim-lua/plenary.nvim'
-
-			use 'neovim/nvim-lspconfig'
-			use "williamboman/mason.nvim"
-			use "williamboman/mason-lspconfig.nvim"
-			use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-			use 'nvim-treesitter/nvim-treesitter-context'
-			use 'jose-elias-alvarez/null-ls.nvim'
-
-			use 'mfussenegger/nvim-dap'
-			use 'rcarriga/nvim-dap-ui'
-			use 'theHamsta/nvim-dap-virtual-text'
-			use 'mfussenegger/nvim-dap-python'
-
-			use 'hrsh7th/nvim-cmp'
-			use 'hrsh7th/cmp-buffer'
-			use 'hrsh7th/cmp-path'
-			use 'hrsh7th/cmp-cmdline'
-			use 'hrsh7th/cmp-nvim-lsp-signature-help'
-			use 'hrsh7th/cmp-nvim-lsp'
-			use 'hrsh7th/cmp-nvim-lua'
-			use 'L3MON4D3/LuaSnip'
-			use 'saadparwaiz1/cmp_luasnip'
-			use 'rafamadriz/friendly-snippets'
-
-			use { 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" } }
-			use 'simrat39/rust-tools.nvim'
-
-			use 'numToStr/Comment.nvim'
-			use { 'windwp/nvim-autopairs', config = function() require("nvim-autopairs").setup() end }
-			use 'akinsho/toggleterm.nvim'
-			use 'kyazdani42/nvim-tree.lua'
-			use 'nvim-telescope/telescope.nvim'
-			use 'nvim-telescope/telescope-symbols.nvim'
-			use 'debugloop/telescope-undo.nvim'
-
-			-- use 'ajmwagar/vim-deus'
-			use { 'Mofiqul/vscode.nvim',
-				config = function()
-					local vs = require('vscode')
-					vs.setup({ group_overrides = { Folded = { bg = nil } }})
-					vs.load()
-				end
+			use {
+				{ 'wbthomason/packer.nvim' },
+				{ 'nvim-lua/plenary.nvim'  },
 			}
-			use 'p00f/nvim-ts-rainbow'
-			use 'stevearc/dressing.nvim'
-			use 'kyazdani42/nvim-web-devicons'
-			use 'simrat39/symbols-outline.nvim'
-			use 'nvim-lualine/lualine.nvim'
-			use 'j-hui/fidget.nvim'
-			use "lukas-reineke/indent-blankline.nvim"
-			use 'lewis6991/gitsigns.nvim'
 
-			if PACKER_BOOTSTRAP then
+			use {
+				{ 'neovim/nvim-lspconfig' },
+				{ 'williamboman/mason.nvim', run = ':MasonUpdate' },
+				{ 'williamboman/mason-lspconfig.nvim' },
+				{ 'jose-elias-alvarez/null-ls.nvim', requires = 'nvim-lua/plenary.nvim' },
+				{ 'j-hui/fidget.nvim', config = c.fidget },
+			}
+
+			use { 'scalameta/nvim-metals', requires = { 'nvim-lua/plenary.nvim' } }
+			use { 'simrat39/rust-tools.nvim' }
+
+			use {
+				{ 'nvim-treesitter/nvim-treesitter'        , config = c.treesitter, run = ':TSUpdate' },
+				{ 'nvim-treesitter/nvim-treesitter-context', config = c.context },
+				{ 'p00f/nvim-ts-rainbow'               },
+			}
+
+			use {
+				{ 'hrsh7th/nvim-cmp',    config = c.cmp },
+				{ 'hrsh7th/cmp-buffer'                  },
+				{ 'hrsh7th/cmp-path'                    },
+				{ 'hrsh7th/cmp-cmdline'                 },
+				{ 'hrsh7th/cmp-nvim-lsp-signature-help' },
+				{ 'hrsh7th/cmp-nvim-lsp'                },
+				{ 'hrsh7th/cmp-nvim-lua'                },
+				{ 'saadparwaiz1/cmp_luasnip'            },
+				{ 'L3MON4D3/LuaSnip', requires = { 'rafamadriz/friendly-snippets'} },
+			}
+
+			use {
+				{ 'nvim-telescope/telescope.nvim',
+					config = c.telescope,
+					tag = '0.1.1',
+					requires = { 'nvim-lua/plenary.nvim' }
+				},
+				{ 'debugloop/telescope-undo.nvim'         },
+				{ 'nvim-telescope/telescope-symbols.nvim' },
+			}
+
+			use {
+				{ 'kyazdani42/nvim-tree.lua'    , config = c.nvim_tree },
+				{ 'nvim-lualine/lualine.nvim'   , config = c.lualine   },
+				{ 'nvim-tree/nvim-web-devicons' }
+			}
+
+			use { 'numToStr/Comment.nvim'              , config = c.comment   }
+			use { 'windwp/nvim-autopairs'              , config = c.autopairs }
+			use { 'lewis6991/gitsigns.nvim'            , config = c.gitsigns  }
+
+			use { "lukas-reineke/indent-blankline.nvim", config = c.blankline }
+			use { 'stevearc/dressing.nvim'             , config = c.dressing  }
+			use { 'Mofiqul/vscode.nvim'                , config = c.vscode    }
+
+			if bootstrapped then
 				packer.sync()
 			end
 		end,
@@ -92,7 +104,7 @@ M.startup = function()
 			),
 			display = {
 				open_fn = function()
-					return util.float({ border = "rounded" })
+					return util.float({ border = 'rounded' })
 				end,
 			}
 		}
@@ -101,7 +113,6 @@ end
 
 
 M.setup = function()
-	M.bootstrap()
 	M.startup()
 end
 
