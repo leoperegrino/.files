@@ -45,7 +45,7 @@ M.metals_attach = function(default_attach)
 end
 
 
-M.attach = function(opts)
+M.setup = function(opts)
 	local default_attach = opts.on_attach
 	local metals_config = metals.bare_config()
 

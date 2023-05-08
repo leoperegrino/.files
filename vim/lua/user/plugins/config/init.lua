@@ -31,11 +31,17 @@ M.vscode     = function()
 end
 
 
+M.standalone = function(opts)
+	require("user.plugins.config.metals").setup(opts)
+	require("user.plugins.config.rust_tools").setup(opts)
+	require("user.plugins.config.null_ls").setup(opts)
+end
 
-M.attach = function(opts)
-	require("user.plugins.config.metals").attach(opts)
-	require("user.plugins.config.rust_tools").attach(opts)
-	require("user.plugins.config.null_ls").attach(opts)
+
+M.mason = function(opts)
+	local mason = require("user.plugins.config.mason")
+	local config = require('user.plugins.config.servers')
+	mason.attach(config, opts)
 end
 
 

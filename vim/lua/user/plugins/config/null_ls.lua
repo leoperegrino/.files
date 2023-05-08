@@ -3,7 +3,7 @@ local M = {}
 local null_ls = require("null-ls")
 
 
-M.attach = function(opts)
+M.setup = function(opts)
 	vim.api.nvim_create_autocmd("FileType", {
 		pattern = "null-ls-info",
 		callback = function()
