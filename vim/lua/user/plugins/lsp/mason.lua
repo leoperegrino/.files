@@ -14,9 +14,9 @@ M.setup_servers = function(config, opts)
 		if server == 'rust_analyzer' then
 		else
 
-			opts = utils.merge(opts, config[server])
+			local final = utils.merge(opts, config[server])
 
-			lspconfig[server].setup(opts)
+			lspconfig[server].setup(final)
 		end
 	end
 end

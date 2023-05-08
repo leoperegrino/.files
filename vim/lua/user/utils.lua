@@ -53,13 +53,20 @@ M.copy = function(original)
 end
 
 
+---shallow merge two tables returning a new one
+---@param t table
+---@param u table
+---@return table
 M.merge = function(t, u)
+	local new = {}
 	t = t or {}
 	u = u or {}
-	for k, v in pairs(u) do
-		t[k] = v
+	for _, tbl in ipairs({t, u}) do
+		for k, v in pairs(tbl) do
+			new[k] = v
+		end
 	end
-	return t
+	return new
 end
 
 
