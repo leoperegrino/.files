@@ -1,3 +1,10 @@
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.opt.termguicolors = true
+
+vim.cmd[[autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]]
+
+
 local nvim_tree = require("nvim-tree")
 
 
@@ -20,6 +27,7 @@ local on_attach = function(bufnr)
 	keymap( 'n',   'h'      , api.node.navigate.parent_close   , opts('Close Directory')        )
 	keymap( 'n',   'O'      , api.node.open.horizontal         , opts('Open: Horizontal Split') )
 	keymap( 'n',   's'      , api.node.open.vertical           , opts('Open: Vertical Split')   )
+	keymap( 'n',   'u'      , api.tree.change_root_to_parent   , opts('Up')                     )
 	keymap( 'n',   'U'      , api.tree.change_root_to_parent   , opts('Up')                     )
 	keymap( 'n',   'C'      , api.tree.change_root_to_node     , opts('CD')                     )
 	keymap( 'n',   '<C-k>'  , api.node.navigate.sibling.prev   , opts('Previous Sibling')       )
@@ -122,7 +130,7 @@ nvim_tree.setup {
 			global = false,
 		},
 		open_file = {
-			quit_on_open = false,
+			quit_on_open = true,
 			resize_window = false,
 			window_picker = {
 				enable = false,
@@ -148,5 +156,3 @@ nvim_tree.setup {
 		},
 	},
 }
-
-vim.cmd[[autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]]

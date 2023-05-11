@@ -9,6 +9,12 @@ telescope.setup{
 		undo = { },
 	},
 	pickers = {
+		lsp_definitions = {
+			initial_mode = 'normal',
+		},
+		lsp_references = {
+			initial_mode = 'normal',
+		},
 		loclist = {
 			initial_mode = 'normal',
 			path_display = { 'hidden' },

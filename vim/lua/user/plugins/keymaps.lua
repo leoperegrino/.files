@@ -22,10 +22,10 @@ M.on_attach = function(_, bufnr)
 	bufmap("n", "gI"  , telescope.lsp_implementations )
 	bufmap("n", "gt"  , telescope.lsp_type_definitions)
 	bufmap("n", "gr"  , telescope.lsp_references      )
-	bufmap("n", "gD"  , function() telescope.lsp_definitions({ attach_mappings = vsplit })    end)
-	bufmap("n", "gR"  , function() telescope.lsp_references({ jump_type = 'vsplit' })         end)
-	bufmap("n", "gL"  , function() vim.diagnostic.setloclist({ open=false }) telescope.loclist()  end)
-	bufmap("n", "gQ"  , function() vim.diagnostic.setqflist({ open=false })  telescope.quickfix() end)
+	bufmap("n", "gD"  , function() telescope.lsp_definitions({ attach_mappings = vsplit })          end)
+	bufmap("n", "gR"  , function() telescope.lsp_references({ jump_type = 'vsplit' })               end)
+	bufmap("n", "gL"  , function() vim.diagnostic.setloclist({ open = false }) telescope.loclist()  end)
+	bufmap("n", "gQ"  , function() vim.diagnostic.setqflist({ open = false })  telescope.quickfix() end)
 end
 
 
