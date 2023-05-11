@@ -30,7 +30,7 @@ M.bootstrap = function()
 end
 
 
-M.startup = function()
+M.setup = function()
 	local bootstrapped = M.bootstrap()
 
 	packer.startup({
@@ -45,7 +45,6 @@ M.startup = function()
 				{ 'williamboman/mason.nvim', run = ':MasonUpdate' },
 				{ 'williamboman/mason-lspconfig.nvim' },
 				{ 'jose-elias-alvarez/null-ls.nvim', requires = 'nvim-lua/plenary.nvim' },
-				{ 'j-hui/fidget.nvim', config = c.fidget },
 			}
 
 			use { 'scalameta/nvim-metals', requires = { 'nvim-lua/plenary.nvim' } }
@@ -54,7 +53,8 @@ M.startup = function()
 			use {
 				{ 'nvim-treesitter/nvim-treesitter'        , config = c.treesitter, run = ':TSUpdate' },
 				{ 'nvim-treesitter/nvim-treesitter-context', config = c.context },
-				{ 'p00f/nvim-ts-rainbow'               },
+				{ 'nvim-treesitter/playground' },
+				{ 'p00f/nvim-ts-rainbow' },
 			}
 
 			use {
@@ -91,7 +91,9 @@ M.startup = function()
 
 			use { "lukas-reineke/indent-blankline.nvim", config = c.blankline }
 			use { 'stevearc/dressing.nvim'             , config = c.dressing  }
-			use { 'Mofiqul/vscode.nvim'                , config = c.vscode    }
+			-- use { 'Mofiqul/vscode.nvim'                , config = c.vscode    }
+			use { "folke/noice.nvim"                   , config = c.noice, requires = { "MunifTanjim/nui.nvim" } }
+			use { "catppuccin/nvim", as = "catppuccin" , config = c.catppuccin }
 
 			if bootstrapped then
 				packer.sync()
@@ -109,11 +111,6 @@ M.startup = function()
 			}
 		}
 	})
-end
-
-
-M.setup = function()
-	M.startup()
 end
 
 

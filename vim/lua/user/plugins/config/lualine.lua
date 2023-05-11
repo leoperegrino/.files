@@ -1,10 +1,20 @@
 local lualine = require("lualine")
 
+local ok, noice = pcall(require, 'noice')
+local mode
+if ok then
+	mode = {
+		noice.api.statusline.mode.get,
+		cond = noice.api.statusline.mode.has,
+	}
+end
+
+
 
 lualine.setup {
 	options = {
 		icons_enabled = true,
-		theme = 'vscode',
+		theme = 'catppuccin',
 		section_separators = { left = '', right = ' ' },
 		component_separators = { left = '', right = ' ' },
 		disabled_filetypes = {},
@@ -15,8 +25,9 @@ lualine.setup {
 		lualine_b = {
 			{'branch'},
 			{'diff'},
-			{'diagnostics'}
-	},
+			{'diagnostics'},
+			mode
+		},
 		lualine_c = {'filename'},
 		lualine_x = {'encoding', 'fileformat'},
 		lualine_y = {'location', 'progress'},
