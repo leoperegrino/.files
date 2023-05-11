@@ -32,16 +32,16 @@ end
 
 
 M.standalone = function(opts)
-	require("user.plugins.config.metals").setup(opts)
-	require("user.plugins.config.rust_tools").setup(opts)
-	require("user.plugins.config.null_ls").setup(opts)
+	require("user.plugins.config.metals").setup(vim.deepcopy(opts))
+	require("user.plugins.config.rust_tools").setup(vim.deepcopy(opts))
+	require("user.plugins.config.null_ls").setup(vim.deepcopy(opts))
 end
 
 
 M.mason = function(opts)
 	local mason = require("user.plugins.config.mason")
 	local config = require('user.plugins.config.servers')
-	mason.attach(config, opts)
+	mason.setup(config, vim.deepcopy(opts))
 end
 
 
