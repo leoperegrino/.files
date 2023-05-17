@@ -7,7 +7,6 @@ alt + 2
 	pamixer -d 2
 alt + 3
 	pamixer -i 2
-	
 alt + 4
 	[ $(echo "$(xbacklight -get) > 9" | bc) -eq 1 ] && xbacklight -dec 9
 alt + 5
@@ -96,7 +95,7 @@ alt + f
 	files
 
 alt + {v,shift + v}
-	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.config/vim/{vimrc.vim,plugins.vim}'
+	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.config/nvim/{init.lua,lua/user/init.lua}'
 
 alt + r
 	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.config/ranger/rc.conf'
