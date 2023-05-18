@@ -8,7 +8,7 @@ local util = require('packer.util')
 local pack = vim.fn.stdpath('data') .. '/site/pack'
 
 
-M.bootstrap = function()
+local bootstrap = function()
 	local install_path = util.join_paths(pack, 'packer', 'start', 'packer.nvim')
 	local packer_url =  'https://github.com/wbthomason/packer.nvim'
 	local bootstrapped = false
@@ -22,7 +22,7 @@ M.bootstrap = function()
 			install_path
 		})
 
-		print('Installing packer close and reopen Neovim...')
+		vim.notify('Installing packer close and reopen Neovim...')
 		vim.cmd([[packadd packer.nvim]])
 	end
 
@@ -31,7 +31,7 @@ end
 
 
 M.setup = function()
-	local bootstrapped = M.bootstrap()
+	local bootstrapped = bootstrap()
 
 	packer.startup({
 		function(use)

@@ -7,7 +7,7 @@ local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
 
 
-M.autocmd = function()
+local autocmd = function()
 	vim.api.nvim_create_autocmd("FileType", {
 		pattern = {"mason", "lsp-installer", "lspinfo"},
 		callback = function()
@@ -18,6 +18,7 @@ end
 
 
 M.setup = function(config, opts)
+	autocmd()
 	mason.setup()
 	mason_lspconfig.setup()
 
@@ -33,8 +34,6 @@ M.setup = function(config, opts)
 			lspconfig[server].setup(final)
 		end
 	end
-
-	M.autocmd()
 end
 
 return M

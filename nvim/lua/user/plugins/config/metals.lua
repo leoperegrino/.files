@@ -11,7 +11,7 @@ local metals_settings = {
 }
 
 
-M.autocmd = function(metals_config)
+local autocmd = function(metals_config)
 	local group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
 	local pattern = { "scala", "sbt", "java" }
 	local callback = function()
@@ -26,7 +26,7 @@ M.autocmd = function(metals_config)
 end
 
 
-M.metals_attach = function(default_attach)
+local metals_attach = function(default_attach)
 	return function(client, bufnr)
 		local buf_opts = { buffer = bufnr, noremap=true, silent=true }
 
@@ -51,9 +51,9 @@ M.setup = function(opts)
 
 	metals_config = utils.merge(metals_config, opts)
 	metals_config.settings = metals_settings
-	metals_config.on_attach = M.metals_attach(default_attach)
+	metals_config.on_attach = metals_attach(default_attach)
 
-	M.autocmd(metals_config)
+	autocmd(metals_config)
 end
 
 

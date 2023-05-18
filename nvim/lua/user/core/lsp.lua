@@ -8,7 +8,7 @@ local signs = {
 }
 
 
-M.sign_define = function()
+local sign_define = function()
 	for sign, config in pairs(signs) do
 		vim.fn.sign_define(sign,
 			{ texthl = config.hl, text = config.text, numhl = "" }
@@ -17,7 +17,7 @@ M.sign_define = function()
 end
 
 
-M.diagnostic_config = function()
+local diagnostic_config = function()
 	local config = {
 		virtual_text = false,
 		signs = { active = signs },
@@ -39,7 +39,7 @@ M.diagnostic_config = function()
 end
 
 
-M.handlers = function()
+local handlers = function()
 	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
 		vim.lsp.handlers.hover,
 		{ border = "rounded" , focusable = true }
@@ -52,7 +52,7 @@ M.handlers = function()
 end
 
 
-M.highlight_document = function(client, bufnr)
+local highlight_document = function(client, bufnr)
 	if client.server_capabilities.documentHighlightProvider then
 		local augroup = vim.api.nvim_create_augroup
 		local group = "lsp_document_highlight"
@@ -77,14 +77,14 @@ end
 
 
 M.on_attach = function(client, bufnr)
-	M.highlight_document(client, bufnr)
+	highlight_document(client, bufnr)
 end
 
 
 M.setup = function()
-	M.sign_define()
-	M.diagnostic_config()
-	M.handlers()
+	sign_define()
+	diagnostic_config()
+	handlers()
 end
 
 
