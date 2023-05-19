@@ -1,9 +1,0 @@
-#!/bin/sh
-
-declare file="$(pwd)/$(cat /dev/stdin | tr -d '\n')"
-
-case "$1" in
-	"w") wal -i "${file}" ;;
-	"m") cp -nv "${file}" ~/pictures/wallpapers ;;
-	"y") echo -n "${file}" | xclip -sel clip -i ;;
-esac
