@@ -29,7 +29,7 @@ M.setup = function(config, opts)
 		if server == 'rust_analyzer' then
 		else
 
-			local final = utils.merge(opts, config[server])
+			local final = deep_merge('force', opts, config[server] or {})
 
 			lspconfig[server].setup(final)
 		end

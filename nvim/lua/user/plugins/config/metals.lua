@@ -1,6 +1,7 @@
 local M = {}
 
-local utils = require("user.utils")
+local deep_merge = vim.tbl_deep_extend
+
 local metals = require("metals")
 
 
@@ -49,7 +50,7 @@ M.setup = function(opts)
 	local default_attach = opts.on_attach
 	local metals_config = metals.bare_config()
 
-	metals_config = utils.merge(metals_config, opts)
+	metals_config = deep_merge('force', metals_config, opts or {})
 	metals_config.settings = metals_settings
 	metals_config.on_attach = metals_attach(default_attach)
 

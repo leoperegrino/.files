@@ -44,30 +44,4 @@ M.update_hl = function(name, val)
 end
 
 
-M.copy = function(original)
-	local shallow = {}
-	for key, value in pairs(original) do
-		shallow[key] = value
-	end
-	return shallow
-end
-
-
----shallow merge two tables returning a new one
----@param t table
----@param u table
----@return table
-M.merge = function(t, u)
-	local new = {}
-	t = t or {}
-	u = u or {}
-	for _, tbl in ipairs({t, u}) do
-		for k, v in pairs(tbl) do
-			new[k] = v
-		end
-	end
-	return new
-end
-
-
 return M
