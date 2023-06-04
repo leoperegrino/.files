@@ -1,6 +1,6 @@
 local M = {}
 
-local utils = require('user.utils')
+local deep_extend = vim.tbl_deep_extend
 
 local lspconfig = require("lspconfig")
 local mason = require("mason")
@@ -22,17 +22,17 @@ M.setup = function(config, opts)
 	mason.setup()
 	mason_lspconfig.setup()
 
-	local servers = mason_lspconfig.get_installed_servers()
+	-- skip `rust_analyzer` because of `rust_tools`
+	local servers = vim.tbl_filter(
+		function(s) return s ~= 'rust_analyzer' end,
+		mason_lspconfig.get_installed_servers()
+	)
 
 	for _, server in ipairs(servers) do
-		-- leave `rust_analyzer` for `rust_tools`
-		if server == 'rust_analyzer' then
-		else
 
-			local final = deep_merge('force', opts, config[server] or {})
+		local final = deep_extend('force', opts, config[server] or {})
 
-			lspconfig[server].setup(final)
-		end
+		lspconfig[server].setup(final)
 	end
 end
 
