@@ -1,5 +1,7 @@
 local M = {}
 
+local command = vim.api.nvim_create_user_command
+
 local keymap_with = require('user.utils').keymap_with
 
 
@@ -110,11 +112,18 @@ M.setup = function()
 	keymap('n' , 'gH'    , [[<Cmd>echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>]])
 	keymap('n' , 'yu'    , [[<Cmd>let @/='\<' . expand('<cword>') . '\>' <BAR> set hlsearch<CR>]])
 
-	vim.cmd[[command! -nargs=0 Bd bn | bd #]]
-	vim.cmd[[command! -nargs=0 Format execute 'lua vim.lsp.buf.format()']]
-	vim.cmd[[command! -nargs=0 Untrail execute '%s/\s\+$//g']]
-	vim.cmd[[command! -nargs=1 -complete=highlight FH exec 'filter /\c.*' . substitute('<args>', ' ', '\\\&\.\*', '') . '/ hi']]
-	vim.cmd[[command! -nargs=1 -complete=command H vert help <args>]]
+	command('Bd',
+		function(_) vim.cmd.bnext() vim.cmd.bdelete('#') end,
+		{ nargs = 0 }
+	)
+	command('Untrail',
+		function(_) vim.cmd([[%s/\s\+$//g]]) end,
+		{ nargs = 0 }
+	)
+	command('H',
+		function(opts) vim.cmd('vert help ' .. opts.fargs[1]) end,
+		{ nargs = 1, complete = 'command' }
+	)
 end
 
 
