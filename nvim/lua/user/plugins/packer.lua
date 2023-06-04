@@ -91,7 +91,7 @@ M.setup = function()
 
 			use { "lukas-reineke/indent-blankline.nvim", config = c.blankline }
 			use { 'stevearc/dressing.nvim'             , config = c.dressing  }
-			-- use { 'Mofiqul/vscode.nvim'                , config = c.vscode    }
+			use { 'Mofiqul/vscode.nvim'                , config = c.vscode    }
 			use { "folke/noice.nvim"                   , config = c.noice, requires = { "MunifTanjim/nui.nvim" } }
 			use { "catppuccin/nvim", as = "catppuccin" , config = c.catppuccin }
 

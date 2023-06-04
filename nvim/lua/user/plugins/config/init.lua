@@ -49,7 +49,7 @@ M.catppuccin = function()
 			return { Folded = { bg = 'NONE' } }
 		end
 	})
-	vim.cmd.colorscheme('catppuccin')
+	-- vim.cmd.colorscheme('catppuccin')
 end
 
 
