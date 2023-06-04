@@ -31,6 +31,7 @@ end
 
 M.treesitter = function()
 	require('nvim-treesitter.configs').setup({
+		rainbow = { enable = true },
 		playground = { enable = true },
 		highlight = { enable = true },
 	})

@@ -54,7 +54,7 @@ M.setup = function()
 				{ 'nvim-treesitter/nvim-treesitter'        , config = c.treesitter, run = ':TSUpdate' },
 				{ 'nvim-treesitter/nvim-treesitter-context', config = c.context },
 				{ 'nvim-treesitter/playground' },
-				{ 'p00f/nvim-ts-rainbow' },
+				{ 'HiPhish/nvim-ts-rainbow2' },
 			}
 
 			use {
