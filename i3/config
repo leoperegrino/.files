@@ -94,7 +94,6 @@ bindsym $super+space        focus mode_toggle
 bindsym $super+$shift+space floating toggle
 bindsym $super+w            layout toggle tabbed split
 bindsym $super+s            split toggle
-bindsym $super+$shift+s     sticky toggle
 bindsym $super+f            fullscreen toggle
 # }}}
 
@@ -146,6 +145,7 @@ bindsym $super+$shift+0 move container to workspace number "10"
 # }}}
 
 # XF86 {{{
+bindsym Print                   exec --no-startup-id printscn
 bindsym XF86Favorites           exec --no-startup-id randwp
 bindsym XF86AudioRaiseVolume    exec --no-startup-id pamixer -i 2
 bindsym XF86AudioLowerVolume    exec --no-startup-id pamixer -d 2

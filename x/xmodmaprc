@@ -1,24 +1,14 @@
-! vim: syntax=xmodmap filetype=xmodmap
+! vim: syntax=xmodmap
+
 ! map altgr to mode_switch
 keycode 108 = Mode_switch
-! disable primary paste
-! pointer = 1 0 3
 
-! thinkpad specifics
+! change thinkpad print screen to left control
 clear control
 keycode 37 = Control_L
 keycode 107 = Control_R
 add control = Control_R
 add control = Control_L
-! keycode 105 = slash question
-
-keycode 111 = Up Up Down
-
-! caps:swapescape
-clear lock
-keycode 9 = Caps_Lock
-keycode 66 = Escape
-add lock = Caps_Lock
 
 ! number row
 keycode 10 = 1 exclam bracketleft
@@ -54,10 +44,10 @@ keycode 45 = k K percent
 keycode 46 = l L asciicircum
 
 ! lower row
-keycode 52 = z Z comma
+keycode 52 = z Z question
 keycode 53 = x X numbersign
 keycode 54 = c C exclam
 keycode 55 = v V semicolon
-keycode 56 = b B question
+keycode 56 = b B comma
 keycode 57 = n N bracketleft
 keycode 58 = m M bracketright

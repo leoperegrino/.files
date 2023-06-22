@@ -1,0 +1,7 @@
+# change volume with Logitech MX Vertical buttons
+
+"xte "key XF86AudioLowerVolume""
+m:0x0 + b:8
+
+"xte "key XF86AudioRaiseVolume""
+m:0x0 + b:9

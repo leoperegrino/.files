@@ -34,10 +34,10 @@ altgr keycode 37 = percent
 altgr keycode 38 = asciicircum
 
 # z x c v b n m
-altgr keycode 44 = comma
+altgr keycode 44 = question
 altgr keycode 45 = numbersign
 altgr keycode 46 = exclam
 altgr keycode 47 = semicolon
-altgr keycode 48 = question
+altgr keycode 48 = comma
 altgr keycode 49 = bracketleft
 altgr keycode 50 = braceright
