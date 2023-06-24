@@ -31,7 +31,9 @@ lualine.setup {
 			{'diagnostics'},
 			macro
 		},
-		lualine_c = {'filename'},
+		lualine_c = {'filename',
+			function() return vim.b.gitsigns_blame_line or '' end
+		},
 		lualine_x = {'encoding', 'fileformat'},
 		lualine_y = {'location', 'progress'},
 		lualine_z = {{'filetype', colored = false}}
