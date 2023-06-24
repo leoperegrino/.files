@@ -117,12 +117,20 @@ M.setup = function()
 		{ nargs = 0 }
 	)
 	command('Untrail',
-		function(_) vim.cmd([[%s/\s\+$//g]]) end,
+		function(_) pcall(vim.cmd, [[%s/\s\+$//g]]) end,
 		{ nargs = 0 }
 	)
 	command('H',
 		function(opts) vim.cmd('vert help ' .. opts.fargs[1]) end,
 		{ nargs = 1, complete = 'command' }
+	)
+	command('XMLint',
+		function(_)
+			vim.cmd('normal mm')
+			vim.cmd([[%!XMLLINT_INDENT='	' xmllint --format --recover -]])
+			vim.cmd('normal `m')
+		end,
+		{ nargs = 0 }
 	)
 end
 
