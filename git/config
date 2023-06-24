@@ -1,3 +1,4 @@
+# vim: ft=gitconfig
 [user]
 	email = leo@ltp.pt
 	name = ltp
@@ -10,7 +11,9 @@
 	gpgsign = true
 
 [merge]
-	tool = vimdiff
+	tool = nvimdiff
+[mergetool "nvimdiff"]
+	cmd = nvim -d \"$LOCAL\" \"$MERGED\" \"$BASE\" \"$REMOTE\" -c \"wincmd w\" -c \"wincmd J\"
 
 [pull]
 	rebase = false
@@ -34,7 +37,8 @@
 	dev = checkout develop
 	l = log --graph --all
 	mas = checkout master
-	mit = commit -m
+	master = checkout master
+	mit = commit --message
 	out = checkout
 	p = pull --all
 	rev-log = rev-list --pretty --reverse --all --date=format:'%Y-%m-%d %H:%M:%S'
