@@ -2,9 +2,9 @@ local M = {}
 
 local signs = {
 	DiagnosticSignError = { text = "" , hl = "GitSignsDelete"},
-	DiagnosticSignWarn  = { text = "" , hl = "GitSignsText"  },
-	DiagnosticSignHint  = { text = "" , hl = "GitSignsAdd"   },
-	DiagnosticSignInfo  = { text = "" , hl = "GitSignsChange"},
+	DiagnosticSignWarn  = { text = "󰀪" , hl = "GitSignsText"  },
+	DiagnosticSignHint  = { text = "󰌶" , hl = "GitSignsAdd"   },
+	DiagnosticSignInfo  = { text = "󰋽" , hl = "GitSignsChange"},
 }
 
 
