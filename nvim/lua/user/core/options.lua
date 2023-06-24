@@ -31,6 +31,8 @@ M.setup = function()
 	o.wrap = false
 	o.laststatus = 3
 	o.showtabline = 2
+	o.showmode = false
+	o.showcmd = false
 	o.conceallevel = 3
 
 	o.foldmethod = 'syntax'

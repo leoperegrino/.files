@@ -108,7 +108,7 @@ M.setup = function()
 	keymap('n' , 'K'     , "<Cmd>execute 'vert' &keywordprg expand('<cword>')<CR>"    )
 	keymap('n' , 'H'     , "<Cmd>execute 'match DiffAdd /'.expand('<cword>').'/'<CR>" )
 	keymap('n' , 'yU'    , "<Cmd>let @/= expand('<cword>') <BAR> set hlsearch<CR>"    )
-	keymap('n' , '<esc>' , '<Cmd>noh <bar> match none<CR><esc>'                       )
+	keymap('n' , '<esc>' , [[<Cmd>noh <bar> match none <bar> echo ''<CR><esc>]]       )
 	keymap('n' , 'gH'    , [[<Cmd>echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>]])
 	keymap('n' , 'yu'    , [[<Cmd>let @/='\<' . expand('<cword>') . '\>' <BAR> set hlsearch<CR>]])
 
