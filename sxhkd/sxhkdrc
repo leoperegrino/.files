@@ -12,7 +12,7 @@ alt + 4
 alt + 5
 	xbacklight -inc 9
 alt + 7
-	blueman-manager
+	sudo systemctl start bluetooth.service && sleep 1 && blueman-manager
 alt + {8,9,0}
 	playerctl {previous,play-pause,next} &>/dev/null
 # }}}
@@ -20,26 +20,14 @@ alt + {8,9,0}
 # alt {{{
 alt + p
 	pavucontrol
-
-alt + w
-	randwp
-
-alt + apostrophe
-	pybtc
-
-alt + Tab
-	dunstctl close-all
 # }}}
 
 # super {{{
-super + {b,shift + b,ctrl + b}
-	{brave,firefox,librewolf}
+super + b
+	brave
 
 super + d
 	d_run
-
-super + y
-	networkmanager_dmenu
 
 super + a
 	rofi -show
@@ -47,23 +35,11 @@ super + a
 super + g
 	${TERM} -e ${SHELL} -ic htop
 
-super + t
-	${TERM} -e ${SHELL} -ic "task && ${SHELL} -i"
-
-super + shift + t
-	tor-browser
-
 super + {z,Return}
 	$TERM
 
-super + {shift + Return}
+super + shift + Return
 	$TERM -o "font.size=13"
-
-super + m
-	${TERM} -e ${SHELL} -ic 'TERM=xterm ncmpcpp'
-
-super + shift + m
-	${TERM} -o "font.size=13" -e ${SHELL} -ic 'TERM=xterm ncmpcpp'
 
 super + {p,shift + p}
 	{clips,pswd}
@@ -73,9 +49,6 @@ super + e
 
 super + shift + e
 	${TERM} -o "font.size=13" -e ${SHELL} -ic 'TERM=xterm ranger'
-
-super + n
-	news
 
 super + v
 	hdmi
@@ -88,8 +61,11 @@ super + shift + s
 alt + f
 	files
 
-alt + {v,shift + v}
-	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.config/nvim/{init.lua,lua/user/init.lua}'
+alt + w
+	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.config/awesome/rc.lua'
+
+alt + v
+	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.config/nvim/lua/user/init.lua'
 
 alt + r
 	${TERM} -e ${SHELL} -ic '${EDITOR} $HOME/.config/ranger/rc.conf'
