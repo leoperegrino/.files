@@ -1,7 +1,6 @@
 #!/bin/zsh
 # vim: foldmethod=marker
 set -o noclobber
-stty -ixon
 
 # plugins {{{
 PLUGIN=/usr/share/zsh/plugins
@@ -88,7 +87,7 @@ function zle-line-init zle-keymap-select {
 
 	case ${KEYMAP} in
 		vicmd)      PROMPT+='%F{green}[N]%f '; echo -ne '\e[1 q';;
-		main|viins) PROMPT+='%F{red}[I]%f '  ; echo -ne '\e[5 q';;
+		main|viins) PROMPT+='%F{magenta}[I]%f '  ; echo -ne '\e[5 q';;
 		*)          PROMPT+='';;
 	esac
 
