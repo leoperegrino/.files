@@ -10,10 +10,6 @@ alias grep="grep -i --color=auto"
 alias rg="rg --smart-case"
 alias tree="tree -F -C --ignore-case"
 
-alias ex="exa --oneline --icons --group-directories-first"
-alias exa="exa --all"
-alias exl="ex --long --git --time-style=long-iso"
-
 alias ls="ls -1LX --group-directories-first --{color,classify}=auto"
 alias l="ls -A"
 alias la="ls -hgGAv --time-style='+%F %R'"
