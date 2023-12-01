@@ -14,7 +14,7 @@ export    HISTCONTROL=ignoredups:erasedups:ignorespace
 export PROMPT_COMMAND="history -a; history -c; history -r"
 export HISTTIMEFORMAT='%d/%m/%y %H:%M  '
 export     HISTIGNORE="ls:cd:q:c"
-mkdir "${HISTFILE%/*}" 2>/dev/null && touch "${HISTFILE}"
+mkdir -pv "${HISTFILE%/*}" 2>/dev/null && touch "${HISTFILE}"
 # }}}
 
 if [ "$(tty)" = '/dev/tty1' ]; then
