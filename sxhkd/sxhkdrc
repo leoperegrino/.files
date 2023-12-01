@@ -2,59 +2,42 @@
 
 # F {{{
 alt + 1
-	pamixer -t
+	xdotool key XF86AudioMute
 alt + 2
-	pamixer -d 2
+	xdotool key XF86AudioLowerVolume
 alt + 3
-	pamixer -i 2
+	xdotool key XF86AudioRaiseVolume
 alt + 4
-	[ $(echo "$(xbacklight -get) > 9" | bc) -eq 1 ] && xbacklight -dec 9
+	xdotool key XF86MonBrightnessDown
 alt + 5
-	xbacklight -inc 9
+	xdotool key XF86MonBrightnessUp
 alt + 7
 	sudo systemctl start bluetooth.service && sleep 1 && blueman-manager
-alt + {8,9,0}
-	playerctl {previous,play-pause,next} &>/dev/null
-# }}}
-
-# alt {{{
-alt + p
-	pavucontrol
+alt + 8
+	xdotool key XF86AudioPrev
+alt + 9
+	xdotool key XF86AudioPause
+alt + 0
+	xdotool key XF86AudioNext
 # }}}
 
 # super {{{
-super + b
-	brave
-
-super + d
-	d_run
-
-super + a
-	rofi -show
-
 super + g
 	${TERM} -e ${SHELL} -ic htop
+
+super + b
+	brave
 
 super + {z,Return}
 	$TERM
 
 super + shift + Return
 	$TERM -o "font.size=13"
-
-super + {p,shift + p}
-	{clips,pswd}
-
 super + e
 	${TERM} -e ${SHELL} -ic 'TERM=xterm ranger'
 
 super + shift + e
 	${TERM} -o "font.size=13" -e ${SHELL} -ic 'TERM=xterm ranger'
-
-super + v
-	hdmi
-
-super + shift + s
-	printscn
 # }}}
 
 # vim {{{
