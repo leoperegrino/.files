@@ -10,7 +10,7 @@ alias  grep="grep -i --color=auto"
 alias    rg="rg --smart-case"
 alias  tree="tree -F -C --ignore-case"
 
-alias ls="ls -1LX --group-directories-first --{color,classify}=auto"
+alias ls="ls -1HX --group-directories-first --{color,classify}=auto"
 alias  l="ls -A"
 alias la="ls -hgGAv --time-style='+%F %R'"
 
