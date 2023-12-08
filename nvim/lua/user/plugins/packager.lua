@@ -1,15 +1,12 @@
 local M = {}
 
-local packer = require('packer')
-
 local c = require('user.plugins.config')
-local util = require('packer.util')
 
 local pack = vim.fn.stdpath('data') .. '/site/pack'
 
 
 local bootstrap = function()
-	local install_path = util.join_paths(pack, 'packer', 'start', 'packer.nvim')
+	local install_path = pack .. '/packer' .. '/start' .. '/packer.nvim'
 	local packer_url =  'https://github.com/wbthomason/packer.nvim'
 	local bootstrapped = false
 
@@ -32,6 +29,8 @@ end
 
 M.setup = function()
 	local bootstrapped = bootstrap()
+	local packer = require('packer')
+	local util = require('packer.util')
 
 	packer.startup({
 		function(use)

@@ -1,7 +1,7 @@
 local M = {}
 
 local config = require('user.plugins.config')
-local packer = require('user.plugins.packer')
+local packager = require('user.plugins.packager')
 local keymaps = require('user.plugins.keymaps')
 
 
@@ -11,7 +11,7 @@ end
 
 
 M.setup = function()
-	packer.setup()
+	packager.setup()
 	keymaps.setup()
 end
 
