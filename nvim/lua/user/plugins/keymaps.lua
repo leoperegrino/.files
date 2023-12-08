@@ -1,7 +1,5 @@
 local M = {}
 
-local telescope = require('telescope.builtin')
-
 local keymap_with = require('user.utils').keymap_with
 
 
@@ -13,6 +11,8 @@ end
 
 
 M.on_attach = function(_, bufnr)
+	local telescope = require('telescope.builtin')
+
 	local bufmap = keymap_with({
 		buffer = bufnr,
 		noremap = true,
@@ -30,6 +30,8 @@ end
 
 
 M.setup = function()
+	local telescope = require('telescope.builtin')
+
 	local keymap = keymap_with({
 		noremap = true,
 		silent = true
