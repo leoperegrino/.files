@@ -88,7 +88,7 @@ M.setup = function()
 			use { 'windwp/nvim-autopairs'              , config = c.autopairs }
 			use { 'lewis6991/gitsigns.nvim'            , config = c.gitsigns  }
 
-			use { "lukas-reineke/indent-blankline.nvim", config = c.blankline }
+			use { "lukas-reineke/indent-blankline.nvim", main = 'ibl', config = c.blankline }
 			use { 'stevearc/dressing.nvim'             , config = c.dressing  }
 			use { 'Mofiqul/vscode.nvim'                , config = c.vscode    }
 			use { "catppuccin/nvim", as = "catppuccin" , config = c.catppuccin }
