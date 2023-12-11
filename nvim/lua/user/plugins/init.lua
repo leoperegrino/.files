@@ -17,7 +17,11 @@ end
 
 
 M.attach = function(on_attach)
-	local capabilities = require("cmp_nvim_lsp").default_capabilities()
+	local capabilities
+	local ok, cmp = pcall(require, 'cmp_nvim_lsp')
+	if ok then
+		capabilities = cmp.default_capabilities()
+	end
 
 	local opts = {
 		capabilities = capabilities,
