@@ -32,6 +32,7 @@ end
 
 M.treesitter = function()
 	require('nvim-treesitter.configs').setup({
+		auto_install = true,
 		rainbow = { enable = true },
 		playground = { enable = true },
 		highlight = { enable = true },
