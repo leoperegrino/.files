@@ -19,6 +19,7 @@ M.setup = function()
 	autocmd('BufEnter'    ,  '*'   ,  function() vim.cmd[[set noreadonly]]                                            end )
 	autocmd('InsertEnter' ,  '*'   ,  function() vim.cmd[[set nolist]]                                                end )
 	autocmd('InsertLeave' ,  '*'   ,  function() vim.cmd[[set list]]                                                  end )
+	autocmd('CmdlineLeave',  '*'   ,  function() vim.cmd[[echo '']]                                                   end )
 	autocmd('ModeChanged' ,  '*:V' ,  function() vim.cmd[[set showcmd]]                                               end )
 	autocmd('ModeChanged' ,  'V:*' ,  function() vim.cmd[[set noshowcmd]]                                             end )
 end
