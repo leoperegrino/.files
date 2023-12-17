@@ -1,24 +1,11 @@
 local lualine = require("lualine")
 
-local ok, noice = pcall(require, 'noice')
-local macro
-if ok then
-	macro = {
-		function()
-			local mode = noice.api.statusline.mode.get()
-			return string.match(mode or '', '^recording @.*') or ''
-		end,
-		cond = noice.api.statusline.mode.has,
-	}
-end
-
-
 
 lualine.setup {
 	options = {
 		icons_enabled = true,
 		theme = 'vscode',
-		section_separators = { left = '', right = ' ' },
+		section_separators = { left = '', right = '' },
 		component_separators = { left = '', right = ' ' },
 		disabled_filetypes = {},
 		always_divide_middle = true,
@@ -29,9 +16,9 @@ lualine.setup {
 			{'branch'},
 			{'diff'},
 			{'diagnostics'},
-			macro
 		},
-		lualine_c = {'filename',
+		lualine_c = {
+			{ 'filename', path = 4 },
 			function() return vim.b.gitsigns_blame_line or '' end
 		},
 		lualine_x = {'encoding', 'fileformat'},
