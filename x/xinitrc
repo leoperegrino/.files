@@ -4,9 +4,9 @@ xset -b
 xset r rate 300 50
 
 setxkbmap -option caps:swapescape -layout br -variant thinkpad
-pgrep xbindkeys || xbindkeys --file "/home/ltp/.config/x/xbindkeysrc"
-xmodmap "/home/ltp/.files/x/xmodmaprc"
-xrdb -merge "/home/ltp/.config/x/xresources"
+pgrep xbindkeys || xbindkeys --file "${XDG_CONFIG_HOME}/x/xbindkeysrc"
+setsid -f sh -c "sleep 2; xkbcomp -w0 ${XDG_CONFIG_HOME}/x/keymap ${DISPLAY}"
+xrdb -merge "${XDG_CONFIG_HOME}/x/xresources"
 
 xinput set-prop "TPPS/2 Elan TrackPoint" "libinput Accel Speed" 0.5
 xinput set-prop "SynPS/2 Synaptics TouchPad" "Device Enabled" 1
