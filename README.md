@@ -2,7 +2,7 @@
 
 ```sh
 echo 'export ZDOTDIR="$HOME"/.config/zsh' >> /etc/zsh/zshenv
-stow .files -t ../.config
+stow . -t ../.config
 ```
 
 ![leop](arch1.png)
