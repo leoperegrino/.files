@@ -1,6 +1,7 @@
 #!/bin/zsh
 # vim: foldmethod=marker
 set -o noclobber
+stty -ixon
 
 # plugins {{{
 PLUGIN=/usr/share/zsh/plugins
@@ -53,6 +54,7 @@ bindkey '^ ' autosuggest-accept
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
 bindkey '^R' history-incremental-search-backward
+bindkey '^S' history-incremental-search-forward
 bindkey -v
 bindkey -v '^?' backward-delete-char
 bindkey -M vicmd v edit-command-line
