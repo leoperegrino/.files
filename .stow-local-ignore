@@ -1,4 +1,6 @@
 \.git
+\.gitignore
+\.gitmodules
 arch1\.png
 arch2\.png
 LICENSE
