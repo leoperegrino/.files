@@ -77,7 +77,6 @@ M.setup = function()
 		{ "lukas-reineke/indent-blankline.nvim", main = 'ibl', config = c.blankline },
 		{ 'stevearc/dressing.nvim'             , config = c.dressing  },
 		{ 'Mofiqul/vscode.nvim'                , config = c.vscode    },
-		{ "catppuccin/nvim", name = "catppuccin" , config = c.catppuccin },
 	},
 	{
 		lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",

@@ -58,18 +58,6 @@ M.treesitter = function()
 end
 
 
-M.catppuccin = function()
-	require('catppuccin').setup({
-        no_italic = true,
-		flavour = "mocha",
-		custom_highlights = function(_)
-			return { Folded = { bg = 'NONE' } }
-		end
-	})
-	-- vim.cmd.colorscheme('catppuccin')
-end
-
-
 M.vscode = function()
 	local vs = require('vscode')
 	vs.setup({ group_overrides = { Folded = { bg = nil } }})
