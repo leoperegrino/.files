@@ -33,7 +33,5 @@ source "${XDG_CONFIG_HOME}/sh/aliasrc"
 source "${XDG_CONFIG_HOME}/sh/functions"
 alias h="history"
 
-[ -z "${VIM_TERMINAL}" ] && (cat "${HOME}/.cache/wal/sequences" 2>/dev/null &)
-
 gpg-connect-agent updatestartuptty /bye &>/dev/null
 export GPG_TTY="$(tty)"

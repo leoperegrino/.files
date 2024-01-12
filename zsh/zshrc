@@ -121,7 +121,5 @@ source "${XDG_CONFIG_HOME}/sh/functions"
 alias help="run-help"
 alias h="history 1"
 
-[ -z "${VIM_TERMINAL}" ] && (cat "${XDG_CACHE_HOME}/wal/sequences" 2>/dev/null &)
-
 gpg-connect-agent updatestartuptty /bye &>/dev/null
 export GPG_TTY="$(tty)"
