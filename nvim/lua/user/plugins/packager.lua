@@ -41,7 +41,7 @@ M.setup = function()
 		{ 'jose-elias-alvarez/null-ls.nvim', dependencies = 'nvim-lua/plenary.nvim' },
 
 		{ 'scalameta/nvim-metals', dependencies = { 'nvim-lua/plenary.nvim' } },
-		{ 'mrcjkb/rustaceanvim', ft = { 'rust' }, init = c.rustacean },
+		{ 'mrcjkb/rustaceanvim', ft = { 'rust' } },
 
 		{ 'nvim-treesitter/nvim-treesitter'        , config = c.treesitter, build = ':TSUpdate' },
 		{ 'nvim-treesitter/nvim-treesitter-context', config = c.context },
