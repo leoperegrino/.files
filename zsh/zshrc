@@ -74,6 +74,7 @@ zstyle ':vcs_info:git:*' formats '%b'
 zstyle ':completion:*' menu select
 zstyle ':completion:*' insert-tab false
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' cache-path "${XDG_CACHE_HOME}/zsh/zcompcache"
 zstyle ':completion:*:*:t:*' verbose yes
 zstyle ':completion:*:*:t:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:*:t:*' group-name ''
