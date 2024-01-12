@@ -13,6 +13,20 @@ M.autopairs  = function() require('nvim-autopairs').setup()         end
 M.context    = function() require('treesitter-context').setup()     end
 
 
+M.rustacean = function()
+	local bufnr = vim.api.nvim_get_current_buf()
+
+	vim.keymap.set("n", "K",
+		function() vim.cmd.RustLsp({'hover', 'actions'}) end,
+		{ silent = true, buffer = bufnr }
+	)
+	vim.keymap.set("n", "<leader>a",
+		function() vim.cmd.RustLsp('codeAction') end,
+		{ silent = true, buffer = bufnr }
+	)
+end
+
+
 M.blankline  = function()
 	require('ibl').setup({
 		scope = {
@@ -65,7 +79,6 @@ end
 
 M.standalone = function(opts)
 	require("user.plugins.config.metals").setup(vim.deepcopy(opts))
-	require("user.plugins.config.rust_tools").setup(vim.deepcopy(opts))
 	require("user.plugins.config.null_ls").setup(vim.deepcopy(opts))
 end
 
