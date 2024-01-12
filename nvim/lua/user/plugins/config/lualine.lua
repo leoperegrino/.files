@@ -1,7 +1,7 @@
 local lualine = require("lualine")
 
 
-lualine.setup {
+lualine.setup({
 	options = {
 		icons_enabled = true,
 		theme = 'vscode',
@@ -42,4 +42,4 @@ lualine.setup {
 		lualine_z = {'tabs'}
 	},
 	extensions = {}
-}
+})
