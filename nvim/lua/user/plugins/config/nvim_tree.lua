@@ -25,7 +25,10 @@ local on_attach = function(bufnr)
 	keymap( 'n',   '<CR>'   , api.node.open.edit               , opts('Open')                   )
 	keymap( 'n',   'o'      , api.node.open.edit               , opts('Open')                   )
 	keymap( 'n',   'h'      , api.node.navigate.parent_close   , opts('Close Directory')        )
+	keymap( 'n',   'l'      , api.node.open.edit               , opts('Open')                   )
 	keymap( 'n',   'O'      , api.node.open.horizontal         , opts('Open: Horizontal Split') )
+	keymap( 'n',   'H'      , api.tree.collapse_all            , opts('Close Dirs recursively '))
+	keymap( 'n',   'L'      , api.tree.expand_all              , opts('Open Dirs recursively ') )
 	keymap( 'n',   's'      , api.node.open.vertical           , opts('Open: Vertical Split')   )
 	keymap( 'n',   'u'      , api.tree.change_root_to_parent   , opts('Up')                     )
 	keymap( 'n',   'U'      , api.tree.change_root_to_parent   , opts('Up')                     )
@@ -33,8 +36,7 @@ local on_attach = function(bufnr)
 	keymap( 'n',   '<C-k>'  , api.node.navigate.sibling.prev   , opts('Previous Sibling')       )
 	keymap( 'n',   '<C-j>'  , api.node.navigate.sibling.next   , opts('Next Sibling')           )
 	keymap( 'n',   'p'      , api.node.navigate.parent         , opts('Parent Directory')       )
-	keymap( 'n',   'X'      , api.tree.collapse_all            , opts('Collapse')               )
-	keymap( 'n',   '<C-t>'  , api.node.open.tab                , opts('Open: New Tab')          )
+	keymap( 'n',   't'      , api.node.open.tab                , opts('Open: New Tab')          )
 	keymap( 'n',   '?'      , api.tree.toggle_help             , opts('Help')                   )
 	keymap( 'n',   'K'      , api.node.navigate.sibling.first  , opts('First Sibling')          )
 	keymap( 'n',   'a'      , api.fs.create                    , opts('Create')                 )
@@ -130,7 +132,7 @@ nvim_tree.setup {
 			global = false,
 		},
 		open_file = {
-			quit_on_open = true,
+			quit_on_open = false,
 			resize_window = false,
 			window_picker = {
 				enable = false,
