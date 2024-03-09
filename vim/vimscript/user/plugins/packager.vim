@@ -7,3 +7,12 @@ if empty(glob(plug_path))
 	let myvimrc = $MYVIMRC ? $MYVIMRC : $XDG_CONFIG_HOME . '/vim/vimrc.vim'
 	autocmd VimEnter * PlugInstall --sync | execute 'q | source ' . myvimrc
 endif
+
+call plug#begin($XDG_DATA_HOME . '/vim/plugged')
+Plug 'preservim/tagbar'
+Plug 'preservim/nerdtree'
+Plug 'mbbill/undotree'
+Plug 'tpope/vim-commentary'
+Plug 'chrisbra/Colorizer'
+Plug 'sheerun/vim-polyglot'
+call plug#end()

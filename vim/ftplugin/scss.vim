@@ -1,1 +1,0 @@
-setlocal foldminlines=0

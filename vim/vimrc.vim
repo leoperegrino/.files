@@ -70,6 +70,7 @@ let &t_EI.="\e[2 q"
 " autocmd {{{
 augroup vimrc
 	autocmd!
+	autocmd FileType    xml setlocal foldlevel=1
 	autocmd FileType     qf nnoremap <buffer> <CR> <CR><cmd>lclose<CR><cmd>cclose<CR>
 	autocmd FileType     *  silent! loadview
 	autocmd BufWrite     *  mkview

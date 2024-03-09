@@ -1,5 +1,4 @@
 " airline
-let g:airline_theme='deus'
 let g:airline_experimental=0
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
