@@ -13,7 +13,7 @@ PLUGINS=(
 for plugin in ${PLUGINS}; do
 
 	plugin_init="${PLUGINS_DIR}/${plugin}/${plugin}.zsh"
-	
+
 	[ -f "${plugin_init}" ] && source "${plugin_init}" || echo "Unable to load ${plugin}"
 done
 
