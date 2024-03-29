@@ -16,6 +16,7 @@ for plugin in ${PLUGINS}; do
 
 	[ -f "${plugin_init}" ] && source "${plugin_init}" || echo "Unable to load ${plugin}"
 done
+
 zmodload -i zsh/complist
 # }}}
 
@@ -117,6 +118,11 @@ function zle-line-init zle-keymap-select {
 	if [ "${VIRTUAL_ENV}" ]; then
 		RPROMPT+='%F{magenta}[venv:${VIRTUAL_ENV}]%f'
 	fi
+
+	if [ ! -z "${RANGER_LEVEL}" ]; then
+                RPROMPT+="%F{blue}[R${RANGER_LEVEL}]%f"
+        fi
+
 	RPROMPT+='%F{yellow}%(?..[%?])%f'
 
 	PROMPT+='%b'
