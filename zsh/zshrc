@@ -4,10 +4,19 @@ set -o noclobber
 stty -ixon
 
 # plugins {{{
-PLUGIN=/usr/share/zsh/plugins
-source ${PLUGIN}/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ${PLUGIN}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ${PLUGIN}/zsh-history-substring-search/zsh-history-substring-search.zsh
+PLUGINS_DIR=/usr/share/zsh/plugins
+PLUGINS=(
+	zsh-autosuggestions
+	zsh-syntax-highlighting
+	zsh-history-substring-search
+)
+for plugin in ${PLUGINS}; do
+
+	plugin_init="${PLUGINS_DIR}/${plugin}/${plugin}.zsh"
+	
+	[ -f "${plugin_init}" ] && source "${plugin_init}" || "Unable to load ${plugin}"
+done
+
 zmodload -i zsh/complist
 # }}}
 
@@ -118,7 +127,7 @@ function zle-line-init zle-keymap-select {
 # }}}
 
 source "${XDG_CONFIG_HOME}/sh/aliasrc"
-source "${XDG_CONFIG_HOME}/sh/functions"
+[ -f "${XDG_CONFIG_HOME}/sh/functions" ] && source "${XDG_CONFIG_HOME}/sh/functions"
 alias help="run-help"
 alias h="history 1"
 
