@@ -1,0 +1,41 @@
+// vim: filetype=xkb
+xkb_symbols "br-altgr" {
+
+	include "pc+br(thinkpad)+inet(evdev)+capslock(swapescape)"
+	
+	key <AE01> { [ 1,     exclam,   bracketleft ] };
+	key <AE02> { [ 2,         at,  bracketright ] };
+	key <AE09> { [ 9,  parenleft,     braceleft ] };
+	key <AE10> { [ 0, parenright,    braceright ] };
+
+	//  <Alias>                                   <Keycode>
+	key <LatQ> { [ q,  Q,  period      ] };    // key <AD01>
+	key <LatW> { [ w,  W,  backslash   ] };    // key <AD02>
+	key <LatE> { [ e,  E,  bar         ] };    // key <AD03>
+	key <LatR> { [ r,  R,  colon       ] };    // key <AD04>
+	key <LatT> { [ t,  T,  parenleft   ] };    // key <AD05>
+	key <LatY> { [ y,  Y,  parenright  ] };    // key <AD06>
+	key <LatU> { [ u,  U,  underscore  ] };    // key <AD07>
+	key <LatI> { [ i,  I,  minus       ] };    // key <AD08>
+	key <LatO> { [ o,  O,  equal       ] };    // key <AD09>
+	key <LatP> { [ p,  P,  plus        ] };    // key <AD10>
+
+	key <LatA> { [ a,  A,  asciitilde  ] };    // key <AC01>
+	key <LatS> { [ s,  S,  slash       ] };    // key <AC02>
+	key <LatD> { [ d,  D,  quotedbl    ] };    // key <AC03>
+	key <LatF> { [ f,  F,  asterisk    ] };    // key <AC04>
+	key <LatG> { [ g,  G,  comma       ] };    // key <AC05>
+	key <LatH> { [ h,  H,  ampersand   ] };    // key <AC06>
+	key <LatJ> { [ j,  J,  dollar      ] };    // key <AC07>
+	key <LatK> { [ k,  K,  percent     ] };    // key <AC08>
+	key <LatL> { [ l,  L,  asciicircum ] };    // key <AC09>
+
+	key <LatZ> { [ z,  Z,  question    ] };    // key <AB01>
+	key <LatX> { [ x,  X,  numbersign  ] };    // key <AB02>
+	key <LatC> { [ c,  C,  exclam      ] };    // key <AB03>
+	key <LatV> { [ v,  V,  semicolon   ] };    // key <AB04>
+	key <LatB> { [ b,  B,  comma       ] };    // key <AB05>
+	key <LatN> { [ n,  N,  bracketleft ] };    // key <AB06>
+	key <LatM> { [ m,  M,  bracketright] };    // key <AB07>
+
+};
