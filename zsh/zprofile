@@ -13,7 +13,3 @@ mkdir -pv "${XDG_CACHE_HOME}/zsh"
 mkdir -pv "${XDG_STATE_HOME}/zsh"
 
 touch "${HISTFILE}"
-
-if [ "$(tty)" = '/dev/tty1' ]; then
-	exec startx "${XINITRC}" &>/dev/null
-fi
