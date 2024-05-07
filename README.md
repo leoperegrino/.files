@@ -1,10 +1,5 @@
-# @leonarch
+# @nixos
 
 ```sh
-echo 'export ZDOTDIR="$HOME"/.config/zsh' >> /etc/zsh/zshenv
-stow . -t ../.config
+sudo nixos-rebuild switch --flake .#nixos
 ```
-
-![leop](arch1.png)
-
-![leop](arch2.png)
