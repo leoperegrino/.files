@@ -2,7 +2,6 @@
 # vim: foldmethod=marker
 
 source "${HOME}/.config/sh/profile"
-source "${XDG_CONFIG_HOME}/sh/pagerrc"
 source "${XDG_CONFIG_HOME}/bash/bashrc"
 
 # history {{{
