@@ -77,14 +77,6 @@
 		"syncthing"
 	];
 
-	users.users."work".isNormalUser = true;
-	users.users."work".shell = pkgs.zsh;
-	users.users."work".extraGroups = [
-		"audio"
-		"wheel"
-		"networkmanager"
-	];
-
 	security.sudo.wheelNeedsPassword = false;
 
 	programs.gnupg.agent = {
