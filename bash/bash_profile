@@ -16,7 +16,3 @@ export HISTTIMEFORMAT='%d/%m/%y %H:%M  '
 export     HISTIGNORE="ls:cd:q:c"
 mkdir -pv "${HISTFILE%/*}" 2>/dev/null && touch "${HISTFILE}"
 # }}}
-
-if [ "$(tty)" = '/dev/tty1' ]; then
-	exec startx "${XINITRC}" 2>/dev/null
-fi
