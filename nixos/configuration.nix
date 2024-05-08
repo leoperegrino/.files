@@ -106,10 +106,6 @@
 
 	programs.neovim.defaultEditor = true;
 
-	system.userActivationScripts.home-setup-nixos.text = ''
-		${pkgs.git}/bin/git clone -b kde_plasma --recurse-submodules https://github.com/leoperegrino/.files ~/.files || ${pkgs.git}/bin/git -C ~/.files pull --recurse-submodules
-		'';
-
 	# environment.variables
 	# environment.shellInit
 	# environment.loginShellInit
