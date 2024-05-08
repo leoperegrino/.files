@@ -1,8 +1,7 @@
 {lib, config, pkgs, ... }:
 {
 	imports = [
-		# ./syncthing.nix
-		# ./hardware-configuration.nix
+		./hardware-configuration.nix
 	];
 
 	nix.settings.use-xdg-base-directories = true;
