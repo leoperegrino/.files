@@ -41,8 +41,11 @@ HISTIGNORE="ls:cd:q:c"
 mkdir -pv "${HISTFILE%/*}" 2>/dev/null && touch "${HISTFILE}"
 # }}}
 
-[ -f "${XDG_CONFIG_HOME}/sh/aliasrc" ] && source "${XDG_CONFIG_HOME}/sh/aliasrc"
-[ -f "${XDG_CONFIG_HOME}/sh/functions" ] && source "${XDG_CONFIG_HOME}/sh/functions"
+aliasrc="${XDG_CONFIG_HOME}/sh/aliasrc"
+[ -f "${aliasrc}" ] && source "${aliasrc}"
+
+functions="${XDG_CONFIG_HOME}/sh/functions"
+[ -f "${functions}" ] && source "${functions}"
 
 alias h="history"
 
