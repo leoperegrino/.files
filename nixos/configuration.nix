@@ -60,6 +60,13 @@
 	services.xserver.desktopManager.plasma5.enable = true;
 	services.xserver.displayManager.sddm.enable = true;
 
+	services.printing.enable = true;
+	services.avahi = {
+		enable = true;
+		nssmdns = true;
+		openFirewall = true;
+	};
+
 	environment.plasma5.excludePackages = [
 		pkgs.plasma5Packages.okular
 		pkgs.plasma5Packages.elisa
