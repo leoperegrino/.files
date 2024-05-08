@@ -131,8 +131,15 @@ function zle-line-init zle-keymap-select {
 }
 # }}}
 
+# history {{{
+HISTORY_IGNORE="c|cl|q|exit|ls|l|la"
+HISTSIZE="999999"
+SAVEHIST="999999"
+# }}}
+
 [ -f "${XDG_CONFIG_HOME}/sh/aliasrc" ] && source "${XDG_CONFIG_HOME}/sh/aliasrc"
 [ -f "${XDG_CONFIG_HOME}/sh/functions" ] && source "${XDG_CONFIG_HOME}/sh/functions"
+
 alias help="run-help"
 alias h="history 1"
 

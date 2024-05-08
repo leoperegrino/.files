@@ -31,7 +31,6 @@ in {
 			source = symlink dotfiles + "/bash";
 			recursive = true;
 		};
-
 		"nvim" = {
 			source = symlink dotfiles + "/nvim";
 			recursive = true;
@@ -50,9 +49,6 @@ in {
 		};
 		"zsh/.zshrc" = {
 			source = symlink dotfiles + "/zsh/zshrc";
-		};
-		"zsh/.zprofile" = {
-			source = symlink dotfiles + "/zsh/zprofile";
 		};
 		"ranger" = {
 			source = symlink dotfiles + "/ranger";

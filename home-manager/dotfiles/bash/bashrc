@@ -29,8 +29,21 @@ PS1+="${BG}\w${OFF}"
 PS1+=" \$ "
 # }}}
 
+# history {{{
+shopt -s histappend
+HISTFILE="${XDG_STATE_HOME}/bash/history"
+HISTSIZE=
+HISTFILESIZE=
+HISTCONTROL=ignoredups:erasedups:ignorespace
+PROMPT_COMMAND="history -a; history -c; history -r"
+HISTTIMEFORMAT='%d/%m/%y %H:%M  '
+HISTIGNORE="ls:cd:q:c"
+mkdir -pv "${HISTFILE%/*}" 2>/dev/null && touch "${HISTFILE}"
+# }}}
+
 [ -f "${XDG_CONFIG_HOME}/sh/aliasrc" ] && source "${XDG_CONFIG_HOME}/sh/aliasrc"
 [ -f "${XDG_CONFIG_HOME}/sh/functions" ] && source "${XDG_CONFIG_HOME}/sh/functions"
+
 alias h="history"
 
 gpg-connect-agent updatestartuptty /bye &>/dev/null
