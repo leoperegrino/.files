@@ -85,12 +85,6 @@
 		pinentryPackage = pkgs.pinentry-curses;
 	};
 
-	environment.etc."bashrc.local".text = let bashrc = "\${XDG_CONFIG_HOME}/bash/bashrc"; in ''
-		if [ -s "${bashrc}" ]; then
-			source "${bashrc}"
-		fi
-	'';
-
 	programs.zsh = {
 		enable = true;
 		histSize = 100000;
@@ -110,11 +104,6 @@
 		${pkgs.git}/bin/git clone -b kde_plasma --recurse-submodules https://github.com/leoperegrino/.files ~/.files || ${pkgs.git}/bin/git -C ~/.files pull --recurse-submodules
 		'';
 
-	environment.extraInit = let profile = "\${HOME}/.config/sh/profile"; in ''
-		if test -f "${profile}"; then
-			source "${profile}";
-		fi
-	'';
 	# environment.variables
 	# environment.shellInit
 	# environment.loginShellInit
@@ -122,8 +111,27 @@
 	# environment.shellAliases
 	# environment.sessionVariables
 
-	environment.etc.zshenv.text = ''
+	environment.extraInit = ''
+		export         XDG_DATA_HOME="''${HOME}/.local/share"
+		export        XDG_STATE_HOME="''${HOME}/.local/state"
+		export        XDG_CACHE_HOME="''${HOME}/.cache"
+		export       XDG_CONFIG_HOME="''${HOME}/.config"
+	'';
+
+	environment.etc."zshenv.local".text = ''
 		export ZDOTDIR="''${XDG_CONFIG_HOME}/zsh"
+	'';
+
+	environment.etc."profile.local".text = let profile = "\${XDG_CONFIG_HOME}/sh/profile"; in ''
+		if test -f "${profile}"; then
+			source "${profile}"
+		fi
+	'';
+
+	environment.etc."bashrc.local".text = let bashrc = "\${XDG_CONFIG_HOME}/bash/bashrc"; in ''
+		if [ -s "${bashrc}" ]; then
+			source "${bashrc}"
+		fi
 	'';
 
 	environment.systemPackages = with pkgs; [
