@@ -4,19 +4,6 @@ set -o noclobber
 stty -ixon
 
 # plugins {{{
-PLUGINS_DIR=/usr/share/zsh/plugins
-PLUGINS=(
-	zsh-autosuggestions
-	zsh-syntax-highlighting
-	zsh-history-substring-search
-)
-for plugin in ${PLUGINS}; do
-
-	plugin_init="${PLUGINS_DIR}/${plugin}/${plugin}.zsh"
-
-	[ -f "${plugin_init}" ] && source "${plugin_init}" || echo "Unable to load ${plugin}"
-done
-
 zmodload -i zsh/complist
 # }}}
 
