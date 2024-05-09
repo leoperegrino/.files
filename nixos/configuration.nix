@@ -138,28 +138,27 @@
 	'';
 
 	environment.systemPackages = with pkgs; [
-		htop
 		vim
-		xclip
-		ffmpeg
-		bat
-		dig
-		traceroute
-		ripgrep
-		parted
-		stow
-		ranger
-		zig
-		gcc
+		neovim
+
+		htop
 		tree
 		tmux
-		neovim
-		python3
 		git
-		podman-tui
-		zsh-autosuggestions
-		zsh-syntax-highlighting
-		zsh-history-substring-search
+		python3
+
+		bat
+		ripgrep
+
+		dig
+		traceroute
+
+		parted
+
+		ranger
+
+		zig
+		gcc
 	];
 
 	# This value determines the NixOS release from which the default
