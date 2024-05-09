@@ -1,6 +1,7 @@
 {lib, config, pkgs, ... }:
 {
 	imports = [
+		./syncthing.nix
 		./hardware-configuration.nix
 	];
 
