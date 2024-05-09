@@ -55,16 +55,16 @@
 		symbolsFile = ./symbols/br-altgr;
 	};
 
-	services.xserver.libinput.mouse.naturalScrolling = true;
-	services.xserver.libinput.touchpad.naturalScrolling = true;
+	services.libinput.mouse.naturalScrolling = true;
+	services.libinput.touchpad.naturalScrolling = true;
 
 	services.xserver.desktopManager.plasma5.enable = true;
-	services.xserver.displayManager.sddm.enable = true;
+	services.displayManager.sddm.enable = true;
 
 	services.printing.enable = true;
 	services.avahi = {
 		enable = true;
-		nssmdns = true;
+		nssmdns4 = true;
 		openFirewall = true;
 	};
 
