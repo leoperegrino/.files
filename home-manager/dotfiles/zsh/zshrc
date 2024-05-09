@@ -127,8 +127,8 @@ SAVEHIST="999999"
 aliasrc="${XDG_CONFIG_HOME}/sh/aliasrc"
 [ -f "${aliasrc}" ] && source "${aliasrc}"
 
-functions="${XDG_CONFIG_HOME}/sh/functions"
-[ -f "${functions}" ] && source "${functions}"
+shfunctions="${XDG_CONFIG_HOME}/sh/functions"
+[ -f "${shfunctions}" ] && source "${shfunctions}"
 
 alias help="run-help"
 alias h="history 1"
