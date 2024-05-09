@@ -86,12 +86,6 @@
 
 	security.sudo.wheelNeedsPassword = false;
 
-	programs.gnupg.agent = {
-		enable = true;
-		# pinentryFlavor = "curses";
-		pinentryPackage = pkgs.pinentry-curses;
-	};
-
 	programs.zsh = {
 		enable = true;
 		histSize = 100000;

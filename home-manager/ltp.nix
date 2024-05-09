@@ -223,7 +223,17 @@ in {
 	# 	completionInit = "autoload -U compinit && compinit -d ${config.xdg.cacheHome}/zsh/zcompdump-\${ZSH_VERSION}";
 	# };
 
-	services.gpg-agent.enable = true;
+	programs.gpg = {
+		enable = true;
+		homedir = "${config.xdg.dataHome}/gnupg";
+	};
+
+	services.gpg-agent = {
+		enable = true;
+		defaultCacheTtl = 7200;
+		maxCacheTtl = 7200;
+		pinentryPackage = pkgs.pinentry-curses;
+	};
 
 	systemd.user.startServices = "sd-switch";
 
