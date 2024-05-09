@@ -7,7 +7,7 @@
 	symlink = config.lib.file.mkOutOfStoreSymlink;
 	home = "${config.home.homeDirectory}";
 	state = "${config.xdg.stateHome}";
-	dotfiles = home + "/.files";
+	dotfiles = home + "/.files/home-manager/dotfiles";
 in {
 	imports = [
 	];
