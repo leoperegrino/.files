@@ -225,7 +225,7 @@ in {
 
 	programs.gpg = {
 		enable = true;
-		homedir = "${config.xdg.dataHome}/gnupg";
+		homedir = "${config.xdg.dataHome}/gpg";
 	};
 
 	services.gpg-agent = {
