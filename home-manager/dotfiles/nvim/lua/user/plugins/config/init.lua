@@ -1,16 +1,17 @@
 local M = {}
 
 
-M.cmp        = function() require("user.plugins.config.cmp")        end
-M.gitsigns   = function() require("user.plugins.config.gitsigns")   end
-M.lualine    = function() require("user.plugins.config.lualine")    end
-M.nvim_tree  = function() require("user.plugins.config.nvim_tree")  end
-M.telescope  = function() require("user.plugins.config.telescope")  end
+M.cmp        = function() require("user.plugins.config.cmp")          end
+M.gitsigns   = function() require("user.plugins.config.gitsigns")     end
+M.lualine    = function() require("user.plugins.config.lualine")      end
+M.nvim_tree  = function() require("user.plugins.config.nvim_tree")    end
+M.telescope  = function() require("user.plugins.config.telescope")    end
 
-M.fidget     = function() require('fidget').setup()	                end
-M.comment    = function() require('Comment').setup()                end
-M.autopairs  = function() require('nvim-autopairs').setup()         end
-M.context    = function() require('treesitter-context').setup()     end
+M.fidget     = function() require('fidget').setup()                   end
+M.comment    = function() require('Comment').setup()                  end
+M.autopairs  = function() require('nvim-autopairs').setup()           end
+M.context    = function() require('treesitter-context').setup()       end
+M.rainbow    = function() require('rainbow-delimiters.setup').setup() end
 
 
 M.blankline  = function()
@@ -34,7 +35,6 @@ M.treesitter = function()
 	require('nvim-treesitter.configs').setup({
 		auto_install = true,
 		ignore_install = { "xml" },
-		rainbow = { enable = true },
 		playground = { enable = true },
 		highlight = { enable = true },
 	})
