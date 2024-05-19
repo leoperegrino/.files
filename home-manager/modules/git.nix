@@ -1,0 +1,46 @@
+{pkgs, lib, config, ...}:
+let
+	cfg = config.ltp.git;
+in {
+
+	options = {
+		ltp.git.enable = lib.mkEnableOption "enable git";
+	};
+
+	config = lib.mkIf cfg.enable {
+		programs.git = {
+			enable = true;
+			extraConfig = {
+				blame.date = "format:%Y-%m-%d %H:%M:%S";
+				init.defaultBranch = "master";
+				log.date = "iso-local";
+				pager.status = true;
+				pull.rebase = false;
+			};
+			aliases = {
+				b = "branch --list --all";
+				ca = "commit --all";
+				d = "diff";
+				dev = "checkout develop";
+				l = "log --graph --all";
+				mas = "checkout master";
+				master = "checkout master";
+				mit = "commit --message";
+				out = "checkout";
+				p = "pull --all";
+				rev-log = "rev-list --pretty --reverse --all --date=format:'%Y-%m-%d %H:%M:%S'";
+				s = "status";
+				ss = "show --show-signature";
+				t = "log --graph --oneline --all";
+				undo = "reset HEAD~1";
+			};
+			userName = "";
+			userEmail = "";
+			signing = {
+				key = "";
+				signByDefault = true;
+			};
+		};
+	};
+
+}
