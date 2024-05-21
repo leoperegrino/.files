@@ -58,7 +58,7 @@ in {
 				source = symlink dotfiles + "/tmux";
 				recursive = true;
 			};
-			"python/pythonrc" = {
+			"python" = {
 				source = symlink dotfiles + "/python";
 				recursive = true;
 			};
