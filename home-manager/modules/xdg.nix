@@ -50,10 +50,6 @@ in {
 			"zsh/.zshrc" = {
 				source = symlink dotfiles + "/zsh/zshrc";
 			};
-			"ranger" = {
-				source = symlink dotfiles + "/ranger";
-				recursive = true;
-			};
 			"tmux" = {
 				source = symlink dotfiles + "/tmux";
 				recursive = true;

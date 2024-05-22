@@ -23,7 +23,7 @@ in {
 		ltp.git.enable = true;
 		ltp.gpg.enable = true;
 		ltp.xdg.enable = true;
-		ltp.ranger.enable = false;
+		ltp.ranger.enable = true;
 		ltp.bat.enable = true;
 	};
 
