@@ -11,6 +11,7 @@ in {
 		programs.ranger = {
 			enable = true;
 			extraPackages = [
+				pkgs.ueberzugpp
 			];
 			extraConfig = "default_linemode devicons";
 			plugins = [{
@@ -25,13 +26,11 @@ in {
 				use_preview_script  = true;
 				preview_images  = true;
 				preview_files  = true;
-
 				open_all_images  = true;
 				draw_borders  = true;
 				hidden_filter  = ''^\.|\.(bak|swp)$|^lost\+found$|^__pycache__$'';
 				nested_ranger_warning  = true;
 				colorscheme  = "jungle";
-
 			};
 			mappings = {
 				"gu" = "cd ~/.local/share";
