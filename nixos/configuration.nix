@@ -20,7 +20,14 @@
 	boot.loader.grub.enableCryptodisk = true;
 	# boot.loader.grub.timeoutStyle = "hidden";
 
+	virtualisation.containers.enable = true;
 	virtualisation.podman.enable = true;
+	virtualisation.podman.extraPackages = [
+		pkgs.podman-compose
+	];
+	virtualisation.podman.defaultNetwork.settings = {
+		dns_enabled = true;
+	};
 	
 	time.timeZone = "America/Recife";
 
