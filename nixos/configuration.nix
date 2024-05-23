@@ -49,7 +49,6 @@
 	hardware.pulseaudio.enable = true;
 
 	networking.networkmanager.enable = true;
-	# networking.hostName = "hoxt";
 
 	services.xserver.autoRepeatInterval = 50;
 	services.xserver.autoRepeatDelay = 300;
