@@ -44,9 +44,9 @@ M.setup = function()
 
 	keymap("n", "<leader>b"  , telescope.buffers   )
 	keymap("n", "<leader>g"  , telescope.git_files )
-	keymap("n", "<leader>ff" , telescope.find_files)
-	keymap("n", "<leader>fg" , telescope.live_grep )
-	keymap("n", "<leader>fh" , telescope.help_tags )
+	keymap("n", "<leader>f"  , telescope.find_files)
+	keymap("n", "<leader>G"  , telescope.live_grep )
+	keymap("n", "<leader>t"  , telescope.help_tags )
 	keymap("n", "tb"         , telescope.buffers   )
 	keymap("n", "tg"         , telescope.git_files )
 	keymap("n", "tf"         , telescope.find_files)
@@ -57,13 +57,14 @@ M.setup = function()
 	keymap("n", "ts"         , telescope.treesitter)
 	keymap("n", "tc"         , telescope.commands  )
 	keymap("n", "tk"         , telescope.keymaps   )
+	keymap("n", "tr"         , telescope.oldfiles  )
+	keymap("n", "tu"         , "<cmd>Telescope undo<cr>")
 
 	keymap("n", "<F1>"       , ':lua require("Comment.api").toggle.linewise()<CR>')
 	keymap("v", "<F1>"       , ':lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>')
 	keymap("n", "<F2>"       , vim.lsp.buf.rename   )
 
 	keymap("n", "<F9>"       , "<cmd>NvimTreeToggle<cr>")
-	keymap("n", "<F11>"      , "<cmd>Telescope undo<cr>")
 
 	keymap("i", "<C-x><C-o>" , "<cmd>lua require('cmp').complete()<CR>")
 end

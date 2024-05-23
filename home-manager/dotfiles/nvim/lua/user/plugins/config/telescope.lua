@@ -9,6 +9,10 @@ telescope.setup{
 		undo = { },
 	},
 	pickers = {
+		colorscheme = {
+			initial_mode = 'normal',
+			enable_preview = true
+		},
 		lsp_definitions = {
 			initial_mode = 'normal',
 		},
