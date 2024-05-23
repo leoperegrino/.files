@@ -20,6 +20,8 @@
 	boot.loader.grub.enableCryptodisk = true;
 	# boot.loader.grub.timeoutStyle = "hidden";
 
+	documentation.nixos.enable = false;
+
 	virtualisation.containers.enable = true;
 	virtualisation.podman.enable = true;
 	virtualisation.podman.extraPackages = [
