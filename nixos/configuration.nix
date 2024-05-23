@@ -53,6 +53,7 @@
 	services.xserver.autoRepeatDelay = 300;
 
 	services.xserver.enable = true;
+	services.xserver.excludePackages = [ pkgs.xterm ];
 	services.xserver.xkb.layout = "br-altgr";
 	# services.xserver.xkb.variant = "abnt2";
 	# services.xserver.xkb.options = "caps:swapescape";
