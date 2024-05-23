@@ -78,11 +78,15 @@
 		openFirewall = true;
 	};
 
-	environment.plasma5.excludePackages = [
-		pkgs.plasma5Packages.okular
-		pkgs.plasma5Packages.elisa
-		pkgs.plasma5Packages.ark
-		pkgs.plasma5Packages.khelpcenter
+	environment.plasma5.excludePackages = with pkgs; [
+		kdePackages.kate
+		kdePackages.konsole
+		kdePackages.okular
+		kdePackages.elisa
+		kdePackages.ark
+		kdePackages.khelpcenter
+		# kdePackages.gwenview
+		# kdePackages.dolphin
 	];
 
 	users.users."ltp".isNormalUser = true;
