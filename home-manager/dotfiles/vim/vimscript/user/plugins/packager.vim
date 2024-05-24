@@ -7,7 +7,6 @@ if empty(glob(plug_path))
 endif
 
 call plug#begin($XDG_DATA_HOME . '/vim/plugged')
-Plug 'preservim/tagbar'
 Plug 'preservim/nerdtree'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-commentary'
