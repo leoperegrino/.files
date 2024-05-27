@@ -13,12 +13,12 @@
 	boot.loader.grub.enable = true;
 	boot.loader.grub.efiSupport = true;
 	boot.loader.efi.canTouchEfiVariables = true;
-	# boot.consoleLogLevel = 0;
-	# boot.kernelParams = ["quiet"];
-	boot.loader.timeout = 5;
+	boot.consoleLogLevel = 0;
+	boot.kernelParams = ["quiet"];
+	boot.loader.timeout = 0;
 	boot.loader.grub.configurationLimit = 10;
 	boot.loader.grub.enableCryptodisk = true;
-	# boot.loader.grub.timeoutStyle = "hidden";
+	boot.loader.grub.timeoutStyle = "hidden";
 
 	documentation.nixos.enable = false;
 
