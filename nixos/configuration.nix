@@ -142,7 +142,7 @@
 	'';
 
 	environment.etc."bashrc.local".text = let bashrc = "\${XDG_CONFIG_HOME}/bash/bashrc"; in ''
-		if [ -s "${bashrc}" ]; then
+		if test -f "${bashrc}"; then
 			source "${bashrc}"
 		fi
 	'';
