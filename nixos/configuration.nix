@@ -113,9 +113,12 @@
 			'';
 	};
 
-	programs.neovim.defaultEditor = true;
-	programs.neovim.viAlias = true;
-	programs.neovim.vimAlias = true;
+	programs.neovim = {
+		enable = false;
+		defaultEditor = true;
+		viAlias = true;
+		vimAlias = true;
+	};
 
 	# environment.variables
 	# environment.shellInit
