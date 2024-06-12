@@ -64,18 +64,21 @@
 
 	networking.networkmanager.enable = true;
 
-	services.xserver.autoRepeatInterval = 50;
-	services.xserver.autoRepeatDelay = 300;
+	services.xserver = {
+		enable = true;
+		excludePackages = [ pkgs.xterm ];
 
-	services.xserver.enable = true;
-	services.xserver.excludePackages = [ pkgs.xterm ];
-	services.xserver.xkb.layout = "br-altgr";
-	# services.xserver.xkb.variant = "abnt2";
-	# services.xserver.xkb.options = "caps:swapescape";
-	services.xserver.xkb.extraLayouts."br-altgr" = {
-		description = "br layout with custom altgr";
-		languages   = [ "por" ];
-		symbolsFile = ./symbols/br-altgr;
+		autoRepeatInterval = 50;
+		autoRepeatDelay = 300;
+
+		xkb = {
+			layout = "br-altgr";
+			extraLayouts."br-altgr" = {
+				description = "br layout with custom altgr";
+				languages   = [ "por" ];
+				symbolsFile = ./symbols/br-altgr;
+			};
+		};
 	};
 
 	services.libinput.mouse.naturalScrolling = true;
