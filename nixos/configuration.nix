@@ -105,14 +105,16 @@
 		# kdePackages.dolphin
 	];
 
-	users.users."ltp".isNormalUser = true;
-	users.users."ltp".shell = pkgs.zsh;
-	users.users."ltp".extraGroups = [
-		"audio"
-		"wheel"
-		"networkmanager"
-		"syncthing"
-	];
+	users.users."ltp" = {
+		isNormalUser = true;
+		shell = pkgs.zsh;
+		extraGroups = [
+			"audio"
+			"wheel"
+			"networkmanager"
+			"syncthing"
+		];
+	};
 
 	security.sudo.wheelNeedsPassword = false;
 
