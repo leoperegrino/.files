@@ -9,16 +9,22 @@
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 	nix.gc.options = "--delete-older-than 7d";
 
-	boot.loader.grub.device = "nodev";
-	boot.loader.grub.enable = true;
-	boot.loader.grub.efiSupport = true;
-	boot.loader.efi.canTouchEfiVariables = true;
-	boot.consoleLogLevel = 0;
-	boot.kernelParams = ["quiet"];
-	boot.loader.timeout = 0;
-	boot.loader.grub.configurationLimit = 10;
-	boot.loader.grub.enableCryptodisk = true;
-	boot.loader.grub.timeoutStyle = "hidden";
+	boot = {
+		consoleLogLevel = 0;
+		kernelParams = ["quiet"];
+		loader = {
+			timeout = 0;
+			efi.canTouchEfiVariables = true;
+			grub = {
+				enable = true;
+				device = "nodev";
+				efiSupport = true;
+				configurationLimit = 10;
+				enableCryptodisk = true;
+				timeoutStyle = "hidden";
+			};
+		};
+	};
 
 	documentation.nixos.enable = false;
 
