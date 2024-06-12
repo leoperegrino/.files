@@ -52,6 +52,11 @@
 	console.useXkbConfig = true;
 
 	hardware.bluetooth.enable = true;
+	hardware.bluetooth.settings = {
+		General = {
+			JustWorksRepairing = "always";
+		};
+	};
 	hardware.pulseaudio.enable = true;
 	hardware.pulseaudio.package = pkgs.pulseaudioFull;
 
