@@ -51,10 +51,12 @@
 
 	console.useXkbConfig = true;
 
-	hardware.bluetooth.enable = true;
-	hardware.bluetooth.settings = {
-		General = {
-			JustWorksRepairing = "always";
+	hardware.bluetooth = {
+		enable = true;
+		settings = {
+			General = {
+				JustWorksRepairing = "always";
+			};
 		};
 	};
 	hardware.pulseaudio.enable = true;
