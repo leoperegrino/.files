@@ -138,6 +138,21 @@
 		vimAlias = true;
 	};
 
+	programs.htop = {
+		enable = true;
+		package = pkgs.htop-vim;
+		settings = {
+			hide_kernel_threads = true;
+			hide_userland_threads = true;
+			tree_view = true;
+			all_branches_collapsed = true;
+			highlight_base_name = true;
+			show_program_path = false;
+			column_meters_0 = ["AllCPUs" "Memory"];
+			column_meters_1 = ["DateTime" "System" "Battery" "Uptime" "Blank" "DiskIO" "NetworkIO"];
+		};
+	};
+
 	# environment.variables
 	# environment.shellInit
 	# environment.loginShellInit
@@ -172,7 +187,6 @@
 		vim
 		neovim
 
-		htop
 		tree
 		tmux
 		git
