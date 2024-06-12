@@ -18,6 +18,9 @@ in {
 	};
 
 	config = lib.mkIf cfg.enable {
+		home.username = "ltp";
+		home.homeDirectory = "/home/ltp";
+
 		ltp.mpv.enable = true;
 		ltp.alacritty.enable = true;
 		ltp.git.enable = true;

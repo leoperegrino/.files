@@ -8,8 +8,6 @@
 		./modules
 	];
 
-	home.username = "ltp";
-	home.homeDirectory = "/home/ltp";
 	ltp.enable = true;
 
 	programs.home-manager.enable = true;
