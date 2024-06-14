@@ -14,6 +14,18 @@ M.context    = function() require('treesitter-context').setup()       end
 M.rainbow    = function() require('rainbow-delimiters.setup').setup() end
 
 
+M.zenmode  = {
+	plugins = {
+		options = {
+			laststatus = 0,
+		},
+		gitsigns = {
+			enabled = false
+		},
+	},
+}
+
+
 M.blankline  = function()
 	require('ibl').setup({
 		scope = {

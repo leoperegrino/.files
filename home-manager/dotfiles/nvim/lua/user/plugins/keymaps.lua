@@ -65,6 +65,7 @@ M.setup = function()
 	keymap("n", "<F2>"       , vim.lsp.buf.rename   )
 
 	keymap("n", "<F9>"       , "<cmd>NvimTreeToggle<cr>")
+	keymap("n", "<F12>"      , "<cmd>ZenMode<cr>")
 
 	keymap("i", "<C-x><C-o>" , "<cmd>lua require('cmp').complete()<CR>")
 end
