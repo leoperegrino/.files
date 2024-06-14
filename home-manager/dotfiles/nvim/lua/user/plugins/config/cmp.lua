@@ -54,7 +54,6 @@ cmp.setup({
 		['<S-Tab>']   = cmp.mapping(shift_tab_fn, { "i", "s", }),
 
 		['<C-Space>'] = cmp.mapping(control_space_fn),
-		['<CR>']      = cmp.mapping.confirm({ select = true }),
 		['<C-e>']     = cmp.mapping.abort(),
 
 		["<C-b>"]     = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
