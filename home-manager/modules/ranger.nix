@@ -9,9 +9,18 @@ in {
 
 	config = lib.mkIf cfg.enable {
 		programs.ranger = {
+			package = pkgs.ranger.overrideAttrs (prev: {
+				preConfigure = prev.preConfigure + ''
+					sed -i -e '/#\s*application\/pdf/,/&& exit\s6/s/#//' ranger/data/scope.sh
+					sed -i -e '/#\s*video/,/exit 1/s/#//' ranger/data/scope.sh
+				'';
+			});
 			enable = true;
 			extraPackages = [
 				pkgs.ueberzugpp
+				pkgs.ffmpegthumbnailer
+				pkgs.poppler_utils
+				pkgs.jq
 			];
 			extraConfig = "default_linemode devicons";
 			plugins = [{
