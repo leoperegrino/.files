@@ -11,6 +11,7 @@ in {
 		./xdg.nix
 		./ranger.nix
 		./bat.nix
+		./nvim.nix
 	];
 
 	options = {
@@ -28,6 +29,7 @@ in {
 		ltp.xdg.enable = true;
 		ltp.ranger.enable = true;
 		ltp.bat.enable = true;
+		ltp.nvim.enable = true;
 	};
 
 }

@@ -185,7 +185,6 @@
 
 	environment.systemPackages = with pkgs; [
 		vim
-		neovim
 
 		tree
 		tmux
