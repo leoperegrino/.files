@@ -19,7 +19,7 @@ end
 
 M.setup = function(config, opts)
 	autocmd()
-	mason.setup()
+	mason.setup({ PATH = "append" })
 	mason_lspconfig.setup()
 
 	-- skip `rust_analyzer` because of `rust_tools`
