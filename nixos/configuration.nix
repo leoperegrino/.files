@@ -84,7 +84,7 @@
 	services.libinput.mouse.naturalScrolling = true;
 	services.libinput.touchpad.naturalScrolling = true;
 
-	services.xserver.desktopManager.plasma5.enable = true;
+	services.desktopManager.plasma6.enable = true;
 	services.displayManager.sddm.enable = true;
 
 	services.printing.enable = true;
@@ -94,7 +94,7 @@
 		openFirewall = true;
 	};
 
-	environment.plasma5.excludePackages = with pkgs; [
+	environment.plasma6.excludePackages = with pkgs; [
 		kdePackages.kate
 		kdePackages.konsole
 		kdePackages.okular
