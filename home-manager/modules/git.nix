@@ -16,6 +16,7 @@ in {
 				log.date = "iso-local";
 				pager.status = true;
 				pull.rebase = false;
+				push.autoSetupRemote = true;
 			};
 			aliases = {
 				b = "branch --list --all";
