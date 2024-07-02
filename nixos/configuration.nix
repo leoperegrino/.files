@@ -8,6 +8,7 @@
 	nix.settings.use-xdg-base-directories = true;
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 	nix.gc.options = "--delete-older-than 7d";
+	nix.gc.automatic = true;
 
 	boot = {
 		consoleLogLevel = 0;
