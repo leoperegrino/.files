@@ -13,6 +13,7 @@
 	boot = {
 		consoleLogLevel = 0;
 		kernelParams = ["quiet"];
+		binfmt.emulatedSystems = [ "aarch64-linux" ];
 		loader = {
 			timeout = 0;
 			efi.canTouchEfiVariables = true;
