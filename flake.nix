@@ -13,10 +13,13 @@
 		nixpkgs,
 		home-manager,
 		...
-	} @ inputs: {
+	} @ inputs: let
+		inherit (self) outputs;
+	in {
 
 		nixosConfigurations = {
 			"nixos" = nixpkgs.lib.nixosSystem {
+				specialArgs = {inherit inputs outputs;};
 				system = "x86_64-linux";
 				modules = [
 					./hosts/nixos
@@ -24,6 +27,7 @@
 						home-manager = {
 							# useGlobalPkgs = true;
 							useUserPackages = true;
+							extraSpecialArgs = {inherit inputs;};
 							users."ltp".imports = [./users/ltp];
 						};
 					}
