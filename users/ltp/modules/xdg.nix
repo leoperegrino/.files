@@ -1,6 +1,6 @@
 {pkgs, lib, config, ...}:
 let
-	cfg = config.ltp.xdg;
+	cfg = config.modules.xdg;
 
 	symlink = config.lib.file.mkOutOfStoreSymlink;
 	home = "${config.home.homeDirectory}";
@@ -8,7 +8,7 @@ let
 in {
 
 	options = {
-		ltp.xdg.enable = lib.mkEnableOption "enable xdg support";
+		modules.xdg.enable = lib.mkEnableOption "enable xdg support";
 	};
 
 	config = lib.mkIf cfg.enable {

@@ -1,6 +1,6 @@
 {pkgs, lib, config, ...}:
 let
-	cfg = config.ltp;
+	cfg = config.modules;
 in {
 
 	imports = [
@@ -15,21 +15,18 @@ in {
 	];
 
 	options = {
-		ltp.enable = lib.mkEnableOption "enable ltp modules";
+		modules.enable = lib.mkEnableOption "enable all modules";
 	};
 
 	config = lib.mkIf cfg.enable {
-		home.username = "ltp";
-		home.homeDirectory = "/home/ltp";
-
-		ltp.mpv.enable = true;
-		ltp.alacritty.enable = true;
-		ltp.git.enable = true;
-		ltp.gpg.enable = true;
-		ltp.xdg.enable = true;
-		ltp.ranger.enable = true;
-		ltp.bat.enable = true;
-		ltp.nvim.enable = true;
+		modules.mpv.enable = true;
+		modules.alacritty.enable = true;
+		modules.git.enable = true;
+		modules.gpg.enable = true;
+		modules.xdg.enable = true;
+		modules.ranger.enable = true;
+		modules.bat.enable = true;
+		modules.nvim.enable = true;
 	};
 
 }

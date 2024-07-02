@@ -1,10 +1,10 @@
 {pkgs, lib, config, ...}:
 let
-	cfg = config.ltp.mpv;
+	cfg = config.modules.mpv;
 in {
 
 	options = {
-		ltp.mpv.enable = lib.mkEnableOption "enable mpv";
+		modules.mpv.enable = lib.mkEnableOption "enable mpv";
 	};
 
 	config = lib.mkIf cfg.enable {

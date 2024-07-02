@@ -1,10 +1,10 @@
 {pkgs, lib, config, ...}:
 let
-	cfg = config.ltp.bat;
+	cfg = config.modules.bat;
 in {
 
 	options = {
-		ltp.bat.enable = lib.mkEnableOption "enable bat";
+		modules.bat.enable = lib.mkEnableOption "enable bat";
 	};
 
 	config = lib.mkIf cfg.enable {

@@ -1,10 +1,10 @@
 {pkgs, lib, config, ...}:
 let
-	cfg = config.ltp.ranger;
+	cfg = config.modules.ranger;
 in {
 
 	options = {
-		ltp.ranger.enable = lib.mkEnableOption "enable ranger";
+		modules.ranger.enable = lib.mkEnableOption "enable ranger";
 	};
 
 	config = lib.mkIf cfg.enable {
