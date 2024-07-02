@@ -5,14 +5,13 @@
 	...
 }: {
 	imports = [
-		../../modules
+		../modules
 	];
 
 	modules.enable = true;
 
 	home.username = "ltp";
 	home.homeDirectory = "/home/ltp";
-
 
 	programs.home-manager.enable = true;
 

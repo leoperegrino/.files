@@ -31,7 +31,7 @@
 							useGlobalPkgs = true;
 							useUserPackages = true;
 							extraSpecialArgs = {inherit inputs;};
-							users."ltp".imports = [./users/ltp];
+							users."ltp".imports = [./users/ltp.nix];
 						};
 					}
 				];
@@ -48,7 +48,7 @@
 						home-manager.useGlobalPkgs = true;
 						home-manager.useUserPackages = true;
 						extraSpecialArgs = {inherit inputs;};
-						home-manager.users."pi".imports = [./users/pi];
+						home-manager.users."pi".imports = [./users/pi.nix];
 					}
 				];
 			};
