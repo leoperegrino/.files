@@ -4,7 +4,7 @@ let
 
 	symlink = config.lib.file.mkOutOfStoreSymlink;
 	home = "${config.home.homeDirectory}";
-	dotfiles = home + "/.files/home-manager/dotfiles";
+	dotfiles = home + "/.files/users/ltp/dotfiles";
 in {
 
 	options = {

@@ -1,9 +1,5 @@
 {lib, config, pkgs, ... }:
 {
-	imports = [
-		./syncthing.nix
-		./hardware-configuration.nix
-	];
 
 	nix.settings.use-xdg-base-directories = true;
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
