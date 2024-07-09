@@ -49,8 +49,15 @@
 		LC_TIME = "pt_BR.UTF-8";
 	};
 
-	networking.networkmanager.enable = true;
-	networking.hostName = "raspberrypi";
+	networking = {
+		networkmanager.enable = true;
+		hostName = "raspberrypi";
+		firewall = {
+			enable = true;
+			allowedTCPPorts = [ 80 443 ];
+		};
+		firewall.logRefusedConnections = true;
+	};
 
 	services.openssh.enable = true;
 	services.openssh.settings.PasswordAuthentication = false;
