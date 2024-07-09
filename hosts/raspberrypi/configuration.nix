@@ -146,6 +146,7 @@
 		traceroute
 
 		parted
+		cryptsetup
 
 		ranger
 

@@ -192,6 +192,7 @@
 		traceroute
 
 		parted
+		cryptsetup
 
 		ranger
 
