@@ -55,7 +55,4 @@ gitsigns.setup {
 		[9]   = '₉',
 		['+'] = '+',
 	},
-	yadm = {
-		enable = false,
-	},
 }
