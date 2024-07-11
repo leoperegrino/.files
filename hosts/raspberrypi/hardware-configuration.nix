@@ -13,6 +13,12 @@
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
+  fileSystems."/boot/firmware" = {
+    device = "/dev/disk/by-label/FIRMWARE";
+    fsType = "vfat";
+    options = [ "nofail" "noauto" ];
+  };
+
   fileSystems."/" =
     { device = "/dev/disk/by-label/NIXOS_SD";
       fsType = "ext4";
