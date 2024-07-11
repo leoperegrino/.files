@@ -15,6 +15,10 @@
 	};
 	console.enable = false;
 	boot = {
+		# https://docs.syncthing.net/users/faq.html#inotify-limits
+		kernel.sysctl = {
+			"fs.inotify.max_user_watches" = 204800;
+		};
 		kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
 		initrd.availableKernelModules = [ "xhci_pci" "usbhid" "usb_storage" ];
 		kernelParams = [
