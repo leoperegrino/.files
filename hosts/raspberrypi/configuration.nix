@@ -64,6 +64,7 @@
 	services.openssh.enable = true;
 	services.openssh.settings.PasswordAuthentication = false;
 
+	users.groups."pi".gid = 1000;
 	users.users."pi" = {
 		openssh.authorizedKeys.keys = [
 			"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDDLq9FuqWxhgoUARBIkHIDR31zay4kSo59m/p2gjX3yFSEuonW9Dh9FkYThBRBJvoadXmAB7TYLP+6Ma6R2BLR6wr7Q05L79OFBmJLztgE6KD/BHdCwJJE/gxvVJzk7OiLT7xKnQHASSkfvgZt/krvnByNREbd30KKJsWD191JdSZhWclkMA34/kCqd2BhItxLeb3BNq6cgfJdxx+fYg9p/0PkW14xYaRughNHv+v5wh4s/dWTNhh06quwiu5oaS74MP2osJJAU0yN3ddXqBguW8fklMN5WRxy7m3pnsUCDAT6MDH/+fhdTCk75tkYdlVfV6yaKrkP5dnHZpyuHiyolaDGPTKbnLW9gnE/OVgBJelGsEeP+GDkbd16v8rDyiTYDKEgpdP5pRNBd+PBmltYHMfP/Ck3sOdzE9ZB4rwExew3dWl4n/gGzveo8ZuTcf3nXRSZddAiBuxz3wENzsQEPLtyfCmv+ONc6nrCD57RRzvF05a5scGUe4QqeAzaWmp7FbdXaieudvTQL2xiXMSUwaPx+PXOFnhk7Dr0jpBmirfKMinK+mQKzuxomnKCPKtQublMhmx4922P1xoI9R3FohY2HEbpCROrPcBnWEuHVxrlwOCLAq1/ZtUWuzAIcvtBqGSdbBYl6A+OEvKstQD46WrgrC3BJGLtcfRK1NITJw== ltp@nixos"
@@ -75,6 +76,7 @@
 			"wheel"
 			"networkmanager"
 			"docker"
+			"pi"
 		];
 	};
 
