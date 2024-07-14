@@ -33,13 +33,7 @@
 	documentation.nixos.enable = false;
 
 	virtualisation.containers.enable = true;
-	virtualisation.podman.enable = true;
-	virtualisation.podman.extraPackages = [
-		pkgs.podman-compose
-	];
-	virtualisation.podman.defaultNetwork.settings = {
-		dns_enabled = true;
-	};
+	virtualisation.docker.enable = true;
 	
 	time.timeZone = "America/Recife";
 
@@ -76,6 +70,7 @@
 		extraGroups = [
 			"wheel"
 			"networkmanager"
+			"docker"
 		];
 	};
 
