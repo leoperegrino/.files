@@ -1,9 +1,9 @@
 {lib, config, pkgs, ... }:
 {
-	nix.settings.use-xdg-base-directories = true;
-	nix.settings.experimental-features = [ "nix-command" "flakes" ];
-	nix.gc.options = "--delete-older-than 7d";
-	nix.gc.automatic = true;
+
+	imports = [
+		../modules/nix.nix
+	];
 
 	hardware = {
 		enableRedistributableFirmware = true;
