@@ -4,6 +4,7 @@
 	imports = [
 		../modules/nix.nix
 		../modules/xserver.nix
+		../modules/programs.nix
 		../modules/environment.nix
 	];
 
@@ -82,41 +83,6 @@
 	};
 
 	security.sudo.wheelNeedsPassword = false;
-
-	programs.zsh = {
-		enable = true;
-		histSize = 100000;
-		histFile = "\${XDG_STATE_HOME}/zsh/history";
-
-		autosuggestions.enable = true;
-		syntaxHighlighting.enable = true;
-
-		interactiveShellInit = ''
-			source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-			'';
-	};
-
-	programs.neovim = {
-		enable = false;
-		defaultEditor = true;
-		viAlias = true;
-		vimAlias = true;
-	};
-
-	programs.htop = {
-		enable = true;
-		package = pkgs.htop-vim;
-		settings = {
-			hide_kernel_threads = true;
-			hide_userland_threads = true;
-			tree_view = true;
-			all_branches_collapsed = true;
-			highlight_base_name = true;
-			show_program_path = false;
-			column_meters_0 = ["AllCPUs" "Memory"];
-			column_meters_1 = ["DateTime" "System" "Battery" "Uptime" "Blank" "DiskIO" "NetworkIO"];
-		};
-	};
 
 	nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
 	];
