@@ -22,7 +22,7 @@
 		kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
 		initrd.availableKernelModules = [ "xhci_pci" "usbhid" "usb_storage" ];
 		kernelParams = [
-			"usb-storage.quirks=152d:0562:u,152d:2329:u"
+			"usb-storage.quirks=152d:0562:u,152d:2329:u,14cd:1212"
 		];
 		loader = {
 			grub.enable = false;
