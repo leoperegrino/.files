@@ -3,6 +3,7 @@
 
 	imports = [
 		../modules/nix.nix
+		../modules/xserver.nix
 	];
 
 	boot = {
@@ -61,46 +62,12 @@
 
 	networking.networkmanager.enable = true;
 
-	services.xserver = {
-		enable = true;
-		excludePackages = [ pkgs.xterm ];
-
-		autoRepeatInterval = 50;
-		autoRepeatDelay = 300;
-
-		xkb = {
-			layout = "br-altgr";
-			extraLayouts."br-altgr" = {
-				description = "br layout with custom altgr";
-				languages   = [ "por" ];
-				symbolsFile = ./symbols/br-altgr;
-			};
-		};
-	};
-
-	services.libinput.mouse.naturalScrolling = true;
-	services.libinput.touchpad.naturalScrolling = true;
-
-	services.desktopManager.plasma6.enable = true;
-	services.displayManager.sddm.enable = true;
-
 	services.printing.enable = true;
 	services.avahi = {
 		enable = true;
 		nssmdns4 = true;
 		openFirewall = true;
 	};
-
-	environment.plasma6.excludePackages = with pkgs; [
-		kdePackages.kate
-		kdePackages.konsole
-		kdePackages.okular
-		kdePackages.elisa
-		kdePackages.ark
-		kdePackages.khelpcenter
-		# kdePackages.gwenview
-		# kdePackages.dolphin
-	];
 
 	users.users."ltp" = {
 		isNormalUser = true;
