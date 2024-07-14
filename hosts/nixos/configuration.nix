@@ -4,6 +4,7 @@
 	imports = [
 		../modules/nix.nix
 		../modules/xserver.nix
+		../modules/environment.nix
 	];
 
 	boot = {
@@ -116,29 +117,6 @@
 			column_meters_1 = ["DateTime" "System" "Battery" "Uptime" "Blank" "DiskIO" "NetworkIO"];
 		};
 	};
-
-	environment.extraInit = ''
-		export         XDG_DATA_HOME="''${HOME}/.local/share"
-		export        XDG_STATE_HOME="''${HOME}/.local/state"
-		export        XDG_CACHE_HOME="''${HOME}/.cache"
-		export       XDG_CONFIG_HOME="''${HOME}/.config"
-	'';
-
-	environment.etc."zshenv.local".text = ''
-		export ZDOTDIR="''${XDG_CONFIG_HOME}/zsh"
-	'';
-
-	environment.etc."profile.local".text = let profile = "\${XDG_CONFIG_HOME}/sh/profile"; in ''
-		if test -f "${profile}"; then
-			source "${profile}"
-		fi
-	'';
-
-	environment.etc."bashrc.local".text = let bashrc = "\${XDG_CONFIG_HOME}/bash/bashrc"; in ''
-		if test -f "${bashrc}"; then
-			source "${bashrc}"
-		fi
-	'';
 
 	nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
 	];
