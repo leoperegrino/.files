@@ -1,19 +1,21 @@
 {lib, config, pkgs, ... }:
 {
 
-	services.xserver = {
-		enable = true;
-		excludePackages = [ pkgs.xterm ];
+	services = {
+		xserver = {
+			enable = true;
+			excludePackages = [ pkgs.xterm ];
 
-		autoRepeatInterval = 50;
-		autoRepeatDelay = 300;
+			autoRepeatInterval = 50;
+			autoRepeatDelay = 300;
 
-		xkb = {
-			layout = "br-altgr";
-			extraLayouts."br-altgr" = {
-				description = "br layout with custom altgr";
-				languages   = [ "por" ];
-				symbolsFile = ../../config/x/br-altgr;
+			xkb = {
+				layout = "br-altgr";
+				extraLayouts."br-altgr" = {
+					description = "br layout with custom altgr";
+					languages   = [ "por" ];
+					symbolsFile = ../../config/x/br-altgr;
+				};
 			};
 		};
 
@@ -23,7 +25,6 @@
 		desktopManager.plasma6.enable = true;
 		displayManager.sddm.enable = true;
 	};
-
 
 	environment.plasma6.excludePackages = with pkgs; [
 		kdePackages.kate
