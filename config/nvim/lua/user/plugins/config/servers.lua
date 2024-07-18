@@ -3,6 +3,7 @@ local M = {}
 M.lua_ls = {
 	settings = {
 		Lua = {
+			diagnostics = { globals = { "vim", "require" }, },
 			telemetry = {
 				enable = false,
 			},
