@@ -5,7 +5,10 @@
 		../modules/nix.nix
 		../modules/programs.nix
 		../modules/locale.nix
+		../modules/virtualisation.nix
 	];
+
+	modules.docker.enable = true;
 
 	hardware = {
 		enableRedistributableFirmware = true;
@@ -34,9 +37,6 @@
 
 	documentation.nixos.enable = false;
 
-	virtualisation.containers.enable = true;
-	virtualisation.docker.enable = true;
-	
 	networking = {
 		nameservers = [
 			"127.0.0.1"

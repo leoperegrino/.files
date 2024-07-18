@@ -7,7 +7,10 @@
 		../modules/programs.nix
 		../modules/locale.nix
 		../modules/environment.nix
+		../modules/virtualisation.nix
 	];
+
+	modules.podman.enable = true;
 
 	boot = {
 		consoleLogLevel = 0;
@@ -29,15 +32,6 @@
 
 	documentation.nixos.enable = false;
 
-	virtualisation.containers.enable = true;
-	virtualisation.podman.enable = true;
-	virtualisation.podman.extraPackages = [
-		pkgs.podman-compose
-	];
-	virtualisation.podman.defaultNetwork.settings = {
-		dns_enabled = true;
-	};
-	
 	console.useXkbConfig = true;
 
 	hardware.bluetooth = {
