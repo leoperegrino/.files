@@ -34,24 +34,30 @@
 
 	console.useXkbConfig = true;
 
-	hardware.bluetooth = {
-		enable = true;
-		settings = {
-			General = {
-				JustWorksRepairing = "always";
+	hardware =  {
+		bluetooth = {
+			enable = true;
+			settings = {
+				General = {
+					JustWorksRepairing = "always";
+				};
 			};
 		};
+		pulseaudio = {
+			enable = true;
+			package = pkgs.pulseaudioFull;
+		};
 	};
-	hardware.pulseaudio.enable = true;
-	hardware.pulseaudio.package = pkgs.pulseaudioFull;
 
 	networking.networkmanager.enable = true;
 
-	services.printing.enable = true;
-	services.avahi = {
-		enable = true;
-		nssmdns4 = true;
-		openFirewall = true;
+	services = {
+		printing.enable = true;
+		avahi = {
+			enable = true;
+			nssmdns4 = true;
+			openFirewall = true;
+		};
 	};
 
 	users.users."ltp" = {
