@@ -3,7 +3,7 @@
 
 	nix = {
 		settings = {
-			use-xdg-base-directories = false;
+			use-xdg-base-directories = true;
 			experimental-features = [ "nix-command" "flakes" ];
 		};
 		gc = {
