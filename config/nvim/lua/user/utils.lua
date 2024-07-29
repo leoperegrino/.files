@@ -1,11 +1,12 @@
 local M = {}
 
 
----function to create a closure with a specific options table
+---create a closure with a specific options table and a optional description
 ---@param opts table
 ---@return function
 M.keymap_with = function(opts)
-	return function(mode, key, map)
+	return function(mode, key, map, desc)
+		opts['desc'] = desc
 		vim.keymap.set(mode, key, map, opts)
 	end
 end

@@ -15,14 +15,14 @@ M.on_attach = function(_, bufnr)
 		bufmap("n", "K"   , vim.lsp.buf.hover)
 	end
 
-	bufmap("n", "glr" , vim.lsp.buf.rename                 )
-	bufmap("n", "gld" , vim.lsp.buf.declaration            )
-	bufmap("n", "gls" , vim.lsp.buf.signature_help         )
-	bufmap("n", "glc" , vim.lsp.buf.code_action            )
-	bufmap("n", "glw" , vim.lsp.buf.add_workspace_folder   )
-	bufmap("n", "glW" , vim.lsp.buf.remove_workspace_folder)
-	bufmap("n", "glf" , vim.lsp.buf.format                 )
-	bufmap("n", "gll" , "<Cmd>= vim.lsp.buf.list_workspace_folders()<CR>")
+	bufmap("n", "glr" , vim.lsp.buf.rename                 , "lsp: renames all references"  )
+	bufmap("n", "gld" , vim.lsp.buf.declaration            , "lsp: jumps to declaration"    )
+	bufmap("n", "gls" , vim.lsp.buf.signature_help         , "lsp: displays signature help" )
+	bufmap("n", "glc" , vim.lsp.buf.code_action            , "lsp: selects a code action"   )
+	bufmap("n", "glw" , vim.lsp.buf.add_workspace_folder   , "lsp: add folder to workspace" )
+	bufmap("n", "glW" , vim.lsp.buf.remove_workspace_folder, "lsp: rm folder from workspace")
+	bufmap("n", "glf" , vim.lsp.buf.format                 , "lsp: formats buffer"          )
+	bufmap("n", "gll" , "<Cmd>= vim.lsp.buf.list_workspace_folders()<CR>", "lsp: list folders in workspace")
 end
 
 
@@ -31,11 +31,11 @@ M.setup = function()
 		noremap = true,
 	})
 
-	keymap("n", "[d"         , vim.diagnostic.goto_prev )
-	keymap("n", "Ç"          , vim.diagnostic.goto_prev )
-	keymap("n", "]d"         , vim.diagnostic.goto_next )
-	keymap("n", "ç"          , vim.diagnostic.goto_next )
-	keymap("n", "<leader>eq" , vim.diagnostic.setloclist)
+	keymap("n", "[d"         , vim.diagnostic.goto_prev , "lsp: jumps to previous diagnostic")
+	keymap("n", "Ç"          , vim.diagnostic.goto_prev , "lsp: jumps to previous diagnostic")
+	keymap("n", "]d"         , vim.diagnostic.goto_next , "lsp: jumps to next diagnostic"    )
+	keymap("n", "ç"          , vim.diagnostic.goto_next , "lsp: jumps to next diagnostic"    )
+	keymap("n", "<leader>eq" , vim.diagnostic.setloclist, "lsp: add buffer diagnostics to the location list")
 
 	keymap('' , '<leader><leader>', ':'         )
 	keymap('n', '<leader>H'       , ':H '       )
@@ -108,11 +108,11 @@ M.setup = function()
 	keymap('n' , 'gh'    , "<Cmd>= vim.treesitter.get_captures_at_cursor(0)<CR>"      )
 	keymap(''  , 'gF'    , "<Cmd>vsplit <cfile><CR>"                                  )
 	keymap('n' , 'K'     , "<Cmd>execute 'vert' &keywordprg expand('<cword>')<CR>"    )
-	keymap('n' , 'H'     , "<Cmd>execute 'match DiffAdd /'.expand('<cword>').'/'<CR>" )
-	keymap('n' , 'yU'    , "<Cmd>let @/= expand('<cword>') <BAR> set hlsearch<CR>"    )
-	keymap('n' , '<esc>' , [[<Cmd>noh <bar> match none <bar> echo ''<CR><esc>]]       )
 	keymap('n' , 'gH'    , [[<Cmd>echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>]])
-	keymap('n' , 'yu'    , [[<Cmd>let @/='\<' . expand('<cword>') . '\>' <BAR> set hlsearch<CR>]])
+	keymap('n' , 'H'     , "<Cmd>execute 'match DiffAdd /'.expand('<cword>').'/'<CR>" , "highlight ocurrences of word under the cursor")
+	keymap('n' , '<esc>' , [[<Cmd>noh <bar> match none <bar> echo ''<CR><esc>]]       , "make escape disable search highlighting"      )
+	keymap('n' , 'yU'    , "<Cmd>let @/= expand('<cword>') <BAR> set hlsearch<CR>"    , "yank word under the cursor to search pattern" )
+	keymap('n' , 'yu'    , [[<Cmd>let @/='\<' . expand('<cword>') . '\>' <BAR> set hlsearch<CR>]], "yank word with boundaries under the cursor to search pattern")
 
 	command('Bd',
 		function(_) vim.cmd.bnext() vim.cmd.bdelete('#') end,
