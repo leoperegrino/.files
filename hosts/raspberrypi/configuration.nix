@@ -19,7 +19,7 @@
 		};
 	};
 
-	console.enable = false;
+	console.enable = true;
 
 	boot = {
 		# https://docs.syncthing.net/users/faq.html#inotify-limits
