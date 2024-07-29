@@ -12,6 +12,7 @@ in {
 		./ranger.nix
 		./bat.nix
 		./nvim.nix
+		./htop.nix
 	];
 
 	options = {
@@ -27,6 +28,7 @@ in {
 		modules.ranger.enable = true;
 		modules.bat.enable = true;
 		modules.nvim.enable = true;
+		modules.htop.enable = true;
 	};
 
 }

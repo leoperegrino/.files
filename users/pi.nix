@@ -14,6 +14,7 @@
 	modules.nvim.enable = true;
 	modules.ranger.enable = true;
 	modules.xdg.enable = true;
+	modules.htop.enable = true;
 
 	home.username = "pi";
 	home.homeDirectory = "/home/pi";
