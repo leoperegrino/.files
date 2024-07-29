@@ -1,5 +1,27 @@
 local M = {}
 
+M.nil_ls = {
+	-- https://github.com/oxalica/nil/blob/main/docs/configuration.md
+	settings = {
+		["nil"] = {
+			formatting = {
+				command = { "nix", "run", "nixpkgs#alejandra" },
+			},
+			nix = {
+				-- maxMemoryMB = 2048,
+				flake = {
+					-- calls `nix flake archive` to put a flake and its output to store
+					autoArchive = true,
+					-- auto eval flake inputs for improved completion
+					autoEvalInputs = true,
+					-- The input name of nixpkgs for NixOS options evaluation.
+					nixpkgsInputName = "nixpkgs",
+				},
+			},
+		},
+	},
+}
+
 M.lua_ls = {
 	settings = {
 		Lua = {
