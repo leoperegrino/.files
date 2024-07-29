@@ -31,6 +31,7 @@ end
 
 M.setup = function()
 	local telescope = require('telescope.builtin')
+	local gitsigns = require('gitsigns')
 
 	local keymap = keymap_with({
 		noremap = true,
@@ -39,8 +40,19 @@ M.setup = function()
 
 
 	keymap({"n", "v"}, "gG" , "<cmd>Gitsigns<cr>"   )
-	keymap("n", "]g" , "<cmd>Gitsigns next_hunk<cr>")
-	keymap("n", "[g" , "<cmd>Gitsigns prev_hunk<cr>")
+	keymap("n", "g1" , gitsigns.prev_hunk)
+	keymap("n", "g2" , gitsigns.next_hunk)
+	keymap("n", "gs" , gitsigns.stage_hunk)
+	keymap("v", "gs" , function() gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end)
+	keymap("n", "gS" , gitsigns.reset_hunk)
+	keymap("v", "gS" , function() gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end)
+	keymap("n", "gp" , gitsigns.preview_hunk_inline)
+	keymap("n", "gP" , gitsigns.preview_hunk)
+	keymap("n", "gu" , gitsigns.undo_stage_hunk)
+	keymap("n", "gb" , function() gitsigns.blame_line({ full=true }) end)
+	keymap("n", "gB" , gitsigns.blame_line)
+	keymap("n", "gz" , gitsigns.diffthis)
+	keymap("n", "gZ" , gitsigns.toggle_deleted)
 
 	keymap("n", "<leader>b"  , telescope.buffers   )
 	keymap("n", "<leader>g"  , telescope.git_files )
