@@ -48,9 +48,9 @@
 		hostName = "raspberrypi";
 		firewall = {
 			enable = true;
-			allowedTCPPorts = [ 80 443 ];
+			allowedTCPPorts = [ 80 443 50000 50001 51413 22000 ];
+			allowedUDPPorts = [ 51413 22000 21027 51820 ];
 		};
-		firewall.logRefusedConnections = true;
 	};
 
 	services.openssh = {
