@@ -6,6 +6,7 @@
 		../modules/programs.nix
 		../modules/locale.nix
 		../modules/virtualisation.nix
+		../modules/environment.nix
 	];
 
 	modules.docker.enable = true;
@@ -77,27 +78,6 @@
 	};
 
 	security.sudo.wheelNeedsPassword = false;
-
-	environment.extraInit = ''
-		export         XDG_DATA_HOME="''${HOME}/.local/share"
-		export        XDG_STATE_HOME="''${HOME}/.local/state"
-		export        XDG_CACHE_HOME="''${HOME}/.cache"
-		export       XDG_CONFIG_HOME="''${HOME}/.config"
-		source "''${XDG_CONFIG_HOME}/sh/profile"
-	'';
-
-	environment.etc."zshenv.local".text = ''
-		export ZDOTDIR="''${XDG_CONFIG_HOME}/zsh"
-	'';
-
-	environment.etc."profile.local".text = let profile = "\${XDG_CONFIG_HOME}/sh/profile"; in ''
-	'';
-
-	environment.etc."bashrc.local".text = let bashrc = "\${XDG_CONFIG_HOME}/bash/bashrc"; in ''
-		if test -f "${bashrc}"; then
-			source "${bashrc}"
-		fi
-	'';
 
 	nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
 	];
