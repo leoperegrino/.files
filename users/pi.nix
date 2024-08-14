@@ -5,7 +5,7 @@
 	...
 }: {
 	imports = [
-		../modules
+		./modules
 	];
 
 	modules.bat.enable = true;
