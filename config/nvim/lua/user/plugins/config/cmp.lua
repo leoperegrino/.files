@@ -1,5 +1,4 @@
 local cmp = require("cmp")
-local lsp_types = require('cmp.types').lsp
 local luasnip = require("luasnip")
 local lspkind = require('lspkind')
 
@@ -31,8 +30,6 @@ local function control_space_fn(fallback)
 		cmp.confirm({ select = true })
 	elseif luasnip.expandable() then
 		luasnip.expand()
-	elseif not has_words_before() then
-		cmp.complete()
 	else
 		-- fallback()
 	end
