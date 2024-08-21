@@ -13,6 +13,7 @@
 	modules.podman.enable = true;
 
 	boot = {
+		kernelPackages = pkgs.linuxPackages_latest;
 		consoleLogLevel = 0;
 		kernelParams = ["quiet"];
 		binfmt.emulatedSystems = [ "aarch64-linux" ];
