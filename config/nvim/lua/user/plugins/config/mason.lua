@@ -28,6 +28,14 @@ M.setup = function(config, opts)
 		mason_lspconfig.get_installed_servers()
 	)
 
+	-- force configured servers to be available even without a mason install
+	local config_keys = vim.tbl_keys(config)
+	for _, key in ipairs(config_keys) do
+		if not vim.tbl_contains(servers, key) then
+			table.insert(servers, key)
+		end
+	end
+
 	for _, server in ipairs(servers) do
 
 		local final = deep_extend('force', opts, config[server] or {})
