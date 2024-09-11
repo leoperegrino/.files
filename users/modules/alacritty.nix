@@ -1,10 +1,10 @@
 {pkgs, lib, config, ...}:
 let
-	cfg = config.modules.alacritty;
+	cfg = config.modules.users.alacritty;
 in {
 
-	options = {
-		modules.alacritty.enable = lib.mkEnableOption "enable alacritty";
+	options.modules.users = {
+		alacritty.enable = lib.mkEnableOption "alacritty";
 	};
 
 	config = lib.mkIf cfg.enable {

@@ -1,10 +1,10 @@
 {pkgs, lib, config, ...}:
 let
-	cfg = config.modules.htop;
+	cfg = config.modules.users.htop;
 in {
 
-	options = {
-		modules.htop.enable = lib.mkEnableOption "htop";
+	options.modules.users = {
+		htop.enable = lib.mkEnableOption "htop";
 	};
 
 	config = lib.mkIf cfg.enable {

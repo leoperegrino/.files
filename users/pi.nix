@@ -8,13 +8,13 @@
 		./modules
 	];
 
-	modules.bat.enable = true;
-	modules.git.enable = true;
-	modules.gpg.enable = true;
-	modules.nvim.enable = true;
-	modules.ranger.enable = true;
-	modules.xdg.enable = true;
-	modules.htop.enable = true;
+	modules.users.bat.enable = true;
+	modules.users.git.enable = true;
+	modules.users.gpg.enable = true;
+	modules.users.nvim.enable = true;
+	modules.users.ranger.enable = true;
+	modules.users.xdg.enable = true;
+	modules.users.htop.enable = true;
 
 	home.username = "pi";
 	home.homeDirectory = "/home/pi";

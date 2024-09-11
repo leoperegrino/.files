@@ -1,10 +1,10 @@
 {pkgs, lib, config, ...}:
 let
-	cfg = config.modules.git;
+	cfg = config.modules.users.git;
 in {
 
-	options = {
-		modules.git.enable = lib.mkEnableOption "enable git";
+	options.modules.users = {
+		git.enable = lib.mkEnableOption "git";
 	};
 
 	config = lib.mkIf cfg.enable {

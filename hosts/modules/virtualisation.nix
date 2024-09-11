@@ -1,12 +1,12 @@
 {pkgs, lib, config, ...}:
 let
-	cfg = config.modules;
+	cfg = config.modules.hosts.virtualisation;
 in {
 
-	options.modules = {
-		docker.enable = lib.mkEnableOption "docker";
-		podman.enable = lib.mkEnableOption "podman";
-		virtualbox.enable = lib.mkEnableOption "virtualbox";
+	options.modules.hosts = {
+		virtualisation.docker.enable = lib.mkEnableOption "docker";
+		virtualisation.podman.enable = lib.mkEnableOption "podman";
+		virtualisation.virtualbox.enable = lib.mkEnableOption "virtualbox";
 	};
 
 	config = {

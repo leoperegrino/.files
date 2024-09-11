@@ -1,10 +1,10 @@
 {pkgs, lib, config, ...}:
 let
-	cfg = config.modules.mpv;
+	cfg = config.modules.users.mpv;
 in {
 
-	options = {
-		modules.mpv.enable = lib.mkEnableOption "enable mpv";
+	options.modules.users = {
+		mpv.enable = lib.mkEnableOption "mpv";
 	};
 
 	config = lib.mkIf cfg.enable {

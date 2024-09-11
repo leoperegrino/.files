@@ -8,7 +8,7 @@
 		./modules
 	];
 
-	modules.enable = true;
+	modules.users.enable = true;
 
 	home.username = "ltp";
 	home.homeDirectory = "/home/ltp";

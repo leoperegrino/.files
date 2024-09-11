@@ -1,10 +1,10 @@
 {pkgs, lib, config, ...}:
 let
-	cfg = config.modules.gpg;
+	cfg = config.modules.users.gpg;
 in {
 
-	options = {
-		modules.gpg.enable = lib.mkEnableOption "enable gpg";
+	options.modules.users = {
+		gpg.enable = lib.mkEnableOption "gpg";
 	};
 
 	config = lib.mkIf cfg.enable {

@@ -1,14 +1,14 @@
 {pkgs, lib, config, ...}:
 let
-	cfg = config.modules.xdg;
+	cfg = config.modules.users.xdg;
 
 	symlink = config.lib.file.mkOutOfStoreSymlink;
 	home = "${config.home.homeDirectory}";
 	dotfiles = home + "/.files/config";
 in {
 
-	options = {
-		modules.xdg.enable = lib.mkEnableOption "enable xdg support";
+	options.modules.users = {
+		xdg.enable = lib.mkEnableOption "xdg support";
 	};
 
 	config = lib.mkIf cfg.enable {

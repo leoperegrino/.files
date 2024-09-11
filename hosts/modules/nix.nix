@@ -1,15 +1,24 @@
 {lib, config, pkgs, ... }:
-{
+let
+	cfg = config.modules.hosts.nix;
+in {
 
-	nix = {
-		settings = {
-			use-xdg-base-directories = true;
-			experimental-features = [ "nix-command" "flakes" ];
-		};
-		gc = {
-			options = "--delete-older-than 7d";
-			automatic = true;
-			dates = "weekly";
+	options.modules.hosts = {
+		nix.enable = lib.mkEnableOption "nix settings";
+	};
+
+	config = lib.mkIf cfg.enable {
+
+		nix = {
+			settings = {
+				use-xdg-base-directories = true;
+				experimental-features = [ "nix-command" "flakes" ];
+			};
+			gc = {
+				options = "--delete-older-than 7d";
+				automatic = true;
+				dates = "weekly";
+			};
 		};
 	};
 

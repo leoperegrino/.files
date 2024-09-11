@@ -2,14 +2,18 @@
 {
 
 	imports = [
+		../modules/environment.nix
+		../modules/locale.nix
 		../modules/nix.nix
 		../modules/programs.nix
-		../modules/locale.nix
 		../modules/virtualisation.nix
-		../modules/environment.nix
 	];
 
-	modules.docker.enable = true;
+	modules.hosts.environment.enable = true;
+	modules.hosts.locale.enable = true;
+	modules.hosts.nix.enable = true;
+	modules.hosts.programs.enable = true;
+	modules.hosts.virtualisation.docker.enable = true;
 
 	hardware = {
 		enableRedistributableFirmware = true;

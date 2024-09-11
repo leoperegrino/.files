@@ -1,10 +1,10 @@
 {pkgs, lib, config, ...}:
 let
-	cfg = config.modules.bat;
+	cfg = config.modules.users.bat;
 in {
 
-	options = {
-		modules.bat.enable = lib.mkEnableOption "enable bat";
+	options.modules.users = {
+		bat.enable = lib.mkEnableOption "bat";
 	};
 
 	config = lib.mkIf cfg.enable {

@@ -1,10 +1,10 @@
 {pkgs, lib, config, ...}:
 let
-	cfg = config.modules.nvim;
+	cfg = config.modules.users.nvim;
 in {
 
-	options = {
-		modules.nvim.enable = lib.mkEnableOption "enable nvim";
+	options.modules.users = {
+		nvim.enable = lib.mkEnableOption "nvim";
 	};
 
 	config = lib.mkIf cfg.enable {

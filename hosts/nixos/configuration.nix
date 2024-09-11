@@ -2,15 +2,12 @@
 {
 
 	imports = [
-		../modules/nix.nix
-		../modules/xserver.nix
-		../modules/programs.nix
-		../modules/locale.nix
-		../modules/environment.nix
+		../modules/default.nix
 		../modules/virtualisation.nix
 	];
 
-	modules.podman.enable = true;
+	modules.hosts.enable = true;
+	modules.hosts.virtualisation.podman.enable = true;
 
 	boot = {
 		kernelPackages = pkgs.linuxPackages_latest;
