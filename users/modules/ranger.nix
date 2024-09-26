@@ -10,6 +10,7 @@ in {
 	config = lib.mkIf cfg.enable {
 		programs.ranger = {
 			package = pkgs.ranger.overrideAttrs (prev: {
+				makeWrapperArgs = ["--set BAT_STYLE full"];
 				preConfigure = prev.preConfigure + ''
 					sed -i -e '/#\s*application\/pdf/,/&& exit\s6/s/#//' ranger/data/scope.sh
 					sed -i -e '/#\s*video/,/exit 1/s/#//' ranger/data/scope.sh
@@ -21,6 +22,7 @@ in {
 				pkgs.ffmpegthumbnailer
 				pkgs.poppler_utils
 				pkgs.jq
+				pkgs.bat
 			];
 			extraConfig = "default_linemode devicons";
 			plugins = [{
