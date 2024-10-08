@@ -11,6 +11,7 @@ end
 
 
 M.setup = function()
+	autocmd('FileType'    ,  '*'   ,  function() vim.opt.formatoptions:remove({'c', 'r', 'o'})                        end )
 	autocmd('FileType'    ,  'qf'  ,  function() vim.cmd[[nnoremap <buffer> <CR> <CR><cmd>lclose<CR><cmd>cclose<CR>]] end )
 	autocmd('FileType'    , 'xml'  ,  function() vim.cmd[[set foldmethod=syntax]]                                     end )
 	autocmd('FileType'    ,  '*'   ,  function() vim.cmd[[silent! loadview]]                                          end )

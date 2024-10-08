@@ -19,7 +19,6 @@ M.setup = function()
 
 	o.shortmess:append('AFI')
 	o.completeopt = { 'menu', 'menuone', 'noselect' }
-	o.formatoptions:remove({ 'c' })
 
 	-- o.startofline = true
 	o.updatetime = 300
@@ -52,6 +51,8 @@ M.setup = function()
 	-- o.relativenumber = false
 
 	o.smartindent = true
+	o.cindent = true
+	o.cinkeys:remove({'0#'})
 
 	o.splitbelow = true
 	o.splitright = true
