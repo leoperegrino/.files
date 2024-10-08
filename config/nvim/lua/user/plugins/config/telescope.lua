@@ -1,12 +1,22 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
+local undo_actions = require("telescope-undo.actions")
 
 vim.cmd[[autocmd User TelescopePreviewerLoaded setlocal number]]
 
 telescope.load_extension('undo')
-telescope.setup{
+telescope.setup({
 	extensions = {
-		undo = { },
+		undo = {
+			mappings = {
+				n = {
+					["<cr>"] = undo_actions.restore,
+				};
+				i = {
+					["<cr>"] = undo_actions.restore,
+				};
+			},
+		},
 	},
 	pickers = {
 		colorscheme = {
@@ -66,4 +76,4 @@ telescope.setup{
 			},
 		},
 	}
-}
+})
