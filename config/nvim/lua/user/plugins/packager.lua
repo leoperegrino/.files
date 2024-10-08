@@ -70,7 +70,7 @@ M.setup = function()
 		{ 'nvim-telescope/telescope-symbols.nvim' },
 
 		{ 'kyazdani42/nvim-tree.lua'    , config = c.nvim_tree },
-		{ 'nvim-lualine/lualine.nvim'   , config = c.lualine   , dependencies = 'Mofiqul/vscode.nvim' },
+		{ 'nvim-lualine/lualine.nvim'   , config = c.lualine   , dependencies = { 'Mofiqul/vscode.nvim' }, },
 		{ "folke/zen-mode.nvim"         , config = c.zenmode },
 		{ 'nvim-tree/nvim-web-devicons' },
 
