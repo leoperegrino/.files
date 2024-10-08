@@ -59,6 +59,8 @@ M.setup = function()
 		{ 'onsails/lspkind.nvim'                },
 		{ 'L3MON4D3/LuaSnip', dependencies = { 'rafamadriz/friendly-snippets'} },
 
+		{ "github/copilot.vim", config = c.copilot_vim },
+
 		{ 'nvim-telescope/telescope.nvim',
 			config = c.telescope,
 			tag = '0.1.4',
