@@ -29,7 +29,6 @@ M.attach = function(on_attach)
 	}
 
 	config.mason(opts)
-	config.standalone(opts)
 end
 
 

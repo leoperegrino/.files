@@ -71,12 +71,6 @@ M.vscode = function()
 end
 
 
-M.standalone = function(opts)
-	require("user.plugins.config.metals").setup(vim.deepcopy(opts))
-	require("user.plugins.config.null_ls").setup(vim.deepcopy(opts))
-end
-
-
 M.mason = function(opts)
 	local mason = require("user.plugins.config.mason")
 	local config = require('user.plugins.config.servers')

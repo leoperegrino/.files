@@ -38,9 +38,7 @@ M.setup = function()
 		{ 'neovim/nvim-lspconfig' },
 		{ 'williamboman/mason.nvim', build = ':MasonUpdate' },
 		{ 'williamboman/mason-lspconfig.nvim' },
-		{ 'jose-elias-alvarez/null-ls.nvim', dependencies = 'nvim-lua/plenary.nvim' },
 
-		{ 'scalameta/nvim-metals', dependencies = { 'nvim-lua/plenary.nvim' } },
 		{ 'mrcjkb/rustaceanvim', ft = { 'rust' } },
 
 		{ 'nvim-treesitter/nvim-treesitter'        , config = c.treesitter, build = ':TSUpdate' },
