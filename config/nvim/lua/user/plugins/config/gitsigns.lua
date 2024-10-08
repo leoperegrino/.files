@@ -13,7 +13,7 @@ local signs = {
 	untracked    = sign('┆'),
 }
 
-gitsigns.setup {
+gitsigns.setup({
 	signs = signs,
 	signcolumn = true,
 	numhl = true,
@@ -55,4 +55,4 @@ gitsigns.setup {
 		[9]   = '₉',
 		['+'] = '+',
 	},
-}
+})
