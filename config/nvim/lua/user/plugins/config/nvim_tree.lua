@@ -2,14 +2,34 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 
-vim.cmd[[autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]]
-
-
+local api = require('nvim-tree.api')
 local nvim_tree = require("nvim-tree")
+local nvim_tree_utils = require("nvim-tree.utils")
+
+
+vim.api.nvim_create_autocmd("BufEnter", {
+	nested = true,
+	callback = function()
+		if #vim.api.nvim_list_wins() == 1 and nvim_tree_utils.is_nvim_tree_buf() then
+			vim.cmd("quit")
+		end
+	end
+})
+
+local open_nvim_tree = function(data)
+	-- buffer is a [No Name]
+	local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+
+	if no_name then
+		-- open the tree, find the file but don't focus it
+		api.tree.toggle({ focus = false, find_file = true, })
+	end
+end
+
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
 
 local on_attach = function(bufnr)
-	local api = require('nvim-tree.api')
 	local keymap = vim.keymap.set
 
 	local opts = function(desc)
@@ -56,7 +76,7 @@ local on_attach = function(bufnr)
 end
 
 
-nvim_tree.setup {
+nvim_tree.setup({
 	on_attach = on_attach,
 	auto_reload_on_write = true,
 	disable_netrw = true,
@@ -157,4 +177,4 @@ nvim_tree.setup {
 			git = false,
 		},
 	},
-}
+})
