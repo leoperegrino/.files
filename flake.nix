@@ -39,6 +39,23 @@
 				];
 			};
 
+			"coolermaster" = nixpkgs.lib.nixosSystem {
+				specialArgs = {inherit inputs outputs;};
+				system = "x86_64-linux";
+				modules = [
+					./hosts/coolermaster
+					home-manager.nixosModules.home-manager {
+						home-manager = {
+							useGlobalPkgs = true;
+							useUserPackages = true;
+							extraSpecialArgs = {inherit inputs;};
+							backupFileExtension = "bak";
+							users."cool".imports = [./users/cool.nix];
+						};
+					}
+				];
+			};
+
 			# https://wiki.nixos.org/wiki/NixOS_on_ARM/Raspberry_Pi_4
 			# https://blog.janissary.xyz/posts/nixos-install-custom-image
 			"raspberrypi" = nixpkgs.lib.nixosSystem {
