@@ -44,7 +44,7 @@ in {
         preview_files  = true;
         open_all_images  = true;
         draw_borders  = true;
-        hidden_filter  = ''^\.|\.(bak|swp)$|^lost\+found$|^__pycache__$'';
+        hidden_filter  = ''^\.|\.nixenv|\.(bak|swp)$|^lost\+found$|^__pycache__$'';
         nested_ranger_warning  = true;
         colorscheme  = "jungle";
       };
