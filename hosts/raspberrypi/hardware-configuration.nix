@@ -8,10 +8,17 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "usbhid" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "usbhid" "usb_storage" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
+
+  environment.etc.crypttab.text = ''
+    backup UUID=bad5f4b7-fcdc-4b36-8887-357a629d7c00 /root/mykeyfile
+  '';
+  fileSystems."/mnt/backup".device = "/dev/mapper/backup";
+
+  fileSystems."/mnt/pibox".device = "/dev/disk/by-uuid/b91a6bce-6f73-4672-8d82-84c8de6bcbef";
 
   fileSystems."/boot/firmware" = {
     device = "/dev/disk/by-label/FIRMWARE";
@@ -19,11 +26,11 @@
     options = [ "nofail" "noauto" ];
   };
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-label/NIXOS_SD";
-      fsType = "ext4";
+  fileSystems."/" = {
+    device = "/dev/disk/by-label/NIXOS_SD";
+    fsType = "ext4";
     options = [ "noatime" ];
-    };
+  };
 
   swapDevices = [{ device = "/swapfile"; size = 128; }];
 
