@@ -32,6 +32,7 @@
 							useGlobalPkgs = true;
 							useUserPackages = true;
 							extraSpecialArgs = {inherit inputs;};
+							backupFileExtension = "bak";
 							users."ltp".imports = [./users/ltp.nix];
 						};
 					}
@@ -51,6 +52,7 @@
 							useGlobalPkgs = true;
 							useUserPackages = true;
 							extraSpecialArgs = {inherit inputs;};
+							backupFileExtension = "bak";
 							users."pi".imports = [./users/pi.nix];
 						};
 					}
