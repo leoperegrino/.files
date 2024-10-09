@@ -18,6 +18,11 @@
       fsType = "ext4";
     };
 
+  fileSystems."/home/ltp/vbox" =
+    { device = "/dev/disk/by-uuid/26c6eafc-bd94-465d-b76b-1f88bd7949d6";
+      fsType = "ext4";
+    };
+
   boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/7fd6d296-8f09-4b30-99d0-96fc2cdc6634";
 
   fileSystems."/boot" =

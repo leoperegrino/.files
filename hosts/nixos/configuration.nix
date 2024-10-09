@@ -8,6 +8,7 @@
 
 	modules.hosts.enable = true;
 	modules.hosts.virtualisation.podman.enable = true;
+	modules.hosts.virtualisation.virtualbox.enable = true;
 
 	boot = {
 		kernelPackages = pkgs.linuxPackages_latest;
@@ -69,12 +70,14 @@
 			"wheel"
 			"networkmanager"
 			"syncthing"
+			"vboxusers"
 		];
 	};
 
 	security.sudo.wheelNeedsPassword = false;
 
 	nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+		"Oracle_VM_VirtualBox_Extension_Pack"
 	];
 
 	environment.systemPackages = with pkgs; [
