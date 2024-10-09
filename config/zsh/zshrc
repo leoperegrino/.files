@@ -110,6 +110,10 @@ function zle-line-init zle-keymap-select {
 		RPROMPT+="%F{blue}[R${RANGER_LEVEL}]%f"
 	fi
 
+	if [ "${SHLVL}" -gt 1 ]; then
+		RPROMPT+="%F{green}[S${SHLVL}]%f"
+	fi
+
 	RPROMPT+='%F{yellow}%(?..[%?])%f'
 
 	PROMPT+='%b'
