@@ -35,6 +35,7 @@
 		initrd.availableKernelModules = [ "xhci_pci" "usbhid" "usb_storage" ];
 		kernelParams = [
 			"usb-storage.quirks=152d:0562:u,152d:2329:u,14cd:1212"
+      "cgroup_enable=cpuset" "cgroup_enable=memory" "cgroup_memory=1" "swapaccount=1"
 		];
 		loader = {
 			grub.enable = false;
