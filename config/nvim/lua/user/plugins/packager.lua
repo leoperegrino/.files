@@ -39,7 +39,13 @@ M.setup = function()
 		{ 'williamboman/mason.nvim', build = ':MasonUpdate' },
 		{ 'williamboman/mason-lspconfig.nvim' },
 
-		{ 'mrcjkb/rustaceanvim', ft = { 'rust' } },
+		{
+			'mrcjkb/rustaceanvim',
+			ft = { 'rust' },
+			lazy = false,
+			commit = "047f9c9d8cd2861745eb9de6c1570ee0875aa795",
+			config = c.rustaceanvim,
+		},
 
 		{ 'nvim-treesitter/nvim-treesitter'        , config = c.treesitter, build = ':TSUpdate' },
 		{ 'nvim-treesitter/nvim-treesitter-context', config = c.context },

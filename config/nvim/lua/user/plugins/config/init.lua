@@ -22,6 +22,22 @@ M.copilot_vim = function()
 	}
 end
 
+M.rustaceanvim = function()
+	vim.g.rustaceanvim = {
+		tools = {
+			float_win_config = {
+				border = 'rounded'
+			}
+		},
+		server = {
+			on_attach = function(client, buffer)
+				require('user.core.keymaps').on_attach(client, buffer)
+				require('user.plugins.keymaps').on_attach(client, buffer)
+			end
+		},
+	}
+end
+
 M.zenmode  = {
 	plugins = {
 		options = {
