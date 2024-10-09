@@ -11,9 +11,14 @@ in {
     programs.ranger = {
       package = pkgs.ranger.overrideAttrs (prev: {
         makeWrapperArgs = ["--set BAT_STYLE full"];
-        preConfigure = prev.preConfigure + ''
-          sed -i -e '/#\s*application\/pdf/,/&& exit\s6/s/#//' ranger/data/scope.sh
+        preConfigure = let
+          json_bat_cmd = ''jq . "''${FILE_PATH}" | env COLORTERM=8bit bat --language json --color=always --style="''${BAT_STYLE}" \&\& exit 5'';
+        in
+        prev.preConfigure + ''
+          sed -i -e '/#\s*application\/pdf/,/&& exit 6/s/#//' ranger/data/scope.sh
           sed -i -e '/#\s*video/,/exit 1/s/#//' ranger/data/scope.sh
+          sed -i -e 's/json)/&\n\t\t\t${json_bat_cmd}/' ranger/data/scope.sh
+          sed -i -e '/handle_mime() {/,/esac/s/case "''${mimetype}" in/&\n\n\t\tapplication\/json) ${json_bat_cmd} ;;\n/' ranger/data/scope.sh
         '';
       });
       enable = true;
