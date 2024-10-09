@@ -55,7 +55,7 @@ in {
         "gV" = "cd ~/.files/nvim/lua/user/";
         "gc" = "cd ~/.config";
         "gC" = "cd ~/.cache";
-        "gb" = "cd ~/bin";
+        "gb" = "cd ~/.local/bin";
         "gD" = "cd ~/desktop";
         "gd" = "cd ~/documents";
         "gm" = "cd ~/music";
