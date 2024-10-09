@@ -1,39 +1,39 @@
 {
-	lib,
-	config,
-	pkgs,
-	...
+  lib,
+  config,
+  pkgs,
+  ...
 }: {
-	imports = [
-		./modules
-	];
+  imports = [
+    ./modules
+  ];
 
-	modules.users.enable = true;
+  modules.users.enable = true;
 
-	home.username = "ltp";
-	home.homeDirectory = "/home/ltp";
+  home.username = "ltp";
+  home.homeDirectory = "/home/ltp";
 
-	programs.home-manager.enable = true;
+  programs.home-manager.enable = true;
 
 
-	home.packages = with pkgs; [
-		brave
-		jellyfin-media-player
-		mupdf
-		zathura
-		keepassxc
-		yt-dlp
-		nodejs
-		unzip
-		cargo
-		noto-fonts
-		noto-fonts-cjk
-		noto-fonts-emoji
-		(nerdfonts.override { fonts = [ "Noto" ]; })
-	];
+  home.packages = with pkgs; [
+    brave
+    jellyfin-media-player
+    mupdf
+    zathura
+    keepassxc
+    yt-dlp
+    nodejs
+    unzip
+    cargo
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    (nerdfonts.override { fonts = [ "Noto" ]; })
+  ];
 
-	systemd.user.startServices = "sd-switch";
+  systemd.user.startServices = "sd-switch";
 
-	# https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
-	home.stateVersion = "23.11";
+  # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
+  home.stateVersion = "23.11";
 }
