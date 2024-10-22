@@ -12,6 +12,7 @@ in {
       enable = true;
       extraPackages = with pkgs; [
         lua-language-server
+        tree-sitter
       ];
     };
   };
