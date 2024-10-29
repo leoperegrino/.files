@@ -50,6 +50,23 @@
     hostName = "raspberrypi";
     firewall = {
       enable = true;
+      allowedTCPPorts = [
+        80
+        443
+        50000
+        50001
+        51413
+        22000
+        8080
+      ];
+      allowedUDPPorts = [
+        51413
+        22000
+        21027
+        51820
+        10001
+        3478
+      ];
     };
   };
 
