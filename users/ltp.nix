@@ -17,19 +17,6 @@
 
 
   home.packages = with pkgs; [
-    brave
-    jellyfin-media-player
-    mupdf
-    zathura
-    keepassxc
-    yt-dlp
-    nodejs
-    unzip
-    cargo
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    (nerdfonts.override { fonts = [ "Noto" ]; })
   ];
 
   systemd.user.startServices = "sd-switch";
