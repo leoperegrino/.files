@@ -1,4 +1,4 @@
-{pkgs, lib, config, ...}:
+{pkgs-unstable, lib, config, ...}:
 let
   cfg = config.modules.users.nvim;
 in {
@@ -10,7 +10,8 @@ in {
   config = lib.mkIf cfg.enable {
     programs.neovim = {
       enable = true;
-      extraPackages = with pkgs; [
+      package = pkgs-unstable.neovim-unwrapped;
+      extraPackages = with pkgs-unstable; [
         lua-language-server
         tree-sitter
       ];
