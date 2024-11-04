@@ -17,11 +17,10 @@
     nixos-hardware,
     ...
   } @ inputs: let
-    inherit (self) outputs;
 
     nixosSystem = {system, user, host, modules ? []}:
       nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit inputs;};
         system = system;
         modules = [
           ./hosts/${host}
