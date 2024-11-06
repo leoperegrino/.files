@@ -1,21 +1,6 @@
 local M = {}
 
 
----safely executes a function with args
----and notify if errors
----@param func function
----@vararg any
-M.safe_call = function(func, ...)
-	local status, err = pcall(func, ...)
-	if not status then
-		vim.notify(
-			"Error: " .. err,
-			vim.log.levels.WARN
-		)
-	end
-end
-
-
 ---create a closure with a specific options table and a optional description
 ---@param opts table
 ---@return function
