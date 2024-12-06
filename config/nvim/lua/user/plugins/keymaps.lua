@@ -18,14 +18,14 @@ M.on_attach = function(_, bufnr)
 		noremap = true,
 	})
 
-	bufmap("n", "gd"  , telescope.lsp_definitions     )
-	bufmap("n", "gI"  , telescope.lsp_implementations )
-	bufmap("n", "gt"  , telescope.lsp_type_definitions)
-	bufmap("n", "gr"  , telescope.lsp_references      )
-	bufmap("n", "gD"  , function() telescope.lsp_definitions({ attach_mappings = vsplit })          end)
-	bufmap("n", "gR"  , function() telescope.lsp_references({ attach_mappings = vsplit })           end)
-	bufmap("n", "gL"  , function() vim.diagnostic.setloclist({ open = false }) telescope.loclist()  end)
-	bufmap("n", "gQ"  , function() vim.diagnostic.setqflist({ open = false })  telescope.quickfix() end)
+	bufmap("n", "gd"  , telescope.lsp_definitions     , "telescope lsp: lsp definitions")
+	bufmap("n", "gI"  , telescope.lsp_implementations , "telescope lsp: lsp implementations")
+	bufmap("n", "gt"  , telescope.lsp_type_definitions, "telescope lsp: lsp type definitions")
+	bufmap("n", "gr"  , telescope.lsp_references      , "telescope lsp: lsp references")
+	bufmap("n", "gD"  , function() telescope.lsp_definitions({ attach_mappings = vsplit })          end, "telescope lsp: lsp definitions")
+	bufmap("n", "gR"  , function() telescope.lsp_references({ attach_mappings = vsplit })           end, "telescope lsp: lsp references")
+	bufmap("n", "gL"  , function() vim.diagnostic.setloclist({ open = false }) telescope.loclist()  end, "telescope lsp: location list")
+	bufmap("n", "gQ"  , function() vim.diagnostic.setqflist({ open = false })  telescope.quickfix() end, "telescope lsp: quickfix list")
 end
 
 
@@ -76,11 +76,13 @@ M.setup = function()
 	keymap("n", "tr"        , telescope.oldfiles       , "telescope: recent files")
 	keymap("n", "tu"        , "<cmd>Telescope undo<cr>", "telescope: undo"        )
 
+	keymap('n', 'glk'       , function() telescope.keymaps({ default_text = 'lsp: ' }) end, "lsp: keymaps")
+
 	keymap("n", "<F1>"       , ':lua require("Comment.api").toggle.linewise()<CR>')
 	keymap("v", "<F1>"       , ':lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>')
 	keymap("n", "<F2>"       , vim.lsp.buf.rename   )
 
-	keymap("n", "<F9>"       , "<cmd>NvimTreeToggle<cr>")
+	keymap("n", "<F10>"      , "<cmd>NvimTreeToggle<cr>")
 	keymap("n", "<F12>"      , "<cmd>ZenMode<cr>")
 
 	keymap("i", "<C-x><C-o>" , "<cmd>lua require('cmp').complete()<CR>")
