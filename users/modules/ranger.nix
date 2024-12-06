@@ -1,6 +1,10 @@
 {pkgs, lib, config, ...}:
 let
   cfg = config.modules.users.ranger;
+
+  symlink = config.lib.file.mkOutOfStoreSymlink;
+  home = "${config.home.homeDirectory}";
+  dotfiles = home + "/.files/config";
 in {
 
   options.modules.users = {
@@ -8,6 +12,9 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+
+    xdg.configFile."ranger/commands.py".source = symlink (dotfiles + "/ranger/commands.py");
+
     programs.ranger = {
       package = pkgs.ranger.overrideAttrs (prev: {
         makeWrapperArgs = ["--set BAT_STYLE full"];
@@ -80,6 +87,7 @@ in {
         "CC" = "get_cumulative_size";
         "md" = "console mkdir%space";
         "cW" = "bulkrename";
+        "T"  = "toggle_flat";
         "i" = ''shell "''${PAGER}" -- %f'';
         "v" = "mark_files all=True toggle=True";
         "n" = "tab_new";
