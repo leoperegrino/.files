@@ -48,7 +48,7 @@ M.setup = function()
 			'mrcjkb/rustaceanvim',
 			ft = { 'rust' },
 			lazy = false,
-			commit = "047f9c9d8cd2861745eb9de6c1570ee0875aa795",
+			version = '^5',
 			config = c.rustaceanvim,
 		},
 
@@ -72,7 +72,7 @@ M.setup = function()
 
 		{ 'nvim-telescope/telescope.nvim',
 			config = c.telescope,
-			tag = '0.1.4',
+			tag = '0.1.8',
 			dependencies = { 'nvim-lua/plenary.nvim' }
 		},
 		{ 'debugloop/telescope-undo.nvim'         },
