@@ -39,6 +39,11 @@ M.setup = function()
 		{ 'williamboman/mason.nvim', build = ':MasonUpdate' },
 		{ 'williamboman/mason-lspconfig.nvim' },
 
+		{ 'mfussenegger/nvim-dap'          , config = c.dap, },
+		{ 'mfussenegger/nvim-dap-python'   , config = c.dap_python, dependencies = { 'mfussenegger/nvim-dap' }, },
+		{ 'theHamsta/nvim-dap-virtual-text', config = c.dap_vt    , dependencies = { 'mfussenegger/nvim-dap' }, },
+		{ "rcarriga/nvim-dap-ui"           , config = c.dapui     , dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }, },
+
 		{
 			'mrcjkb/rustaceanvim',
 			ft = { 'rust' },
