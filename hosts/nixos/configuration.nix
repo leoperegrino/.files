@@ -42,10 +42,6 @@
         };
       };
     };
-    pulseaudio = {
-      enable = true;
-      package = pkgs.pulseaudioFull;
-    };
   };
 
   networking = {

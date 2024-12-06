@@ -11,7 +11,9 @@ in {
     programs.alacritty = {
       enable = true;
       settings = {
-        live_config_reload = true;
+        general = {
+          live_config_reload = true;
+        };
         scrolling.history = 100000;
         window.padding.x = 0;
         window.padding.y = 0;
