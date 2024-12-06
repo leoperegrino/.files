@@ -30,7 +30,10 @@ in {
       libinput.mouse.naturalScrolling = true;
       libinput.touchpad.naturalScrolling = true;
 
-      desktopManager.plasma6.enable = true;
+      desktopManager.plasma6 = {
+        enable = true;
+        enableQt5Integration = false;
+      };
       displayManager.sddm.enable = true;
     };
 
