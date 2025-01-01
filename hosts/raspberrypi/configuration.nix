@@ -1,4 +1,4 @@
-{lib, config, pkgs, ... }:
+{lib, pkgs, host, user, ...}:
 {
 
   imports = [
@@ -47,7 +47,7 @@
 
   networking = {
     networkmanager.enable = true;
-    hostName = "raspberrypi";
+    hostName = host;
     firewall = {
       enable = true;
       allowedTCPPorts = [
@@ -76,7 +76,7 @@
   };
 
   users = {
-    users."pi" = {
+    users."${user}" = {
       openssh.authorizedKeys.keys = [
         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDDLq9FuqWxhgoUARBIkHIDR31zay4kSo59m/p2gjX3yFSEuonW9Dh9FkYThBRBJvoadXmAB7TYLP+6Ma6R2BLR6wr7Q05L79OFBmJLztgE6KD/BHdCwJJE/gxvVJzk7OiLT7xKnQHASSkfvgZt/krvnByNREbd30KKJsWD191JdSZhWclkMA34/kCqd2BhItxLeb3BNq6cgfJdxx+fYg9p/0PkW14xYaRughNHv+v5wh4s/dWTNhh06quwiu5oaS74MP2osJJAU0yN3ddXqBguW8fklMN5WRxy7m3pnsUCDAT6MDH/+fhdTCk75tkYdlVfV6yaKrkP5dnHZpyuHiyolaDGPTKbnLW9gnE/OVgBJelGsEeP+GDkbd16v8rDyiTYDKEgpdP5pRNBd+PBmltYHMfP/Ck3sOdzE9ZB4rwExew3dWl4n/gGzveo8ZuTcf3nXRSZddAiBuxz3wENzsQEPLtyfCmv+ONc6nrCD57RRzvF05a5scGUe4QqeAzaWmp7FbdXaieudvTQL2xiXMSUwaPx+PXOFnhk7Dr0jpBmirfKMinK+mQKzuxomnKCPKtQublMhmx4922P1xoI9R3FohY2HEbpCROrPcBnWEuHVxrlwOCLAq1/ZtUWuzAIcvtBqGSdbBYl6A+OEvKstQD46WrgrC3BJGLtcfRK1NITJw== ltp@nixos"
         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCp33NKY9pJxYu1wgV/vemJwAHiWsSfmf3n39y1PU/yQmOHbTmBmogJ0xIp0YbVtdHI3G7qg5XkIUffTOAOVHaifrSeknFK9xzhFFI0idGKcbS1djdXiYhCQjDI3OxXx8G47LP1UpVmF1QWcQRWUvVESUtMAnQ3IwlSNhovAOa/YFRcKCi1C24gPeEzJQCnb4daw+YcrMfv3vieBrhlIZaOOoYDqx8zvUNh+hp5Ys4YvPy+wVEYAl3bzA+NJO60mFv1SzoIUZZkBLTUjpR+VCkI9jljEGe7VZchOW/8RXDaGmE9DRBaOqms6VTms2ePmlqDIGCgeYw1nWxsc9XV+tH3TVrfaQ//ACYE3PzRo0uwFW2dI5Ph6scffKoQ2BbAhZbs/KYvlQt+ru6P8P1bKiUMxUAzX5jzgo9ammue8BtTsRJ2Vb1v/I2d155njfKv/oNwS++47FJ9gKpvZuyRtrDzSCYPxWuclLliR3b4+5nyMKkVMMfpjn5mCV1bVGHKvY0= u0_a129@localhost"
@@ -90,7 +90,7 @@
         "pi"
       ];
     };
-    groups."pi".gid = 1000;
+    groups."${user}".gid = 1000;
   };
 
   security.sudo.wheelNeedsPassword = false;

@@ -1,4 +1,4 @@
-{lib, config, pkgs, ... }:
+{lib, pkgs, host, user, ...}:
 {
 
   imports = [
@@ -47,6 +47,7 @@
   networking = {
     networkmanager.enable = true;
     firewall.enable = true;
+    hostName = host;
   };
 
   services = {
@@ -58,7 +59,7 @@
     };
   };
 
-  users.users."ltp" = {
+  users.users."${user}" = {
     isNormalUser = true;
     shell = pkgs.zsh;
     extraGroups = [

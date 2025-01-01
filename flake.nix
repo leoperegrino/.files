@@ -22,7 +22,7 @@
 
     nixosSystem = {system, user, host, modules ? []}:
       nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = {inherit inputs user host;};
         system = system;
         modules = [
           ./hosts/${host}
