@@ -47,6 +47,12 @@
 
     nixosConfigurations = {
 
+      "thinkpad" = nixosSystem {
+        system = "x86_64-linux";
+        user = "ltp";
+        host = "thinkpad";
+      };
+
       "nixos" = nixosSystem {
         system = "x86_64-linux";
         user = "ltp";
