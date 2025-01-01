@@ -9,6 +9,7 @@
   modules.hosts.enable = true;
   modules.hosts.virtualisation.podman.enable = true;
   modules.hosts.virtualisation.virtualbox.enable = true;
+  modules.hosts.syncthing.enable = true;
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
