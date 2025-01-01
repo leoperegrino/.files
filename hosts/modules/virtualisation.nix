@@ -29,9 +29,16 @@ in {
       virtualbox = lib.mkIf cfg.virtualbox.enable {
         host.enable = true;
         host.enableExtensionPack = true;
+        host.addNetworkInterface = false;
+        host.enableKvm = true;
         guest.enable = true;
       };
     };
+
+    users.users."${user}".extraGroups = lib.mkIf cfg.virtualbox.enable [
+      "vboxusers"
+    ];
+
   };
 
 }
