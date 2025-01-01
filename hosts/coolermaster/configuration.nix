@@ -113,9 +113,7 @@
 
   security.sudo.wheelNeedsPassword = false;
 
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
       "nvidia-x11"
       "nvidia-settings"
       "nvidia-persistenced"
