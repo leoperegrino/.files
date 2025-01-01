@@ -1,4 +1,4 @@
-{lib, config, pkgs, user, ... }:
+{lib, config, user, ... }:
 let
   cfg = config.modules.hosts.syncthing;
 in {

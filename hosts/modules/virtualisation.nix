@@ -1,4 +1,4 @@
-{pkgs, lib, config, ...}:
+{pkgs, lib, config, user, ...}:
 let
   cfg = config.modules.hosts.virtualisation;
 in {
