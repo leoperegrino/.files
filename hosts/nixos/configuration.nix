@@ -67,38 +67,15 @@
       "audio"
       "wheel"
       "networkmanager"
-      "syncthing"
-      "vboxusers"
     ];
   };
 
   security.sudo.wheelNeedsPassword = false;
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "Oracle_VM_VirtualBox_Extension_Pack"
   ];
 
   environment.systemPackages = with pkgs; [
-    vim
-
-    tree
-    tmux
-    git
-    python3
-
-    bat
-    ripgrep
-
-    dig
-    traceroute
-
-    parted
-    cryptsetup
-
-    ranger
-
-    zig
-    gcc
   ];
 
   # This value determines the NixOS release from which the default

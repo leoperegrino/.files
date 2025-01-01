@@ -99,27 +99,6 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    vim
-
-    tree
-    tmux
-    git
-    python3
-
-    bat
-    ripgrep
-
-    dig
-    traceroute
-
-    parted
-    cryptsetup
-
-    ranger
-
-    zig
-    gcc
-
     libraspberrypi
     raspberrypi-eeprom
   ];
