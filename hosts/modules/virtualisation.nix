@@ -35,8 +35,9 @@ in {
       };
     };
 
-    users.users."${user}".extraGroups = lib.mkIf cfg.virtualbox.enable [
-      "vboxusers"
+    users.users."${user}".extraGroups = [
+      (lib.mkIf cfg.virtualbox.enable "vboxusers")
+      (lib.mkIf cfg.docker.enable "docker")
     ];
 
   };
