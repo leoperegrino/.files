@@ -46,7 +46,6 @@ setopt SHARE_HISTORY
 
 # bindkey {{{
 bindkey "^[[3~" delete-char
-bindkey '^ ' autosuggest-accept
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
 bindkey '^R' history-incremental-search-backward
@@ -60,8 +59,8 @@ bindkey -M vicmd 'j' history-beginning-search-forward
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 bindkey -M menuselect '^P' reverse-menu-complete
 bindkey -M menuselect '^N' expand-or-complete
-bindkey -M menuselect '^M' .accept-line
-bindkey -M menuselect '\e' send-break
+bindkey -M menuselect '^ ' .accept-line
+bindkey -M menuselect '^E' send-break
 # }}}
 
 # zstyle {{{
