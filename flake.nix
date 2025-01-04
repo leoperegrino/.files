@@ -12,26 +12,26 @@
   };
 
   outputs = {
-    self,
     nixpkgs,
     home-manager,
     nixos-hardware,
     nixpkgs-unstable,
     ...
-  } @ inputs: let
+  }: let
 
     nixosSystem = {system, user, host, modules ? []}:
       nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs user host;};
-        system = system;
+        inherit system;
+        specialArgs = {inherit user host;};
         modules = [
+
           ./hosts/${host}
+
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = {
-                inherit inputs;
                 pkgs-unstable = import nixpkgs-unstable {
                   inherit system;
                 };
@@ -40,6 +40,7 @@
               users."${user}".imports = [./users/${user}.nix];
             };
           }
+
         ] ++ modules;
       };
 
