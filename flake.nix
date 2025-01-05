@@ -54,12 +54,6 @@
         host = "thinkpad";
       };
 
-      "nixos" = nixosSystem {
-        system = "x86_64-linux";
-        user = "ltp";
-        host = "nixos";
-      };
-
       "coolermaster" = nixosSystem {
         system = "x86_64-linux";
         user = "cool";
