@@ -1,16 +1,20 @@
-{lib, pkgs, user, host, ... }:
+{lib, pkgs, user, host, pkgs-unstable, ... }:
 {
 
   imports = [
     ../modules/default.nix
-    ../modules/virtualisation.nix
-    ../modules/syncthing.nix
   ];
 
-  modules.hosts.enable = true;
-  modules.hosts.virtualisation.podman.enable = true;
-  modules.hosts.virtualisation.virtualbox.enable = true;
-  modules.hosts.syncthing.enable = true;
+  modules.hosts = {
+    environment.enable = true;
+    locale.enable = true;
+    nix.enable = true;
+    programs.enable = true;
+    xserver.enable = true;
+    virtualisation.podman.enable = true;
+    virtualisation.virtualbox.enable = true;
+    syncthing.enable = true;
+  };
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;

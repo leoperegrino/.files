@@ -2,18 +2,16 @@
 {
 
   imports = [
-    ../modules/environment.nix
-    ../modules/locale.nix
-    ../modules/nix.nix
-    ../modules/programs.nix
-    ../modules/virtualisation.nix
+    ../modules/default.nix
   ];
 
-  modules.hosts.environment.enable = true;
-  modules.hosts.locale.enable = true;
-  modules.hosts.nix.enable = true;
-  modules.hosts.programs.enable = true;
-  modules.hosts.virtualisation.docker.enable = true;
+  modules.hosts = {
+    environment.enable = true;
+    locale.enable = true;
+    nix.enable = true;
+    programs.enable = true;
+    virtualisation.docker.enable = true;
+  };
 
   boot = {
     loader = {
