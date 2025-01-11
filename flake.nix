@@ -19,10 +19,13 @@
     ...
   }: let
 
-    nixosSystem = {system, user, host, modules ? []}:
-      nixpkgs.lib.nixosSystem {
+    nixosSystem = {system, user, host, modules ? []}: let
+
+      pkgs-unstable = import nixpkgs-unstable { inherit system; };
+
+      in nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = {inherit user host;};
+        specialArgs = {inherit user host pkgs-unstable;};
         modules = [
 
           ./hosts/${host}
@@ -31,11 +34,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              extraSpecialArgs = {
-                pkgs-unstable = import nixpkgs-unstable {
-                  inherit system;
-                };
-              };
+              extraSpecialArgs = { inherit pkgs-unstable; };
               backupFileExtension = "bak";
               users."${user}".imports = [./users/${user}.nix];
             };
