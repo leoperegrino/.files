@@ -34,7 +34,12 @@ in {
         enable = true;
         enableQt5Integration = false;
       };
-      displayManager.sddm.enable = true;
+      displayManager = {
+        sddm = {
+          enable = true;
+          wayland.enable = true;
+        };
+      };
     };
 
     environment.plasma6.excludePackages = with pkgs; [
