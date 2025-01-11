@@ -26,6 +26,7 @@ in {
           sed -i -e '/#\s*video/,/exit 1/s/#//' ranger/data/scope.sh
           sed -i -e 's/json)/&\n\t\t\t${json_bat_cmd}/' ranger/data/scope.sh
           sed -i -e '/handle_mime() {/,/esac/s/case "''${mimetype}" in/&\n\n\t\tapplication\/json) ${json_bat_cmd} ;;\n/' ranger/data/scope.sh
+          sed -i -e 's/text\/\* | \*\/xml)/text\/* | *\/xml | application\/javascript)/g' ranger/data/scope.sh
         '';
       });
       enable = true;
