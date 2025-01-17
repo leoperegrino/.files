@@ -139,30 +139,6 @@
     ];
 
   environment.systemPackages = with pkgs; [
-    vim
-
-    tree
-    tmux
-    git
-    python3
-
-    bat
-    ripgrep
-    jq
-
-    dig
-    traceroute
-
-    parted
-    cryptsetup
-
-    ranger
-
-    zig
-    gcc
-
-    pciutils
-    usbutils
     nvtopPackages.nvidia
   ];
 
