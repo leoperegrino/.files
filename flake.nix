@@ -19,8 +19,7 @@
     ...
   }: let
 
-    nixosSystem = {system, user, host, modules ? []}:
-      nixpkgs.lib.nixosSystem {
+    nixosSystem = {system, user, host, modules ? []}: nixpkgs.lib.nixosSystem {
         system = system;
         specialArgs = {
           user = user;
@@ -28,18 +27,42 @@
           pkgs-unstable = nixpkgs-unstable.legacyPackages."${system}";
         };
         modules = [ ./hosts/${host} ] ++ modules;
-      };
+    };
 
-    homeManagerConfiguration = {system, user}:
-      home-manager.lib.homeManagerConfiguration {
+    homeManagerConfiguration = {system, user}: home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages."${system}";
         extraSpecialArgs = {
           pkgs-unstable = nixpkgs-unstable.legacyPackages."${system}";
         };
         modules = [ ./users/${user}.nix ];
-      };
+    };
 
   in {
+
+    nixosConfigurations = {
+
+      "thinkpad" = nixosSystem {
+        system = "x86_64-linux";
+        user = "ltp";
+        host = "thinkpad";
+      };
+
+      "coolermaster" = nixosSystem {
+        system = "x86_64-linux";
+        user = "cool";
+        host = "coolermaster";
+      };
+
+      "raspberrypi" = nixosSystem {
+        # https://wiki.nixos.org/wiki/NixOS_on_ARM/Raspberry_Pi_4
+        # https://blog.janissary.xyz/posts/nixos-install-custom-image
+        system = "aarch64-linux";
+        user = "pi";
+        host = "raspberrypi";
+        modules = [nixos-hardware.nixosModules.raspberry-pi-4];
+      };
+
+    };
 
     homeConfigurations = {
 
@@ -60,29 +83,5 @@
 
     };
 
-    nixosConfigurations = {
-
-      "thinkpad" = nixosSystem {
-        system = "x86_64-linux";
-        user = "ltp";
-        host = "thinkpad";
-      };
-
-      "coolermaster" = nixosSystem {
-        system = "x86_64-linux";
-        user = "cool";
-        host = "coolermaster";
-      };
-
-      # https://wiki.nixos.org/wiki/NixOS_on_ARM/Raspberry_Pi_4
-      # https://blog.janissary.xyz/posts/nixos-install-custom-image
-      "raspberrypi" = nixosSystem {
-        system = "aarch64-linux";
-        user = "pi";
-        host = "raspberrypi";
-        modules = [nixos-hardware.nixosModules.raspberry-pi-4];
-      };
-
-    };
   };
 }
