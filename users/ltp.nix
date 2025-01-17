@@ -1,14 +1,21 @@
+{lib, pkgs, ...}:
 {
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
+
   imports = [
-    ./modules
+    ./modules/default.nix
   ];
 
-  modules.users.enable = true;
+  modules.users = {
+    alacritty.enable = true;
+    bat.enable = true;
+    git.enable = true;
+    gpg.enable = true;
+    htop.enable = true;
+    mpv.enable = true;
+    nvim.enable = true;
+    ranger.enable = true;
+    xdg.enable = true;
+  };
 
   home.username = "ltp";
   home.homeDirectory = "/home/ltp";

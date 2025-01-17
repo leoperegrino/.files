@@ -1,20 +1,19 @@
+{pkgs, ...}:
 {
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
+
   imports = [
-    ./modules
+    ./modules/default.nix
   ];
 
-  modules.users.bat.enable = true;
-  modules.users.git.enable = true;
-  modules.users.gpg.enable = true;
-  modules.users.nvim.enable = true;
-  modules.users.ranger.enable = true;
-  modules.users.xdg.enable = true;
-  modules.users.htop.enable = true;
+  modules.users = {
+    bat.enable = true;
+    git.enable = true;
+    gpg.enable = true;
+    nvim.enable = true;
+    ranger.enable = true;
+    xdg.enable = true;
+    htop.enable = true;
+  };
 
   home.username = "cool";
   home.homeDirectory = "/home/cool";
