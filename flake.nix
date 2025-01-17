@@ -19,31 +19,46 @@
     ...
   }: let
 
-    nixosSystem = {system, user, host, modules ? []}: let
+    nixosSystem = {system, user, host, modules ? []}:
+      nixpkgs.lib.nixosSystem {
+        system = system;
+        specialArgs = {
+          user = user;
+          host = host;
+          pkgs-unstable = nixpkgs-unstable.legacyPackages."${system}";
+        };
+        modules = [ ./hosts/${host} ] ++ modules;
+      };
 
-      pkgs-unstable = import nixpkgs-unstable { inherit system; };
-
-      in nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {inherit user host pkgs-unstable;};
-        modules = [
-
-          ./hosts/${host}
-
-          home-manager.nixosModules.home-manager {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = { inherit pkgs-unstable; };
-              backupFileExtension = "bak";
-              users."${user}".imports = [./users/${user}.nix];
-            };
-          }
-
-        ] ++ modules;
+    homeManagerConfiguration = {system, user}:
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages."${system}";
+        extraSpecialArgs = {
+          pkgs-unstable = nixpkgs-unstable.legacyPackages."${system}";
+        };
+        modules = [ ./users/${user}.nix ];
       };
 
   in {
+
+    homeConfigurations = {
+
+      "ltp" = homeManagerConfiguration {
+        system = "x86_64-linux";
+        user = "ltp";
+      };
+
+      "cool" = homeManagerConfiguration {
+        system = "x86_64-linux";
+        user = "cool";
+      };
+
+      "pi" = homeManagerConfiguration {
+        system = "aarch64-linux";
+        user = "pi";
+      };
+
+    };
 
     nixosConfigurations = {
 
