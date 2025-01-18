@@ -1,4 +1,4 @@
-{lib, pkgs, user, host, pkgs-unstable, ... }:
+{lib, pkgs, pkgs-unstable, ... }:
 {
 
   imports = [
@@ -52,7 +52,7 @@
   networking = {
     networkmanager.enable = true;
     firewall.enable = true;
-    hostName = host;
+    hostName = "thinkpad";
   };
 
   services = {
@@ -64,7 +64,7 @@
     };
   };
 
-  users.users."${user}" = {
+  users.users."ltp" = {
     isNormalUser = true;
     shell = pkgs.zsh;
     extraGroups = [

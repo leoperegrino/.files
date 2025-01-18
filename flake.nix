@@ -19,11 +19,9 @@
     ...
   }: let
 
-    nixosSystem = {system, user, host, modules ? []}: nixpkgs.lib.nixosSystem {
+    nixosSystem = {system, host, modules ? []}: nixpkgs.lib.nixosSystem {
         system = system;
         specialArgs = {
-          user = user;
-          host = host;
           pkgs-unstable = nixpkgs-unstable.legacyPackages."${system}";
         };
         modules = [ ./hosts/${host} ] ++ modules;
@@ -43,13 +41,11 @@
 
       "thinkpad" = nixosSystem {
         system = "x86_64-linux";
-        user = "ltp";
         host = "thinkpad";
       };
 
       "coolermaster" = nixosSystem {
         system = "x86_64-linux";
-        user = "cool";
         host = "coolermaster";
       };
 
@@ -57,7 +53,6 @@
         # https://wiki.nixos.org/wiki/NixOS_on_ARM/Raspberry_Pi_4
         # https://blog.janissary.xyz/posts/nixos-install-custom-image
         system = "aarch64-linux";
-        user = "pi";
         host = "raspberrypi";
         modules = [nixos-hardware.nixosModules.raspberry-pi-4];
       };

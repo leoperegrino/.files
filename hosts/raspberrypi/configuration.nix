@@ -1,4 +1,4 @@
-{lib, pkgs, host, user, ...}:
+{lib, pkgs, ...}:
 {
 
   imports = [
@@ -45,7 +45,7 @@
 
   networking = {
     networkmanager.enable = true;
-    hostName = host;
+    hostName = "raspberrypi";
     firewall = {
       enable = true;
       allowedTCPPorts = [
@@ -74,7 +74,7 @@
   };
 
   users = {
-    users."${user}" = {
+    users."pi" = {
       openssh.authorizedKeys.keys = [
         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDPKWxkrgaYoifPqAa+WcHAwExQqSCrVjqB2Lthb3+l3mMaCKppWYF3EmLjM9I1qqorlDOeAlYwnDsAVbch4P982ktjQZlMjJcA7oJ2VzzJujndaBUrajBtfAYcGQ2maadu4tP5w7wHHjgyNDI2fet9Fs6YEWIqKsFGCca0OIwjG4Jvq7LkLryY/cRCaL71bL8lpZSvx+X1sYOTBWiY7FtzyjS8FRPEwk0NvTCu2IxvFQAw7clDRX9uVN/lxU08UsRR9XutAXOiZxU8Qh0Xq2mB2iW52oO0Ce70olDZ/iFe5NnbRYjyuDSe3EuLQV/mPmb7uFBuHUQEPjUJf0IddewSGWahAW1ly5N4jRYinW36qzTOxF6AacK6f8g7RvV+PrB8IPJikwvQNnmBHurIWg1CpVvpZdnojQ2K//KlEcFbV00Ixt1hYsPryYRaLyoYUknYC49b2Oh6GlMnkPhMMTPT+DynvqpdC2SZm2N5dAT1NwSb9pFWanKfZ2qkq+0HlK4678Jd2eXSUITS9w52rW1d/3CV6WNICTjAIqkaM3kSZNE7eWjnsBQ3CAZwAWpHuRGC0c9XZGlLGRYM286q8p4TiPUxGqzExAzRZ71itA/1l0l9ihTdvohV9Rcy1Uy1jgDkySzcxdLLFbiyemCmI5IxVFd11K7pVXRBTtVeYvKYaQ== ltp@thinkpad"
         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCp33NKY9pJxYu1wgV/vemJwAHiWsSfmf3n39y1PU/yQmOHbTmBmogJ0xIp0YbVtdHI3G7qg5XkIUffTOAOVHaifrSeknFK9xzhFFI0idGKcbS1djdXiYhCQjDI3OxXx8G47LP1UpVmF1QWcQRWUvVESUtMAnQ3IwlSNhovAOa/YFRcKCi1C24gPeEzJQCnb4daw+YcrMfv3vieBrhlIZaOOoYDqx8zvUNh+hp5Ys4YvPy+wVEYAl3bzA+NJO60mFv1SzoIUZZkBLTUjpR+VCkI9jljEGe7VZchOW/8RXDaGmE9DRBaOqms6VTms2ePmlqDIGCgeYw1nWxsc9XV+tH3TVrfaQ//ACYE3PzRo0uwFW2dI5Ph6scffKoQ2BbAhZbs/KYvlQt+ru6P8P1bKiUMxUAzX5jzgo9ammue8BtTsRJ2Vb1v/I2d155njfKv/oNwS++47FJ9gKpvZuyRtrDzSCYPxWuclLliR3b4+5nyMKkVMMfpjn5mCV1bVGHKvY0= u0_a129@localhost"
@@ -87,7 +87,7 @@
         "pi"
       ];
     };
-    groups."${user}".gid = 1000;
+    groups."pi".gid = 1000;
   };
 
   security.sudo.wheelNeedsPassword = false;
