@@ -11,6 +11,7 @@
     nix.enable = true;
     programs.enable = true;
     xserver.enable = true;
+    virtualisation.user = "ltp";
     virtualisation.podman.enable = true;
     virtualisation.virtualbox.enable = true;
   };

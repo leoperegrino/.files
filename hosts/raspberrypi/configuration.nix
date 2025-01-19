@@ -10,6 +10,7 @@
     locale.enable = true;
     nix.enable = true;
     programs.enable = true;
+    virtualisation.user = "pi";
     virtualisation.docker.enable = true;
   };
 
