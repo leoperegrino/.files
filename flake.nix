@@ -19,20 +19,22 @@
     ...
   }: let
 
+    overlay-unstable = {
+        nixpkgs.overlays = [
+          (final: prev: {
+            unstable = nixpkgs-unstable.legacyPackages."${prev.system}";
+          })
+        ];
+    };
+
     nixosSystem = {system, host, modules ? []}: nixpkgs.lib.nixosSystem {
         system = system;
-        specialArgs = {
-          pkgs-unstable = nixpkgs-unstable.legacyPackages."${system}";
-        };
-        modules = [ ./hosts/${host} ] ++ modules;
+        modules = [ ./hosts/${host} overlay-unstable ] ++ modules;
     };
 
     homeManagerConfiguration = {system, user}: home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages."${system}";
-        extraSpecialArgs = {
-          pkgs-unstable = nixpkgs-unstable.legacyPackages."${system}";
-        };
-        modules = [ ./users/${user}.nix ];
+        modules = [ ./users/${user}.nix overlay-unstable ];
     };
 
   in {
