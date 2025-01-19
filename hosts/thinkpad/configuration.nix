@@ -13,7 +13,6 @@
     xserver.enable = true;
     virtualisation.podman.enable = true;
     virtualisation.virtualbox.enable = true;
-    syncthing.enable = true;
   };
 
   boot = {
@@ -71,6 +70,7 @@
       "audio"
       "wheel"
       "networkmanager"
+      "syncthing"
     ];
   };
 

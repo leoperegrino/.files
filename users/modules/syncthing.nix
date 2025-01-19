@@ -1,23 +1,22 @@
-{lib, config, user, ... }:
+{lib, config, ... }:
 let
-  cfg = config.modules.hosts.syncthing;
+  cfg = config.modules.users.syncthing;
+  homeDirectory = config.home.homeDirectory;
 in {
 
-  options.modules.hosts = {
+  options.modules.users = {
     syncthing.enable = lib.mkEnableOption "syncthing";
   };
 
   config = lib.mkIf cfg.enable {
 
-    users.users."${user}".extraGroups = [ "syncthing" ];
 
     services.syncthing = {
       enable = true;
-      user = user;
-      dataDir = "/home/${user}/syncthing";
-      configDir = "/home/${user}/syncthing/config";
-      systemService = true;
-      openDefaultPorts = true;
+      extraOptions = [
+        "-config=${homeDirectory}/syncthing/config/"
+        "-data=${homeDirectory}/syncthing/"
+      ];
       settings = {
         devices = {
         };
