@@ -6,7 +6,7 @@ set background=dark
 set undofile
 set swapfile
 set backup writebackup
-set backupdir=$XDG_STATE_HOME/nvim/backup//
+set backupdir=$XDG_STATE_HOME/vim/backup//
 set runtimepath^=$XDG_CONFIG_HOME/vim
 set runtimepath^=$XDG_DATA_HOME/vim
 set runtimepath^=$XDG_CONFIG_HOME/vim/vimscript
