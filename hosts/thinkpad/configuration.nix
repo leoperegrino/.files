@@ -14,6 +14,8 @@
     virtualisation.user = "ltp";
     virtualisation.podman.enable = true;
     virtualisation.virtualbox.enable = true;
+    syncthing.enable = true;
+    syncthing.user = "ltp";
   };
 
   boot = {
@@ -71,7 +73,6 @@
       "audio"
       "wheel"
       "networkmanager"
-      "syncthing"
     ];
   };
 

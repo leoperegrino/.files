@@ -14,7 +14,6 @@
     mpv.enable = true;
     nvim.enable = true;
     ranger.enable = true;
-    syncthing.enable = true;
     xdg.enable = true;
   };
 
