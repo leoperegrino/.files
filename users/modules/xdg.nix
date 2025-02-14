@@ -3,7 +3,7 @@ let
   cfg = config.modules.users.xdg;
 
   symlink = config.lib.file.mkOutOfStoreSymlink;
-  home = "${config.home.homeDirectory}";
+  home = config.home.homeDirectory;
   dotfiles = home + "/.files/config";
 in {
 
