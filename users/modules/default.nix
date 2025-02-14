@@ -10,6 +10,7 @@
     ./mpv.nix
     ./nvim.nix
     ./ranger.nix
+    ./syncthing.nix
     ./xdg.nix
   ];
 
