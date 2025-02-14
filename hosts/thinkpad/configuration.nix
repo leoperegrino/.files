@@ -18,7 +18,7 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
-    consoleLogLevel = 0;
+    # consoleLogLevel = 0;
     # kernelParams = ["quiet"];
     loader = {
       timeout = 3;
