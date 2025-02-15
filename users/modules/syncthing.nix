@@ -15,8 +15,10 @@ in {
       enable = true;
       extraOptions = [
         "-config=${homeDirectory}/syncthing/config/"
-        "-data=${homeDirectory}/syncthing/"
+        "-data=${homeDirectory}/syncthing/data/"
       ];
+      overrideFolders = true;
+      overrideDevices = true;
       settings = {
         devices = {
         };
