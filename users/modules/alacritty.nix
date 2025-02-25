@@ -1,4 +1,4 @@
-{lib, config, ...}:
+{lib, config, pkgs, ...}:
 let
   cfg = config.modules.users.alacritty;
 in {
@@ -8,6 +8,11 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+
+    home.packages = [
+      (pkgs.nerdfonts.override { fonts = [ "Noto" ]; })
+    ];
+
     programs.alacritty = {
       enable = true;
       settings = {

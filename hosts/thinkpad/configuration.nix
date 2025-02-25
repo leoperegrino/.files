@@ -80,6 +80,14 @@
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
   ];
 
+  fonts.enableDefaultPackages = true;
+  fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-emoji
+    (nerdfonts.override { fonts = [ "Noto" ]; })
+  ];
+
   environment.systemPackages = with pkgs; [
   ];
 
