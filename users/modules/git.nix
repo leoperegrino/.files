@@ -1,4 +1,4 @@
-{pkgs, lib, config, ...}:
+{lib, config, ...}:
 let
   cfg = config.modules.users.git;
 in {
@@ -35,10 +35,10 @@ in {
         t = "log --graph --oneline --all";
         undo = "reset HEAD~1";
       };
-      userName = "";
-      userEmail = "";
+      userName = "Leonardo Peregrino";
+      userEmail = "55335068+leoperegrino@users.noreply.github.com";
       signing = {
-        key = "";
+        key = "AF88B50D5822448D";
         signByDefault = true;
       };
     };
