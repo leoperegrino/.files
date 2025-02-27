@@ -71,7 +71,6 @@
       "audio"
       "wheel"
       "networkmanager"
-      "syncthing"
     ];
   };
 
