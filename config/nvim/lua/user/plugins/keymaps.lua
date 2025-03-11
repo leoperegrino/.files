@@ -44,8 +44,8 @@ M.setup = function()
 	local gs_blame_line_full = function() gs.blame_line({ full=true }) end
 
 	keymap("n", "gG" , "<cmd>Gitsigns<cr>"   , "gitsigns"                     )
-	keymap("n", "g1" , gs.prev_hunk          , "gitsigns: previous hunk"      )
-	keymap("n", "g2" , gs.next_hunk          , "gitsigns: next hunk"          )
+	keymap("n", "g1" , function() gs.prev_hunk() vim.cmd('normal zz') end, "gitsigns: previous hunk"      )
+	keymap("n", "g2" , function() gs.next_hunk() vim.cmd('normal zz') end, "gitsigns: next hunk"          )
 	keymap("n", "gs" , gs.stage_hunk         , "gitsigns: stage hunk"         )
 	keymap("v", "gs" , gs_v_stage_hunk       , "gitsigns: visual stage hunk"  )
 	keymap("n", "gS" , gs.reset_hunk         , "gitsigns: reset hunk"         )
