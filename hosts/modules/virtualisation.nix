@@ -33,6 +33,10 @@ in {
         host.addNetworkInterface = false;
         host.enableKvm = true;
         guest.enable = true;
+        guest.vboxsf = true;
+        guest.seamless = false;
+        guest.dragAndDrop = false;
+        guest.clipboard = true;
       };
     };
 
