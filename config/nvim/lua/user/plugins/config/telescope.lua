@@ -35,6 +35,15 @@ telescope.setup({
 		},
 	},
 	pickers = {
+		git_commits = {
+			initial_mode = 'normal',
+		},
+		git_bcommits = {
+			initial_mode = 'normal',
+		},
+		git_status = {
+			initial_mode = 'normal',
+		},
 		colorscheme = {
 			initial_mode = 'normal',
 			enable_preview = true
