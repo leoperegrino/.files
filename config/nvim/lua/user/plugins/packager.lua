@@ -68,8 +68,6 @@ M.setup = function()
 		{ 'onsails/lspkind.nvim'                },
 		{ 'L3MON4D3/LuaSnip', dependencies = { 'rafamadriz/friendly-snippets'} },
 
-		{ "github/copilot.vim", config = c.copilot_vim },
-
 		{ 'nvim-telescope/telescope.nvim',
 			config = c.telescope,
 			tag = '0.1.8',
@@ -84,7 +82,6 @@ M.setup = function()
 		{ 'nvim-tree/nvim-web-devicons' },
 
 		{ 'numToStr/Comment.nvim'              , config = c.comment   },
-		{ 'windwp/nvim-autopairs'              , config = c.autopairs },
 		{ 'lewis6991/gitsigns.nvim'            , config = c.gitsigns  },
 
 		{ "lukas-reineke/indent-blankline.nvim", main = 'ibl', config = c.blankline },

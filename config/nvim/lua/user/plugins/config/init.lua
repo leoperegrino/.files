@@ -13,18 +13,8 @@ M.dapui      = function() require("user.plugins.config.dap").dapui()  end
 
 M.fidget     = function() require('fidget').setup()                   end
 M.comment    = function() require('Comment').setup()                  end
-M.autopairs  = function() require('nvim-autopairs').setup()           end
 M.context    = function() require('treesitter-context').setup()       end
 M.rainbow    = function() require('rainbow-delimiters.setup').setup() end
-
-M.copilot_vim = function()
-	vim.g.copilot_filetypes = {
-		['*'] = false,
-		python = true,
-		nix = true,
-		terraform = true,
-	}
-end
 
 M.rustaceanvim = function()
 	vim.g.rustaceanvim = {
