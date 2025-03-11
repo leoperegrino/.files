@@ -44,6 +44,7 @@ M.setup = function()
 	keymap('n', '<leader>m'       , ':vert Man ')
 	keymap('n', '<leader>T'       , ':tabedit ' )
 	keymap('n', '<leader>S'       , ':vsplit '  )
+	keymap('n', '<leader>O'       , ':split '   )
 	keymap('n', '<leader>vb'      , ':vert sb ' )
 
 	keymap('n', '<leader>s'       , '<Cmd>w<CR>'   )
