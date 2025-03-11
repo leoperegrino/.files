@@ -11,7 +11,6 @@ M.dap_python = function() require("user.plugins.config.dap").dap_python() end
 M.dap_vt     = function() require("user.plugins.config.dap").dap_vt() end
 M.dapui      = function() require("user.plugins.config.dap").dapui()  end
 
-M.fidget     = function() require('fidget').setup()                   end
 M.comment    = function() require('Comment').setup()                  end
 M.rainbow    = function() require('rainbow-delimiters.setup').setup() end
 
