@@ -14,6 +14,7 @@ M.dapui      = function() require("user.plugins.config.dap").dapui()  end
 M.comment    = function() require('Comment').setup()                  end
 M.rainbow    = function() require('rainbow-delimiters.setup').setup() end
 
+
 M.rustaceanvim = function()
 	vim.g.rustaceanvim = {
 		tools = {
@@ -29,6 +30,7 @@ M.rustaceanvim = function()
 		},
 	}
 end
+
 
 M.zenmode  = {
 	plugins = {
