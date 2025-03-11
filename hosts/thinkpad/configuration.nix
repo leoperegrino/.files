@@ -79,6 +79,7 @@
   security.sudo.wheelNeedsPassword = false;
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    (lib.mkIf config.modules.hosts.virtualisation.virtualbox.enable "Oracle_VirtualBox_Extension_Pack")
   ];
 
   fonts.enableDefaultPackages = true;
