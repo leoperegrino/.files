@@ -1,4 +1,4 @@
-{lib, pkgs, ...}:
+{lib, config, pkgs, ...}:
 {
 
   imports = [
@@ -10,7 +10,6 @@
     locale.enable = true;
     nix.enable = true;
     programs.enable = true;
-    virtualisation.user = "pi";
     virtualisation.docker.enable = true;
   };
 
@@ -90,6 +89,7 @@
         "wheel"
         "networkmanager"
         "pi"
+        (lib.mkIf config.modules.hosts.virtualisation.docker.enable "docker")
       ];
     };
     groups."pi".gid = 1000;

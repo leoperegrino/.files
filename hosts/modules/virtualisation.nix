@@ -4,7 +4,6 @@ let
 in {
 
   options.modules.hosts = {
-    virtualisation.user = lib.mkOption { type = lib.types.str; };
     virtualisation.docker.enable = lib.mkEnableOption "docker";
     virtualisation.podman.enable = lib.mkEnableOption "podman";
     virtualisation.virtualbox.enable = lib.mkEnableOption "virtualbox";
@@ -39,11 +38,6 @@ in {
         guest.clipboard = true;
       };
     };
-
-    users.users."${cfg.user}".extraGroups = [
-      (lib.mkIf cfg.virtualbox.enable "vboxusers")
-      (lib.mkIf cfg.docker.enable "docker")
-    ];
 
   };
 

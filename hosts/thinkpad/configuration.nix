@@ -1,4 +1,4 @@
-{lib, pkgs, ...}:
+{lib, config, pkgs, ...}:
 {
 
   imports = [
@@ -11,7 +11,6 @@
     nix.enable = true;
     programs.enable = true;
     xserver.enable = true;
-    virtualisation.user = "ltp";
     virtualisation.podman.enable = true;
     virtualisation.virtualbox.enable = true;
   };
@@ -71,6 +70,7 @@
       "audio"
       "wheel"
       "networkmanager"
+      (lib.mkIf config.modules.hosts.virtualisation.virtualbox.enable "vboxusers")
     ];
   };
 

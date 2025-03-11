@@ -10,7 +10,6 @@
     locale.enable = true;
     nix.enable = true;
     programs.enable = true;
-    virtualisation.user = "cool";
     virtualisation.docker.enable = true;
   };
 
@@ -108,6 +107,7 @@
         "wheel"
         "networkmanager"
         "video"
+        (lib.mkIf config.modules.hosts.virtualisation.docker.enable "docker")
       ];
     };
     groups."cool".gid = 1000;
