@@ -10,6 +10,7 @@ in {
   config = lib.mkIf cfg.enable {
     programs.git = {
       enable = true;
+      delta.enable = true;
       extraConfig = {
         blame.date = "format:%Y-%m-%d %H:%M:%S";
         init.defaultBranch = "master";
