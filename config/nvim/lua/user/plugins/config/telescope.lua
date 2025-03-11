@@ -4,6 +4,22 @@ local undo_actions = require("telescope-undo.actions")
 
 vim.cmd[[autocmd User TelescopePreviewerLoaded setlocal number]]
 
+
+-- pyright messages with line breaks fix
+local entry_slicer = function(entry)
+	local default_entry = require('telescope.make_entry').gen_from_quickfix()(entry)
+
+	local original_display = default_entry.display
+
+	default_entry.display = function(_entry)
+		local display_text = original_display(_entry)
+		return tostring(display_text:gsub("[\r\n]", " "))
+	end
+
+	return default_entry
+end
+
+
 telescope.load_extension('undo')
 telescope.setup({
 	extensions = {
@@ -30,10 +46,12 @@ telescope.setup({
 			initial_mode = 'normal',
 		},
 		loclist = {
+			entry_maker = entry_slicer,
 			initial_mode = 'normal',
 			path_display = { 'hidden' },
 		},
 		quickfix = {
+			entry_maker = entry_slicer,
 			initial_mode = 'normal',
 			layout_config = {
 				horizontal = {
