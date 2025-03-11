@@ -53,7 +53,6 @@ M.setup = function()
 		},
 
 		{ 'nvim-treesitter/nvim-treesitter'        , config = c.treesitter, build = ':TSUpdate' },
-		{ 'nvim-treesitter/nvim-treesitter-context', config = c.context },
 		{ 'nvim-treesitter/playground' },
 		{ 'hiphish/rainbow-delimiters.nvim', config = c.rainbow },
 

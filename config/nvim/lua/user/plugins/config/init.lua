@@ -13,7 +13,6 @@ M.dapui      = function() require("user.plugins.config.dap").dapui()  end
 
 M.fidget     = function() require('fidget').setup()                   end
 M.comment    = function() require('Comment').setup()                  end
-M.context    = function() require('treesitter-context').setup()       end
 M.rainbow    = function() require('rainbow-delimiters.setup').setup() end
 
 M.rustaceanvim = function()
