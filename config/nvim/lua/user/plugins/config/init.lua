@@ -43,11 +43,19 @@ M.zenmode  = {
 }
 
 
-M.blankline  = function()
+M.blankline = function()
 	require('ibl').setup({
+		indent = {
+			char = '',
+			highlight = "NonText",
+		},
 		scope = {
-			show_start = false,
-			show_end = false,
+			char = '╎',
+			enabled = true;
+			show_start = true,
+			show_end = true,
+			show_exact_scope = false,
+			highlight = { "Label", "IblScope" },
 		}
 	})
 end
