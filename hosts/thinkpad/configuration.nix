@@ -1,5 +1,7 @@
 {lib, config, pkgs, ...}:
-{
+let
+  virtCfg = config.modules.hosts.virtualisation;
+in {
 
   imports = [
     ../modules/default.nix
@@ -71,16 +73,18 @@
       "audio"
       "wheel"
       "networkmanager"
-      (lib.mkIf config.modules.hosts.virtualisation.virtualbox.enable "vboxusers")
-      (lib.mkIf config.modules.hosts.virtualisation.virt-manager.enable "libvirtd")
-    ];
+    ]
+    ++ (if virtCfg.virt-manager.enable then [ "libvirtd" ] else [])
+    ++ (if virtCfg.virtualbox.enable then [ "vboxusers" ] else [])
+    ;
   };
 
   security.sudo.wheelNeedsPassword = false;
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    (lib.mkIf config.modules.hosts.virtualisation.virtualbox.enable "Oracle_VirtualBox_Extension_Pack")
-  ];
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ([
+  ]
+  ++ (if virtCfg.virtualbox.enable then ["Oracle_VirtualBox_Extension_Pack"] else [])
+  );
 
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [

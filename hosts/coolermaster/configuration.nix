@@ -1,5 +1,7 @@
 {lib, config, pkgs, ... }:
-{
+let
+  virtCfg = config.modules.hosts.virtualisation;
+in {
 
   imports = [
     ../modules/default.nix
@@ -107,8 +109,9 @@
         "wheel"
         "networkmanager"
         "video"
-        (lib.mkIf config.modules.hosts.virtualisation.docker.enable "docker")
-      ];
+      ]
+      ++ (if virtCfg.docker.enable then [ "docker" ] else [])
+      ;
     };
     groups."cool".gid = 1000;
   };
