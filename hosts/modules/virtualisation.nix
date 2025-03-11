@@ -7,6 +7,7 @@ in {
     virtualisation.docker.enable = lib.mkEnableOption "docker";
     virtualisation.podman.enable = lib.mkEnableOption "podman";
     virtualisation.virtualbox.enable = lib.mkEnableOption "virtualbox";
+    virtualisation.virt-manager.enable = lib.mkEnableOption "virt-manager";
   };
 
   config = {
@@ -37,7 +38,13 @@ in {
         guest.dragAndDrop = false;
         guest.clipboard = true;
       };
+
+      libvirtd.enable = cfg.virt-manager.enable;
+      spiceUSBRedirection.enable = cfg.virt-manager.enable;
     };
+
+    programs.virt-manager.enable = cfg.virt-manager.enable;
+    environment.systemPackages = lib.mkIf cfg.virt-manager.enable [ pkgs.virt-viewer ];
 
   };
 

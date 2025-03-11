@@ -13,6 +13,7 @@
     xserver.enable = true;
     virtualisation.podman.enable = true;
     virtualisation.virtualbox.enable = true;
+    virtualisation.virt-manager.enable = true;
   };
 
   boot = {
@@ -71,6 +72,7 @@
       "wheel"
       "networkmanager"
       (lib.mkIf config.modules.hosts.virtualisation.virtualbox.enable "vboxusers")
+      (lib.mkIf config.modules.hosts.virtualisation.virt-manager.enable "libvirtd")
     ];
   };
 
