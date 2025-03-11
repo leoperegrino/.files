@@ -4,7 +4,7 @@ let
 
   symlink = config.lib.file.mkOutOfStoreSymlink;
   home = "${config.home.homeDirectory}";
-  dotfiles = home + "/.files/config";
+  dotfiles = "${home}/.files/config";
 in {
 
   options.modules.users = {
@@ -13,7 +13,7 @@ in {
 
   config = lib.mkIf cfg.enable {
 
-    xdg.configFile."ranger/commands.py".source = symlink (dotfiles + "/ranger/commands.py");
+    xdg.configFile."ranger/commands.py".source = symlink "${dotfiles}/ranger/commands.py";
 
     programs.ranger = {
       package = pkgs.ranger.overrideAttrs (prev: {

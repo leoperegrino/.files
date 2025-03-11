@@ -4,7 +4,7 @@ let
 
   symlink = config.lib.file.mkOutOfStoreSymlink;
   home = config.home.homeDirectory;
-  dotfiles = home + "/.files/config";
+  dotfiles = "${home}/.files/config";
 in {
 
   options.modules.users = {
@@ -28,34 +28,34 @@ in {
 
     xdg.configFile = {
       "bash" = {
-        source = symlink dotfiles + "/bash";
+        source = symlink "${dotfiles}/bash";
         recursive = true;
       };
       "nvim" = {
-        source = symlink dotfiles + "/nvim";
+        source = symlink "${dotfiles}/nvim";
         recursive = true;
       };
       "sh" = {
-        source = symlink dotfiles + "/sh";
+        source = symlink "${dotfiles}/sh";
         recursive = true;
       };
       "vim" = {
-        source = symlink dotfiles + "/vim";
+        source = symlink "${dotfiles}/vim";
         recursive = true;
       };
       "x" = {
-        source = symlink dotfiles + "/x";
+        source = symlink "${dotfiles}/x";
         recursive = true;
       };
       "zsh/.zshrc" = {
-        source = symlink dotfiles + "/zsh/zshrc";
+        source = symlink "${dotfiles}/zsh/zshrc";
       };
       "tmux" = {
-        source = symlink dotfiles + "/tmux";
+        source = symlink "${dotfiles}/tmux";
         recursive = true;
       };
       "python" = {
-        source = symlink dotfiles + "/python";
+        source = symlink "${dotfiles}/python";
         recursive = true;
       };
     };
