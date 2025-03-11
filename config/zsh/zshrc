@@ -138,3 +138,7 @@ alias h="history 1"
 
 gpg-connect-agent updatestartuptty /bye &>/dev/null
 export GPG_TTY="$(tty)"
+
+if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
+	exec tmux new-session >/dev/null 2>&1
+fi
