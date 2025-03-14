@@ -108,6 +108,7 @@ in {
       extraGroups = [
         "wheel"
         "networkmanager"
+        "cool"
         "video"
       ]
       ++ (if virtCfg.docker.enable then [ "docker" ] else [])
