@@ -98,8 +98,6 @@ in {
     groups."pi".gid = 1000;
   };
 
-  security.sudo.wheelNeedsPassword = false;
-
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
   ];
 
