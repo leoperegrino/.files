@@ -72,10 +72,10 @@ in {
 
   services.openssh = {
     enable = true;
+    authorizedKeysInHomedir = false;
     settings = {
       PasswordAuthentication = false;
       PermitRootLogin = "no";
-      authorizedKeysInHomedir = false;
     };
   };
 
