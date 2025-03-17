@@ -39,12 +39,27 @@ in {
         guest.clipboard = true;
       };
 
-      libvirtd.enable = cfg.virt-manager.enable;
+      libvirtd = lib.mkIf cfg.virt-manager.enable {
+        enable = true;
+        qemu = {
+          swtpm.enable = true;
+          ovmf = {
+            enable = true;
+            packages = [ pkgs.OVMFFull.fd ];
+          };
+        };
+      };
       spiceUSBRedirection.enable = cfg.virt-manager.enable;
     };
 
     programs.virt-manager.enable = cfg.virt-manager.enable;
-    environment.systemPackages = lib.mkIf cfg.virt-manager.enable [ pkgs.virt-viewer ];
+    # remember to install drivers in windows and use video QXL
+    # virtio-win-guest-tools.exe: https://github.com/virtio-win/virtio-win-pkg-scripts/blob/master/README.md
+    # spice-guest-tools: https://www.spice-space.org/download.html
+    services.spice-vdagentd.enable = cfg.virt-manager.enable;
+    environment.systemPackages = lib.mkIf cfg.virt-manager.enable [
+      pkgs.virt-viewer
+    ];
 
   };
 
