@@ -32,9 +32,7 @@ in {
 
   # https://nixos.wiki/wiki/Nvidia#Modifying_NixOS_Configuration
   hardware = {
-    opengl.enable = true;
-    # graphics.enable = true;
-    # graphics.enable32Bit = true;
+    graphics.enable = true;
     # https://github.com/NixOS/nixpkgs/issues/322400#issuecomment-2282891939
     nvidia-container-toolkit.enable = true;
     nvidia = {
