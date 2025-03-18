@@ -65,12 +65,15 @@ in {
         50001
         51413
         22000
+        8080
       ];
       allowedUDPPorts = [
         51413
         22000
         21027
         51820
+        10001
+        3478
       ];
       checkReversePath = true;
       logRefusedConnections = false;
