@@ -57,7 +57,7 @@
         # https://blog.janissary.xyz/posts/nixos-install-custom-image
         system = "aarch64-linux";
         host = "raspberrypi";
-        modules = [nixos-hardware.nixosModules.raspberry-pi-4];
+        modules = [ nixos-hardware.nixosModules.raspberry-pi-4 ];
       };
 
     };
