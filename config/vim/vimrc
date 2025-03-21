@@ -6,11 +6,6 @@ set background=dark
 set undofile
 set swapfile
 set backup writebackup
-set backupdir=$XDG_STATE_HOME/vim/backup//
-set runtimepath^=$XDG_CONFIG_HOME/vim
-set runtimepath^=$XDG_DATA_HOME/vim
-set runtimepath^=$XDG_CONFIG_HOME/vim/vimscript
-set runtimepath^=$XDG_CONFIG_HOME/vim/vimscript/user
 set t_Co=256
 set viminfo     ='100,/50,:100
 set viminfofile =$XDG_STATE_HOME/vim/info
@@ -85,4 +80,4 @@ augroup vimrc
 augroup END
 " }}}
 
-runtime user/init.vim
+runtime vimscript/user/init.vim

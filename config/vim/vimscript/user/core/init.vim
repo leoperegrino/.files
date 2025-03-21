@@ -1,4 +1,4 @@
-runtime user/core/keymaps.vim
-runtime user/core/functions.vim
-runtime user/core/statusline.vim
-runtime user/core/highlighting.vim
+runtime vimscript/user/core/keymaps.vim
+runtime vimscript/user/core/functions.vim
+runtime vimscript/user/core/statusline.vim
+runtime vimscript/user/core/highlighting.vim
