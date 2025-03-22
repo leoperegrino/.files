@@ -60,7 +60,7 @@ in {
         "gu" = "cd ~/.local/share";
         "gs" = "cd ~/.local/state";
         "gf" = "cd ~/.files";
-        "gV" = "cd ~/.files/nvim/lua/user/";
+        "gV" = "cd ~/.files/config/nvim/lua/user/";
         "gc" = "cd ~/.config";
         "gC" = "cd ~/.cache";
         "gb" = "cd ~/.local/bin";
