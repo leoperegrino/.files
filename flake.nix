@@ -44,7 +44,10 @@
       "thinkpad" = nixosSystem {
         system = "x86_64-linux";
         host = "thinkpad";
-        modules = [ nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel ];
+        modules = [
+          nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel
+          { services.throttled.enable = false; }
+        ];
       };
 
       "coolermaster" = nixosSystem {
