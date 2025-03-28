@@ -89,11 +89,4 @@ M.vscode = function()
 end
 
 
-M.mason = function(opts)
-	local mason = require("user.plugins.config.mason")
-	local config = require('user.plugins.config.servers')
-	mason.setup(config, vim.deepcopy(opts))
-end
-
-
 return M

@@ -36,8 +36,6 @@ M.setup = function()
 		{ 'nvim-lua/plenary.nvim'  },
 
 		{ 'neovim/nvim-lspconfig' },
-		{ 'williamboman/mason.nvim', build = ':MasonUpdate' },
-		{ 'williamboman/mason-lspconfig.nvim' },
 
 		{ 'mfussenegger/nvim-dap'          , config = c.dap, },
 		{ 'mfussenegger/nvim-dap-python'   , config = c.dap_python, dependencies = { 'mfussenegger/nvim-dap' }, },

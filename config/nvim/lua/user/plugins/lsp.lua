@@ -100,7 +100,8 @@ end
 
 
 local servers = function(on_attach)
-	local config = require('user.plugins.config')
+	local lspconfig = require("lspconfig")
+	local lsp_servers = require('user.plugins.lsp_servers')
 
 	local capabilities
 	local ok, cmp = pcall(require, 'cmp_nvim_lsp')
@@ -117,7 +118,12 @@ local servers = function(on_attach)
 		end
 	}
 
-	config.mason(opts)
+	for name, config in pairs(lsp_servers) do
+
+		local final = vim.tbl_deep_extend('force', opts, config)
+
+		lspconfig[name].setup(final)
+	end
 end
 
 
