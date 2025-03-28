@@ -3,32 +3,6 @@ local M = {}
 local keymap_with = require('user.utils').keymap_with
 
 
-local vsplit = function()
-	local actions = require('telescope.actions')
-	actions.select_default:replace(actions.select_vertical)
-	return true
-end
-
-
-M.lsp = function(_, bufnr)
-	local telescope = require('telescope.builtin')
-
-	local bufmap = keymap_with({
-		buffer = bufnr,
-		noremap = true,
-	})
-
-	bufmap("n", "gd"  , telescope.lsp_definitions     , "telescope lsp: lsp definitions")
-	bufmap("n", "gI"  , telescope.lsp_implementations , "telescope lsp: lsp implementations")
-	bufmap("n", "gt"  , telescope.lsp_type_definitions, "telescope lsp: lsp type definitions")
-	bufmap("n", "gr"  , telescope.lsp_references      , "telescope lsp: lsp references")
-	bufmap("n", "gD"  , function() telescope.lsp_definitions({ attach_mappings = vsplit })          end, "telescope lsp: lsp definitions")
-	bufmap("n", "gR"  , function() telescope.lsp_references({ attach_mappings = vsplit })           end, "telescope lsp: lsp references")
-	bufmap("n", "gL"  , function() vim.diagnostic.setloclist({ open = false }) telescope.loclist()  end, "telescope lsp: location list")
-	bufmap("n", "gQ"  , function() vim.diagnostic.setqflist({ open = false })  telescope.quickfix() end, "telescope lsp: quickfix list")
-end
-
-
 M.setup = function()
 	local telescope = require('telescope.builtin')
 	local gs = require('gitsigns')

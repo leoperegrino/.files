@@ -96,10 +96,20 @@ local keymaps = function(_, bufnr)
 	bufmap("n", "glW" , vim.lsp.buf.remove_workspace_folder, "lsp: rm folder from workspace")
 	bufmap("n", "glf" , vim.lsp.buf.format                 , "lsp: formats buffer"          )
 	bufmap("n", "gll" , "<Cmd>= vim.lsp.buf.list_workspace_folders()<CR>", "lsp: list folders in workspace")
+
+	local ok, telescope = pcall(require, 'telescope.builtin')
+	if ok then
+		bufmap("n", "gd"  , telescope.lsp_definitions     , "telescope lsp: lsp definitions")
+		bufmap("n", "gI"  , telescope.lsp_implementations , "telescope lsp: lsp implementations")
+		bufmap("n", "gt"  , telescope.lsp_type_definitions, "telescope lsp: lsp type definitions")
+		bufmap("n", "gr"  , telescope.lsp_references      , "telescope lsp: lsp references")
+		bufmap("n", "gL"  , function() vim.diagnostic.setloclist({ open = false }) telescope.loclist()  end, "telescope lsp: location list")
+		bufmap("n", "gQ"  , function() vim.diagnostic.setqflist({ open = false })  telescope.quickfix() end, "telescope lsp: quickfix list")
+	end
 end
 
 
-local servers = function(on_attach)
+local servers = function()
 	local lspconfig = require("lspconfig")
 	local lsp_servers = require('user.plugins.lsp_servers')
 
@@ -114,7 +124,6 @@ local servers = function(on_attach)
 		on_attach = function(client, bufnr)
 			keymaps(client, bufnr)
 			highlight_document(client, bufnr)
-			on_attach(client, bufnr)
 		end
 	}
 
@@ -127,11 +136,11 @@ local servers = function(on_attach)
 end
 
 
-M.setup = function(on_attach)
+M.setup = function()
 	sign_define()
 	diagnostic_config()
 	handlers()
-	servers(on_attach)
+	servers()
 end
 
 
