@@ -10,7 +10,7 @@ local vsplit = function()
 end
 
 
-M.on_attach = function(_, bufnr)
+M.lsp = function(_, bufnr)
 	local telescope = require('telescope.builtin')
 
 	local bufmap = keymap_with({

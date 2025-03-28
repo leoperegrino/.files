@@ -76,15 +76,56 @@ local highlight_document = function(client, bufnr)
 end
 
 
-M.on_attach = function(client, bufnr)
-	highlight_document(client, bufnr)
+local keymaps = function(_, bufnr)
+	local keymap_with = require('user.utils').keymap_with
+
+	local bufmap = keymap_with({
+		buffer = bufnr,
+		noremap = true,
+	})
+
+	if vim.bo.filetype ~= "vim" and vim.bo.filetype ~= "sh" then
+		bufmap("n", "K"   , vim.lsp.buf.hover)
+	end
+
+	bufmap("n", "glr" , vim.lsp.buf.rename                 , "lsp: renames all references"  )
+	bufmap("n", "gld" , vim.lsp.buf.declaration            , "lsp: jumps to declaration"    )
+	bufmap("n", "gls" , vim.lsp.buf.signature_help         , "lsp: displays signature help" )
+	bufmap("n", "glc" , vim.lsp.buf.code_action            , "lsp: selects a code action"   )
+	bufmap("n", "glw" , vim.lsp.buf.add_workspace_folder   , "lsp: add folder to workspace" )
+	bufmap("n", "glW" , vim.lsp.buf.remove_workspace_folder, "lsp: rm folder from workspace")
+	bufmap("n", "glf" , vim.lsp.buf.format                 , "lsp: formats buffer"          )
+	bufmap("n", "gll" , "<Cmd>= vim.lsp.buf.list_workspace_folders()<CR>", "lsp: list folders in workspace")
 end
 
 
-M.setup = function()
+local servers = function(on_attach)
+	local config = require('user.plugins.config')
+
+	local capabilities
+	local ok, cmp = pcall(require, 'cmp_nvim_lsp')
+	if ok then
+		capabilities = cmp.default_capabilities()
+	end
+
+	local opts = {
+		capabilities = capabilities,
+		on_attach = function(client, bufnr)
+			keymaps(client, bufnr)
+			highlight_document(client, bufnr)
+			on_attach(client, bufnr)
+		end
+	}
+
+	config.mason(opts)
+end
+
+
+M.setup = function(on_attach)
 	sign_define()
 	diagnostic_config()
 	handlers()
+	servers(on_attach)
 end
 
 
