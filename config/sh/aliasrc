@@ -51,6 +51,3 @@ alias  .bashrc="source \${XDG_CONFIG_HOME}/bash/bashrc"
 alias  .bashpr="source \${XDG_CONFIG_HOME}/bash/bash_profile"
 alias .aliasrc="source \${XDG_CONFIG_HOME}/sh/aliasrc"
 alias .inputrc="source \${XDG_CONFIG_HOME}/sh/inputrc"
-
-alias  shut="shutdown now"
-alias  susp="systemctl suspend"
