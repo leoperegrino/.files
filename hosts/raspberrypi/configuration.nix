@@ -23,7 +23,7 @@ in {
       filter = "*rpi-4-*.dtb";
     };
   };
-
+  nix.settings.trusted-users = [ "pi" ];
   console.enable = true;
 
   boot = {
