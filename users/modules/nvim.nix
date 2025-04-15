@@ -14,6 +14,7 @@ in {
       extraPackages = with pkgs.unstable; [
         lua-language-server
         tree-sitter
+        gcc
       ];
     };
   };
