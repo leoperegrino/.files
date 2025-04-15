@@ -22,6 +22,7 @@ in {
     kernelPackages = pkgs.linuxPackages_latest;
     # consoleLogLevel = 0;
     # kernelParams = ["quiet"];
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
     loader = {
       timeout = 3;
       efi.canTouchEfiVariables = true;
