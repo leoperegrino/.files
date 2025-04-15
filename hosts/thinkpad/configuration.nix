@@ -77,6 +77,7 @@ in {
     ]
     ++ (if virtCfg.virt-manager.enable then [ "libvirtd" ] else [])
     ++ (if virtCfg.virtualbox.enable then [ "vboxusers" ] else [])
+    ++ (if virtCfg.docker.enable then [ "docker" ] else [])
     ;
   };
 

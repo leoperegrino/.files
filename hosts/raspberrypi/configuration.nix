@@ -92,7 +92,9 @@ in {
         "networkmanager"
         "pi"
       ]
-      ++ (if virtCfg.docker.enable then [ "docker" ] else [])
+    ++ (if virtCfg.virt-manager.enable then [ "libvirtd" ] else [])
+    ++ (if virtCfg.virtualbox.enable then [ "vboxusers" ] else [])
+    ++ (if virtCfg.docker.enable then [ "docker" ] else [])
       ;
     };
     groups."pi".gid = 1000;
