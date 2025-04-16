@@ -100,6 +100,45 @@ in {
     groups."pi".gid = 1000;
   };
 
+   systemd.services."luks-mount-workaround" = let
+      CRYPTSETUP_SERVICE = "systemd-cryptsetup@backup.service";
+      MOUNT_SERVICE = "mnt-backup.mount";
+      MOUNT_POINT = "/mnt/backup";
+      DOCKER_COMPOSE = "${MOUNT_POINT}/backup/docker-compose.yaml";
+      docker = "${pkgs.docker}/bin/docker";
+      systemctl = "${pkgs.systemd}/bin/systemctl";
+   in {
+    description = "Workaround for LUKS volume not mounting after hard shutdown";
+    after = [ "network-online.target" "systemd-user-sessions.service" ];
+    wants = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
+    startLimitIntervalSec = 600;
+    startLimitBurst = 5;
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      User = "root";
+      Group = "root";
+      Restart = "on-failure";
+      RestartSec = "10s";
+      StartLimitAction = "stop";
+    };
+
+    script = ''
+      set -euxo pipefail
+      ${systemctl} start ${CRYPTSETUP_SERVICE}
+      ${systemctl} start ${MOUNT_SERVICE}
+      ${docker} compose -f ${DOCKER_COMPOSE} up -d syncthing
+    '';
+
+    preStop = ''
+      set -euxo pipefail
+      ${docker} compose -f ${DOCKER_COMPOSE} down
+      ${systemctl} stop ${MOUNT_SERVICE}
+      ${systemctl} stop ${CRYPTSETUP_SERVICE}
+    '';
+  };
+
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
   ];
 
