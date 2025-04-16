@@ -57,7 +57,6 @@ local highlight_document = function(client, bufnr)
 		local augroup = vim.api.nvim_create_augroup
 		local group = "lsp_document_highlight"
 
-		local hi_yank = function() require('vim.highlight').on_yank() end
 		local autocmd = function(event, callback, buffer, pattern)
 			vim.api.nvim_create_autocmd(event, {
 				pattern = pattern,
@@ -68,7 +67,7 @@ local highlight_document = function(client, bufnr)
 		end
 
 		augroup(group, {})
-		autocmd("TextYankPost", hi_yank, nil, '*')
+		autocmd("TextYankPost", vim.highlight.on_yank, nil, '*')
 		autocmd("CursorHold", vim.lsp.buf.document_highlight, bufnr)
 		autocmd("CursorHoldI", vim.lsp.buf.document_highlight, bufnr)
 		autocmd("CursorMoved", vim.lsp.buf.clear_references, bufnr)
