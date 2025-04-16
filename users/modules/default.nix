@@ -8,7 +8,7 @@
     ./gpg.nix
     ./htop.nix
     ./mpv.nix
-    ./nvim.nix
+    ./neovim.nix
     ./ranger.nix
     ./syncthing.nix
     ./xdg.nix

@@ -12,7 +12,7 @@
     gpg.enable = true;
     htop.enable = true;
     mpv.enable = true;
-    nvim.enable = true;
+    neovim.enable = true;
     ranger.enable = true;
     syncthing.enable = true;
     xdg.enable = true;
