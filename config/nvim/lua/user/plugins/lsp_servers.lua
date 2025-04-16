@@ -92,7 +92,7 @@ M.pyright = {
 }
 
 M.ruff = {
-	-- cmd = { "nix", "run", "nixpkgs#ruff-lsp" },
+	-- cmd = { "nix", "run", "nixpkgs#ruff", '--', 'server', },
 }
 
 M.denols = {
