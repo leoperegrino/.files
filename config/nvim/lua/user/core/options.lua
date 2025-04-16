@@ -11,7 +11,7 @@ M.setup = function()
 	o.writebackup = true
 	o.backupdir:remove({ '.' })
 
-	o.autochdir = true
+	o.autochdir = false
 	o.clipboard = 'unnamed'
 
 	o.fileencoding = 'utf-8'
