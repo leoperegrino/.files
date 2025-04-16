@@ -12,11 +12,17 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  environment.etc.crypttab.text = ''
-    backup UUID=bad5f4b7-fcdc-4b36-8887-357a629d7c00 /root/mykeyfile
-  '';
-  fileSystems."/mnt/backup".device = "/dev/mapper/backup";
-  fileSystems."/mnt/pibox".device = "/dev/disk/by-uuid/b91a6bce-6f73-4672-8d82-84c8de6bcbef";
+  # environment.etc.crypttab.text = ''
+  #   backup UUID=bad5f4b7-fcdc-4b36-8887-357a629d7c00 /root/mykeyfile
+  # '';
+  # fileSystems."/mnt/backup" = {
+  #   device = "/dev/mapper/backup";
+  #   options = [ "nofail" ];
+  # };
+  # fileSystems."/mnt/pibox" = {
+  #   device = "/dev/disk/by-uuid/b91a6bce-6f73-4672-8d82-84c8de6bcbef";
+  #   options = [ "nofail" ];
+  # };
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/37cfec8c-c329-430a-92bf-d282b313a9d8";
