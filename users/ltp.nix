@@ -20,6 +20,7 @@
 
   home.username = "ltp";
   home.homeDirectory = "/home/ltp";
+  home.enableNixpkgsReleaseCheck = false;
 
   programs.home-manager.enable = true;
 

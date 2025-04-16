@@ -17,6 +17,7 @@
 
   home.username = "cool";
   home.homeDirectory = "/home/cool";
+  home.enableNixpkgsReleaseCheck = false;
 
   programs.home-manager.enable = true;
 

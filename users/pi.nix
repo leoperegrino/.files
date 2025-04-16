@@ -17,6 +17,7 @@
 
   home.username = "pi";
   home.homeDirectory = "/home/pi";
+  home.enableNixpkgsReleaseCheck = false;
 
   programs.home-manager.enable = true;
 
