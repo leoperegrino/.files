@@ -15,6 +15,7 @@ in {
         lua-language-server
         tree-sitter
         gcc
+        nil
       ];
     };
   };

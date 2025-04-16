@@ -2,7 +2,7 @@ local M = {}
 
 M.nil_ls = {
 	-- https://github.com/oxalica/nil/blob/main/docs/configuration.md
-	cmd = { "nix", "run", "nixpkgs#nil" },
+	-- cmd = { "nix", "run", "nixpkgs#nil" },
 	settings = {
 		["nil"] = {
 			formatting = {
