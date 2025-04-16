@@ -4,7 +4,7 @@ let
 in {
 
   options.modules.users = {
-    nvim.enable = lib.mkEnableOption "nvim";
+    nvim.enable = lib.mkEnableOption "neovim";
   };
 
   config = lib.mkIf cfg.enable {
