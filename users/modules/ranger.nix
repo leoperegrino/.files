@@ -52,7 +52,7 @@ in {
         preview_files  = true;
         open_all_images  = true;
         draw_borders  = true;
-        hidden_filter  = ''^\.|\.nixenv|\.(bak|swp)$|^lost\+found$|^__pycache__$'';
+        hidden_filter  = ''^\.|\.(bak|swp)$|^lost\+found$|^__pycache__$'';
         nested_ranger_warning  = true;
         colorscheme  = "jungle";
       };
@@ -92,7 +92,7 @@ in {
         "i" = ''shell "''${PAGER}" -- %f'';
         "v" = "mark_files all=True toggle=True";
         "n" = "tab_new";
-        "b" = ''shell setsid -f "''${TERM}"'';
+        "b" = ''shell setsid -f alacritty -e zsh'';
         "f" = "console scout -ftse%space";
         "<c-j>" = "scroll_preview 1";
         "<c-k>" = "scroll_preview -1";
