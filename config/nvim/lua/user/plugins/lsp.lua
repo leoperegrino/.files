@@ -79,6 +79,11 @@ end
 local keymaps = function(_, bufnr)
 	local keymap_with = require('user.utils').keymap_with
 
+	local keymap = keymap_with({
+		noremap = true,
+		silent = true
+	})
+
 	local bufmap = keymap_with({
 		buffer = bufnr,
 		noremap = true,
@@ -87,6 +92,12 @@ local keymaps = function(_, bufnr)
 	if vim.bo.filetype ~= "vim" and vim.bo.filetype ~= "sh" then
 		bufmap("n", "K"   , vim.lsp.buf.hover)
 	end
+
+	keymap("n", "[d"         , vim.diagnostic.goto_prev , "lsp: jumps to previous diagnostic")
+	keymap("n", "Ç"          , vim.diagnostic.goto_prev , "lsp: jumps to previous diagnostic")
+	keymap("n", "]d"         , vim.diagnostic.goto_next , "lsp: jumps to next diagnostic"    )
+	keymap("n", "ç"          , vim.diagnostic.goto_next , "lsp: jumps to next diagnostic"    )
+	keymap("n", "<leader>eq" , vim.diagnostic.setloclist, "lsp: add buffer diagnostics to the location list")
 
 	bufmap("n", "glr" , vim.lsp.buf.rename                 , "lsp: renames all references"  )
 	bufmap("n", "gld" , vim.lsp.buf.declaration            , "lsp: jumps to declaration"    )

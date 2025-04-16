@@ -10,12 +10,6 @@ M.setup = function()
 		noremap = true,
 	})
 
-	keymap("n", "[d"         , vim.diagnostic.goto_prev , "lsp: jumps to previous diagnostic")
-	keymap("n", "Ç"          , vim.diagnostic.goto_prev , "lsp: jumps to previous diagnostic")
-	keymap("n", "]d"         , vim.diagnostic.goto_next , "lsp: jumps to next diagnostic"    )
-	keymap("n", "ç"          , vim.diagnostic.goto_next , "lsp: jumps to next diagnostic"    )
-	keymap("n", "<leader>eq" , vim.diagnostic.setloclist, "lsp: add buffer diagnostics to the location list")
-
 	keymap('' , '<leader><leader>', ':'         )
 	keymap('n', '<leader>H'       , ':H '       )
 	keymap('n', '<leader>L'       , ':lua '     )
