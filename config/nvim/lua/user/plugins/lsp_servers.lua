@@ -105,7 +105,6 @@ M.metals = {
 
 M.terraformls = {
 	-- cmd = { 'nix', 'run', 'nixpkgs#terraform-ls', '--', 'serve' },
-	filetypes = { "terraform", "terraform-vars" },
 }
 
 M.sqls = {
