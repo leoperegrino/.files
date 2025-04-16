@@ -76,9 +76,8 @@ M.treesitter = function()
 		playground = { enable = true },
 		highlight = { enable = true },
 	})
-	vim.o.foldmethod = 'expr'
-	vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
-	vim.o.foldenable = false
+	vim.wo.foldmethod = 'expr'
+	vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 end
 
 
