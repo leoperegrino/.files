@@ -24,8 +24,8 @@ M.rustaceanvim = function()
 		},
 		server = {
 			on_attach = function(client, buffer)
-				require('user.core.keymaps').on_attach(client, buffer)
-				require('user.plugins.keymaps').on_attach(client, buffer)
+				require('user.plugins.lsp').highlight_document(client, buffer)
+				require('user.plugins.lsp').keymaps(client, buffer)
 			end
 		},
 	}
