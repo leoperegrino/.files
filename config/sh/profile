@@ -54,6 +54,6 @@ export            MANROFFOPT='-c'
 export              RANDFILE="/dev/random"
 export                  LANG="en_US.UTF-8"
 export               BROWSER="brave"
-export                  TERM="alacritty"
+export                  TERM="xterm-256color"
 export                EDITOR="nvim"
 export                 PAGER="bat"
