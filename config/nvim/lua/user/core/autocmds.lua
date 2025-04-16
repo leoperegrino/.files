@@ -1,6 +1,6 @@
 local M = {}
 
-local group = vim.api.nvim_create_augroup('init.lua', { clear = true })
+local group = vim.api.nvim_create_augroup('user autocmds', { clear = true })
 local autocmd = function(event, pattern, callback)
 	vim.api.nvim_create_autocmd(event, {
 		pattern = pattern,
@@ -12,8 +12,8 @@ end
 
 M.setup = function()
 	autocmd('FileType'    ,  '*'   ,  function() vim.opt.formatoptions:remove({'c', 'r', 'o'})                        end )
-	autocmd('FileType'    ,  '*'   ,  function() vim.cmd[[silent! loadview]]                                          end )
-	autocmd('BufWrite'    ,  '*'   ,  function() vim.cmd[[mkview]]                                                    end )
+	autocmd('BufRead'     ,  '*'   ,  function() vim.cmd[[silent! loadview]]                                          end )
+	autocmd('BufWrite'    ,  '*'   ,  function() vim.cmd[[mkview!]]                                                   end )
 	autocmd('BufWritePre' ,  '*'   ,  function() vim.cmd[[call mkdir(expand("<afile>:p:h"), "p")]]                    end )
 	autocmd('BufEnter'    ,  '*'   ,  function() vim.cmd[[set noreadonly]]                                            end )
 	autocmd('InsertEnter' ,  '*'   ,  function() vim.cmd[[set nolist]]                                                end )
