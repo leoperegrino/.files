@@ -79,7 +79,7 @@ M.setup = function()
 		{ "hedyhli/outline.nvim"        , config = c.outline, },
 		{ 'nvim-tree/nvim-web-devicons' },
 
-		{ 'numToStr/Comment.nvim'              , config = c.comment   },
+		{ 'numToStr/Comment.nvim' },
 		{ 'lewis6991/gitsigns.nvim'            , config = c.gitsigns  },
 
 		{ "lukas-reineke/indent-blankline.nvim", main = 'ibl', config = c.blankline },
