@@ -24,7 +24,7 @@ M.nil_ls = {
 }
 
 M.lua_ls = {
-	cmd = { "nix", "run", "nixpkgs#lua-language-server" },
+	-- cmd = { "nix", "run", "nixpkgs#lua-language-server" },
 	settings = {
 		Lua = {
 			diagnostics = { globals = { "vim", "require" }, },
@@ -36,12 +36,12 @@ M.lua_ls = {
 }
 
 M.texlab = {
-	cmd = { "nix", "run", "nixpkgs#texlab" },
+	-- cmd = { "nix", "run", "nixpkgs#texlab" },
 }
 
 -- pip install "python-lsp-server[all]"
 M.pylsp = {
-	cmd = { 'python',  '-m', 'pylsp' },
+	-- cmd = { 'python',  '-m', 'pylsp' },
 	-- cmd = { "nix", "run", "nixpkgs#python3Packages.python-lsp-server" },
 	-- cmd = {
 	-- 	"nix-shell",
@@ -88,53 +88,40 @@ M.pylsp = {
 }
 
 M.pyright = {
-	cmd = { "nix", "shell", "nixpkgs#pyright", "--command", "pyright-langserver", "--stdio" },
+	-- cmd = { "nix", "shell", "nixpkgs#pyright", "--command", "pyright-langserver", "--stdio" },
 }
 
 M.ruff = {
-	cmd = { "nix", "run", "nixpkgs#ruff-lsp" },
-	init_options = {
-		settings = {
-			-- Any extra CLI arguments for `ruff` go here.
-			args = {},
-		},
-	},
+	-- cmd = { "nix", "run", "nixpkgs#ruff-lsp" },
 }
 
-M.ts_ls = {
-	-- opts.filetypes = { "typescript", "typescriptreact", "typescript.tsx" }
-	cmd = { 'nix', 'run', 'nixpkgs#nodePackages.typescript-language-server', '--', '--stdio', },
-	init_options = { preferences = { disableSuggestions = false }},
-	settings = {
-		tsserver = {
-			compilerOptions = {
-				module = "commonjs",
-				target = "es6",
-				checkJs = false
-			},
-			exclude = {
-				"node_modules"
-			}
-		}
-	}
+M.denols = {
+	-- cmd = { "nix", "run", "nixpkgs#deno", "lsp" },
 }
 
 M.metals = {
-	cmd = { 'metals' },
-	filetypes = {
-		'scala',
-		-- 'sbt',
-	},
+	-- cmd = { 'nix', 'run', 'nixpkgs#metals' },
 }
 
 M.terraformls = {
-	cmd = { "terraform-ls", "serve" },
+	-- cmd = { 'nix', 'run', 'nixpkgs#terraform-ls', '--', 'serve' },
 	filetypes = { "terraform", "terraform-vars" },
 }
 
 M.sqls = {
-	cmd = { 'nix', 'run', 'nixpkgs#sqls', '--',  '-config', '~/.config/sqls/config.yml' },
-	-- filetypes = {},
+	-- cmd = { 'nix', 'run', 'nixpkgs#sqls', '--',  '-config', '~/.config/sqls/config.yml' },
+}
+
+M.gopls = {
+	-- cmd = { 'nix', 'run', 'nixpkgs#gopls', '--', 'serve' },
+}
+
+M.docker_compose_language_service = {
+	-- cmd = { 'nix', 'run', 'nixpkgs#docker-compose-langserver', '--', '--stdio' }
+}
+
+M.dockerls = {
+	-- cmd = { 'nix', 'run', 'nixpkgs#dockerfile-language-server-nodejs', '--', '--stdio' },
 }
 
 return M
