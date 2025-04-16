@@ -76,6 +76,7 @@ M.setup = function()
 		{ 'kyazdani42/nvim-tree.lua'    , config = c.nvim_tree },
 		{ 'nvim-lualine/lualine.nvim'   , config = c.lualine   , dependencies = { 'Mofiqul/vscode.nvim' }, },
 		{ "folke/zen-mode.nvim"         , opts = c.zenmode },
+		{ "hedyhli/outline.nvim"        , config = c.outline, },
 		{ 'nvim-tree/nvim-web-devicons' },
 
 		{ 'numToStr/Comment.nvim'              , config = c.comment   },
