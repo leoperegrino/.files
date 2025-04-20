@@ -78,104 +78,33 @@ end
 
 nvim_tree.setup({
 	on_attach = on_attach,
-	auto_reload_on_write = true,
 	disable_netrw = true,
 	hijack_cursor = true,
-	hijack_netrw = true,
-	hijack_unnamed_buffer_when_opening = false,
 	open_on_tab = false,
-	respect_buf_cwd = false,
-	sort_by = "name",
-	update_cwd = false,
-	view = {
-		width = 30,
-		side = "left",
-		preserve_window_proportions = false,
-		signcolumn = "yes",
-		number = false,
-		relativenumber = false,
-	},
 	renderer = {
 		root_folder_label = false,
-		root_folder_modifier = ':h',
-		icons = {
-			padding = '  ',
-			webdev_colors = true,
-			glyphs = {
-				folder = {
-					symlink_open = "",
-				}
-			},
-		},
+		icons = { padding = '  ', },
 		highlight_opened_files = 'icon',
 		group_empty = true,
-		indent_markers = {
-			enable = true,
-		},
 	},
-	hijack_directories = {
-		enable = true,
-		auto_open = true,
-	},
-	update_focused_file = {
-		enable = false,
-		update_cwd = false,
-		ignore_list = {},
-	},
-	system_open = {
-		cmd = nil,
-		args = {},
-	},
-	diagnostics = {
-		enable = true,
-		show_on_dirs = false,
-		icons = {
-			hint = "",
-			info = "",
-			warning = "",
-			error = "",
-		},
-	},
+	update_focused_file = { enable = false, },
+	diagnostics = { enable = true, },
 	filters = {
 		dotfiles = true,
-		custom = {},
-		exclude = {'.gitignore'},
-	},
-	git = {
-		enable = true,
-		ignore = true,
-		timeout = 500,
+		exclude = { '.gitignore' },
 	},
 	actions = {
 		change_dir = {
 			enable = false,
-			global = false,
 		},
 		open_file = {
 			quit_on_open = false,
-			resize_window = false,
+			resize_window = true,
 			window_picker = {
 				enable = true,
 				picker = require("window-picker").pick_window,
-				chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
-				exclude = {
-					filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
-					buftype = { "nofile", "terminal", "help" },
-				},
 			},
 		}
 	},
-	trash = {
-		cmd = "trash-cli",
-		require_confirm = true,
-	},
-	log = {
-		enable = false,
-		truncate = false,
-		types = {
-			all = false,
-			config = false,
-			git = false,
-		},
-	},
+	trash = { cmd = "trash-cli", },
 })
