@@ -6,8 +6,6 @@ local c = require('user.plugins.config')
 local bootstrap = function()
 	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 	local lazy_url =  'https://github.com/folke/lazy.nvim.git'
-	local bootstrapped = false
-
 
 	if not vim.loop.fs_stat(lazypath) then
 		vim.fn.system({
@@ -22,14 +20,11 @@ local bootstrap = function()
 	end
 
 	vim.opt.rtp:prepend(lazypath)
-	bootstrapped = true
-
-	return bootstrapped
 end
 
 
 M.setup = function()
-	local bootstrapped = bootstrap()
+	bootstrap()
 	local lazy = require('lazy')
 
 	lazy.setup({
