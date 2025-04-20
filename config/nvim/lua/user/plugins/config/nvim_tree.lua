@@ -84,6 +84,7 @@ nvim_tree.setup({
 	disable_netrw = true,
 	hijack_cursor = true,
 	open_on_tab = false,
+	tab = { sync = { open = true, close = true, }, },
 	renderer = {
 		root_folder_label = false,
 		icons = { padding = '  ', },
