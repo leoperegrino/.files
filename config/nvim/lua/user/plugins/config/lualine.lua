@@ -47,7 +47,24 @@ lualine.setup({
 		lualine_c = {''},
 		lualine_x = {},
 		lualine_y = {},
-		lualine_z = { { 'tabs', mode = 2, } }
+		lualine_z = { { 'tabs', mode = 1,
+			-- show '{number}' if single tab, else '{number} {name}'
+			fmt = function(name, context)
+				local tab_count = vim.fn.tabpagenr('$')
+				local tabnr = context.tabnr
+
+				if tab_count <= 1 then
+				  return tostring(tabnr)
+				end
+
+				local buflist = vim.fn.tabpagebuflist(context.tabnr)
+				local winnr = vim.fn.tabpagewinnr(context.tabnr)
+				local bufnr = buflist[winnr]
+				local mod = vim.fn.getbufvar(bufnr, '&mod')
+
+				return tabnr .. ' ' .. name .. (mod == 1 and ' +' or '')
+		  end
+		} },
 	},
 	extensions = {}
 })
