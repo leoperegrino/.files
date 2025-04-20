@@ -9,6 +9,12 @@ local nvim_tree_utils = require("nvim-tree.utils")
 local ok, window_picker = pcall(require, 'window-picker')
 local picker = ok and window_picker.pick_window or 'default'
 
+local Event = api.events.Event
+
+api.events.subscribe(
+	Event.TreeOpen,
+	function(_) vim.wo.sidescrolloff = 0 end
+)
 
 vim.api.nvim_create_autocmd("BufEnter", {
 	nested = true,
