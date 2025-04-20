@@ -19,17 +19,18 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	end
 })
 
-local open_nvim_tree = function(data)
-	-- buffer is a [No Name]
-	local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
 
-	if no_name then
-		-- open the tree, find the file but don't focus it
-		api.tree.toggle({ focus = false, find_file = true, })
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function(data)
+		-- buffer is a [No Name]
+		local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+
+		if no_name then
+			-- open the tree, find the file but don't focus it
+			api.tree.toggle({ focus = false, find_file = true, })
+		end
 	end
-end
-
-vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+})
 
 
 local on_attach = function(bufnr)
