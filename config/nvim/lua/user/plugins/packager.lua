@@ -78,6 +78,17 @@ M.setup = function()
 		{ "folke/zen-mode.nvim"         , opts = c.zenmode },
 		{ "hedyhli/outline.nvim"        , config = c.outline, },
 		{ 'nvim-tree/nvim-web-devicons' },
+		{
+			's1n7ax/nvim-window-picker',
+			name = 'window-picker',
+			event = 'VeryLazy',
+			version = '2.*',
+			config = function() require('window-picker').setup({
+				hint = 'floating-big-letter',
+				show_prompt = false,
+				picker_config = { handle_mouse_click = true, },
+			}) end,
+		},
 
 		{ 'numToStr/Comment.nvim' },
 		{ 'lewis6991/gitsigns.nvim'            , config = c.gitsigns  },
