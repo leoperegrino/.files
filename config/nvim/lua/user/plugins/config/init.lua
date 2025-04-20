@@ -54,31 +54,6 @@ M.zenmode  = {
 }
 
 
-M.blankline = function()
-	require('ibl').setup({
-		indent = {
-			char = '',
-			highlight = "NonText",
-		},
-		scope = {
-			char = '╎',
-			enabled = true;
-			show_start = true,
-			show_end = true,
-			show_exact_scope = false,
-			highlight = { "Label", "IblScope" },
-		}
-	})
-end
-
-
-M.dressing = function()
-	require('dressing').setup({
-		input = { win_options = { winblend = 0 }}
-	})
-end
-
-
 M.treesitter = function()
 	require('nvim-treesitter.configs').setup({
 		auto_install = true,

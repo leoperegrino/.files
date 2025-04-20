@@ -80,12 +80,20 @@ M.setup = function()
 			version = '2.*',
 			config = c.window_picker,
 		},
+		{
+			"folke/snacks.nvim",
+			priority = 1000,
+			lazy = false,
+			opts = {
+				indent = { enabled = true },
+				input = { enabled = true },
+				notifier = { enabled = true },
+			},
+		},
 
 		{ 'numToStr/Comment.nvim' },
 		{ 'lewis6991/gitsigns.nvim'            , config = c.gitsigns  },
 
-		{ "lukas-reineke/indent-blankline.nvim", main = 'ibl', config = c.blankline },
-		{ 'stevearc/dressing.nvim'             , config = c.dressing  },
 		{ 'Mofiqul/vscode.nvim'                , config = c.vscode    },
 	},
 	{
