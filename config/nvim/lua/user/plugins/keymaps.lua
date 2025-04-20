@@ -6,35 +6,33 @@ local keymap_with = require('user.utils').keymap_with
 M.setup = function()
 	local telescope = require('telescope.builtin')
 	local gs = require('gitsigns')
+	local api = require('nvim-tree.api')
 
 	local keymap = keymap_with({
 		noremap = true,
 		silent = true
 	})
 
-	local visual = { vim.fn.line('.'), vim.fn.line('v') }
-	local gs_v_stage_hunk = function() gs.stage_hunk(visual) end
-	local gs_v_reset_hunk = function() gs.reset_hunk(visual) end
 	local gs_blame_line_full = function() gs.blame_line({ full=true }) end
 
 	keymap("n", "gG" , "<cmd>Gitsigns<cr>"   , "gitsigns"                     )
 	keymap("n", "g1" , function() gs.prev_hunk() vim.cmd('normal zz') end, "gitsigns: previous hunk"      )
 	keymap("n", "g2" , function() gs.next_hunk() vim.cmd('normal zz') end, "gitsigns: next hunk"          )
 	keymap("n", "gs" , gs.stage_hunk         , "gitsigns: stage hunk"         )
-	keymap("v", "gs" , gs_v_stage_hunk       , "gitsigns: visual stage hunk"  )
 	keymap("n", "gS" , gs.reset_hunk         , "gitsigns: reset hunk"         )
-	keymap("v", "gS" , gs_v_reset_hunk       , "gitsigns: visual reset hunk"  )
 	keymap("n", "gp" , gs.preview_hunk_inline, "gitsigns: preview hunk inline")
 	keymap("n", "gP" , gs.preview_hunk       , "gitsigns: preview hunk"       )
 	keymap("n", "gu" , gs.undo_stage_hunk    , "gitsigns: undo stage hunk"    )
-	keymap("n", "gb" , gs_blame_line_full    , "gitsigns: blame line full"    )
-	keymap("n", "gB" , gs.blame_line         , "gitsigns: blame line"         )
+	keymap("n", "gb" , gs.blame              , "gitsigns: blame lines"        )
+	keymap("n", "gB" , gs_blame_line_full    , "gitsigns: blame line full"    )
 	keymap("n", "gz" , gs.diffthis           , "gitsigns: diff this"          )
 	keymap("n", "gZ" , gs.toggle_deleted     , "gitsigns: toggle deleted"     )
+	keymap("n", "gw" , gs.toggle_word_diff   , "gitsigns: toggle word diff"   )
 
 	keymap("n", "<leader>b" , telescope.buffers        , "telescope: buffers"     )
-	keymap("n", "<leader>g" , telescope.git_files      , "telescope: git files"   )
-	keymap("n", "<leader>f" , telescope.find_files     , "telescope: find files"  )
+	keymap("n", "<leader>g" , function() telescope.git_files({ cwd = require('telescope.utils').buffer_dir() }) end, "telescope: git files"  )
+	keymap("n", "<leader>f" , function() telescope.find_files({ cwd = require('telescope.utils').buffer_dir() }) end, "telescope: find files"  )
+	keymap("n", "<leader>F" , telescope.find_files     , "telescope: find files"  )
 	keymap("n", "<leader>G" , telescope.live_grep      , "telescope: live grep"   )
 	keymap("n", "<leader>t" , telescope.help_tags      , "telescope: help tags"   )
 	keymap("n", "tb"        , telescope.buffers        , "telescope: buffers"     )
@@ -58,7 +56,7 @@ M.setup = function()
 	keymap("v", "<F1>"       , ':lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>')
 	keymap("n", "<F2>"       , vim.lsp.buf.rename   )
 
-	keymap("n", "<F10>"      , "<cmd>NvimTreeToggle<cr>")
+	keymap("n", "<F10>"      , function() api.tree.toggle({ path = vim.fn.expand('%:p:h') }) end, "nvim-tree: open in cwd" )
 	keymap("n", "<F11>"      , "<cmd>Outline<cr>")
 	keymap("n", "<F12>"      , "<cmd>ZenMode<cr>")
 
