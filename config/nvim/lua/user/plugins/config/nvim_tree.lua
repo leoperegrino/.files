@@ -6,6 +6,9 @@ local api = require('nvim-tree.api')
 local nvim_tree = require("nvim-tree")
 local nvim_tree_utils = require("nvim-tree.utils")
 
+local ok, window_picker = pcall(require, 'window-picker')
+local picker = ok and window_picker.pick_window or 'default'
+
 
 vim.api.nvim_create_autocmd("BufEnter", {
 	nested = true,
@@ -102,7 +105,7 @@ nvim_tree.setup({
 			resize_window = true,
 			window_picker = {
 				enable = true,
-				picker = require("window-picker").pick_window,
+				picker = picker,
 			},
 		}
 	},
