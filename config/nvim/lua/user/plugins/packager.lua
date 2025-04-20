@@ -83,11 +83,7 @@ M.setup = function()
 			name = 'window-picker',
 			event = 'VeryLazy',
 			version = '2.*',
-			config = function() require('window-picker').setup({
-				hint = 'floating-big-letter',
-				show_prompt = false,
-				picker_config = { handle_mouse_click = true, },
-			}) end,
+			config = c.window_picker,
 		},
 
 		{ 'numToStr/Comment.nvim' },

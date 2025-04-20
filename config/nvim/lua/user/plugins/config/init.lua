@@ -15,6 +15,16 @@ M.rainbow    = function() require('rainbow-delimiters.setup').setup() end
 
 M.outline = function() require("outline").setup({})  end
 
+
+M.window_picker = function()
+	require('window-picker').setup({
+		hint = 'floating-big-letter',
+		show_prompt = false,
+		picker_config = { handle_mouse_click = true, },
+	})
+end
+
+
 M.rustaceanvim = function()
 	vim.g.rustaceanvim = {
 		tools = {
