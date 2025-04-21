@@ -57,22 +57,9 @@ M.setup = function()
 
 		{ 'nvim-lualine/lualine.nvim'   , config = c.lualine   , dependencies = { 'Mofiqul/vscode.nvim' }, },
 
-		{ "folke/zen-mode.nvim"         , opts = c.zenmode },
 		{ "hedyhli/outline.nvim"        , opts = {}, },
 		{ 'numToStr/Comment.nvim' },
 
-		{
-			"folke/snacks.nvim",
-			priority = 1000,
-			lazy = false,
-			opts = {
-				indent = { enabled = true },
-				input = { enabled = true },
-				picker = { enabled = true },
-			},
-		},
-		{ 'hiphish/rainbow-delimiters.nvim', },
-		{ 'Mofiqul/vscode.nvim', opts = c.vscode.opts, init = c.vscode.init, },
 	},
 	{
 		lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",

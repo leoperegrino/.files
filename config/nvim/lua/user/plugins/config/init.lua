@@ -33,14 +33,6 @@ M.rustaceanvim = function()
 end
 
 
-M.zenmode = {
-	plugins = {
-		options = { laststatus = 0, },
-		gitsigns = { enabled = false },
-	},
-}
-
-
 M.treesitter = function()
 	require('nvim-treesitter.configs').setup({
 		auto_install = true,
@@ -51,12 +43,6 @@ M.treesitter = function()
 	vim.wo.foldmethod = 'expr'
 	vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 end
-
-
-M.vscode = {
-	opts = { group_overrides = { Folded = { bg = nil } } },
-	init = function() require('vscode').load() end,
-}
 
 
 return M
