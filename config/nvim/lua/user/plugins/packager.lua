@@ -28,8 +28,6 @@ M.setup = function()
 	local lazy = require('lazy')
 
 	lazy.setup({
-		{ 'nvim-lua/plenary.nvim'  },
-
 		{ 'neovim/nvim-lspconfig' },
 
 		{ 'mfussenegger/nvim-dap'          , config = c.dap, },
@@ -46,7 +44,6 @@ M.setup = function()
 		},
 
 		{ 'nvim-treesitter/nvim-treesitter'        , config = c.treesitter, build = ':TSUpdate' },
-		{ 'hiphish/rainbow-delimiters.nvim', },
 
 		{ 'hrsh7th/nvim-cmp',    opts = c.cmp },
 		{ 'hrsh7th/cmp-buffer'                  },
@@ -67,10 +64,7 @@ M.setup = function()
 		{ 'debugloop/telescope-undo.nvim'         },
 		{ 'nvim-telescope/telescope-symbols.nvim' },
 
-		{ 'kyazdani42/nvim-tree.lua'    , config = c.nvim_tree },
-		{ 'nvim-lualine/lualine.nvim'   , config = c.lualine   , dependencies = { 'Mofiqul/vscode.nvim' }, },
-		{ "folke/zen-mode.nvim"         , opts = c.zenmode },
-		{ "hedyhli/outline.nvim"        , opts = {}, },
+		{ 'nvim-tree/nvim-tree.lua'    , config = c.nvim_tree },
 		{ 'nvim-tree/nvim-web-devicons' },
 		{
 			's1n7ax/nvim-window-picker',
@@ -79,6 +73,15 @@ M.setup = function()
 			version = '2.*',
 			opts = c.window_picker,
 		},
+
+		{ 'nvim-lualine/lualine.nvim'   , config = c.lualine   , dependencies = { 'Mofiqul/vscode.nvim' }, },
+
+		{ "folke/zen-mode.nvim"         , opts = c.zenmode },
+		{ "hedyhli/outline.nvim"        , opts = {}, },
+		{ 'numToStr/Comment.nvim' },
+
+		{ 'lewis6991/gitsigns.nvim', config = c.gitsigns  },
+
 		{
 			"folke/snacks.nvim",
 			priority = 1000,
@@ -89,10 +92,7 @@ M.setup = function()
 				picker = { enabled = true },
 			},
 		},
-
-		{ 'numToStr/Comment.nvim' },
-		{ 'lewis6991/gitsigns.nvim', config = c.gitsigns  },
-
+		{ 'hiphish/rainbow-delimiters.nvim', },
 		{ 'Mofiqul/vscode.nvim', opts = c.vscode.opts, init = c.vscode.init, },
 	},
 	{
