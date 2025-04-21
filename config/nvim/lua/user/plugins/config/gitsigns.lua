@@ -1,17 +1,5 @@
 local gitsigns = require("gitsigns")
 
-local sign = function(text)
-	return { text = text, show_count = true }
-end
-
-local signs = {
-	add          = sign('┃'),
-	change       = sign('┃'),
-	delete       = sign('▁'),
-	topdelete    = sign('▔'),
-	changedelete = sign('~'),
-	untracked    = sign('┆'),
-}
 
 local function on_attach(buffer)
 	local gs = gitsigns
@@ -46,7 +34,14 @@ end
 
 
 gitsigns.setup({
-	signs = signs,
+	signs = {
+		add          = { text = '┃', show_count = true },
+		change       = { text = '┃', show_count = true },
+		delete       = { text = '▁', show_count = true },
+		topdelete    = { text = '▔', show_count = true },
+		changedelete = { text = '~', show_count = true },
+		untracked    = { text = '┆', show_count = true },
+	},
 	on_attach = on_attach,
 	signcolumn = true,
 	numhl = true,
