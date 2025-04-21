@@ -56,14 +56,6 @@ M.setup = function()
 		{ 'onsails/lspkind.nvim'                },
 		{ 'L3MON4D3/LuaSnip', dependencies = { 'rafamadriz/friendly-snippets'} },
 
-		{ 'nvim-telescope/telescope.nvim',
-			config = c.telescope,
-			tag = '0.1.8',
-			dependencies = { 'nvim-lua/plenary.nvim' }
-		},
-		{ 'debugloop/telescope-undo.nvim'         },
-		{ 'nvim-telescope/telescope-symbols.nvim' },
-
 		{ 'nvim-tree/nvim-tree.lua'    , config = c.nvim_tree },
 		{ 'nvim-tree/nvim-web-devicons' },
 		{
