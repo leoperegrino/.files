@@ -1,7 +1,5 @@
 local M = {}
 
-local c = require('user.plugins.config')
-
 
 local bootstrap = function()
 	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -29,11 +27,6 @@ M.setup = function()
 
 	lazy.setup({
 		{ 'neovim/nvim-lspconfig' },
-
-		{ 'mfussenegger/nvim-dap'          , config = c.dap, },
-		{ 'mfussenegger/nvim-dap-python'   , config = c.dap_python, dependencies = { 'mfussenegger/nvim-dap' }, },
-		{ 'theHamsta/nvim-dap-virtual-text', config = c.dap_vt    , dependencies = { 'mfussenegger/nvim-dap' }, },
-		{ "rcarriga/nvim-dap-ui"           , config = c.dapui     , dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }, },
 
 	},
 	{
