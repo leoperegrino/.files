@@ -13,8 +13,41 @@ local signs = {
 	untracked    = sign('┆'),
 }
 
+local function on_attach(buffer)
+	local gs = gitsigns
+
+	local function bufmap(mode, lhs, rhs, desc)
+		vim.keymap.set(mode, lhs, rhs, {
+			buffer = buffer,
+			desc = desc,
+			noremap = true,
+			silent = true,
+		})
+	end
+
+	local function gs_blame_line_full() gs.blame_line({ full=true }) end
+	local function gs_prev_hunk() gs.prev_hunk() vim.cmd('normal zz') end
+	local function gs_next_hunk() gs.next_hunk() vim.cmd('normal zz') end
+
+	bufmap("n", "gG" , "<cmd>Gitsigns<cr>"   , "gitsigns"                     )
+	bufmap("n", "g1" , gs_prev_hunk          , "gitsigns: previous hunk"      )
+	bufmap("n", "g2" , gs_next_hunk          , "gitsigns: next hunk"          )
+	bufmap("n", "gs" , gs.stage_hunk         , "gitsigns: stage hunk"         )
+	bufmap("n", "gS" , gs.reset_hunk         , "gitsigns: reset hunk"         )
+	bufmap("n", "gp" , gs.preview_hunk_inline, "gitsigns: preview hunk inline")
+	bufmap("n", "gP" , gs.preview_hunk       , "gitsigns: preview hunk"       )
+	bufmap("n", "gu" , gs.undo_stage_hunk    , "gitsigns: undo stage hunk"    )
+	bufmap("n", "gb" , gs.blame              , "gitsigns: blame lines"        )
+	bufmap("n", "gB" , gs_blame_line_full    , "gitsigns: blame line full"    )
+	bufmap("n", "gz" , gs.diffthis           , "gitsigns: diff this"          )
+	bufmap("n", "gZ" , gs.toggle_deleted     , "gitsigns: toggle deleted"     )
+	bufmap("n", "gw" , gs.toggle_word_diff   , "gitsigns: toggle word diff"   )
+end
+
+
 gitsigns.setup({
 	signs = signs,
+	on_attach = on_attach,
 	signcolumn = true,
 	numhl = true,
 	linehl = false,

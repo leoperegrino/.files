@@ -5,29 +5,12 @@ local keymap_with = require('user.utils').keymap_with
 
 M.setup = function()
 	local telescope = require('telescope.builtin')
-	local gs = require('gitsigns')
 	local api = require('nvim-tree.api')
 
 	local keymap = keymap_with({
 		noremap = true,
 		silent = true
 	})
-
-	local gs_blame_line_full = function() gs.blame_line({ full=true }) end
-
-	keymap("n", "gG" , "<cmd>Gitsigns<cr>"   , "gitsigns"                     )
-	keymap("n", "g1" , function() gs.prev_hunk() vim.cmd('normal zz') end, "gitsigns: previous hunk"      )
-	keymap("n", "g2" , function() gs.next_hunk() vim.cmd('normal zz') end, "gitsigns: next hunk"          )
-	keymap("n", "gs" , gs.stage_hunk         , "gitsigns: stage hunk"         )
-	keymap("n", "gS" , gs.reset_hunk         , "gitsigns: reset hunk"         )
-	keymap("n", "gp" , gs.preview_hunk_inline, "gitsigns: preview hunk inline")
-	keymap("n", "gP" , gs.preview_hunk       , "gitsigns: preview hunk"       )
-	keymap("n", "gu" , gs.undo_stage_hunk    , "gitsigns: undo stage hunk"    )
-	keymap("n", "gb" , gs.blame              , "gitsigns: blame lines"        )
-	keymap("n", "gB" , gs_blame_line_full    , "gitsigns: blame line full"    )
-	keymap("n", "gz" , gs.diffthis           , "gitsigns: diff this"          )
-	keymap("n", "gZ" , gs.toggle_deleted     , "gitsigns: toggle deleted"     )
-	keymap("n", "gw" , gs.toggle_word_diff   , "gitsigns: toggle word diff"   )
 
 	keymap("n", "<leader>b" , telescope.buffers        , "telescope: buffers"     )
 	keymap("n", "<leader>g" , function() telescope.git_files({ cwd = require('telescope.utils').buffer_dir() }) end, "telescope: git files"  )
