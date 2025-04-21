@@ -43,10 +43,6 @@ M.setup = function()
 			config = c.rustaceanvim,
 		},
 
-		{ 'nvim-treesitter/nvim-treesitter'        , config = c.treesitter, build = ':TSUpdate' },
-
-		{ "hedyhli/outline.nvim"        , opts = {}, },
-		{ 'numToStr/Comment.nvim' },
 
 	},
 	{

@@ -24,16 +24,4 @@ M.rustaceanvim = function()
 end
 
 
-M.treesitter = function()
-	require('nvim-treesitter.configs').setup({
-		auto_install = true,
-		ignore_install = { "xml" },
-		playground = { enable = true },
-		highlight = { enable = true },
-	})
-	vim.wo.foldmethod = 'expr'
-	vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-end
-
-
 return M
