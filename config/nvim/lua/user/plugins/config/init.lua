@@ -1,7 +1,6 @@
 local M = {}
 
 
-M.cmp        = function() require("user.plugins.config.cmp")          end
 M.gitsigns   = function() require("user.plugins.config.gitsigns")     end
 M.lualine    = function() require("user.plugins.config.lualine")      end
 M.nvim_tree  = function() require("user.plugins.config.nvim_tree")    end

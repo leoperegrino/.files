@@ -45,17 +45,6 @@ M.setup = function()
 
 		{ 'nvim-treesitter/nvim-treesitter'        , config = c.treesitter, build = ':TSUpdate' },
 
-		{ 'hrsh7th/nvim-cmp',    opts = c.cmp },
-		{ 'hrsh7th/cmp-buffer'                  },
-		{ 'hrsh7th/cmp-path'                    },
-		{ 'hrsh7th/cmp-cmdline'                 },
-		{ 'hrsh7th/cmp-nvim-lsp-signature-help' },
-		{ 'hrsh7th/cmp-nvim-lsp'                },
-		{ 'hrsh7th/cmp-nvim-lua'                },
-		{ 'saadparwaiz1/cmp_luasnip'            },
-		{ 'onsails/lspkind.nvim'                },
-		{ 'L3MON4D3/LuaSnip', dependencies = { 'rafamadriz/friendly-snippets'} },
-
 		{ 'nvim-tree/nvim-tree.lua'    , config = c.nvim_tree },
 		{ 'nvim-tree/nvim-web-devicons' },
 		{
