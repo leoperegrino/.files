@@ -35,15 +35,6 @@ M.setup = function()
 		{ 'theHamsta/nvim-dap-virtual-text', config = c.dap_vt    , dependencies = { 'mfussenegger/nvim-dap' }, },
 		{ "rcarriga/nvim-dap-ui"           , config = c.dapui     , dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }, },
 
-		{
-			'mrcjkb/rustaceanvim',
-			ft = { 'rust' },
-			lazy = false,
-			version = '^5',
-			config = c.rustaceanvim,
-		},
-
-
 	},
 	{
 		lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",
