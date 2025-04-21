@@ -61,8 +61,6 @@ M.setup = function()
 		{ "hedyhli/outline.nvim"        , opts = {}, },
 		{ 'numToStr/Comment.nvim' },
 
-		{ 'lewis6991/gitsigns.nvim', config = c.gitsigns  },
-
 		{
 			"folke/snacks.nvim",
 			priority = 1000,
