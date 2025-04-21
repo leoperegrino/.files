@@ -11,18 +11,12 @@ M.dap_python = function() require("user.plugins.config.dap").dap_python() end
 M.dap_vt     = function() require("user.plugins.config.dap").dap_vt() end
 M.dapui      = function() require("user.plugins.config.dap").dapui()  end
 
-M.rainbow    = function() require('rainbow-delimiters.setup').setup() end
 
-M.outline = function() require("outline").setup({})  end
-
-
-M.window_picker = function()
-	require('window-picker').setup({
-		hint = 'floating-big-letter',
-		show_prompt = false,
-		picker_config = { handle_mouse_click = true, },
-	})
-end
+M.window_picker = {
+	hint = 'floating-big-letter',
+	show_prompt = false,
+	picker_config = { handle_mouse_click = true, },
+}
 
 
 M.rustaceanvim = function()
@@ -42,14 +36,10 @@ M.rustaceanvim = function()
 end
 
 
-M.zenmode  = {
+M.zenmode = {
 	plugins = {
-		options = {
-			laststatus = 0,
-		},
-		gitsigns = {
-			enabled = false
-		},
+		options = { laststatus = 0, },
+		gitsigns = { enabled = false },
 	},
 }
 
@@ -66,11 +56,10 @@ M.treesitter = function()
 end
 
 
-M.vscode = function()
-	local vs = require('vscode')
-	vs.setup({ group_overrides = { Folded = { bg = nil } }})
-	vs.load()
-end
+M.vscode = {
+	opts = { group_overrides = { Folded = { bg = nil } } },
+	init = function() require('vscode').load() end,
+}
 
 
 return M

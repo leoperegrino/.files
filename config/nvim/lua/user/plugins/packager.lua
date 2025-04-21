@@ -47,9 +47,9 @@ M.setup = function()
 
 		{ 'nvim-treesitter/nvim-treesitter'        , config = c.treesitter, build = ':TSUpdate' },
 		{ 'nvim-treesitter/playground' },
-		{ 'hiphish/rainbow-delimiters.nvim', config = c.rainbow },
+		{ 'hiphish/rainbow-delimiters.nvim', },
 
-		{ 'hrsh7th/nvim-cmp',    config = c.cmp },
+		{ 'hrsh7th/nvim-cmp',    opts = c.cmp },
 		{ 'hrsh7th/cmp-buffer'                  },
 		{ 'hrsh7th/cmp-path'                    },
 		{ 'hrsh7th/cmp-cmdline'                 },
@@ -71,14 +71,14 @@ M.setup = function()
 		{ 'kyazdani42/nvim-tree.lua'    , config = c.nvim_tree },
 		{ 'nvim-lualine/lualine.nvim'   , config = c.lualine   , dependencies = { 'Mofiqul/vscode.nvim' }, },
 		{ "folke/zen-mode.nvim"         , opts = c.zenmode },
-		{ "hedyhli/outline.nvim"        , config = c.outline, },
+		{ "hedyhli/outline.nvim"        , opts = {}, },
 		{ 'nvim-tree/nvim-web-devicons' },
 		{
 			's1n7ax/nvim-window-picker',
 			name = 'window-picker',
 			event = 'VeryLazy',
 			version = '2.*',
-			config = c.window_picker,
+			opts = c.window_picker,
 		},
 		{
 			"folke/snacks.nvim",
@@ -92,9 +92,9 @@ M.setup = function()
 		},
 
 		{ 'numToStr/Comment.nvim' },
-		{ 'lewis6991/gitsigns.nvim'            , config = c.gitsigns  },
+		{ 'lewis6991/gitsigns.nvim', config = c.gitsigns  },
 
-		{ 'Mofiqul/vscode.nvim'                , config = c.vscode    },
+		{ 'Mofiqul/vscode.nvim', opts = c.vscode.opts, init = c.vscode.init, },
 	},
 	{
 		lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",
