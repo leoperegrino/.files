@@ -45,8 +45,6 @@ M.setup = function()
 
 		{ 'nvim-treesitter/nvim-treesitter'        , config = c.treesitter, build = ':TSUpdate' },
 
-		{ 'nvim-lualine/lualine.nvim'   , config = c.lualine   , dependencies = { 'Mofiqul/vscode.nvim' }, },
-
 		{ "hedyhli/outline.nvim"        , opts = {}, },
 		{ 'numToStr/Comment.nvim' },
 
