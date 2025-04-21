@@ -26,8 +26,8 @@ local function on_attach(buffer)
 	end
 
 	local function gs_blame_line_full() gs.blame_line({ full=true }) end
-	local function gs_prev_hunk() gs.prev_hunk() vim.cmd('normal zz') end
-	local function gs_next_hunk() gs.next_hunk() vim.cmd('normal zz') end
+	local function gs_prev_hunk() gs.prev_hunk() vim.cmd.normal('zz') end
+	local function gs_next_hunk() gs.next_hunk() vim.cmd.normal('zz') end
 
 	bufmap("n", "gG" , "<cmd>Gitsigns<cr>"   , "gitsigns"                     )
 	bufmap("n", "g1" , gs_prev_hunk          , "gitsigns: previous hunk"      )
