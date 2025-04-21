@@ -45,16 +45,6 @@ M.setup = function()
 
 		{ 'nvim-treesitter/nvim-treesitter'        , config = c.treesitter, build = ':TSUpdate' },
 
-		{ 'nvim-tree/nvim-tree.lua'    , config = c.nvim_tree },
-		{ 'nvim-tree/nvim-web-devicons' },
-		{
-			's1n7ax/nvim-window-picker',
-			name = 'window-picker',
-			event = 'VeryLazy',
-			version = '2.*',
-			opts = c.window_picker,
-		},
-
 		{ 'nvim-lualine/lualine.nvim'   , config = c.lualine   , dependencies = { 'Mofiqul/vscode.nvim' }, },
 
 		{ "hedyhli/outline.nvim"        , opts = {}, },

@@ -2,18 +2,10 @@ local M = {}
 
 
 M.lualine    = function() require("user.plugins.config.lualine")      end
-M.nvim_tree  = function() require("user.plugins.config.nvim_tree")    end
 M.dap        = function() require("user.plugins.config.dap").dap()    end
 M.dap_python = function() require("user.plugins.config.dap").dap_python() end
 M.dap_vt     = function() require("user.plugins.config.dap").dap_vt() end
 M.dapui      = function() require("user.plugins.config.dap").dapui()  end
-
-
-M.window_picker = {
-	hint = 'floating-big-letter',
-	show_prompt = false,
-	picker_config = { handle_mouse_click = true, },
-}
 
 
 M.rustaceanvim = function()
