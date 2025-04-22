@@ -1,5 +1,6 @@
 return {
 	{ 'nvim-treesitter/nvim-treesitter',
+		lazy = false,
 		build = ':TSUpdate',
 		cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
 		init = function()
