@@ -94,7 +94,7 @@ return {
 				end
 			})
 		end,
-		opts = {
+		opts = function() return {
 			on_attach = on_attach,
 			disable_netrw = true,
 			hijack_cursor = true,
@@ -121,12 +121,12 @@ return {
 					resize_window = true,
 					window_picker = {
 						enable = true,
-						picker = function() require('window-picker').pick_window() end,
+						picker = require('window-picker').pick_window,
 					},
 				}
 			},
 			trash = { cmd = "trash-cli", },
-		},
+		} end,
 		config = function(_, opts)
 			local api = require('nvim-tree.api')
 			local nvim_tree = require("nvim-tree")
