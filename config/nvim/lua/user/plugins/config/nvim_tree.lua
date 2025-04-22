@@ -69,6 +69,30 @@ return {
 			vim.g.loaded_netrw = 1
 			vim.g.loaded_netrwPlugin = 1
 			vim.opt.termguicolors = true
+
+			local utils = require("nvim-tree.utils")
+			local api = require('nvim-tree.api')
+
+			vim.api.nvim_create_autocmd("BufEnter", {
+				nested = true,
+				callback = function()
+					if #vim.api.nvim_list_wins() == 1 and utils.is_nvim_tree_buf() then
+						vim.cmd("quit")
+					end
+				end
+			})
+
+			vim.api.nvim_create_autocmd("VimEnter", {
+				callback = function(data)
+					-- buffer is a [No Name]
+					local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+
+					if no_name then
+						-- open the tree, find the file but don't focus it
+						api.tree.toggle({ focus = false, find_file = true, })
+					end
+				end
+			})
 		end,
 		opts = {
 			on_attach = on_attach,
@@ -106,7 +130,6 @@ return {
 		config = function(_, opts)
 			local api = require('nvim-tree.api')
 			local nvim_tree = require("nvim-tree")
-			local nvim_tree_utils = require("nvim-tree.utils")
 
 			local Event = api.events.Event
 
@@ -114,27 +137,6 @@ return {
 				Event.TreeOpen,
 				function(_) vim.wo.sidescrolloff = 0 end
 			)
-
-			vim.api.nvim_create_autocmd("BufEnter", {
-				nested = true,
-				callback = function()
-					if #vim.api.nvim_list_wins() == 1 and nvim_tree_utils.is_nvim_tree_buf() then
-						vim.cmd("quit")
-					end
-				end
-			})
-
-			vim.api.nvim_create_autocmd("VimEnter", {
-				callback = function(data)
-					-- buffer is a [No Name]
-					local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
-
-					if no_name then
-						-- open the tree, find the file but don't focus it
-						api.tree.toggle({ focus = false, find_file = true, })
-					end
-				end
-			})
 
 			nvim_tree.setup(opts)
 		end,
