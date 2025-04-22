@@ -10,6 +10,7 @@ return {
 			ignore_install = { "xml" },
 			highlight = { enable = true },
 		},
+		main = 'nvim-treesitter.configs',
 	},
 
 	{ 'numToStr/Comment.nvim', opts = {}, },
