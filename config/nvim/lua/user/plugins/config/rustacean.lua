@@ -10,9 +10,7 @@ return {
 				}
 			},
 			server = {
-				on_attach = function(client, buffer)
-					require('user.plugins.lsp').highlight_document(client, buffer)
-					require('user.plugins.lsp').keymaps(client, buffer)
+				on_attach = function(_, buffer)
 					vim.keymap.set("n", "K",
 						function() vim.cmd.RustLsp({'hover', 'actions'}) end,
 						{ buffer = buffer, desc = 'rustacean: hover' }
