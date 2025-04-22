@@ -26,6 +26,10 @@ M.setup = function()
 	local lazy = require('lazy')
 
 	lazy.setup('user.plugins.config', {
+		change_detection = {
+			enabled = true,
+			notify = false,
+		},
 		lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",
 		ui = {
 			border = "rounded"
