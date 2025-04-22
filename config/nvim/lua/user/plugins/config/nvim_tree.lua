@@ -70,12 +70,11 @@ return {
 			vim.g.loaded_netrwPlugin = 1
 			vim.opt.termguicolors = true
 
-			local utils = require("nvim-tree.utils")
-			local api = require('nvim-tree.api')
-
 			vim.api.nvim_create_autocmd("BufEnter", {
 				nested = true,
 				callback = function()
+					local utils = require("nvim-tree.utils")
+
 					if #vim.api.nvim_list_wins() == 1 and utils.is_nvim_tree_buf() then
 						vim.cmd("quit")
 					end
@@ -84,6 +83,7 @@ return {
 
 			vim.api.nvim_create_autocmd("VimEnter", {
 				callback = function(data)
+					local api = require('nvim-tree.api')
 					-- buffer is a [No Name]
 					local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
 
