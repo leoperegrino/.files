@@ -1,5 +1,3 @@
-local M = {}
-
 local signs = {
 	DiagnosticSignError = { text = "" , hl = "GitSignsDelete"},
 	DiagnosticSignWarn  = { text = "󰀪" , hl = "GitSignsText"  },
@@ -18,24 +16,28 @@ end
 
 
 local diagnostic_config = function()
-	local config = {
+	vim.diagnostic.config({
 		virtual_text = false,
-		signs = { active = signs },
 		update_in_insert = false,
 		underline = false,
 		severity_sort = true,
+		signs = {
+			-- https://github.com/neovim/neovim/issues/33144#issuecomment-2763257650
+			text = {
+				[vim.diagnostic.severity.ERROR] = '',
+				[vim.diagnostic.severity.WARN] = '󰀪',
+				[vim.diagnostic.severity.HINT] = '󰌶',
+				[vim.diagnostic.severity.INFO] = '󰋽',
+			},
+		},
 		float = {
 			focus = false,
 			focusable = true,
-			style = "minimal",
 			border = "rounded",
 			source = "always",
 			header = "",
-			prefix = "",
 		},
-	}
-
-	vim.diagnostic.config(config)
+	})
 end
 
 
@@ -49,6 +51,24 @@ local handlers = function()
 		vim.lsp.handlers.signature_help,
 		{ border = "rounded" }
 	)
+
+	-- nvim >= 0.11
+	local hover = vim.lsp.buf.hover
+	vim.lsp.buf.hover = function()
+		---@diagnostic disable-next-line: redundant-parameter
+		return hover({
+			border = "rounded",
+			focusable = true
+		})
+	end
+
+	local signature_help = vim.lsp.buf.signature_help
+	vim.lsp.buf.signature_help = function()
+		---@diagnostic disable-next-line: redundant-parameter
+		return signature_help({
+			border = "rounded",
+		})
+	end
 end
 
 
@@ -99,7 +119,8 @@ local keymaps = function(_, bufnr)
 	keymap("n", "<leader>eq" , vim.diagnostic.setloclist, "lsp: add buffer diagnostics to the location list")
 
 	bufmap("n", "glr" , vim.lsp.buf.rename                 , "lsp: renames all references"  )
-	bufmap("n", "gld" , vim.lsp.buf.declaration            , "lsp: jumps to declaration"    )
+	bufmap("n", "gld" , vim.lsp.buf.definition             , "lsp: jumps to definition"     )
+	bufmap("n", "glD" , vim.lsp.buf.declaration            , "lsp: jumps to declaration"    )
 	bufmap("n", "gls" , vim.lsp.buf.signature_help         , "lsp: displays signature help" )
 	bufmap("n", "glc" , vim.lsp.buf.code_action            , "lsp: selects a code action"   )
 	bufmap("n", "glw" , vim.lsp.buf.add_workspace_folder   , "lsp: add folder to workspace" )
@@ -110,6 +131,7 @@ local keymaps = function(_, bufnr)
 	local ok, telescope = pcall(require, 'telescope.builtin')
 	if ok then
 		bufmap("n", "gd"  , telescope.lsp_definitions     , "telescope lsp: lsp definitions")
+		bufmap("n", "gD"  , function() telescope.lsp_definitions({ jump_type = 'vsplit' }) end, "telescope lsp: lsp definitions")
 		bufmap("n", "gI"  , telescope.lsp_implementations , "telescope lsp: lsp implementations")
 		bufmap("n", "gt"  , telescope.lsp_type_definitions, "telescope lsp: lsp type definitions")
 		bufmap("n", "gr"  , telescope.lsp_references      , "telescope lsp: lsp references")
@@ -119,39 +141,38 @@ local keymaps = function(_, bufnr)
 end
 
 
-local servers = function()
-	local lspconfig = require("lspconfig")
-	local lsp_servers = require('user.plugins.lsp_servers')
+-- TODO: configure this according to lazy spec (keys, opts, buffers, config, etc)
+return {
+	{ 'neovim/nvim-lspconfig',
+		opts = function(_, _)
+			local capabilities
+			local ok, cmp = pcall(require, 'cmp_nvim_lsp')
+			if ok then
+				capabilities = cmp.default_capabilities()
+			end
 
-	local capabilities
-	local ok, cmp = pcall(require, 'cmp_nvim_lsp')
-	if ok then
-		capabilities = cmp.default_capabilities()
-	end
+			return {
+				capabilities = capabilities,
+				on_attach = function(client, bufnr)
+					keymaps(client, bufnr)
+					highlight_document(client, bufnr)
+				end
+			}
 
-	local opts = {
-		capabilities = capabilities,
-		on_attach = function(client, bufnr)
-			keymaps(client, bufnr)
-			highlight_document(client, bufnr)
-		end
-	}
+		end,
+		config = function(_, opts)
+			sign_define()
+			diagnostic_config()
+			handlers()
+			local lspconfig = require("lspconfig")
+			local lsp_servers = require('user.plugins.lsp_servers')
 
-	for name, config in pairs(lsp_servers) do
+			for name, config in pairs(lsp_servers) do
 
-		local final = vim.tbl_deep_extend('force', opts, config)
+				local final = vim.tbl_deep_extend('force', opts, config)
 
-		lspconfig[name].setup(final)
-	end
-end
-
-
-M.setup = function()
-	sign_define()
-	diagnostic_config()
-	handlers()
-	servers()
-end
-
-
-return M
+				lspconfig[name].setup(final)
+			end
+		end,
+	},
+}

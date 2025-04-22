@@ -25,11 +25,7 @@ M.setup = function()
 	bootstrap()
 	local lazy = require('lazy')
 
-	lazy.setup({
-		{ 'neovim/nvim-lspconfig' },
-
-	},
-	{
+	lazy.setup('user.plugins.config', {
 		lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",
 		ui = {
 			border = "rounded"
