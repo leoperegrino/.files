@@ -1,14 +1,29 @@
 return {
 	{ 'nvim-treesitter/nvim-treesitter',
 		build = ':TSUpdate',
+		cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
 		init = function()
 			vim.wo.foldmethod = 'expr'
 			vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 		end,
+		keys = {
+			{ "<c-space>", desc = "Increment selection" },
+			{ "<c-bs>", desc = "Schrink selection" },
+		},
 		opts = {
 			auto_install = true,
 			ignore_install = { "xml" },
 			highlight = { enable = true },
+			indent = { enable = true },
+			incremental_selection = {
+				enable = true,
+				keymaps = {
+					init_selection = "<C-space>",
+					node_incremental = "<C-space>",
+					scope_incremental = false,
+					node_decremental = "<C-bs>",
+				},
+			},
 		},
 		main = 'nvim-treesitter.configs',
 	},
