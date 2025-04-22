@@ -1,14 +1,11 @@
 local M = {}
 
-local command = vim.api.nvim_create_user_command
 
-local keymap_with = require('user.utils').keymap_with
+M.keymaps = function()
+	local function keymap(mode, lhs, rhs, desc)
+		vim.keymap.set(mode, lhs, rhs, { desc = desc, })
+	end
 
-
-M.setup = function()
-	local keymap = keymap_with({
-		noremap = true,
-	})
 
 	keymap('' , '<leader><leader>', ':'         )
 	keymap('n', '<leader>H'       , ':H '       )
@@ -66,9 +63,8 @@ M.setup = function()
 	keymap('t', '<C-l>'     , [[<C-\><C-N><C-w>l]]  )
 	keymap('t', '<C-w><C-w>', [[<C-\><C-N>]]        )
 
-	local remap = keymap_with({ })
-	remap('n' , '<'  , '<<')
-	remap('n' , '>'  , '>>')
+	vim.keymap.set('n' , '<'  , '<<', { remap = true } )
+	vim.keymap.set('n' , '>'  , '>>', { remap = true } )
 
 	keymap('v' , '<'     , '<gv'  )
 	keymap('v' , '>'     , '>gv'  )
@@ -85,6 +81,11 @@ M.setup = function()
 	keymap('n' , '<esc>' , [[<Cmd>noh <bar> match none <bar> echo ''<CR><esc>]]       , "make escape disable search highlighting"      )
 	keymap('n' , 'yU'    , "<Cmd>let @/= expand('<cword>') <BAR> set hlsearch<CR>"    , "yank word under the cursor to search pattern" )
 	keymap('n' , 'yu'    , [[<Cmd>let @/='\<' . expand('<cword>') . '\>' <BAR> set hlsearch<CR>]], "yank word with boundaries under the cursor to search pattern")
+end
+
+
+M.commands = function()
+	local command = vim.api.nvim_create_user_command
 
 	command('Bd',
 		function(_) vim.cmd.bnext() vim.cmd.bdelete('#') end,
@@ -106,6 +107,12 @@ M.setup = function()
 		end,
 		{ nargs = 0 }
 	)
+end
+
+
+M.setup = function()
+	M.keymaps()
+	M.commands()
 end
 
 

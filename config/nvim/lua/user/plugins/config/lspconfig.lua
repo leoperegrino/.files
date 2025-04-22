@@ -95,18 +95,14 @@ local highlight_document = function(client, bufnr)
 end
 
 
-local keymaps = function(_, bufnr)
-	local keymap_with = require('user.utils').keymap_with
+local keymaps = function(_, buffer)
+	local function keymap(mode, lhs, rhs, desc)
+		vim.keymap.set(mode, lhs, rhs, { desc = desc, })
+	end
 
-	local keymap = keymap_with({
-		noremap = true,
-		silent = true
-	})
-
-	local bufmap = keymap_with({
-		buffer = bufnr,
-		noremap = true,
-	})
+	local function bufmap(mode, lhs, rhs, desc)
+		vim.keymap.set(mode, lhs, rhs, { desc = desc, buffer = buffer, })
+	end
 
 	if vim.bo.filetype ~= "vim" and vim.bo.filetype ~= "sh" then
 		bufmap("n", "K"   , vim.lsp.buf.hover)
