@@ -45,8 +45,7 @@
         system = "x86_64-linux";
         host = "thinkpad";
         modules = [
-          nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel
-          { services.throttled.enable = false; }
+          nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel-gen6
         ];
       };
 
