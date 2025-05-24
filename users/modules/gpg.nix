@@ -18,7 +18,7 @@ in {
       enable = true;
       defaultCacheTtl = 7200;
       maxCacheTtl = 7200;
-      pinentryPackage = pkgs.pinentry-curses;
+      pinentry.package = pkgs.pinentry-curses;
     };
   };
 
