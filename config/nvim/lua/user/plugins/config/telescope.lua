@@ -13,6 +13,21 @@ local entry_slicer = function(entry)
 	return default_entry
 end
 
+local function select_one_or_multi(prompt_bufnr)
+  local picker = require('telescope.actions.state').get_current_picker(prompt_bufnr)
+  local multi = picker:get_multi_selection()
+  if not vim.tbl_isempty(multi) then
+    require('telescope.actions').close(prompt_bufnr)
+    for _, j in pairs(multi) do
+      if j.path ~= nil then
+        vim.cmd(string.format('%s %s', 'vsplit', j.path))
+      end
+    end
+  else
+    require('telescope.actions').select_default(prompt_bufnr)
+  end
+end
+
 
 return {
 	{ "nvim-lua/plenary.nvim",
@@ -68,8 +83,13 @@ return {
 			defaults = {
 				dynamic_preview_title = true,
 				mappings = {
+					i = {
+						['<CR>'] = select_one_or_multi,
+						['<C-v>'] = select_one_or_multi,
+					},
 					n = {
-						['q'] = function() require("telescope.actions").close() end
+						['<CR>'] = select_one_or_multi,
+						['q'] = function() vim.cmd([[normal ]]) end,
 					}
 				},
 				initial_mode = 'insert',
