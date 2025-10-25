@@ -120,31 +120,6 @@ in {
     groups."cool".gid = 1000;
   };
 
-   systemd.services."docker-cdi-workaround" = let
-      DOCKER_COMPOSE = "/mnt/pibox/servarr/docker-compose.yaml";
-      docker = "${pkgs.docker}/bin/docker";
-   in {
-    description = "Workaround for CDI not being available after shutdown";
-    after = [ "network-online.target" "systemd-user-sessions.service" ];
-    wants = [ "network-online.target" ];
-    wantedBy = [ "multi-user.target" ];
-    startLimitIntervalSec = 600;
-    startLimitBurst = 5;
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = false;
-      User = "root";
-      Group = "root";
-      Restart = "on-failure";
-      RestartSec = "10s";
-    };
-
-    script = ''
-      set -euxo pipefail
-      ${docker} compose -f ${DOCKER_COMPOSE} up -d jellyfin
-    '';
-  };
-
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
       "nvidia-x11"
       "nvidia-settings"
