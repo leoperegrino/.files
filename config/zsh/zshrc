@@ -1,4 +1,3 @@
-#!/bin/zsh
 # vim: foldmethod=marker
 set -o noclobber
 stty -ixon
@@ -42,6 +41,7 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_VERIFY
 setopt HIST_IGNORE_DUPS
 setopt SHARE_HISTORY
+setopt NO_COMPLETE_ALIASES
 # }}}
 
 # bindkey {{{
@@ -84,13 +84,23 @@ function zle-line-init zle-keymap-select {
 	RPROMPT='%B'
 
 	case ${KEYMAP} in
-		vicmd)      PROMPT+='%F{green}[N]%f '; echo -ne '\e[1 q';;
-		main|viins) PROMPT+='%F{magenta}[I]%f '  ; echo -ne '\e[5 q';;
+		vicmd)      echo -ne '\e[1 q';;
+		main|viins) echo -ne '\e[5 q';;
 		*)          PROMPT+='';;
 	esac
 
-	# PROMPT+='%(L.%L.) '
-	PROMPT+='%F{red}%n%f'
+	if [ "${VIRTUAL_ENV}" ]; then
+		PROMPT+="%F{magenta}[${VIRTUAL_ENV_PROMPT}]%f"
+	fi
+
+	if [ "${SHLVL}" -gt 1 ]; then
+		PROMPT+="%F{green}[${SHLVL}]%f"
+	fi
+	# PROMPT+='%F{green}%(L.[%L].)%f '
+
+	PROMPT+="%F{yellow}%(?.[0].[%?])%f"
+
+	PROMPT+=' %F{red}%n%f'
 	PROMPT+='@'
 	PROMPT+='%F{blue}%m%f'
 	PROMPT+=': '
@@ -100,20 +110,6 @@ function zle-line-init zle-keymap-select {
 	if git rev-parse --git-dir > /dev/null 2>&1; then
 		PROMPT+="%F{yellow}(\$vcs_info_msg_0_)%f "
 	fi
-
-	if [ "${VIRTUAL_ENV}" ]; then
-		RPROMPT+='%F{magenta}[venv:${VIRTUAL_ENV}]%f'
-	fi
-
-	if [ ! -z "${RANGER_LEVEL}" ]; then
-		RPROMPT+="%F{blue}[R${RANGER_LEVEL}]%f"
-	fi
-
-	if [ "${SHLVL}" -gt 1 ]; then
-		RPROMPT+="%F{green}[S${SHLVL}]%f"
-	fi
-
-	RPROMPT+='%F{yellow}%(?..[%?])%f'
 
 	PROMPT+='%b'
 	RPROMPT+='%b'
@@ -138,7 +134,3 @@ alias h="history 1"
 
 gpg-connect-agent updatestartuptty /bye &>/dev/null
 export GPG_TTY="$(tty)"
-
-if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
-	exec tmux new-session >/dev/null 2>&1
-fi
