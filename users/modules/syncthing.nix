@@ -11,6 +11,7 @@ in {
 
 
     services.syncthing = {
+      tray.enable = true;
       enable = true;
       extraOptions = [
         # -config must be ${stateHome}/syncthing for the syncthing-init.service to work
