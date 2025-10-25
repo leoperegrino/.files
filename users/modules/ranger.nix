@@ -16,7 +16,7 @@ in {
     xdg.configFile."ranger/commands.py".source = symlink "${dotfiles}/ranger/commands.py";
 
     programs.ranger = {
-      package = pkgs.ranger.overrideAttrs (prev: {
+      package = pkgs.unstable.ranger.overrideAttrs (prev: {
         makeWrapperArgs = ["--set BAT_STYLE full"];
         preConfigure = let
           json_bat_cmd = ''jq . "''${FILE_PATH}" | env COLORTERM=8bit bat --language json --color=always --style="''${BAT_STYLE}" \&\& exit 5'';
@@ -31,11 +31,11 @@ in {
       });
       enable = true;
       extraPackages = [
-        pkgs.ueberzugpp
-        pkgs.ffmpegthumbnailer
-        pkgs.poppler_utils
-        pkgs.jq
-        pkgs.bat
+        pkgs.unstable.ueberzugpp
+        pkgs.unstable.ffmpegthumbnailer
+        pkgs.unstable.poppler_utils
+        pkgs.unstable.jq
+        pkgs.unstable.bat
       ];
       extraConfig = "default_linemode devicons";
       plugins = [{
