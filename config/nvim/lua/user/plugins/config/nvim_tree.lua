@@ -141,7 +141,13 @@ return {
 			nvim_tree.setup(opts)
 		end,
 		keys = {
-			{"T", function() require('nvim-tree.api').tree.toggle( { path = vim.fn.expand('%:p:h') } ) end, "nvim-tree: open in cwd" },
+			{"<c-t>", function()
+				local api = require('nvim-tree.api')
+				api.tree.toggle({
+					path = vim.fn.expand('%:p:h'),
+					find_file = true,
+				})
+			end, "nvim-tree: open in cwd" },
 		},
 	},
 }
