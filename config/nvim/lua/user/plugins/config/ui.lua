@@ -4,8 +4,11 @@ return {
 		lazy = false,
 		opts = {
 			indent = { enabled = true },
-			input = { enabled = true },
+			input = { enabled = false },
 			picker = { enabled = true },
+		},
+		keys = {
+			{ "<c-r>", '<cmd>lua Snacks.picker()<CR>', desc = "Toggle Snacks" },
 		},
 	},
 
@@ -30,7 +33,7 @@ return {
 			},
 		},
 		keys = {
-			{ "<F12>", "<cmd>ZenMode<CR>", desc = "Toggle ZenMode" },
+			{ "Z", "<cmd>ZenMode<CR>", desc = "Toggle ZenMode" },
 		},
 	},
 }
