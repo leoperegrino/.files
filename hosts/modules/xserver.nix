@@ -35,6 +35,7 @@ in {
         enableQt5Integration = false;
       };
       displayManager = {
+        defaultSession = "plasmax11";
         sddm = {
           enable = true;
           wayland.enable = false;
