@@ -1,3 +1,7 @@
+if not _G.tab_names then
+  _G.tab_names = {}
+end
+
 return {
 	{ 'nvim-lualine/lualine.nvim',
 		dependencies = {
@@ -50,21 +54,29 @@ return {
 				lualine_x = {},
 				lualine_y = {},
 				lualine_z = { { 'tabs', mode = 1,
-					-- show '{number}' if single tab, else '{number} {name}'
 					fmt = function(name, context)
-						local tab_count = vim.fn.tabpagenr('$')
 						local tabnr = context.tabnr
 
-						if tab_count <= 1 then
-							return tostring(tabnr)
+						-- If we don't have a stored name for this tab, capture it now
+						if not _G.tab_names[tabnr] then
+							local buflist = vim.fn.tabpagebuflist(tabnr)
+							local winnr = vim.fn.tabpagewinnr(tabnr)
+							local bufnr = buflist[winnr]
+							local bufname = vim.api.nvim_buf_get_name(bufnr)
+
+							if bufname ~= "" then
+								local path_parts = vim.split(bufname, "/")
+								if #path_parts > 1 then
+									_G.tab_names[tabnr] = path_parts[#path_parts - 1] or name
+								else
+									_G.tab_names[tabnr] = name
+								end
+							else
+								_G.tab_names[tabnr] = vim.fn.expand('%:p:h:t')
+							end
 						end
 
-						local buflist = vim.fn.tabpagebuflist(context.tabnr)
-						local winnr = vim.fn.tabpagewinnr(context.tabnr)
-						local bufnr = buflist[winnr]
-						local mod = vim.fn.getbufvar(bufnr, '&mod')
-
-						return tabnr .. ' ' .. name .. (mod == 1 and ' +' or '')
+						return _G.tab_names[tabnr]
 					end
 				} },
 			},
