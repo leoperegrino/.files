@@ -10,7 +10,12 @@ return {
 				}
 			},
 			server = {
-				on_attach = function(_, buffer)
+				on_attach = function(client, buffer)
+					local user_lspconfig = require('user.plugins.config.lspconfig')
+					local user_opts = user_lspconfig[1].opts()
+
+					user_opts.on_attach(client, buffer)
+
 					vim.keymap.set("n", "K",
 						function() vim.cmd.RustLsp({'hover', 'actions'}) end,
 						{ buffer = buffer, desc = 'rustacean: hover' }
