@@ -14,11 +14,7 @@ in {
         use-xdg-base-directories = true;
         experimental-features = [ "nix-command" "flakes" ];
       };
-      gc = {
-        options = "--delete-older-than 7d";
-        automatic = true;
-        dates = "weekly";
-      };
+      gc.automatic = false;
     };
   };
 
