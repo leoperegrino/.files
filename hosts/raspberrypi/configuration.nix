@@ -134,6 +134,7 @@ in {
     preStop = ''
       set -euxo pipefail
       ${docker} compose -f ${DOCKER_COMPOSE} down
+      sleep 3
       ${systemctl} stop ${MOUNT_SERVICE}
       ${systemctl} stop ${CRYPTSETUP_SERVICE}
     '';
