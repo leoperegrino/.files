@@ -160,14 +160,14 @@ return {
 			sign_define()
 			diagnostic_config()
 			handlers()
-			local lspconfig = require("lspconfig")
 			local lsp_servers = require('user.plugins.lsp_servers')
 
 			for name, config in pairs(lsp_servers) do
 
 				local final = vim.tbl_deep_extend('force', opts, config)
 
-				lspconfig[name].setup(final)
+				vim.lsp.config(name, final)
+				vim.lsp.enable(name)
 			end
 		end,
 	},
