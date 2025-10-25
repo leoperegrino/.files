@@ -67,6 +67,10 @@ in {
     };
   };
 
+  programs.ssh = {
+    startAgent = true;
+  };
+
   users.users."ltp" = {
     isNormalUser = true;
     shell = pkgs.zsh;
