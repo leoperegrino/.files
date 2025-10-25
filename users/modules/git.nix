@@ -15,7 +15,7 @@ in {
         blame.date = "format:%Y-%m-%d %H:%M:%S";
         init.defaultBranch = "master";
         log.date = "iso-local";
-        pager.status = true;
+        pager.status = false;
         pull.rebase = false;
         push.autoSetupRemote = true;
       };
