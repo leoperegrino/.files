@@ -52,6 +52,7 @@ in {
         audio-display = "embedded-first";
         volume = 70;
         volume-max = 100;
+        screenshot-template = "%F_%ws.%wT";
         script-opts = "ytdl_hook-ytdl_path=${pkgs.yt-dlp}/bin/yt-dlp";
         watch-later-directory = "${config.xdg.stateHome}/mpv/watch_later";
         write-filename-in-watch-later-config = true;
