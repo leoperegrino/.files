@@ -10,7 +10,7 @@ in {
   config = lib.mkIf cfg.enable {
 
     home.packages = [
-      (pkgs.nerdfonts.override { fonts = [ "Noto" ]; })
+      pkgs.nerd-fonts.noto
     ];
 
     programs.alacritty = {
@@ -23,7 +23,7 @@ in {
         window.padding.x = 0;
         window.padding.y = 0;
         font = {
-          size = 12;
+          size = 9;
           normal = {
             family = "NotoSansM Nerd Font";
             style = "Regular";
