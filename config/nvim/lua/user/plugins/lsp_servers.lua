@@ -123,4 +123,12 @@ M.dockerls = {
 	-- cmd = { 'nix', 'run', 'nixpkgs#dockerfile-language-server-nodejs', '--', '--stdio' },
 }
 
+M.bashls = {
+	-- cmd = { 'nix', 'run', 'nixpkgs#bash-language-server', '--', 'start' },
+}
+
+M.jsonls = {
+	-- cmd = { 'nix', 'run', 'nixpkgs#nodePackages.vscode-json-languageserver', '--', '--stdio' },
+}
+
 return M
