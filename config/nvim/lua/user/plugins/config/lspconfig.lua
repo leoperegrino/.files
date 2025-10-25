@@ -1,21 +1,4 @@
-local signs = {
-	DiagnosticSignError = { text = "" , hl = "GitSignsDelete"},
-	DiagnosticSignWarn  = { text = "󰀪" , hl = "GitSignsText"  },
-	DiagnosticSignHint  = { text = "󰌶" , hl = "GitSignsAdd"   },
-	DiagnosticSignInfo  = { text = "󰋽" , hl = "GitSignsChange"},
-}
-
-
-local sign_define = function()
-	for sign, config in pairs(signs) do
-		vim.fn.sign_define(sign,
-			{ texthl = config.hl, text = config.text, numhl = "" }
-		)
-	end
-end
-
-
-local diagnostic_config = function()
+local function diagnostic_config()
 	vim.diagnostic.config({
 		virtual_text = false,
 		update_in_insert = false,
@@ -41,17 +24,7 @@ local diagnostic_config = function()
 end
 
 
-local handlers = function()
-	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-		vim.lsp.handlers.hover,
-		{ border = "rounded" , focusable = true }
-	)
-
-	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-		vim.lsp.handlers.signature_help,
-		{ border = "rounded" }
-	)
-
+local function handlers()
 	-- nvim >= 0.11
 	local hover = vim.lsp.buf.hover
 	vim.lsp.buf.hover = function()
@@ -72,7 +45,7 @@ local handlers = function()
 end
 
 
-local highlight_document = function(client, bufnr)
+local function highlight_document(client, bufnr)
 	if client.server_capabilities.documentHighlightProvider then
 		local augroup = vim.api.nvim_create_augroup
 		local group = "lsp_document_highlight"
@@ -87,7 +60,7 @@ local highlight_document = function(client, bufnr)
 		end
 
 		augroup(group, {})
-		autocmd("TextYankPost", vim.highlight.on_yank, nil, '*')
+		autocmd("TextYankPost", function() vim.hl.on_yank({}) end, nil, '*')
 		autocmd("CursorHold", vim.lsp.buf.document_highlight, bufnr)
 		autocmd("CursorHoldI", vim.lsp.buf.document_highlight, bufnr)
 		autocmd("CursorMoved", vim.lsp.buf.clear_references, bufnr)
@@ -95,7 +68,20 @@ local highlight_document = function(client, bufnr)
 end
 
 
-local keymaps = function(_, buffer)
+local function toggle_inlay_hints(client, buffer)
+	if vim.g.inlay_hints_visible then
+		vim.g.inlay_hints_visible = false
+		vim.lsp.inlay_hint.enable(true, { bufnr = buffer })
+	else
+		if client.server_capabilities.inlayHintProvider then
+			vim.g.inlay_hints_visible = true
+			vim.lsp.inlay_hint.enable(true, { bufnr = buffer })
+		end
+	end
+end
+
+
+local function keymaps(_, buffer)
 	local function keymap(mode, lhs, rhs, desc)
 		vim.keymap.set(mode, lhs, rhs, { desc = desc, })
 	end
@@ -152,12 +138,15 @@ return {
 				on_attach = function(client, bufnr)
 					keymaps(client, bufnr)
 					highlight_document(client, bufnr)
+					toggle_inlay_hints(client, bufnr)
+					-- if client:supports_method('textDocument/documentColor') then
+					--   vim.lsp.document_color.enable(true, bufnr)
+					-- end
 				end
 			}
 
 		end,
 		config = function(_, opts)
-			sign_define()
 			diagnostic_config()
 			handlers()
 			local lsp_servers = require('user.plugins.lsp_servers')
