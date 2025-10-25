@@ -60,6 +60,9 @@ return {
 				lsp_references = {
 					initial_mode = 'normal',
 				},
+				lsp_implementations = {
+					initial_mode = 'normal',
+				},
 				loclist = {
 					entry_maker = entry_slicer,
 					initial_mode = 'normal',
@@ -85,7 +88,6 @@ return {
 				mappings = {
 					i = {
 						['<CR>'] = select_one_or_multi,
-						['<C-v>'] = select_one_or_multi,
 					},
 					n = {
 						['<CR>'] = select_one_or_multi,
@@ -106,18 +108,22 @@ return {
 			local function cwd_files()
 				telescope.find_files( { cwd = telescope_utils.buffer_dir() } )
 			end
+			local function cwd_live_grep()
+				telescope.live_grep( { cwd = telescope_utils.buffer_dir() } )
+			end
 
 			return {
 				{"<leader>b", telescope.buffers        , desc = "telescope: buffers" },
 				{"<leader>g", cwd_git_files            , desc = "telescope: git files" },
-				{"<leader>f", cwd_files                , desc = "telescope: find files" },
-				{"<leader>F", telescope.find_files     , desc = "telescope: find files" },
+				{"<leader>F", cwd_files                , desc = "telescope: find files" },
+				{"<leader>f", telescope.find_files     , desc = "telescope: find files" },
 				{"<leader>G", telescope.live_grep      , desc = "telescope: live grep" },
 				{"<leader>t", telescope.help_tags      , desc = "telescope: help tags" },
 				{"tb"       , telescope.buffers        , desc = "telescope: buffers" },
 				{"tg"       , telescope.git_files      , desc = "telescope: git files" },
 				{"tf"       , telescope.find_files     , desc = "telescope: find files" },
 				{"tg"       , telescope.live_grep      , desc = "telescope: live grep" },
+				{"tG"       , cwd_live_grep            , desc = "telescope: live grep cwd" },
 				{"tH"       , telescope.help_tags      , desc = "telescope: help tags" },
 				{"th"       , telescope.git_commits    , desc = "telescope: git commits" },
 				{"tj"       , telescope.git_bcommits   , desc = "telescope: git buffer commits" },
