@@ -28,6 +28,8 @@ alias    sxiv="nsxiv"
 alias      py="python -q"
 alias     ipy="ipython"
 alias    psql="psql -q"
+alias  ffmpeg="ffmpeg -hide_banner"
+alias ffprobe='ffprobe -hide_banner -v quiet -print_format json -show_format -show_streams'
 
 alias     nixrc="\${EDITOR} \${HOME}/.files/flake.nix"
 alias     sshrc="\${EDITOR} \${HOME}/.ssh/config"
