@@ -22,10 +22,20 @@ M.keymaps = function()
 	keymap('n', '<leader>q'       , '<Cmd>q<CR>'   )
 	keymap('n', '<leader>Q'       , '<Cmd>q!<CR>'  )
 	keymap('n', '<leader>wq'      , '<Cmd>wq<CR>'  )
-	keymap('n', '<leader>1'       , '<Cmd>tabp<CR>')
+	keymap('n', '<leader>1'       ,
+		function() vim.cmd("exec 'norm " .. (vim.v.count or 1) .. "gT'") end,
+		"Go to [vim.v.count]th PREVIOUS tab in tab list"
+	)
 	keymap('n', '<leader>2'       , '<Cmd>tabn<CR>')
-	keymap('n', '<leader>p'       , '<Cmd>bp<CR>'  )
-	keymap('n', '<leader>n'       , '<Cmd>bn<CR>'  )
+	keymap('n', '<leader>n',
+		function() vim.cmd((vim.v.count or 1) .. 'bnext') end,
+		"Go to [vim.v.count]th NEXT buffer in buffer list"
+	)
+	keymap('n', '<leader>p',
+		function() vim.cmd((vim.v.count or 1) .. 'bprevious') end,
+		"Go to [vim.v.count]th PREVIOUS buffer in buffer list"
+	)
+
 	keymap('n', '<leader>B'       , '<Cmd>Bd<CR>'  )
 	keymap('n', '<leader>h'       , '<C-w>H'       )
 	keymap('n', '<leader>j'       , '<C-w>J'       )
@@ -47,10 +57,10 @@ M.keymaps = function()
 	keymap('i', '<C-e>'     , '<ESC>A'            )
 	keymap('i', '<C-a>'     , '<ESC>I'            )
 	keymap('' , '<C-r>'     , '<Nop>'             )
-	keymap('n', '<C-h>'     , '<Cmd>wincmd h<CR>' )
-	keymap('n', '<C-j>'     , '<Cmd>wincmd j<CR>' )
-	keymap('n', '<C-k>'     , '<Cmd>wincmd k<CR>' )
-	keymap('n', '<C-l>'     , '<Cmd>wincmd l<CR>' )
+	keymap('n', '<C-h>'     , '<c-w>h' )
+	keymap('n', '<C-j>'     , '<c-w>j' )
+	keymap('n', '<C-k>'     , '<c-w>k' )
+	keymap('n', '<C-l>'     , '<c-w>l' )
 	keymap('n', '<C-f>'     , '<Cmd>vert res -5<CR>')
 	keymap('n', '<C-b>'     , '<Cmd>vert res +5<CR>')
 	keymap('n', '<C-s>'     , '<Cmd>res -5<CR>'     )
@@ -75,7 +85,7 @@ M.keymaps = function()
 	keymap('n' , 'dH'    , 'd^'   )
 	keymap(''  , 'gf'    , "<Cmd>e <cfile><CR>"                                       )
 	keymap(''  , 'gF'    , "<Cmd>vsplit <cfile><CR>"                                  )
-	keymap('n' , 'K'     , "<Cmd>execute 'vert' &keywordprg expand('<cword>')<CR>"    )
+	-- keymap('n' , 'K'     , "<Cmd>execute 'vert' &keywordprg expand('<cword>')<CR>"    )
 	keymap('n' , '<esc>' , [[<Cmd>noh <bar> match none <bar> echo ''<CR><esc>]]       , "make escape disable search highlighting"      )
 	keymap('n' , 'yU'    , "<Cmd>let @/= expand('<cword>') <BAR> set hlsearch<CR>"    , "yank word under the cursor to search pattern" )
 	keymap('n' , 'yu'    , [[<Cmd>let @/='\<' . expand('<cword>') . '\>' <BAR> set hlsearch<CR>]], "yank word with boundaries under the cursor to search pattern")
