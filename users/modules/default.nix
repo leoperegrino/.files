@@ -12,7 +12,6 @@
     ./ranger.nix
     ./syncthing.nix
     ./xdg.nix
-    ./tmux.nix
   ];
 
 }
