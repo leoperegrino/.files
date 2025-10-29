@@ -1,4 +1,4 @@
-{lib, config, pkgs, ... }:
+{config, pkgs, ... }:
 let
   virtCfg = config.modules.hosts.virtualisation;
 in {
@@ -11,6 +11,7 @@ in {
     environment.enable = true;
     locale.enable = true;
     nix.enable = true;
+    nvidia.enable = false;
     programs.enable = true;
     virtualisation.docker.enable = true;
   };
@@ -27,25 +28,6 @@ in {
         enableCryptodisk = true;
         # timeoutStyle = "hidden";
       };
-    };
-  };
-
-  # https://nixos.wiki/wiki/Nvidia#Modifying_NixOS_Configuration
-  hardware = {
-    graphics.enable = true;
-    # https://github.com/NixOS/nixpkgs/issues/322400#issuecomment-2282891939
-    nvidia-container-toolkit.enable = true;
-    nvidia = {
-      # Modesetting is required.
-      modesetting.enable = true;
-      powerManagement = {
-        enable = false;
-        finegrained = false;
-      };
-      open = false;
-      nvidiaSettings = true;
-      nvidiaPersistenced = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
   };
 
@@ -79,10 +61,6 @@ in {
   };
 
   services = {
-    xserver = {
-      enable = false;
-      videoDrivers = [ "nvidia" ];
-    };
     openssh = {
       enable = true;
       authorizedKeysInHomedir = false;
@@ -115,36 +93,7 @@ in {
     groups."cool".gid = 1000;
   };
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-      "nvidia-x11"
-      "nvidia-settings"
-      "nvidia-persistenced"
-      "cuda-merged"
-      "cuda_cuobjdump"
-      "cuda_gdb"
-      "cuda_nvcc"
-      "cuda_nvdisasm"
-      "cuda_nvprune"
-      "cuda_cccl"
-      "cuda_cudart"
-      "cuda_cupti"
-      "cuda_cuxxfilt"
-      "cuda_nvml_dev"
-      "cuda_nvrtc"
-      "cuda_nvtx"
-      "cuda_profiler_api"
-      "cuda_sanitizer_api"
-      "libcublas"
-      "libcurand"
-      "libcufft"
-      "libcusolver"
-      "libnvjitlink"
-      "libnpp"
-      "libcusparse"
-    ];
-
   environment.systemPackages = with pkgs; [
-    nvtopPackages.nvidia
   ];
 
   # This value determines the NixOS release from which the default
