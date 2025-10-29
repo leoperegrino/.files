@@ -27,58 +27,52 @@
       ];
     };
 
-    nixosSystem = {system, host, modules ? []}: nixpkgs.lib.nixosSystem {
-      system = system;
-      modules = [ ./hosts/${host} overlay-unstable ] ++ modules;
-    };
+    nixosConfigurations = configs: builtins.mapAttrs (host: {system, modules ? []}:
+      nixpkgs.lib.nixosSystem {
+        system = system;
+        modules = [ ./hosts/${host} overlay-unstable ] ++ modules;
+      }
+    ) configs;
 
-    homeManagerConfiguration = {system, user}: home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages."${system}";
-      modules = [ ./users/${user}.nix overlay-unstable ];
-    };
+    homeConfigurations = configs: builtins.mapAttrs (user: {system, modules ? []}:
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages."${system}";
+        modules = [ ./users/${user}.nix overlay-unstable ] ++ modules;
+      }
+    ) configs;
 
   in {
 
-    nixosConfigurations = {
-
-      "thinkpad" = nixosSystem {
+    nixosConfigurations = nixosConfigurations {
+      "thinkpad" = {
         system = "x86_64-linux";
-        host = "thinkpad";
-        modules = [
-          nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel-gen6
-        ];
+        modules = [ nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel-gen6 ];
       };
 
-      "coolermaster" = nixosSystem {
+      "coolermaster" = {
         system = "x86_64-linux";
-        host = "coolermaster";
       };
 
-      "raspberrypi" = nixosSystem {
+      "raspberrypi" = {
         # https://wiki.nixos.org/wiki/NixOS_on_ARM/Raspberry_Pi_4
         # https://blog.janissary.xyz/posts/nixos-install-custom-image
         system = "aarch64-linux";
-        host = "raspberrypi";
         modules = [ nixos-hardware.nixosModules.raspberry-pi-4 ];
       };
 
     };
 
-    homeConfigurations = {
-
-      "ltp" = homeManagerConfiguration {
+    homeConfigurations = homeConfigurations {
+      "ltp" = {
         system = "x86_64-linux";
-        user = "ltp";
       };
 
-      "cool" = homeManagerConfiguration {
+      "cool" = {
         system = "x86_64-linux";
-        user = "cool";
       };
 
-      "pi" = homeManagerConfiguration {
+      "pi" = {
         system = "aarch64-linux";
-        user = "pi";
       };
 
     };
