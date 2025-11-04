@@ -33,7 +33,7 @@ in {
       extraPackages = [
         pkgs.unstable.ueberzugpp
         pkgs.unstable.ffmpegthumbnailer
-        pkgs.unstable.poppler_utils
+        pkgs.unstable.poppler-utils
         pkgs.unstable.jq
         pkgs.unstable.bat
       ];
