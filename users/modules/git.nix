@@ -8,36 +8,36 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    programs.delta.enableGitIntegration = true;
     programs.git = {
       enable = true;
-      delta.enable = true;
-      extraConfig = {
+      settings = {
         blame.date = "format:%Y-%m-%d %H:%M:%S";
         init.defaultBranch = "master";
         log.date = "iso-local";
         pager.status = false;
         pull.rebase = false;
         push.autoSetupRemote = true;
+        alias = {
+          b = "branch --list --all";
+          ca = "commit --all";
+          d = "diff";
+          dev = "checkout develop";
+          l = "log --graph --all";
+          mas = "checkout master";
+          master = "checkout master";
+          mit = "commit --message";
+          out = "checkout";
+          p = "pull --all";
+          rev-log = "rev-list --pretty --reverse --all --date=format:'%Y-%m-%d %H:%M:%S'";
+          s = "status";
+          ss = "show --show-signature";
+          t = "log --graph --oneline --all";
+          undo = "reset HEAD~1";
+        };
+        user.name = "Leonardo Peregrino";
+        user.email = "55335068+leoperegrino@users.noreply.github.com";
       };
-      aliases = {
-        b = "branch --list --all";
-        ca = "commit --all";
-        d = "diff";
-        dev = "checkout develop";
-        l = "log --graph --all";
-        mas = "checkout master";
-        master = "checkout master";
-        mit = "commit --message";
-        out = "checkout";
-        p = "pull --all";
-        rev-log = "rev-list --pretty --reverse --all --date=format:'%Y-%m-%d %H:%M:%S'";
-        s = "status";
-        ss = "show --show-signature";
-        t = "log --graph --oneline --all";
-        undo = "reset HEAD~1";
-      };
-      userName = "Leonardo Peregrino";
-      userEmail = "55335068+leoperegrino@users.noreply.github.com";
       signing = {
         key = "AF88B50D5822448D";
         signByDefault = true;
