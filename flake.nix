@@ -19,25 +19,30 @@
     ...
   }: let
 
-    overlay-unstable = {
+    overlay-nixpkgs = {
       nixpkgs.overlays = [
         (final: prev: {
-          unstable = nixpkgs-unstable.legacyPackages."${prev.system}";
+          unstable = nixpkgs-unstable.legacyPackages."${prev.stdenv.hostPlatform.system}";
         })
       ];
     };
 
-    nixosConfigurations = configs: builtins.mapAttrs (host: {system, modules ? []}:
+    nixosConfigurations = configs: builtins.mapAttrs (host: {modules}:
       nixpkgs.lib.nixosSystem {
-        system = system;
-        modules = [ ./hosts/${host} overlay-unstable ] ++ modules;
+        modules = [
+          ./hosts/${host}
+          overlay-nixpkgs
+        ] ++ modules;
       }
     ) configs;
 
-    homeConfigurations = configs: builtins.mapAttrs (user: {system, modules ? []}:
+    homeConfigurations = configs: builtins.mapAttrs (user: {system, modules}:
       home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages."${system}";
-        modules = [ ./users/${user}.nix overlay-unstable ] ++ modules;
+        modules = [
+          ./users/${user}.nix
+          overlay-nixpkgs
+        ] ++ modules;
       }
     ) configs;
 
@@ -45,18 +50,16 @@
 
     nixosConfigurations = nixosConfigurations {
       "thinkpad" = {
-        system = "x86_64-linux";
         modules = [ nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel-gen6 ];
       };
 
       "coolermaster" = {
-        system = "x86_64-linux";
+        modules = [ ];
       };
 
       "raspberrypi" = {
         # https://wiki.nixos.org/wiki/NixOS_on_ARM/Raspberry_Pi_4
         # https://blog.janissary.xyz/posts/nixos-install-custom-image
-        system = "aarch64-linux";
         modules = [ nixos-hardware.nixosModules.raspberry-pi-4 ];
       };
 
@@ -65,14 +68,17 @@
     homeConfigurations = homeConfigurations {
       "ltp" = {
         system = "x86_64-linux";
+        modules = [ ];
       };
 
       "cool" = {
         system = "x86_64-linux";
+        modules = [ ];
       };
 
       "pi" = {
         system = "aarch64-linux";
+        modules = [ ];
       };
 
     };
