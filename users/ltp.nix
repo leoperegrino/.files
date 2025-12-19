@@ -16,6 +16,7 @@
     ranger.enable = true;
     syncthing.enable = true;
     xdg.enable = true;
+    yazi.enable = true;
   };
 
   home.username = "ltp";

@@ -12,6 +12,7 @@
     ./ranger.nix
     ./syncthing.nix
     ./xdg.nix
+    ./yazi.nix
   ];
 
 }
