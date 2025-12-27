@@ -31,7 +31,7 @@ local function control_space_fn(fallback)
 	elseif luasnip.expandable() then
 		luasnip.expand()
 	else
-		-- fallback()
+		cmp.complete()
 	end
 end
 
@@ -72,6 +72,7 @@ return {
 
 					["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
 					["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
+					['<C-x><C-o>'] = cmp.mapping.complete(),
 				}),
 				sources = {
 					{ name = "nvim_lsp" },

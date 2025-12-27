@@ -26,7 +26,7 @@ local function on_attach(buffer)
 	bufmap( 'n',   '<C-k>'  , api.node.navigate.sibling.prev   , 'Previous Sibling'       )
 	bufmap( 'n',   '<C-j>'  , api.node.navigate.sibling.next   , 'Next Sibling'           )
 	bufmap( 'n',   'p'      , api.node.navigate.parent         , 'Parent Directory'       )
-	bufmap( 'n',   't'      , api.node.open.tab                , 'Open: New Tab'          )
+	bufmap( 'n',   't'      , api.node.open.tab_drop           , 'Open: New Tab'          )
 	bufmap( 'n',   '?'      , api.tree.toggle_help             , 'Help'                   )
 	bufmap( 'n',   'K'      , api.node.navigate.sibling.first  , 'First Sibling'          )
 	bufmap( 'n',   'a'      , api.fs.create                    , 'Create'                 )
@@ -134,7 +134,7 @@ return {
 			local Event = api.events.Event
 
 			api.events.subscribe(
-				Event.TreeOpen,
+				Event.TreeRendered,
 				function(_) vim.wo.sidescrolloff = 0 end
 			)
 

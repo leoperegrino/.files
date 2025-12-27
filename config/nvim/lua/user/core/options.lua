@@ -42,7 +42,7 @@ M.global_local = function()
 	o.completeopt = { 'menu', 'menuone', 'noselect' }
 
 	o.scrolloff = 7
-	o.sidescrolloff = 15
+	-- o.sidescrolloff = 15
 
 	o.listchars:append({ tab = '  ', trail = '~' })
 	o.fillchars:append({ fold = ' ', eob = ' ' })

@@ -9,7 +9,7 @@ M.nil_ls = {
 				command = { "nix", "run", "nixpkgs#nixfmt-rfc-style" },
 			},
 			nix = {
-				-- maxMemoryMB = 2048,
+				maxMemoryMB = 4096,
 				flake = {
 					-- calls `nix flake archive` to put a flake and its output to store
 					autoArchive = false,
@@ -93,6 +93,20 @@ M.pyright = {
 
 M.ruff = {
 	-- cmd = { "nix", "run", "nixpkgs#ruff", '--', 'server', },
+	init_options = {
+		settings = {
+			isort = {
+				['force-single-line'] = true,
+			},
+			lint = {
+				isort = {
+					['force-single-line'] = true,
+				},
+				select = { "F", "I" },
+				['extended-select'] = { "F", "I" },
+			},
+		},
+	},
 }
 
 M.denols = {
@@ -113,6 +127,19 @@ M.sqls = {
 
 M.gopls = {
 	-- cmd = { 'nix', 'run', 'nixpkgs#gopls', '--', 'serve' },
+	settings = {
+		gopls = {
+			hints = {
+				assignVariableTypes = false,
+				compositeLiteralFields = false,
+				compositeLiteralTypes = false,
+				constantValues = false,
+				functionTypeParameters = false,
+				parameterNames = false,
+				rangeVariableTypes = false,
+			},
+		},
+	},
 }
 
 M.docker_compose_language_service = {
