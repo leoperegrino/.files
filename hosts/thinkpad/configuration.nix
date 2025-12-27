@@ -18,7 +18,7 @@ in
     nix.enable = true;
     programs.enable = true;
     xserver.enable = true;
-    virtualisation.podman.enable = true;
+    virtualisation.docker.enable = true;
     virtualisation.virtualbox.enable = false;
     virtualisation.virt-manager.enable = true;
   };
