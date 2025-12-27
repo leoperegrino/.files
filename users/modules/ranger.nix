@@ -1,4 +1,9 @@
-{pkgs, lib, config, ...}:
+{
+  lib,
+  config,
+  pkgs-unstable,
+  ...
+}:
 let
   cfg = config.modules.users.ranger;
 
@@ -16,7 +21,7 @@ in {
     xdg.configFile."ranger/commands.py".source = symlink "${dotfiles}/ranger/commands.py";
 
     programs.ranger = {
-      package = pkgs.unstable.ranger.overrideAttrs (prev: {
+      package = pkgs-unstable.ranger.overrideAttrs (prev: {
         makeWrapperArgs = ["--set BAT_STYLE full"];
         preConfigure = let
           json_bat_cmd = ''jq . "''${FILE_PATH}" | env COLORTERM=8bit bat --language json --color=always --style="''${BAT_STYLE}" \&\& exit 5'';
@@ -31,11 +36,11 @@ in {
       });
       enable = true;
       extraPackages = [
-        pkgs.unstable.ueberzugpp
-        pkgs.unstable.ffmpegthumbnailer
-        pkgs.unstable.poppler-utils
-        pkgs.unstable.jq
-        pkgs.unstable.bat
+        pkgs-unstable.ueberzugpp
+        pkgs-unstable.ffmpegthumbnailer
+        pkgs-unstable.poppler-utils
+        pkgs-unstable.jq
+        pkgs-unstable.bat
       ];
       extraConfig = "default_linemode devicons";
       plugins = [{

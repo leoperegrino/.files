@@ -19,19 +19,10 @@
     ...
   }: let
 
-    overlay-nixpkgs = {
-      nixpkgs.overlays = [
-        (final: prev: {
-          unstable = nixpkgs-unstable.legacyPackages."${prev.stdenv.hostPlatform.system}";
-        })
-      ];
-    };
-
     nixosConfigurations = configs: builtins.mapAttrs (host: {modules}:
       nixpkgs.lib.nixosSystem {
         modules = [
           ./hosts/${host}
-          overlay-nixpkgs
         ] ++ modules;
       }
     ) configs;
@@ -41,7 +32,7 @@
         pkgs = nixpkgs.legacyPackages."${system}";
         modules = [
           ./users/${user}.nix
-          overlay-nixpkgs
+          { _module.args = { pkgs-unstable = nixpkgs-unstable.legacyPackages."${system}"; }; }
         ] ++ modules;
       }
     ) configs;
