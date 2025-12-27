@@ -1,22 +1,30 @@
-{lib, config, ...}:
+{ lib, config, ... }:
 let
   cfg = config.modules.hosts.nix;
-in {
+in
+{
 
   options.modules.hosts = {
-    nix.enable = lib.mkEnableOption "nix settings";
-    nix.unfreePkgs = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-      default = [];
+    nix = {
+      enable = lib.mkEnableOption "nix settings";
+      unfreePkgs = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [ ];
+      };
     };
   };
 
   config = lib.mkIf cfg.enable {
 
+    documentation.nixos.enable = false;
+
     nix = {
       settings = {
         use-xdg-base-directories = true;
-        experimental-features = [ "nix-command" "flakes" ];
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
       };
       gc.automatic = false;
     };

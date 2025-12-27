@@ -1,7 +1,12 @@
-{lib, config, pkgs, ...}:
+{
+  config,
+  pkgs,
+  ...
+}:
 let
   virtCfg = config.modules.hosts.virtualisation;
-in {
+in
+{
 
   imports = [
     ../modules/default.nix
@@ -87,9 +92,8 @@ in {
 
   security.sudo.wheelNeedsPassword = false;
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ([
-  ]
-  ++ (if virtCfg.virtualbox.enable then ["Oracle_VirtualBox_Extension_Pack"] else [])
+  modules.hosts.nix.unfreePkgs = (
+    if virtCfg.virtualbox.enable then [ "Oracle_VirtualBox_Extension_Pack" ] else [ ]
   );
 
   fonts.enableDefaultPackages = true;
