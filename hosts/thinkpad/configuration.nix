@@ -42,11 +42,7 @@ in
     };
   };
 
-  documentation.nixos.enable = false;
-
-  console.useXkbConfig = true;
-
-  hardware =  {
+  hardware = {
     bluetooth = {
       enable = true;
       settings = {
@@ -58,12 +54,18 @@ in
   };
 
   networking = {
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      plugins = [
+        pkgs.networkmanager-openconnect
+      ];
+    };
     firewall.enable = true;
     hostName = "thinkpad";
   };
 
   services = {
+    hardware.bolt.enable = true;
     printing.enable = true;
     avahi = {
       enable = true;
@@ -84,10 +86,9 @@ in
       "wheel"
       "networkmanager"
     ]
-    ++ (if virtCfg.virt-manager.enable then [ "libvirtd" ] else [])
-    ++ (if virtCfg.virtualbox.enable then [ "vboxusers" ] else [])
-    ++ (if virtCfg.docker.enable then [ "docker" ] else [])
-    ;
+    ++ (if virtCfg.virt-manager.enable then [ "libvirtd" ] else [ ])
+    ++ (if virtCfg.virtualbox.enable then [ "vboxusers" ] else [ ])
+    ++ (if virtCfg.docker.enable then [ "docker" ] else [ ]);
   };
 
   security.sudo.wheelNeedsPassword = false;

@@ -1,13 +1,20 @@
-{lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   cfg = config.modules.hosts.xserver;
-in {
-
+in
+{
   options.modules.hosts = {
     xserver.enable = lib.mkEnableOption "xserver settings";
   };
 
   config = lib.mkIf cfg.enable {
+
+    console.useXkbConfig = true;
 
     services = {
       xserver = {
@@ -21,7 +28,7 @@ in {
           layout = "br-altgr";
           extraLayouts."br-altgr" = {
             description = "br layout with custom altgr";
-            languages   = [ "por" ];
+            languages = [ "por" ];
             symbolsFile = ../../config/x/br-altgr;
           };
         };
@@ -42,6 +49,8 @@ in {
         };
       };
     };
+
+    programs.kdeconnect.enable = true;
 
     environment.plasma6.excludePackages = with pkgs; [
       kdePackages.kate
