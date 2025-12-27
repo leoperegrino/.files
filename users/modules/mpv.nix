@@ -1,7 +1,13 @@
-{pkgs, lib, config, ...}:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   cfg = config.modules.users.mpv;
-in {
+in
+{
 
   options.modules.users = {
     mpv.enable = lib.mkEnableOption "mpv";
@@ -16,17 +22,20 @@ in {
 
         "-" = "add sub-scale -0.1";
         "+" = "add sub-scale +0.1";
+        "_" = "ignore";
 
         "ctrl+=" = "add audio-delay 0.100";
 
         "ctrl+j" = "cycle sub";
         "ctrl+k" = "cycle sub down";
 
+        "ctrl+l" = "ab-loop";
+
         J = "add chapter 1";
         K = "add chapter -1";
 
-        l = "seek 2";
-        h = "seek -2";
+        l = "seek 2 exact";
+        h = "seek -2 exact";
         k = "seek -60";
         j = "seek 60";
 

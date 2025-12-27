@@ -19,7 +19,7 @@ in {
       documents = "${home}/documents";
       pictures = "${home}/pictures";
       videos = "${home}/videos";
-      music = "${home}/music";
+      music = null;
       templates = null;
       publicShare = null;
       enable = true;
