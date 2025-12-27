@@ -74,5 +74,18 @@
 
     };
 
+    nixosModules = {
+      hosts = {
+        imports = [
+          ./hosts/modules/default.nix
+        ];
+      };
+      users = {
+        imports = [
+          ./users/modules/default.nix
+        ];
+      };
+    };
+
   };
 }
