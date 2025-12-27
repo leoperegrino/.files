@@ -26,7 +26,7 @@ in {
         preConfigure = let
           json_bat_cmd = ''jq . "''${FILE_PATH}" | env COLORTERM=8bit bat --language json --color=always --style="''${BAT_STYLE}" \&\& exit 5'';
         in
-        prev.preConfigure + ''
+        prev.postPatch + ''
           sed -i -e '/#\s*application\/pdf/,/&& exit 6/s/#//' ranger/data/scope.sh
           sed -i -e '/#\s*video/,/exit 1/s/#//' ranger/data/scope.sh
           sed -i -e 's/json)/&\n\t\t\t${json_bat_cmd}/' ranger/data/scope.sh
@@ -90,6 +90,7 @@ in {
         "B" = ''shell setsid -f alacritty -e zsh -ic "''${PAGER} -- %s"'';
         "<c-o>" = "console touch%space";
 
+        "yi" = ''shell xclip -sel clip -t image/png %f'';
         "CC" = "get_cumulative_size";
         "md" = "console mkdir%space";
         "cW" = "bulkrename";
