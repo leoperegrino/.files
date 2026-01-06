@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  pkgs-unstable,
+  pkgs,
   ...
 }:
 let
@@ -16,12 +16,14 @@ in
   config = lib.mkIf cfg.enable {
     programs.neovim = {
       enable = true;
-      package = pkgs-unstable.neovim-unwrapped;
-      extraPackages = with pkgs-unstable; [
-        lua-language-server
-        tree-sitter
-        gcc
-        nil
+      package = pkgs.neovim-unwrapped;
+      extraPackages = let p = pkgs; in [
+        p.lua-language-server
+        p.nixfmt-rfc-style
+        p.tree-sitter
+        p.gcc
+        p.nil
+        p.nixd
       ];
     };
   };

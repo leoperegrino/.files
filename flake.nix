@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -15,61 +14,59 @@
     nixpkgs,
     home-manager,
     nixos-hardware,
-    nixpkgs-unstable,
     ...
   }: let
-
-    nixosConfigurations = configs: builtins.mapAttrs (host: {modules}:
-      nixpkgs.lib.nixosSystem {
-        modules = [
-          ./hosts/${host}
-        ] ++ modules;
-      }
-    ) configs;
-
-    homeConfigurations = configs: builtins.mapAttrs (user: {system, modules}:
-      home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages."${system}";
-        modules = [
-          ./users/${user}.nix
-          { _module.args = { pkgs-unstable = nixpkgs-unstable.legacyPackages."${system}"; }; }
-        ] ++ modules;
-      }
-    ) configs;
-
+    nixosSystem = nixpkgs.lib.nixosSystem;
+    homeConfiguration = home-manager.lib.homeManagerConfiguration;
   in {
 
-    nixosConfigurations = nixosConfigurations {
-      "thinkpad" = {
-        modules = [ nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel-gen6 ];
+    nixosConfigurations = {
+
+      "thinkpad" = nixosSystem {
+        modules = [
+          ./hosts/thinkpad
+          nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel-gen6
+        ];
       };
 
-      "coolermaster" = {
-        modules = [ ];
+      "coolermaster" = nixosSystem {
+        modules = [
+          ./hosts/coolermaster
+        ];
       };
 
-      "raspberrypi" = {
+      "raspberrypi" = nixosSystem {
         # https://wiki.nixos.org/wiki/NixOS_on_ARM/Raspberry_Pi_4
         # https://blog.janissary.xyz/posts/nixos-install-custom-image
-        modules = [ nixos-hardware.nixosModules.raspberry-pi-4 ];
+        modules = [
+          ./hosts/raspberrypi
+          nixos-hardware.nixosModules.raspberry-pi-4
+        ];
       };
 
     };
 
-    homeConfigurations = homeConfigurations {
-      "ltp" = {
-        system = "x86_64-linux";
-        modules = [ ];
+    homeConfigurations = {
+
+      "ltp" = homeConfiguration {
+        pkgs = nixpkgs.legacyPackages."x86_64-linux";
+        modules = [
+          ./users/ltp.nix
+        ];
       };
 
-      "cool" = {
-        system = "x86_64-linux";
-        modules = [ ];
+      "cool" = homeConfiguration {
+        pkgs = nixpkgs.legacyPackages."x86_64-linux";
+        modules = [
+          ./users/cool.nix
+        ];
       };
 
-      "pi" = {
-        system = "aarch64-linux";
-        modules = [ ];
+      "pi" = homeConfiguration {
+        pkgs = nixpkgs.legacyPackages."aarch64-linux";
+        modules = [
+          ./users/pi.nix
+        ];
       };
 
     };
