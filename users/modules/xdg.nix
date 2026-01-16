@@ -31,10 +31,6 @@ in {
         source = symlink "${dotfiles}/bash";
         recursive = true;
       };
-      "nvim" = {
-        source = symlink "${dotfiles}/nvim";
-        recursive = true;
-      };
       "sh" = {
         source = symlink "${dotfiles}/sh";
         recursive = true;
