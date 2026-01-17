@@ -11,7 +11,7 @@ local function js_callback(ft)
 	end
 end
 
-M.setup = function()
+function M.setup()
 	vim.filetype.add({
 		extension = {
 			tf = 'terraform',

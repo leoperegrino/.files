@@ -3,7 +3,7 @@ local M = {}
 local packager = require('user.plugins.packager')
 
 
-M.setup = function()
+function M.setup()
 	packager.setup()
 end
 

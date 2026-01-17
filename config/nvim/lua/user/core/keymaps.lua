@@ -1,7 +1,7 @@
 local M = {}
 
 
-M.keymaps = function()
+function M.keymaps()
 	local function keymap(mode, lhs, rhs, desc)
 		vim.keymap.set(mode, lhs, rhs, { desc = desc, })
 	end
@@ -92,7 +92,7 @@ M.keymaps = function()
 end
 
 
-M.commands = function()
+function M.commands()
 	local command = vim.api.nvim_create_user_command
 
 	command('Bd',
@@ -118,7 +118,7 @@ M.commands = function()
 end
 
 
-M.setup = function()
+function M.setup()
 	M.keymaps()
 	M.commands()
 end

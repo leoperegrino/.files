@@ -4,7 +4,7 @@ local o = vim.opt
 local g = vim.g
 
 
-M.global = function()
+function M.global()
 	o.backup = true
 	o.writebackup = true
 	o.backupdir:remove({ '.' })
@@ -38,7 +38,7 @@ M.global = function()
 end
 
 
-M.global_local = function()
+function M.global_local()
 	o.completeopt = { 'menu', 'menuone', 'noselect' }
 
 	o.scrolloff = 7
@@ -49,7 +49,7 @@ M.global_local = function()
 end
 
 
-M.buffer = function()
+function M.buffer()
 	o.undofile = true
 	o.swapfile = true
 
@@ -70,7 +70,7 @@ M.buffer = function()
 end
 
 
-M.window = function()
+function M.window()
 	o.signcolumn = 'yes:2'
 
 	o.cursorline = true
@@ -92,7 +92,7 @@ M.window = function()
 end
 
 
-M.setup = function()
+function M.setup()
 	M.global()
 	M.global_local()
 	M.buffer()

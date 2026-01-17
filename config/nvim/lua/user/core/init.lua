@@ -6,7 +6,7 @@ local options = require('user.core.options')
 local autocmds = require('user.core.autocmds')
 
 
-M.setup = function()
+function M.setup()
 	options.setup()
 	autocmds.setup()
 	keymaps.setup()

@@ -1,7 +1,7 @@
 local M = {}
 
 
-local bootstrap = function()
+local function bootstrap()
 	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 	local lazy_url =  'https://github.com/folke/lazy.nvim.git'
 
@@ -21,7 +21,7 @@ local bootstrap = function()
 end
 
 
-M.setup = function()
+function M.setup()
 	bootstrap()
 	local lazy = require('lazy')
 

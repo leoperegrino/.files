@@ -1,7 +1,7 @@
 local M = {}
 
 local group = vim.api.nvim_create_augroup('user autocmds', { clear = true })
-local autocmd = function(event, pattern, callback)
+local function autocmd(event, pattern, callback)
 	vim.api.nvim_create_autocmd(event, {
 		pattern = pattern,
 		callback = callback,
@@ -10,7 +10,7 @@ local autocmd = function(event, pattern, callback)
 end
 
 
-M.setup = function()
+function M.setup()
 	autocmd('FileType'    ,  '*'   ,  function() vim.opt.formatoptions:remove({'c', 'r', 'o'})                        end )
 	autocmd('FileType'    ,  '*'   ,  function() vim.cmd[[normal! zX]] vim.cmd[[silent! loadview]]                    end )
 	autocmd('BufWrite'    ,  '*'   ,  function() vim.cmd[[mkview!]]                                                   end )
