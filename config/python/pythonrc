@@ -1,9 +1,9 @@
 #!/bin/python
 import atexit
 import os
-from pathlib import Path
 import readline
-
+import sys
+from pathlib import Path
 
 state = os.environ.get(
     'XDG_STATE_HOME',
@@ -12,16 +12,17 @@ state = os.environ.get(
 
 histfile = Path(
     state,
-    "python/python_history"
+    "python/history"
 )
 
 histfile.parent.mkdir(exist_ok=True)
 
-try:
-    readline.read_history_file(histfile)
-    # default history len is -1 (infinite), which may grow unruly
-    readline.set_history_length(-1)
-except FileNotFoundError:
+if sys.version_info <= (3, 13):
+    try:
+        readline.read_history_file(histfile)
+        readline.set_history_length(-1)
+    except FileNotFoundError:
+        pass
+    atexit.register(readline.write_history_file, histfile)
+else:
     pass
-
-atexit.register(readline.write_history_file, histfile)
