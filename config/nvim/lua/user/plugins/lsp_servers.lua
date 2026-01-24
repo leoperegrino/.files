@@ -20,6 +20,10 @@ local function cmd_or_fallback(name, fallback)
 	local default_cmd = lsp_config.cmd
 
 	if type(default_cmd) == 'function' then
+		vim.notify(string.format(
+			"the default cmd is a lua function and \z
+			it's not going to be overrided."
+		), vim.log.levels.WARN)
 		return
 	end
 
