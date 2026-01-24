@@ -94,10 +94,10 @@ local function keymaps(_, buffer)
 		bufmap("n", "K"   , vim.lsp.buf.hover)
 	end
 
-	keymap("n", "[d"         , vim.diagnostic.goto_prev , "lsp: jumps to previous diagnostic")
-	keymap("n", "Ç"          , vim.diagnostic.goto_prev , "lsp: jumps to previous diagnostic")
-	keymap("n", "]d"         , vim.diagnostic.goto_next , "lsp: jumps to next diagnostic"    )
-	keymap("n", "ç"          , vim.diagnostic.goto_next , "lsp: jumps to next diagnostic"    )
+	keymap("n", "[d"         , function() vim.diagnostic.jump({ count = -1 }) end , "lsp: jumps to previous diagnostic")
+	keymap("n", "Ç"          , function() vim.diagnostic.jump({ count = -1 }) end , "lsp: jumps to previous diagnostic")
+	keymap("n", "]d"         , function() vim.diagnostic.jump({ count = 1 }) end  , "lsp: jumps to next diagnostic"    )
+	keymap("n", "ç"          , function() vim.diagnostic.jump({ count = 1 }) end  , "lsp: jumps to next diagnostic"    )
 	keymap("n", "<leader>eq" , vim.diagnostic.setloclist, "lsp: add buffer diagnostics to the location list")
 
 	bufmap("n", "glr" , vim.lsp.buf.rename                 , "lsp: renames all references"  )
