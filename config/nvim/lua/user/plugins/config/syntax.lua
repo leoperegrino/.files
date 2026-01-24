@@ -1,7 +1,7 @@
 return {
 	{ 'nvim-treesitter/nvim-treesitter',
 		lazy = false,
-		build = ':TSUpdate',
+		build = false,
 		cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
 		init = function()
 			vim.wo.foldmethod = 'expr'
@@ -12,8 +12,8 @@ return {
 			{ "<c-bs>", desc = "Schrink selection" },
 		},
 		opts = {
-			auto_install = true,
-			ignore_install = { "xml" },
+			auto_install = false,
+			ensure_installed = {},
 			highlight = { enable = true },
 			indent = { enable = true },
 			incremental_selection = {
