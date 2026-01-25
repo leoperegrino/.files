@@ -62,15 +62,16 @@ in
 
     programs.kdeconnect.enable = true;
 
-    environment.plasma6.excludePackages = with pkgs; [
-      kdePackages.kate
-      kdePackages.konsole
-      kdePackages.okular
-      kdePackages.elisa
-      kdePackages.ark
-      kdePackages.khelpcenter
-      # kdePackages.gwenview
-      # kdePackages.dolphin
+    environment.plasma6.excludePackages = let k = pkgs.kdePackages; in [
+      k.kate
+      k.konsole
+      k.okular
+      k.elisa
+      k.ark
+      k.khelpcenter
+      k.discover
+      # k.gwenview
+      # k.dolphin
     ];
   };
 
