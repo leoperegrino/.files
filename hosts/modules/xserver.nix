@@ -50,6 +50,16 @@ in
       };
     };
 
+    fonts = {
+      enableDefaultPackages = true;
+      packages = let p = pkgs; in [
+        p.noto-fonts
+        p.noto-fonts-cjk-sans
+        p.noto-fonts-color-emoji
+        p.nerd-fonts.noto
+      ];
+    };
+
     programs.kdeconnect.enable = true;
 
     environment.plasma6.excludePackages = with pkgs; [

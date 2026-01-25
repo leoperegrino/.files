@@ -97,14 +97,6 @@ in
     if virtCfg.virtualbox.enable then [ "Oracle_VirtualBox_Extension_Pack" ] else [ ]
   );
 
-  fonts.enableDefaultPackages = true;
-  fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-color-emoji
-    nerd-fonts.noto
-  ];
-
   environment.systemPackages = with pkgs; [
   ];
 
