@@ -7,6 +7,7 @@
 
   modules.users = {
     alacritty.enable = true;
+    bash.enable = true;
     bat.enable = true;
     environment.enable = true;
     git.enable = true;

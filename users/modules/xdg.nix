@@ -1,11 +1,16 @@
-{lib, config, ...}:
+{
+  lib,
+  config,
+  ...
+}:
 let
   cfg = config.modules.users.xdg;
 
   symlink = config.lib.file.mkOutOfStoreSymlink;
   home = config.home.homeDirectory;
   dotfiles = "${home}/.files/config";
-in {
+in
+{
 
   options.modules.users = {
     xdg.enable = lib.mkEnableOption "xdg support";
@@ -27,14 +32,6 @@ in {
     };
 
     xdg.configFile = {
-      "bash" = {
-        source = symlink "${dotfiles}/bash";
-        recursive = true;
-      };
-      "sh" = {
-        source = symlink "${dotfiles}/sh";
-        recursive = true;
-      };
       "vim" = {
         source = symlink "${dotfiles}/vim";
         recursive = true;
@@ -53,9 +50,5 @@ in {
       };
     };
 
-    home.file = {
-      ".local/state/bash/.keep".text = "";
-    };
   };
-
 }

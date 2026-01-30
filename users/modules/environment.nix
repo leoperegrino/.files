@@ -15,7 +15,7 @@ in
 
     home = {
       preferXdgDirectories = true;
-      shell.enableZshIntegration = true;
+      shell.enableShellIntegration = true;
       sessionPath = [
         "${config.home.homeDirectory}/.local/bin"
       ];

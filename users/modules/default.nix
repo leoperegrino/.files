@@ -1,8 +1,9 @@
-{...}:
+{ ... }:
 {
 
   imports = [
     ./alacritty.nix
+    ./bash.nix
     ./bat.nix
     ./environment.nix
     ./git.nix

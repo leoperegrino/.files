@@ -6,6 +6,7 @@
   ];
 
   modules.users = {
+    bash.enable = true;
     bat.enable = true;
     environment.enable = true;
     git.enable = true;
