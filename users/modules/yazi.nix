@@ -23,8 +23,8 @@ in {
     programs.yazi = {
       enable = true;
       package = pkgs.yazi;
-      # enableZshIntegration = true;
-      # shellWrapperName = "y";
+      enableZshIntegration = true;
+      shellWrapperName = "yy";
       extraPackages = [
         pkgs.bat
         pkgs.ueberzugpp

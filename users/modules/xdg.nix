@@ -43,9 +43,6 @@ in {
         source = symlink "${dotfiles}/x";
         recursive = true;
       };
-      "zsh/.zshrc" = {
-        source = symlink "${dotfiles}/zsh/zshrc";
-      };
       "tmux" = {
         source = symlink "${dotfiles}/tmux";
         recursive = true;
@@ -57,10 +54,6 @@ in {
     };
 
     home.file = {
-      ".local/state/less/.keep".text = "";
-      ".local/state/zsh/.keep".text = "";
-      ".local/share/zsh/.keep".text = "";
-      ".cache/zsh/.keep".text = "";
       ".local/state/bash/.keep".text = "";
     };
   };

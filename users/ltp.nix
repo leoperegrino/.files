@@ -8,6 +8,7 @@
   modules.users = {
     alacritty.enable = true;
     bat.enable = true;
+    environment.enable = true;
     git.enable = true;
     gpg.enable = true;
     htop.enable = true;
@@ -17,6 +18,7 @@
     syncthing.enable = true;
     xdg.enable = true;
     yazi.enable = true;
+    zsh.enable = true;
   };
 
   home.username = "ltp";

@@ -8,10 +8,8 @@ in {
   ];
 
   modules.hosts = {
-    environment.enable = true;
     locale.enable = true;
     nix.enable = true;
-    programs.enable = true;
     virtualisation.docker.enable = true;
   };
 
@@ -99,6 +97,14 @@ in {
     };
     groups."pi".gid = 1000;
   };
+
+  programs.zsh.enable = true;
+  programs.zsh.enableGlobalCompInit = false;
+  # https://github.com/nix-community/home-manager/blob/366d78c2856de6ab3411c15c1cb4fb4c2bf5c826/modules/programs/bash.nix#L53-L66
+  # https://github.com/nix-community/home-manager/blob/75ed713570ca17427119e7e204ab3590cc3bf2a5/modules/programs/zsh/default.nix#L161-L167
+  environment.pathsToLink = [
+    "/share/zsh"
+  ];
 
    systemd.services."luks-mount-workaround" = let
       CRYPTSETUP_SERVICE = "systemd-cryptsetup@backup.service";

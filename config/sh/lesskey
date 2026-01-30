@@ -1,9 +1,0 @@
-#command
-i quit
-
-j forw-line
-k back-line
-h left-scroll
-l right-scroll
-
-s noaction

@@ -4,6 +4,7 @@
   imports = [
     ./alacritty.nix
     ./bat.nix
+    ./environment.nix
     ./git.nix
     ./gpg.nix
     ./htop.nix
@@ -13,6 +14,7 @@
     ./syncthing.nix
     ./xdg.nix
     ./yazi.nix
+    ./zsh.nix
   ];
 
 }

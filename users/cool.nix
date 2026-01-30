@@ -7,12 +7,14 @@
 
   modules.users = {
     bat.enable = true;
+    environment.enable = true;
     git.enable = true;
     gpg.enable = true;
     htop.enable = true;
     neovim.enable = true;
     ranger.enable = true;
     xdg.enable = true;
+    zsh.enable = true;
   };
 
   home.username = "cool";
