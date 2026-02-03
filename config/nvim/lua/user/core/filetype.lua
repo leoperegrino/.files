@@ -14,13 +14,14 @@ end
 function M.setup()
 	vim.filetype.add({
 		extension = {
-			tf = 'terraform',
+			tf = js_callback('terraform'),
 			lock = js_callback('lock'),
 			json = js_callback('json'),
 			js = js_callback('javascript'),
 			ts = js_callback('typescript'),
 			jsx = js_callback('javascript'),
 			tsx = js_callback('typescript'),
+			nix = js_callback('nix'),
 		},
 		filename = {
 			['docker-compose.yaml'] = 'yaml.docker-compose',

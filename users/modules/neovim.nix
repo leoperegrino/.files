@@ -40,10 +40,6 @@ in
         };
         in "${parsers}/parser";
       };
-      "nvim/after" = {
-        source = symlink "${dotfiles}/nvim/after";
-        recursive = true;
-      };
       "nvim/lua" = {
         source = symlink "${dotfiles}/nvim/lua";
         recursive = true;

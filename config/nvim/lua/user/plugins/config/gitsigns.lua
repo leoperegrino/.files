@@ -84,5 +84,22 @@ return {
 				['+'] = '+',
 			},
 		},
+		config = function(_, opts)
+			vim.api.nvim_create_autocmd('FileType', {
+				pattern = { 'gitsigns-blame' },
+				callback = function(event)
+					vim.keymap.set("n", "q",
+						function() vim.api.nvim_win_close(0, false) end,
+						{ silent = true, buffer = event.buf }
+					)
+				end,
+				group = vim.api.nvim_create_augroup(
+					'gitsigns user autocmds',
+					{ clear = true }
+				),
+			})
+
+			require('gitsigns').setup(opts)
+		end,
 	},
 }
