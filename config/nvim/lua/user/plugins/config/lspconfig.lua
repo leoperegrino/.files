@@ -1,11 +1,15 @@
 local function diagnostic_config()
-	vim.diagnostic.config({
+	---@type vim.diagnostic.Opts
+	local opts = {
 		virtual_text = false,
+		virtual_lines  = {
+			current_line = true,
+			severity = { min = vim.diagnostic.severity.ERROR },
+		},
 		update_in_insert = false,
-		underline = false,
+		underline = true,
 		severity_sort = true,
 		signs = {
-			-- https://github.com/neovim/neovim/issues/33144#issuecomment-2763257650
 			text = {
 				[vim.diagnostic.severity.ERROR] = '',
 				[vim.diagnostic.severity.WARN] = '󰀪',
@@ -17,30 +21,37 @@ local function diagnostic_config()
 			focus = false,
 			focusable = true,
 			border = "rounded",
-			source = "always",
+			source = true,
 			header = "",
 		},
-	})
+		jump = {
+			float = true,
+		},
+	}
+	vim.diagnostic.config(opts)
 end
 
 
-local function handlers()
-	-- nvim >= 0.11
+--- Configure defaults for vim's lua functions through closures
+local function override_defaults()
 	local hover = vim.lsp.buf.hover
-	vim.lsp.buf.hover = function()
-		---@diagnostic disable-next-line: redundant-parameter
-		return hover({
+	---@param opts vim.lsp.buf.hover.Opts?
+	---@diagnostic disable-next-line: duplicate-set-field
+	vim.lsp.buf.hover = function(opts)
+		return hover(vim.tbl_extend('error', {
 			border = "rounded",
 			focusable = true
-		})
+		}, opts or {}))
 	end
 
 	local signature_help = vim.lsp.buf.signature_help
-	vim.lsp.buf.signature_help = function()
-		---@diagnostic disable-next-line: redundant-parameter
-		return signature_help({
+	---@param opts vim.lsp.buf.signature_help.Opts?
+	---@diagnostic disable-next-line: duplicate-set-field
+	vim.lsp.buf.signature_help = function(opts)
+		return signature_help(vim.tbl_extend('error', {
 			border = "rounded",
-		})
+			focusable = true
+		}, opts or {}))
 	end
 end
 
@@ -68,91 +79,39 @@ local function highlight_document(client, bufnr)
 end
 
 
-local function toggle_inlay_hints(client, bufnr)
-	if vim.g.inlay_hints_visible then
-		vim.g.inlay_hints_visible = false
-		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-	else
-		if client.server_capabilities.inlayHintProvider then
-			vim.g.inlay_hints_visible = true
-			vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-		end
-	end
-end
-
-
-local function keymaps(_, buffer)
-	local function keymap(mode, lhs, rhs, desc)
-		vim.keymap.set(mode, lhs, rhs, { desc = desc, })
-	end
-
-	local function bufmap(mode, lhs, rhs, desc)
-		vim.keymap.set(mode, lhs, rhs, { desc = desc, buffer = buffer, })
-	end
-
-	if vim.bo.filetype ~= "vim" and vim.bo.filetype ~= "sh" then
-		bufmap("n", "K"   , vim.lsp.buf.hover)
-	end
-
-	keymap("n", "[d"         , function() vim.diagnostic.jump({ count = -1 }) end , "lsp: jumps to previous diagnostic")
-	keymap("n", "Ç"          , function() vim.diagnostic.jump({ count = -1 }) end , "lsp: jumps to previous diagnostic")
-	keymap("n", "]d"         , function() vim.diagnostic.jump({ count = 1 }) end  , "lsp: jumps to next diagnostic"    )
-	keymap("n", "ç"          , function() vim.diagnostic.jump({ count = 1 }) end  , "lsp: jumps to next diagnostic"    )
-	keymap("n", "<leader>eq" , vim.diagnostic.setloclist, "lsp: add buffer diagnostics to the location list")
-
-	bufmap("n", "glr" , vim.lsp.buf.rename                 , "lsp: renames all references"  )
-	bufmap("n", "gld" , vim.lsp.buf.definition             , "lsp: jumps to definition"     )
-	bufmap("n", "glD" , vim.lsp.buf.declaration            , "lsp: jumps to declaration"    )
-	bufmap("n", "gls" , vim.lsp.buf.signature_help         , "lsp: displays signature help" )
-	bufmap("n", "glc" , vim.lsp.buf.code_action            , "lsp: selects a code action"   )
-	bufmap("n", "glw" , vim.lsp.buf.add_workspace_folder   , "lsp: add folder to workspace" )
-	bufmap("n", "glW" , vim.lsp.buf.remove_workspace_folder, "lsp: rm folder from workspace")
-	bufmap("n", "glf" , vim.lsp.buf.format                 , "lsp: formats buffer"          )
-	bufmap("n", "gll" , "<Cmd>= vim.lsp.buf.list_workspace_folders()<CR>", "lsp: list folders in workspace")
-
-	local ok, telescope = pcall(require, 'telescope.builtin')
-	if ok then
-		bufmap("n", "gd"  , telescope.lsp_definitions     , "telescope lsp: lsp definitions")
-		bufmap("n", "gD"  , function() telescope.lsp_definitions({ jump_type = 'vsplit' }) end, "telescope lsp: lsp definitions")
-		bufmap("n", "gI"  , telescope.lsp_implementations , "telescope lsp: lsp implementations")
-		bufmap("n", "gt"  , telescope.lsp_type_definitions, "telescope lsp: lsp type definitions")
-		bufmap("n", "gr"  , telescope.lsp_references      , "telescope lsp: lsp references")
-		bufmap("n", "gL"  , function() vim.diagnostic.setloclist({ open = false }) telescope.loclist()  end, "telescope lsp: location list")
-		bufmap("n", "gQ"  , function() vim.diagnostic.setqflist({ open = false })  telescope.quickfix() end, "telescope lsp: quickfix list")
-	end
-end
-
-
--- TODO: configure this according to lazy spec (keys, opts, buffers, config, etc)
 return {
-	{ 'neovim/nvim-lspconfig',
-		opts = function(_, _)
-			local capabilities
-			local ok, cmp = pcall(require, 'cmp_nvim_lsp')
-			if ok then
-				capabilities = cmp.default_capabilities()
-			end
+	{
+		'neovim/nvim-lspconfig',
+		lazy = false,
+		keys = {
+			{ "glr", vim.lsp.buf.rename,         desc = "lsp: renames all references" },
+			{ "gld", vim.lsp.buf.definition,     desc = "lsp: jumps to definition" },
+			{ "glD", vim.lsp.buf.declaration,    desc = "lsp: jumps to declaration" },
+			{ "gls", vim.lsp.buf.signature_help, desc = "lsp: displays signature help" },
+			{ "glc", vim.lsp.buf.code_action,    desc = "lsp: selects a code action" },
+			{ "glf", vim.lsp.buf.format,         desc = "lsp: formats buffer" },
+			{ "Ç",   "[d",                       remap = true },
+			{ "ç",   "]d",                       remap = true },
+		},
 
-			return {
-				capabilities = capabilities,
-				on_attach = function(client, bufnr)
-					keymaps(client, bufnr)
-					highlight_document(client, bufnr)
-					toggle_inlay_hints(client, bufnr)
-					-- if client:supports_method('textDocument/documentColor') then
-					--   vim.lsp.document_color.enable(true, bufnr)
-					-- end
+		---@type vim.lsp.Config
+		opts = {
+			on_attach = function(client, bufnr)
+				highlight_document(client, bufnr)
+				if client.server_capabilities.inlayHintProvider then
+					vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 				end
-			}
+			end
+		},
 
-		end,
+		---@param opts vim.lsp.Config
 		config = function(_, opts)
 			diagnostic_config()
-			handlers()
+			override_defaults()
+
 			local lsp_servers = require('user.plugins.lsp_servers')
 
 			for name, config in pairs(lsp_servers) do
-
 				local final = vim.tbl_deep_extend('force', opts, config)
 
 				vim.lsp.config(name, final)

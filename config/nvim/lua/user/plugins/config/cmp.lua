@@ -120,7 +120,14 @@ return {
 					ghost_text = true,
 				},
 			}
-		end
+		end,
+		config = function(_, opts)
+			vim.lsp.config("*", {
+				capabilities = require("cmp_nvim_lsp").default_capabilities()
+			})
+
+			require('cmp').setup(opts)
+		end,
 	},
 
 	{ 'L3MON4D3/LuaSnip',

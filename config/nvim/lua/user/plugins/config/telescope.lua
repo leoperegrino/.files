@@ -167,4 +167,45 @@ return {
 	},
 
 	{ 'nvim-telescope/telescope-symbols.nvim' },
+
+	{
+		'neovim/nvim-lspconfig',
+		keys = {
+				{
+					"gd",
+					function() require('telescope.builtin').lsp_definitions({ reuse_win = true }) end,
+					desc = "telescope lsp: lsp definitions",
+				},
+				{
+					"gD",
+					function() require('telescope.builtin').lsp_definitions({ jump_type = 'vsplit', reuse_win = true }) end,
+					desc = "telescope lsp: lsp definitions",
+				},
+				{
+					"gI",
+					function() require('telescope.builtin').lsp_implementations({ reuse_win = true }) end,
+					desc = "telescope lsp: lsp implementations",
+				},
+				{
+					"gt",
+					function() require('telescope.builtin').lsp_type_definitions({ reuse_win = true }) end,
+					desc = "telescope lsp: lsp type definitions",
+				},
+				{
+					"gr",
+					function() require('telescope.builtin').lsp_references({ reuse_win = true }) end,
+					desc = "telescope lsp: lsp references",
+				},
+				{
+					"gL",
+					function() vim.diagnostic.setloclist({ open = false }) require('telescope.builtin').loclist() end,
+					desc = "telescope lsp: lsp references",
+				},
+				{
+					"gQ",
+					function() vim.diagnostic.setqflist({ open = false })  require('telescope.builtin').quickfix() end,
+					desc = "telescope lsp: lsp references",
+				},
+		},
+	},
 }
