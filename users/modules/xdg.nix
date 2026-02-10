@@ -77,6 +77,27 @@ in
       XDG_CONFIG_HOME = "${config.xdg.configHome}";
       XDG_DATA_HOME = "${config.xdg.dataHome}";
       XDG_STATE_HOME = "${config.xdg.stateHome}";
+
+      SQLITE_HISTORY = "${config.xdg.stateHome}/sqlite3/history";
+      MYSQL_HISTFILE = "${config.xdg.stateHome}/mysql/history";
+      PSQL_HISTORY = "${config.xdg.stateHome}/psql/history";
+      NODE_REPL_HISTORY = "${config.xdg.stateHome}/node/history";
+
+      CARGO_HOME = "${config.xdg.dataHome}/cargo";
+      RUSTUP_HOME = "${config.xdg.dataHome}/rustup";
+      ELECTRUMDIR = "${config.xdg.dataHome}/electrum";
+      MINIKUBE_HOME = "${config.xdg.dataHome}/minikube";
+      GOPATH = "${config.xdg.dataHome}/go";
+
+      NPM_CONFIG_USERCONFIG = "${config.xdg.configHome}/npm/npmrc";
+      DOCKER_CONFIG = "${config.xdg.configHome}/docker";
+      PSQLRC = "${config.xdg.configHome}/psql/psqlrc.conf";
+      KUBECONFIG = "${config.xdg.configHome}/kube";
+      XCOMPOSEFILE = "${config.xdg.configHome}/X11/xcompose";
+      XCOMPOSECACHE = "${config.xdg.configHome}/X11/xcompose";
+
+      KUBECACHEDIR = "${config.xdg.cacheHome}/kube";
+      GOMODCACHE = "${config.xdg.cacheHome}/go/mod";
     };
 
   };
