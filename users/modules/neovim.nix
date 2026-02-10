@@ -56,6 +56,11 @@ in
         source = symlink "${dotfiles}/nvim/lazy-lock.json";
       };
 
+      # https://neovim.io/doc/user/plugins.html#spellfile.lua
+      "nvim/spell/pt.utf-8.spl".source = builtins.fetchurl {
+        url = "https://ftp.nluug.nl/pub/vim/runtime/spell/pt.utf-8.spl";
+        sha256 = "0fxnd9fvvxawmwas9yh47rakk65k7jjav1ikzcy7h6wmnq0c2pry";
+      };
     };
 
   };
