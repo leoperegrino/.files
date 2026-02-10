@@ -83,15 +83,25 @@ return {
 	{
 		'neovim/nvim-lspconfig',
 		lazy = false,
+
+		---@type LazyKeysSpec[]
 		keys = {
-			{ "glr", vim.lsp.buf.rename,         desc = "lsp: renames all references" },
-			{ "gld", vim.lsp.buf.definition,     desc = "lsp: jumps to definition" },
-			{ "glD", vim.lsp.buf.declaration,    desc = "lsp: jumps to declaration" },
-			{ "gls", vim.lsp.buf.signature_help, desc = "lsp: displays signature help" },
-			{ "glc", vim.lsp.buf.code_action,    desc = "lsp: selects a code action" },
-			{ "glf", vim.lsp.buf.format,         desc = "lsp: formats buffer" },
-			{ "Ç",   "[d",                       remap = true },
-			{ "ç",   "]d",                       remap = true },
+			{ "gld", vim.lsp.buf.definition, desc = "definition" },
+			{ "glD", vim.lsp.buf.declaration, desc = "declaration" },
+			{ "gls", vim.lsp.buf.signature_help, desc = "signature_help" },
+			{ "glf", vim.lsp.buf.format, desc = "format" },
+
+			-- see: lsp-defaults
+			{ "gln", "grn", desc = "rename", remap = true },
+			{ "gla", "gra", desc = "code_action", remap = true },
+			{ "glr", "grr", desc = "references", remap = true },
+			{ "gli", "gri", desc = "implementation", remap = true },
+			{ "glt", "grt", desc = "type_definition", remap = true },
+			{ "glo",  "gO", desc = "document_symbol", remap = true },
+
+			-- see: ]d-default and [d-default
+			{ "Ç", "[d", remap = true },
+			{ "ç", "]d", remap = true },
 		},
 
 		---@type vim.lsp.Config

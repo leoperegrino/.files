@@ -19,6 +19,7 @@ return {
 			preset = "modern",
 			triggers = {
 				{ "<leader>", mode = { "v", "n" } },
+				{ "gl", mode = { "v", "n" } },
 			},
 		},
 		keys = {
