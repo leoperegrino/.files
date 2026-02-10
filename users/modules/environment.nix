@@ -37,12 +37,10 @@ in
       s = "systemctl";
       j = "journalctl -fb";
       q = "exit";
-    } // ( let
-      dotfile = file: "nvim --cmd 'cd ~/.files/' ~/.files/${file}";
-    in {
-      nixrc = dotfile "flake.nix";
-      nvimrc = dotfile "config/nvim/lua/user/init.lua";
-    });
+
+      nixrc = "nvim --cmd 'cd ~/.files/' ~/.files/flake.nix";
+      nvimrc = "nvim --cmd 'cd ~/.files/' ~/.files/config/nvim/lua/user/init.lua";
+    };
 
     programs.readline = {
       enable = true;
