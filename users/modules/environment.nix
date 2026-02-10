@@ -19,9 +19,6 @@ in
       sessionPath = [
         "${config.home.homeDirectory}/.local/bin"
       ];
-      sessionVariables = {
-        EDITOR = "nvim";
-      };
     };
 
     home.shellAliases = {

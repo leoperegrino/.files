@@ -18,8 +18,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+
     programs.neovim = {
       enable = true;
+      defaultEditor = true;
       extraPackages = let p = pkgs; in [
         p.lua-language-server
         p.nixfmt-rfc-style
@@ -40,16 +42,20 @@ in
         };
         in "${parsers}/parser";
       };
+
       "nvim/lua" = {
         source = symlink "${dotfiles}/nvim/lua";
         recursive = true;
       };
+
       "nvim/init.lua" = {
         source = symlink "${dotfiles}/nvim/init.lua";
       };
+
       "nvim/lazy-lock.json" = {
         source = symlink "${dotfiles}/nvim/lazy-lock.json";
       };
+
     };
 
   };
