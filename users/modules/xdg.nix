@@ -19,6 +19,8 @@ in
 
   config = lib.mkIf cfg.enable {
 
+    home.preferXdgDirectories = true;
+
     xdg.userDirs = {
       desktop = "${home}/desktop";
       download = "${home}/downloads";

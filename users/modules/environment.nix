@@ -14,7 +14,6 @@ in
   config = lib.mkIf cfg.enable {
 
     home = {
-      preferXdgDirectories = true;
       shell.enableShellIntegration = true;
       sessionPath = [
         "${config.home.homeDirectory}/.local/bin"
