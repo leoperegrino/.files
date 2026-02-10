@@ -23,7 +23,7 @@ in {
         window.padding.x = 0;
         window.padding.y = 0;
         font = {
-          size = 9;
+          size = 7;
           normal = {
             family = "NotoSansM Nerd Font";
             style = "Regular";
