@@ -86,39 +86,8 @@ add_lsp(
 	{
 		settings = {
 			Lua = {
-				workspace = {
-					checkThirdParty = false,
-					library = {
-						vim.env.VIMRUNTIME
-						-- https://github.com/neovim/nvim-lspconfig/issues/3189
-						-- vim.api.nvim_get_runtime_file('', true)
-					},
-				},
 				telemetry = {
 					enable = false,
-				},
-				completion = {
-					callSnipet = "Replace",
-				},
-				hint = {
-					enable = true,
-					setType = false,
-					paramType = false,
-					paramName = "Disable",
-					semicolon = "Disable",
-					arrayIndex = "Disable",
-				},
-				diagnostics = {
-					-- globals = { "vim", "require" },
-					unusedLocalExclude = {
-						'_*'
-					},
-				},
-				codeLens = {
-					enable = true,
-				},
-				doc = {
-					privateName = { "^_" },
 				},
 			}
 		}
