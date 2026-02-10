@@ -29,10 +29,15 @@
 
   programs.home-manager.enable = true;
 
+  fonts.fontconfig.enable = true;
+
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
   ];
 
-  home.packages = with pkgs; [
+  home.packages = let p = pkgs; in [
+    p.noto-fonts
+    p.noto-fonts-cjk-sans
+    p.noto-fonts-color-emoji
   ];
 
   systemd.user.startServices = "sd-switch";
