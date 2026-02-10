@@ -6,10 +6,6 @@
 }:
 let
   cfg = config.modules.users.ranger;
-
-  symlink = config.lib.file.mkOutOfStoreSymlink;
-  home = "${config.home.homeDirectory}";
-  dotfiles = "${home}/.files/config";
 in {
 
   options.modules.users = {
@@ -17,8 +13,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-
-    xdg.configFile."ranger/commands.py".source = symlink "${dotfiles}/ranger/commands.py";
 
     programs.ranger = {
       package = pkgs.ranger.overrideAttrs (prev: {
@@ -47,7 +41,7 @@ in {
         name = "devicons";
         src = builtins.fetchGit {
           url = "https://github.com/alexanderjeurissen/ranger_devicons.git";
-          rev = "a8d626485ca83719e1d8d5e32289cd96a097c861";
+          rev = "1bcaff0366a9d345313dc5af14002cfdcddabb82";
         };
       }];
       settings = {
@@ -104,6 +98,27 @@ in {
         "<c-k>" = "scroll_preview -1";
       };
     };
+
+    xdg.configFile."ranger/commands.py".text = /* python */ ''
+      from ranger.api.commands import Command
+
+      class toggle_flat(Command):
+          """
+          :toggle_flat
+
+          Flattens or unflattens the directory view.
+          """
+          def execute(self):
+            if self.fm.thisdir.flat == 0:
+                self.fm.thisdir.unload()
+                self.fm.thisdir.flat = -1
+                self.fm.thisdir.load_content()
+            else:
+                self.fm.thisdir.unload()
+                self.fm.thisdir.flat = 0
+                self.fm.thisdir.load_content()
+    '';
+
   };
 
 }
