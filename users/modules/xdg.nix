@@ -39,10 +39,6 @@ in
         source = symlink "${dotfiles}/vim";
         recursive = true;
       };
-      "x" = {
-        source = symlink "${dotfiles}/x";
-        recursive = true;
-      };
       "tmux" = {
         source = symlink "${dotfiles}/tmux";
         recursive = true;
