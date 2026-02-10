@@ -94,4 +94,14 @@ return {
 		},
 		ft = 'go',
 	},
+
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		opts = {
+			triggers = {
+				{ "<leader>d", mode = { "n", "v" } },
+			},
+		},
+	},
 }

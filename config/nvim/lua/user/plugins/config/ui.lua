@@ -12,6 +12,24 @@ return {
 		},
 	},
 
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		opts = {
+			preset = "modern",
+			triggers = {
+				{ "<leader>", mode = { "v", "n" } },
+			},
+		},
+		keys = {
+			{
+				"?",
+				function() require("which-key").show({ global = true }) end,
+				desc = "Buffer Local Keymaps (which-key)",
+			},
+		},
+	},
+
 	{ 'hiphish/rainbow-delimiters.nvim' },
 
 	{ 'Mofiqul/vscode.nvim',
