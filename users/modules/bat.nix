@@ -1,8 +1,8 @@
-{lib, config, ...}:
+{ lib, config, ... }:
 let
   cfg = config.modules.users.bat;
-in {
-
+in
+{
   options.modules.users = {
     bat.enable = lib.mkEnableOption "bat";
   };
@@ -16,6 +16,12 @@ in {
         paging = "always";
         wrap = "never";
       };
+    };
+
+    home.sessionVariables = {
+      PAGER = "bat";
+      MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+      MANROFFOPT = "-c";
     };
   };
 

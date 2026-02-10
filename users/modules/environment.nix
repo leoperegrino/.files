@@ -21,9 +21,6 @@ in
       ];
       sessionVariables = {
         EDITOR = "nvim";
-        PAGER = "bat";
-        MANPAGER = "sh -c 'col -bx | bat -l man -p'";
-        MANROFFOPT = "-c";
       };
     };
 
