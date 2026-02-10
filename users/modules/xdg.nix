@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   config,
   ...
 }:
@@ -48,6 +49,31 @@ in
         source = symlink "${dotfiles}/python";
         recursive = true;
       };
+    };
+
+    xdg.autostart = {
+      enable = true;
+      entries = let
+        xbindkeysrc = pkgs.writeText "xbindkeysrc" ''
+          "xte "key XF86AudioLowerVolume""
+          m:0x0 + b:8
+
+          "xte "key XF86AudioRaiseVolume""
+          m:0x0 + b:9
+        '';
+        xbind_sh = pkgs.writeShellScript "xbind.sh" ''
+          pkill xbindkeys
+          ${pkgs.xbindkeys}/bin/xbindkeys --file ${xbindkeysrc}
+        '';
+        xbind_desktop = pkgs.makeDesktopItem {
+          name = "xbind";
+          desktopName = "xbind";
+          exec = xbind_sh;
+          comment = "Bind mouse buttons to up/down volume";
+        };
+      in [
+        "${xbind_desktop}/share/applications/xbind.desktop"
+      ];
     };
 
     home.sessionVariables = {
