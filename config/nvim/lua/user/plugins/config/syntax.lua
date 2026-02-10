@@ -9,12 +9,14 @@ return {
 		end,
 		keys = {
 			{ "<c-space>", desc = "Increment selection" },
-			{ "<c-bs>", desc = "Schrink selection" },
+			{ "<c-bs>", desc = "Shrink selection" },
 		},
 		opts = {
 			auto_install = false,
-			ensure_installed = {},
-			highlight = { enable = true },
+			ensure_installed = { },
+			highlight = {
+				enable = true,
+			},
 			indent = { enable = true },
 			incremental_selection = {
 				enable = true,
@@ -26,6 +28,7 @@ return {
 				},
 			},
 		},
+		branch = 'master',
 		main = 'nvim-treesitter.configs',
 	},
 
