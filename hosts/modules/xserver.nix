@@ -34,8 +34,10 @@ in
         };
       };
 
-      libinput.mouse.naturalScrolling = true;
-      libinput.touchpad.naturalScrolling = true;
+      libinput = {
+        mouse.naturalScrolling = true;
+        touchpad.naturalScrolling = true;
+      };
 
       desktopManager.plasma6 = {
         enable = true;
