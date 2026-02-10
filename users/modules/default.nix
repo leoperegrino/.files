@@ -11,6 +11,7 @@
     ./htop.nix
     ./mpv.nix
     ./neovim.nix
+    ./python.nix
     ./ranger.nix
     ./syncthing.nix
     ./xdg.nix

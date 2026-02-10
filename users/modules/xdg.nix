@@ -45,10 +45,6 @@ in
         source = symlink "${dotfiles}/tmux";
         recursive = true;
       };
-      "python" = {
-        source = symlink "${dotfiles}/python";
-        recursive = true;
-      };
     };
 
     xdg.autostart = {

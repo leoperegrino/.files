@@ -15,6 +15,7 @@
     htop.enable = true;
     mpv.enable = true;
     neovim.enable = true;
+    python.enable = true;
     ranger.enable = true;
     syncthing.enable = true;
     xdg.enable = true;
