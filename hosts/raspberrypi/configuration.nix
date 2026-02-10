@@ -21,7 +21,7 @@ in {
       filter = "*rpi-4-*.dtb";
     };
   };
-  nix.settings.trusted-users = [ "pi" ];
+
   console.enable = true;
 
   boot = {
@@ -97,6 +97,8 @@ in {
     };
     groups."pi".gid = 1000;
   };
+
+  nix.settings.trusted-users = [ "pi" ];
 
   programs.zsh.enable = true;
   programs.zsh.enableGlobalCompInit = false;

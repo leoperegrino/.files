@@ -91,6 +91,8 @@ in {
     groups."cool".gid = 1000;
   };
 
+  nix.settings.trusted-users = [ "cool" ];
+
   programs.zsh.enable = true;
   programs.zsh.enableGlobalCompInit = false;
   # https://github.com/nix-community/home-manager/blob/366d78c2856de6ab3411c15c1cb4fb4c2bf5c826/modules/programs/bash.nix#L53-L66
