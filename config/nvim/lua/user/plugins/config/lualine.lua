@@ -1,12 +1,23 @@
 if not _G.tab_names then
-  _G.tab_names = {}
+	_G.tab_names = {}
 end
 
 return {
-	{ 'nvim-lualine/lualine.nvim',
+	{
+		'nvim-lualine/lualine.nvim',
 		dependencies = {
-			'Mofiqul/vscode.nvim'
+			'Mofiqul/vscode.nvim',
+			'nvim-tree/nvim-web-devicons'
 		},
+		config = function(_, opts)
+			vim.keymap.set('n', 'g5', function()
+				_G.lualine_gitsigns = (not _G.lualine_gitsigns)
+			end, {
+				desc = "toggle gitsigns blame in lualine"
+			})
+
+			require('lualine').setup(opts)
+		end,
 		opts = {
 			options = {
 				icons_enabled = true,
@@ -17,15 +28,22 @@ return {
 				always_divide_middle = true,
 			},
 			sections = {
-				lualine_a = {'mode'},
+				lualine_a = { 'mode' },
 				lualine_b = {
-					{'branch'},
-					{'lsp_status'},
-					{'diagnostics'},
-					{'diff'},
+					{ 'branch' },
+					{ 'lsp_status' },
+					{ 'diagnostics' },
+					{ 'diff' },
 				},
 				lualine_c = {
-					-- function() return vim.b.gitsigns_blame_line or '' end
+					function()
+						---@diagnostic disable-next-line: undefined-field
+						if _G.lualine_gitsigns then
+							return vim.b.gitsigns_blame_line or ''
+						else
+							return ''
+						end
+					end
 				},
 				lualine_x = {
 					{ 'filename', path = 1 },
@@ -36,24 +54,31 @@ return {
 					'location',
 					'progress',
 					-- 'searchcount',
+					function()
+						local lang_enabled = vim.opt_local.spell:get()
+						local lang = vim.opt_local.spelllang:get()[1]
+						return lang_enabled and lang or ''
+					end,
 				},
 				lualine_z = { { 'filetype', colored = false } }
 			},
 			inactive_sections = {
 				lualine_a = {},
 				lualine_b = {},
-				lualine_c = {'filename'},
-				lualine_x = {'location'},
+				lualine_c = { 'filename' },
+				lualine_x = { 'location' },
 				lualine_y = {},
 				lualine_z = {}
 			},
 			tabline = {
-				lualine_a = {'buffers'},
-				lualine_b = {''},
-				lualine_c = {''},
+				lualine_a = { 'buffers' },
+				lualine_b = { '' },
+				lualine_c = { '' },
 				lualine_x = {},
 				lualine_y = {},
-				lualine_z = { { 'tabs', mode = 1,
+				lualine_z = { {
+					'tabs',
+					mode = 1,
 					fmt = function(name, context)
 						local tabnr = context.tabnr
 
