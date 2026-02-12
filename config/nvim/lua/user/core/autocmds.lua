@@ -21,8 +21,9 @@ local function two_space(ft)
 end
 
 function M.setup()
+	autocmd('FileType', { 'qf', 'help' }, function() vim.cmd[[nnoremap <buffer> q <cmd>quit<CR>]]                     end )
 	autocmd('FileType'    ,  'qf'  ,  function() vim.cmd[[nnoremap <buffer> <CR> <CR><cmd>lclose<CR><cmd>cclose<CR>]] end )
-	autocmd('FileType'    ,  '*'   ,  function() vim.opt.formatoptions:remove({'c', 'r', 'o'})                        end )
+	autocmd('FileType'    ,  '*'   ,  function() vim.opt.formatoptions:remove({ 'o' })                                end )
 	autocmd('FileType'    ,  '*'   ,  function() vim.cmd[[normal! zX]] vim.cmd[[silent! loadview]]                    end )
 	autocmd('BufWrite'    ,  '*'   ,  function() vim.cmd[[mkview!]]                                                   end )
 	autocmd('BufWritePre' ,  '*'   ,  function() vim.cmd[[call mkdir(expand("<afile>:p:h"), "p")]]                    end )
