@@ -1,4 +1,9 @@
-{pkgs, lib, config, ...}:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   cfg = config.modules.users.yazi;
   flavors = pkgs.fetchFromGitHub {
@@ -23,8 +28,6 @@ in {
     programs.yazi = {
       enable = true;
       package = pkgs.yazi;
-      enableZshIntegration = true;
-      shellWrapperName = "yy";
       extraPackages = [
         pkgs.bat
         pkgs.ueberzugpp
@@ -87,18 +90,22 @@ in {
             { on = [ "g" "t" ];   run = "cd /tmp"; }
             { on = [ "g" "V" ];   run = "cd /var"; }
 
+            { on = [ "g" "F" ];   run = "follow"; desc = "Follow hovered symlink"; }
+
             { on = [ "k" ];       run = "arrow -1"; }
             { on = [ "j" ];       run = "arrow 1"; }
-            { on = [ "K" ];       run = "arrow -5"; }
-            { on = [ "J" ];       run = "arrow 5"; }
+            { on = [ "K" ];       run = "arrow -50%"; }
+            { on = [ "J" ];       run = "arrow 50%"; }
             { on = [ "q" ];       run = "close"; }
+
             { on = [ "<c-c>" ];   run = "quit"; }
             { on = [ "<C-o>" ];   run = "create"; }
             { on = [ "<C-h>" ];   run = "hidden toggle"; }
+            { on = [ "<C-n>" ];   run = "tab_create --current"; }
             { on = [ "W" ];       run = "spot"; }
 
             { on = [ "<Tab>" ];       run = "tab_switch --relative 1"; }
-            { on = [ "<Backspace>" ]; run = "tab_switch --relative -1"; }
+            { on = [ "<BackTab>" ];   run = "tab_switch --relative -1"; }
 
             { on = [ "v" ];       run = "toggle_all"; }
             { on = [ "y" "y" ];   run = "yank"; }
@@ -137,20 +144,6 @@ in {
             { on = [ "A" ];       run = "rename --cursor=end"; }
             { on = [ "r" ];       run = "rename --empty=stem --cursor=start"; }
             { on = [ "R" ];       run = "rename --empty=all"; }
-
-            { on = [ "o" "m" ];   run = "sort mtime --reverse=no; linemode mtime"; }
-            { on = [ "o" "M" ];   run = "sort mtime --reverse; linemode mtime"; }
-            { on = [ "o" "b" ];   run = "sort btime --reverse=no; linemode btime"; }
-            { on = [ "o" "B" ];   run = "sort --reverse btime; linemode btime"; }
-            { on = [ "o" "e" ];   run = "sort extension --reverse=no"; }
-            { on = [ "o" "E" ];   run = "sort extension --reverse"; }
-            { on = [ "o" "a" ];   run = "sort alphabetical --reverse=no"; }
-            { on = [ "o" "A" ];   run = "sort alphabetical --reverse"; }
-            { on = [ "o" "n" ];   run = "sort natural --reverse=no"; }
-            { on = [ "o" "N" ];   run = "sort --reverse natural"; }
-            { on = [ "o" "s" ];   run = "sort size --reverse=no; linemode size"; }
-            { on = [ "o" "S" ];   run = "sort --reverse size; linemode size"; }
-            { on = [ "o" "r" ];   run = "sort --reverse=no random"; }
           ];
         };
       };
@@ -176,8 +169,7 @@ in {
         };
       };
 
-      initLua = # lua
-      ''
+      initLua = /* lua */ ''
         -- For full-border plugin
         require("full-border"):setup({
           type = ui.Border.ROUNDED,
@@ -197,6 +189,14 @@ in {
             " ",
           }
         end, 500, Status.RIGHT)
+
+        -- https://yazi-rs.github.io/docs/tips/#username-hostname-in-header
+        Header:children_add(function()
+          if ya.target_family() ~= "unix" then
+            return ""
+          end
+          return ui.Span(ya.user_name() .. "@" .. ya.host_name() .. ":"):fg("blue")
+        end, 500, Header.LEFT)
 
         -- for git.yazi
         th.git = th.git or {}
