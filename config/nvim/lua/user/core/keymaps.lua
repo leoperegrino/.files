@@ -80,7 +80,7 @@ function M.keymaps()
 
 	set('n', '<leader>B',
 		function()
-			vim.cmd.edit('#')
+			vim.cmd.bnext()
 			vim.cmd.bdelete('#')
 		end,
 		{ desc = 'delete buffer without closing window' }
