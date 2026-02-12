@@ -3,9 +3,6 @@
   pkgs,
   ...
 }:
-let
-  virtCfg = config.modules.hosts.virtualisation;
-in
 {
 
   imports = [
@@ -75,14 +72,20 @@ in
   users.users."ltp" = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [
+    extraGroups = let
+      virtCfg = config.modules.hosts.virtualisation;
+      virtMgr = virtCfg.virt-manager.enable;
+      virtBox = virtCfg.virtualbox.enable;
+      docker = virtCfg.docker.enable;
+    in [
       "audio"
       "wheel"
       "networkmanager"
     ]
-    ++ (if virtCfg.virt-manager.enable then [ "libvirtd" ] else [ ])
-    ++ (if virtCfg.virtualbox.enable then [ "vboxusers" ] else [ ])
-    ++ (if virtCfg.docker.enable then [ "docker" ] else [ ]);
+    ++ (if virtMgr then [ "libvirtd" ] else [ ])
+    ++ (if virtBox then [ "vboxusers" ] else [ ])
+    ++ (if docker then [ "docker" ] else [ ])
+    ;
   };
 
   nix.settings.trusted-users = [ "ltp" ];
@@ -98,7 +101,9 @@ in
 
   security.sudo.wheelNeedsPassword = false;
 
-  modules.hosts.nix.unfreePkgs = (
+  modules.hosts.nix.unfreePkgs = let
+    virtCfg = config.modules.hosts.virtualisation;
+  in (
     if virtCfg.virtualbox.enable then [ "Oracle_VirtualBox_Extension_Pack" ] else [ ]
   );
 

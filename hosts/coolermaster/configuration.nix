@@ -1,7 +1,9 @@
-{config, pkgs, ... }:
-let
-  virtCfg = config.modules.hosts.virtualisation;
-in {
+{
+  config,
+  pkgs,
+  ...
+}:
+{
 
   imports = [
     ../modules/default.nix
@@ -77,15 +79,20 @@ in {
       ];
       isNormalUser = true;
       shell = pkgs.zsh;
-      extraGroups = [
+      extraGroups = let
+        virtCfg = config.modules.hosts.virtualisation;
+        virtMgr = virtCfg.virt-manager.enable;
+        virtBox = virtCfg.virtualbox.enable;
+        docker = virtCfg.docker.enable;
+      in [
         "wheel"
         "networkmanager"
         "cool"
         "video"
       ]
-      ++ (if virtCfg.virt-manager.enable then [ "libvirtd" ] else [])
-      ++ (if virtCfg.virtualbox.enable then [ "vboxusers" ] else [])
-      ++ (if virtCfg.docker.enable then [ "docker" ] else [])
+      ++ (if virtMgr then [ "libvirtd" ] else [ ])
+      ++ (if virtBox then [ "vboxusers" ] else [ ])
+      ++ (if docker then [ "docker" ] else [ ])
       ;
     };
     groups."cool".gid = 1000;
