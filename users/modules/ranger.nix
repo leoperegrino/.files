@@ -80,11 +80,11 @@ in {
         "es" = ''shell "''${EDITOR}" -O -- %s'';
         "eS" = ''console shell "''${EDITOR}" -O -- %s%space'';
         "EV" = ''shell sudo "''${EDITOR}" -- %s'';
-        "V" = ''shell setsid -f alacritty -e zsh -ic "''${EDITOR} -- %s"'';
-        "B" = ''shell setsid -f alacritty -e zsh -ic "''${PAGER} -- %s"'';
+        "V" = ''shell setsid -f ${pkgs.alacritty}/bin/alacritty -e zsh -ic "''${EDITOR} -- %s"'';
+        "B" = ''shell setsid -f ${pkgs.alacritty}/bin/alacritty -e zsh -ic "''${PAGER} -- %s"'';
         "<c-o>" = "console touch%space";
 
-        "yi" = ''shell xclip -sel clip -t image/png %f'';
+        "yi" = ''shell ${pkgs.xclip}/bin/xclip -sel clip -t image/png %f'';
         "CC" = "get_cumulative_size";
         "md" = "console mkdir%space";
         "cW" = "bulkrename";
