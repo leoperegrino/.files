@@ -1,4 +1,4 @@
-{lib, pkgs, ...}:
+{ lib, pkgs, ... }:
 {
 
   imports = [
@@ -29,7 +29,10 @@
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
   ];
 
-  home.packages = with pkgs; [
+  nixpkgs.config.permittedInsecurePackages = [
+  ];
+
+  home.packages = let p = pkgs; in [
   ];
 
   systemd.user.startServices = "sd-switch";

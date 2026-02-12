@@ -102,7 +102,15 @@ in
     if virtCfg.virtualbox.enable then [ "Oracle_VirtualBox_Extension_Pack" ] else [ ]
   );
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = let p = pkgs; in [
+    p.cryptsetup
+    p.dig
+    p.fd
+    p.git
+    p.jq
+    p.ripgrep
+    p.tree
+    p.vim
   ];
 
   # This value determines the NixOS release from which the default

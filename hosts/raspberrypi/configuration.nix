@@ -152,9 +152,20 @@ in {
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
   ];
 
-  environment.systemPackages = with pkgs; [
-    libraspberrypi
-    raspberrypi-eeprom
+  environment.systemPackages = let p = pkgs; in [
+    p.cryptsetup
+    p.dig
+    p.fd
+    p.git
+    p.jq
+    p.ripgrep
+    p.tree
+    p.vim
+
+    p.ffmpeg
+
+    p.libraspberrypi
+    p.raspberrypi-eeprom
   ];
 
   # This value determines the NixOS release from which the default

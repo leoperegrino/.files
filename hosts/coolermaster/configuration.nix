@@ -102,7 +102,17 @@ in {
     "/share/zsh"
   ];
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = let p = pkgs; in [
+    p.cryptsetup
+    p.dig
+    p.fd
+    p.git
+    p.jq
+    p.ripgrep
+    p.tree
+    p.vim
+
+    p.ffmpeg
   ];
 
   # This value determines the NixOS release from which the default

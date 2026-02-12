@@ -1,4 +1,4 @@
-{lib, pkgs, ...}:
+{ lib, pkgs, ... }:
 {
 
   imports = [
@@ -33,12 +33,39 @@
   fonts.fontconfig.enable = true;
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "drawio"
+    "spotify"
+    "slack"
+  ];
+
+  nixpkgs.config.permittedInsecurePackages = [
   ];
 
   home.packages = let p = pkgs; in [
     p.noto-fonts
     p.noto-fonts-cjk-sans
     p.noto-fonts-color-emoji
+    p.slack
+    p.jellyfin-media-player
+    p.dbeaver-bin
+    p.brave
+    p.deluge
+    p.drawio
+    p.electrum
+    p.element-desktop
+    p.ffmpeg
+    p.freetube
+    p.keepassxc
+    p.lazygit
+    p.libreoffice-qt
+    p.losslesscut-bin
+    p.readest
+    p.spotify
+    p.tokei
+    p.signal-desktop
+    p.virtualenv
+    p.vscodium-fhs
+    p.yt-dlp
   ];
 
   systemd.user.startServices = "sd-switch";
