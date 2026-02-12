@@ -107,6 +107,8 @@
     "/share/zsh"
   ];
 
+  modules.hosts.nix.unfreePkgs = [ ];
+
   environment.systemPackages = let p = pkgs; in [
     p.cryptsetup
     p.dig

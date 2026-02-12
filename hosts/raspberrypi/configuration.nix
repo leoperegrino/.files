@@ -155,8 +155,7 @@
     '';
   };
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-  ];
+  modules.hosts.nix.unfreePkgs = [ ];
 
   environment.systemPackages = let p = pkgs; in [
     p.cryptsetup
