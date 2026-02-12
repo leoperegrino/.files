@@ -14,7 +14,6 @@
     nix.enable = true;
     xserver.enable = true;
     virtualisation.docker.enable = true;
-    virtualisation.virtualbox.enable = false;
     virtualisation.virt-manager.enable = true;
   };
 
@@ -75,7 +74,6 @@
     extraGroups = let
       virtCfg = config.modules.hosts.virtualisation;
       virtMgr = virtCfg.virt-manager.enable;
-      virtBox = virtCfg.virtualbox.enable;
       docker = virtCfg.docker.enable;
     in [
       "audio"
@@ -83,7 +81,6 @@
       "networkmanager"
     ]
     ++ (if virtMgr then [ "libvirtd" ] else [ ])
-    ++ (if virtBox then [ "vboxusers" ] else [ ])
     ++ (if docker then [ "docker" ] else [ ])
     ;
   };
@@ -100,12 +97,6 @@
   ];
 
   security.sudo.wheelNeedsPassword = false;
-
-  modules.hosts.nix.unfreePkgs = let
-    virtCfg = config.modules.hosts.virtualisation;
-  in (
-    if virtCfg.virtualbox.enable then [ "Oracle_VirtualBox_Extension_Pack" ] else [ ]
-  );
 
   environment.systemPackages = let p = pkgs; in [
     p.cryptsetup

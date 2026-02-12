@@ -82,7 +82,6 @@
       extraGroups = let
         virtCfg = config.modules.hosts.virtualisation;
         virtMgr = virtCfg.virt-manager.enable;
-        virtBox = virtCfg.virtualbox.enable;
         docker = virtCfg.docker.enable;
       in [
         "wheel"
@@ -91,7 +90,6 @@
         "video"
       ]
       ++ (if virtMgr then [ "libvirtd" ] else [ ])
-      ++ (if virtBox then [ "vboxusers" ] else [ ])
       ++ (if docker then [ "docker" ] else [ ])
       ;
     };
