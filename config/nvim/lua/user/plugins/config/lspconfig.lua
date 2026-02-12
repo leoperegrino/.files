@@ -88,7 +88,7 @@ return {
 		keys = {
 			{ "gld", vim.lsp.buf.definition, desc = "definition" },
 			{ "glD", vim.lsp.buf.declaration, desc = "declaration" },
-			{ "gls", vim.lsp.buf.signature_help, desc = "signature_help" },
+			{ "gls", function() vim.lsp.buf.signature_help() end, desc = "signature_help" },
 			{ "glf", vim.lsp.buf.format, desc = "format" },
 
 			-- see: lsp-defaults
