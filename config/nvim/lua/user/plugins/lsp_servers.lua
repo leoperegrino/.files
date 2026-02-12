@@ -176,7 +176,7 @@ add_lsp(
 add_lsp(
 	'docker_compose_language_service',
 	{},
-	{ "nix", "run", "nixpkgs#docker-compose-langserver", '--', '--stdio' }
+	{ "nix", "run", "nixpkgs#docker-compose-language-service", '--', '--stdio' }
 )
 
 add_lsp(
