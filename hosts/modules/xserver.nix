@@ -56,17 +56,31 @@ in
 
     programs.kdeconnect.enable = true;
 
-    environment.plasma6.excludePackages = let k = pkgs.kdePackages; in [
-      k.kate
-      k.konsole
-      k.okular
-      k.elisa
-      k.ark
-      k.khelpcenter
-      k.discover
-      # k.gwenview
-      # k.dolphin
-    ];
+    environment = let k = pkgs.kdePackages; in {
+      systemPackages = [
+        k.kcalc
+        k.kgpg
+        k.kmail
+        k.kmail-account-wizard
+        k.kontact
+        k.kcontacts
+        k.kwallet
+        k.merkuro
+        k.okular
+        k.ark
+      ];
+      plasma6.excludePackages = [
+        k.kate
+        k.konsole
+        k.okular
+        k.elisa
+        k.ark
+        k.khelpcenter
+        k.discover
+        # k.gwenview
+        # k.dolphin
+      ];
+    };
   };
 
 }
