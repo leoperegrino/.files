@@ -18,6 +18,7 @@
     python.enable = true;
     ranger.enable = true;
     syncthing.enable = true;
+    tmux.enable = true;
     xdg.enable = true;
     yazi.enable = true;
     zsh.enable = true;

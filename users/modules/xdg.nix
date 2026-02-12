@@ -39,10 +39,6 @@ in
         source = symlink "${dotfiles}/vim";
         recursive = true;
       };
-      "tmux" = {
-        source = symlink "${dotfiles}/tmux";
-        recursive = true;
-      };
     };
 
     xdg.autostart = {
