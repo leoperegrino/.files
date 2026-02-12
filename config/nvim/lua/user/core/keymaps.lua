@@ -2,110 +2,126 @@ local M = {}
 
 
 function M.keymaps()
-	local function keymap(mode, lhs, rhs, desc)
-		vim.keymap.set(mode, lhs, rhs, { desc = desc, })
-	end
+	local set = vim.keymap.set
 
+	-- basics
+	set('', '<leader><leader>', ':')
+	set('n', '<leader>H', ':vert help ')
+	set('n', '<leader>L', ':lua ')
+	set('n', '<leader>=', ':= ')
 
-	keymap('' , '<leader><leader>', ':'         )
-	keymap('n', '<leader>H'       , ':H '       )
-	keymap('n', '<leader>L'       , ':lua '     )
-	keymap('n', '<leader>='       , ':= '       )
-	keymap('n', '<leader>m'       , ':vert Man ')
-	keymap('n', '<leader>T'       , ':tabedit ' )
-	keymap('n', '<leader>S'       , ':vsplit '  )
-	keymap('n', '<leader>O'       , ':split '   )
-	keymap('n', '<leader>vb'      , ':vert sb ' )
-	keymap('n', '<leader>E'       , ':edit ' )
+	-- edits
+	set('n', '<leader>T', ':tabedit ')
+	set('n', '<leader>S', ':vsplit ')
+	set('n', '<leader>O', ':split ')
+	set('n', '<leader>E', ':edit ')
+	set('n', '<leader>e', ':vert sb ')
 
-	keymap('n', '<leader>s'       , '<Cmd>w<CR>'   )
-	keymap('n', '<leader>q'       , '<Cmd>q<CR>'   )
-	keymap('n', '<leader>Q'       , '<Cmd>q!<CR>'  )
-	keymap('n', '<leader>wq'      , '<Cmd>wq<CR>'  )
-	keymap('n', '<leader>1'       ,
-		function() vim.cmd("exec 'norm " .. (vim.v.count or 1) .. "gT'") end,
-		"Go to [vim.v.count]th PREVIOUS tab in tab list"
+	-- save/quit
+	set('n', '<leader>s', '<Cmd>w<CR>')
+	set('n', '<leader>q', '<Cmd>q<CR>')
+	set('n', '<leader>Q', 'ZQ')
+	set('n', '<leader>wq', 'ZZ')
+
+	-- tab navigation
+	set('n', '<leader>1', 'gT')
+	set('n', '<leader>2', 'gt')
+	set('n', '<leader>n', ']b', { remap = true })
+	set('n', '<leader>p', '[b', { remap = true })
+
+	-- text navigation
+	set('c', '<C-d>', '<c-f>')
+	set('c', '<C-f>', '<Right>')
+	set('c', '<C-b>', '<Left>')
+	set('i', '<C-f>', '<Right>')
+	set('i', '<C-b>', '<Left>')
+	set('i', '<C-e>', '<ESC>A')
+	set('i', '<C-a>', '<ESC>I')
+
+	-- window rearrangement
+	set('n', '<leader>h', '<C-w>H')
+	set('n', '<leader>j', '<C-w>J')
+	set('n', '<leader>k', '<C-w>K')
+	set('n', '<leader>l', '<C-w>L')
+
+	-- window navigation
+	set('n', '<C-h>', '<c-w>h')
+	set('n', '<C-j>', '<c-w>j')
+	set('n', '<C-k>', '<c-w>k')
+	set('n', '<C-l>', '<c-w>l')
+
+	-- window resizing
+	set('n', '<C-f>', '<Cmd>vert res -5<CR>')
+	set('n', '<C-b>', '<Cmd>vert res +5<CR>')
+	set('n', '<C-s>', '<Cmd>res -5<CR>')
+	set('n', '<C-g>', '<Cmd>res +5<CR>')
+
+	-- text indentation
+	set('n', '<', '<<', { remap = true })
+	set('n', '>', '>>', { remap = true })
+	set('v', '<', '<gv')
+	set('v', '>', '>gv')
+
+	-- text yank/paste
+	set('', '<C-p>', '"0p')
+	set('v', '<C-c>', '"+y')
+
+	-- use r for redo
+	set('', '<C-r>', '<Nop>')
+	set('n', 'r', '<C-r>')
+
+	-- force gf to create file
+	set('', 'gf', "<Cmd>e <cfile><CR>")
+	set('', 'gF', "<Cmd>vsplit <cfile><CR>")
+
+	-- spell
+	set('n', '<leader>C', '<Cmd>setlocal spell! spelllang=en_us<CR>')
+	set('n', '<leader>c', '<Cmd>setlocal spell! spelllang=pt_br<CR>')
+
+	set('n', '<leader>B',
+		function()
+			vim.cmd.edit('#')
+			vim.cmd.bdelete('#')
+		end,
+		{ desc = 'delete buffer without closing window' }
 	)
-	keymap('n', '<leader>2'       , '<Cmd>tabn<CR>')
-	keymap('n', '<leader>n',
-		function() vim.cmd((vim.v.count or 1) .. 'bnext') end,
-		"Go to [vim.v.count]th NEXT buffer in buffer list"
+
+	set('n', '<esc>',
+		function()
+			vim.cmd.nohlsearch()
+			vim.cmd.echo()
+		end,
+		{ desc = "disable search highlighting and clear cmdline" }
 	)
-	keymap('n', '<leader>p',
-		function() vim.cmd((vim.v.count or 1) .. 'bprevious') end,
-		"Go to [vim.v.count]th PREVIOUS buffer in buffer list"
+
+	set('n', 'yU',
+		function()
+			local cword = vim.fn.expand('<cword>')
+			vim.fn.setreg('/', cword)
+			vim.o.hlsearch = true
+		end,
+		{ desc = "yank cword to search pattern" }
 	)
 
-	keymap('n', '<leader>B'       , '<Cmd>Bd<CR>'  )
-	keymap('n', '<leader>h'       , '<C-w>H'       )
-	keymap('n', '<leader>j'       , '<C-w>J'       )
-	keymap('n', '<leader>k'       , '<C-w>K'       )
-	keymap('n', '<leader>l'       , '<C-w>L'       )
-	keymap('n', '<leader>8'       , '[s'           )
-	keymap('n', '<leader>9'       , '1z='          )
-	keymap('n', '<leader>0'       , ']s'           )
-	keymap('n', '<leader>C'       , '<Cmd>setlocal spell! spelllang=en_us<CR>')
-	keymap('n', '<leader>c'       , '<Cmd>setlocal spell! spelllang=pt_br<CR>')
-	keymap('n', '<leader>WW'      , '<Cmd>silent w ! sudo tee >/dev/null  % <CR>')
-
-	keymap('c', '<C-d>'     , '<c-f>'             )
-	keymap('c', '<C-f>'     , '<Right>'           )
-	keymap('c', '<C-b>'     , '<Left>'            )
-	keymap('v', '<C-c>'     , '"+y'               )
-	keymap('i', '<C-f>'     , '<Right>'           )
-	keymap('i', '<C-b>'     , '<Left>'            )
-	keymap('i', '<C-e>'     , '<ESC>A'            )
-	keymap('i', '<C-a>'     , '<ESC>I'            )
-	keymap('' , '<C-r>'     , '<Nop>'             )
-	keymap('n', '<C-h>'     , '<c-w>h' )
-	keymap('n', '<C-j>'     , '<c-w>j' )
-	keymap('n', '<C-k>'     , '<c-w>k' )
-	keymap('n', '<C-l>'     , '<c-w>l' )
-	keymap('n', '<C-f>'     , '<Cmd>vert res -5<CR>')
-	keymap('n', '<C-b>'     , '<Cmd>vert res +5<CR>')
-	keymap('n', '<C-s>'     , '<Cmd>res -5<CR>'     )
-	keymap('n', '<C-g>'     , '<Cmd>res +5<CR>'     )
-	keymap('t', '<C-h>'     , [[<C-\><C-N><C-w>h]]  )
-	keymap('t', '<C-j>'     , [[<C-\><C-N><C-w>j]]  )
-	keymap('t', '<C-k>'     , [[<C-\><C-N><C-w>k]]  )
-	keymap('t', '<C-l>'     , [[<C-\><C-N><C-w>l]]  )
-	keymap('t', '<C-w><C-w>', [[<C-\><C-N>]]        )
-
-	vim.keymap.set('n' , '<'  , '<<', { remap = true } )
-	vim.keymap.set('n' , '>'  , '>>', { remap = true } )
-
-	keymap('v' , '<'     , '<gv'  )
-	keymap('v' , '>'     , '>gv'  )
-
-	keymap(''  , '<c-p>' , '"0p'  )
-	keymap('n' , '_'     , '-'    )
-	keymap('n' , 'r'     , '<C-r>')
-	keymap('n' , 'Y'     , 'y$'   )
-	keymap('n' , 'dL'    , 'd$'   )
-	keymap('n' , 'dH'    , 'd^'   )
-	keymap(''  , 'gf'    , "<Cmd>e <cfile><CR>"                                       )
-	keymap(''  , 'gF'    , "<Cmd>vsplit <cfile><CR>"                                  )
-	-- keymap('n' , 'K'     , "<Cmd>execute 'vert' &keywordprg expand('<cword>')<CR>"    )
-	keymap('n' , '<esc>' , [[<Cmd>noh <bar> match none <bar> echo ''<CR><esc>]]       , "make escape disable search highlighting"      )
-	keymap('n' , 'yU'    , "<Cmd>let @/= expand('<cword>') <BAR> set hlsearch<CR>"    , "yank word under the cursor to search pattern" )
-	keymap('n' , 'yu'    , [[<Cmd>let @/='\<' . expand('<cword>') . '\>' <BAR> set hlsearch<CR>]], "yank word with boundaries under the cursor to search pattern")
+	set('n', 'yu',
+		function()
+			local cword = vim.fn.expand('<cword>')
+			vim.fn.setreg('/', '\\<' .. cword .. '\\>')
+			vim.o.hlsearch = true
+		end,
+		{ desc = "yank cword with boundaries to search pattern" }
+	)
 end
-
 
 function M.commands()
 	local command = vim.api.nvim_create_user_command
 
-	command('Bd',
-		function(_) vim.cmd.bnext() vim.cmd.bdelete('#') end,
-		{ nargs = 0 }
-	)
 	command('Untrail',
-		function(_) pcall(vim.cmd, [[%s/\s\+$//g]]) end,
+		function(_)
+			---@diagnostic disable-next-line: param-type-mismatch
+			pcall(vim.cmd, [[%s/\s\+$//g]])
+		end,
 		{ nargs = 0 }
-	)
-	command('H',
-		function(opts) vim.cmd('vert help ' .. opts.fargs[1]) end,
-		{ nargs = 1, complete = 'command' }
 	)
 	command('XMLint',
 		function(_)
@@ -117,11 +133,9 @@ function M.commands()
 	)
 end
 
-
 function M.setup()
 	M.keymaps()
 	M.commands()
 end
-
 
 return M
